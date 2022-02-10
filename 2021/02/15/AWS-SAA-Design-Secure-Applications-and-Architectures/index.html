@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>AWS SAA - Design Secure Applications and Architectures | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Part One: Protecting AWS Credentials Part Two: Capturing and Analyzing Logs Part Three: Protecting Network and Host-level Boundaries Part Four: Protecting Data at Rest Part Five: Protecting Data in T">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS SAA - Design Secure Applications and Architectures">
+<meta property="og:url" content="http://hellcy.github.io/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Part One: Protecting AWS Credentials Part Two: Capturing and Analyzing Logs Part Three: Protecting Network and Host-level Boundaries Part Four: Protecting Data at Rest Part Five: Protecting Data in T">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/19.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/20.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/21.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/22.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/23.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/24.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/25.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/26.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/27.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/28.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/29.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/30.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/31.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/32.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/33.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/34.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/35.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/36.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/37.png">
+<meta property="article:published_time" content="2021-02-15T11:06:03.000Z">
+<meta property="article:modified_time" content="2021-03-05T13:13:34.682Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="AWS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Secure-Applications-and-Architectures/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-one-protecting-aws-credentials"><span class="toc-number">1.</span> <span class="toc-text"> Part One: Protecting AWS Credentials</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#the-cia-triad"><span class="toc-number">1.1.</span> <span class="toc-text"> The CIA Triad</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aws-credentials"><span class="toc-number">1.2.</span> <span class="toc-text"> AWS Credentials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary"><span class="toc-number">1.3.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-two-capturing-and-analyzing-logs"><span class="toc-number">2.</span> <span class="toc-text"> Part Two: Capturing and Analyzing Logs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview"><span class="toc-number">2.1.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudtrail-event-types"><span class="toc-number">2.2.</span> <span class="toc-text"> CloudTrail event types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-iam-service-role"><span class="toc-number">2.3.</span> <span class="toc-text"> Create IAM service role</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo"><span class="toc-number">2.4.</span> <span class="toc-text"> Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#create-a-log-group-in-cloudwatch-logs"><span class="toc-number">2.4.1.</span> <span class="toc-text"> Create a log group in CloudWatch Logs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#why-athena"><span class="toc-number">2.5.</span> <span class="toc-text"> Why Athena?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-2"><span class="toc-number">2.6.</span> <span class="toc-text"> Demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tracking-configuration-changes-in-aws-config"><span class="toc-number">2.7.</span> <span class="toc-text"> Tracking Configuration Changes in AWS Config</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-2"><span class="toc-number">2.8.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-three-protecting-network-and-host-level-boundaries"><span class="toc-number">3.</span> <span class="toc-text"> Part Three: Protecting Network and Host-level Boundaries</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tic-tac-toe-web-application"><span class="toc-number">3.1.</span> <span class="toc-text"> Tic-tac-toe web application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-2"><span class="toc-number">3.2.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-3"><span class="toc-number">3.3.</span> <span class="toc-text"> Demo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#using-vpc-endpoints"><span class="toc-number">3.4.</span> <span class="toc-text"> Using VPC Endpoints</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-4"><span class="toc-number">3.5.</span> <span class="toc-text"> Demo</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#create-vpc-endpoint"><span class="toc-number">3.5.1.</span> <span class="toc-text"> Create VPC Endpoint</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#network-access-control-lists"><span class="toc-number">3.6.</span> <span class="toc-text"> Network Access Control Lists</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#differences-between-security-group-and-nacl"><span class="toc-number">3.6.1.</span> <span class="toc-text"> Differences between Security Group and NACL</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-3"><span class="toc-number">3.7.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-four-protecting-data-at-rest"><span class="toc-number">4.</span> <span class="toc-text"> Part Four: Protecting Data at Rest</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-3"><span class="toc-number">4.1.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-create-a-customer-master-key-using-kms"><span class="toc-number">4.2.</span> <span class="toc-text"> Demo Create a customer master key using KMS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-encrypt-the-data-on-an-unencrypted-ebs-volume"><span class="toc-number">4.3.</span> <span class="toc-text"> Demo Encrypt the data on an unencrypted EBS volume</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-s3-access-permissions"><span class="toc-number">4.4.</span> <span class="toc-text"> Demo S3 Access Permissions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-cloudfront-origin-access-identity"><span class="toc-number">4.5.</span> <span class="toc-text"> Demo CloudFront Origin Access Identity</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-granting-anonymous-access-with-object-acls-and-bucket-policies"><span class="toc-number">4.6.</span> <span class="toc-text"> Demo Granting Anonymous Access with Object ACLs and Bucket Policies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#encrypting-s3-objects-with-kms-managed-keys"><span class="toc-number">4.7.</span> <span class="toc-text"> Encrypting S3 Objects with KMS-managed Keys</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-4"><span class="toc-number">4.8.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-five-protecting-data-in-transit"><span class="toc-number">5.</span> <span class="toc-text"> Part Five: Protecting Data in Transit</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transport-layer-security-tls"><span class="toc-number">5.1.</span> <span class="toc-text"> Transport Layer Security (TLS)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-4"><span class="toc-number">5.2.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-preparing-for-the-load-balancer"><span class="toc-number">5.3.</span> <span class="toc-text"> Demo Preparing for the Load Balancer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-creating-a-secure-application-load-balancer"><span class="toc-number">5.4.</span> <span class="toc-text"> Demo Creating a Secure Application Load Balancer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-5"><span class="toc-number">5.5.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-six-configuring-data-backup-replication-and-recovery"><span class="toc-number">6.</span> <span class="toc-text"> Part Six: Configuring Data Backup, Replication, and Recovery</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-5"><span class="toc-number">6.1.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-versioning"><span class="toc-number">6.2.</span> <span class="toc-text"> Demo Versioning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lifecycle-management"><span class="toc-number">6.3.</span> <span class="toc-text"> Lifecycle Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-liftcycle-management"><span class="toc-number">6.4.</span> <span class="toc-text"> Demo Liftcycle Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#demo-cross-region-replication"><span class="toc-number">6.5.</span> <span class="toc-text"> Demo Cross-Region Replication</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-6"><span class="toc-number">6.6.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#couse-summary"><span class="toc-number">7.</span> <span class="toc-text"> Couse Summary</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-AWS-SAA-Design-Secure-Applications-and-Architectures" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AWS SAA - Design Secure Applications and Architectures
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/" class="article-date">
+	  <time datetime="2021-02-15T11:06:03.000Z" itemprop="datePublished">15-02-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/AWS/" rel="tag">AWS</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.8k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 23(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ol>
+<li><a href="#part-one-protecting-aws-credentials">Part One: Protecting AWS Credentials</a></li>
+<li><a href="#part-two-capturing-and-analyzing-logs">Part Two: Capturing and Analyzing Logs</a></li>
+<li><a href="#part-three-protecting-network-and-host-level-boundaries">Part Three: Protecting Network and Host-level Boundaries</a></li>
+<li><a href="#part-four-protecting-data-at-rest">Part Four: Protecting Data at Rest</a></li>
+<li><a href="#part-five-protecting-data-in-transit">Part Five: Protecting Data in Transit</a></li>
+<li><a href="#part-six-configuring-data-backup-replication-and-recovery">Part Six: Configuring Data Backup, Replication, and Recovery</a></li>
+</ol>
+<h2 id="part-one-protecting-aws-credentials"><a class="markdownIt-Anchor" href="#part-one-protecting-aws-credentials"></a> Part One: Protecting AWS Credentials</h2>
+<ul>
+<li>Security is about protecting data.</li>
+</ul>
+<h3 id="the-cia-triad"><a class="markdownIt-Anchor" href="#the-cia-triad"></a> The CIA Triad</h3>
+<ul>
+<li>Confidentiality</li>
+<li>Integrity</li>
+<li>Availability</li>
+</ul>
+<ul>
+<li>
+<p>Confidentiality: Only authorized parties can access data. (ACLs and encryption)</p>
+</li>
+<li>
+<p>Integrity: Data has not been improperly modified. Includes knowing if data has been modified.</p>
+</li>
+<li>
+<p>Availability: Authorized parties have access to data when they need it. Includes protecting systems that store, process, and deliver data.</p>
+</li>
+<li>
+<p>Defense in depth: Protecting the confidentiality, integrity, and availability of data by securing everything that touches the data, including storage, compute and networking</p>
+</li>
+<li>
+<p>Levels of Architecture: AWS services, Operating systems, Applications</p>
+</li>
+</ul>
+<h3 id="aws-credentials"><a class="markdownIt-Anchor" href="#aws-credentials"></a> AWS Credentials</h3>
+<ul>
+<li>
+<p>Root User: Full access to all AWS resources. Only one root user per account.</p>
+</li>
+<li>
+<p>IAM principal: Any entity(could be a user or an application) that can perform actions on AWS services and resources. Policies determine what permissions a principal has</p>
+</li>
+<li>
+<p>Locking down the Root user: Enable MFA. Don’t use the root user for administrative tasks. Use a non-root IAM user with administrative permissions</p>
+</li>
+<li>
+<p>IAM Principal: The foundation of IAM. An entity that can take an action on an AWS service. Often used as a synonym for identity. Principles include users and roles</p>
+</li>
+<li>
+<p>A non-root principal has no permissions by default. Policies determine what permission a principal has</p>
+</li>
+<li>
+<p>You must grant permissions to a principal by associating it with a policy.</p>
+</li>
+<li>
+<p>Policy and Permission: A policy consists of multiple permission statements. A permission statement consists of 4 elements.</p>
+</li>
+</ul>
+<ol>
+<li>Effect (allow or deny)</li>
+<li>Service (etc: EC2)</li>
+<li>Action/Operation (RunInstances)</li>
+<li>Resource (image/ami-fjdfjfsdk)</li>
+<li>Request condition(MFA, IP range, time…) (198.51.100.0/24)</li>
+</ol>
+<ul>
+<li>This permission will allow a principal to run an EC2 instance with certain AMI, when it is in certain IP range.</li>
+<li>AWS managed policies: AWS has many managed policies created for us to use. (they are updated regularly to include new services)</li>
+<li>The deny effect always takes precedence over the allow effect (deny &gt; allow)</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/1.png" alt="" /></p>
+<ul>
+<li>We can create inline policy for a user to deny he’s access to terminate any EC2 instances.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/2.png" alt="" /></p>
+<ul>
+<li>This is the JSON representation of the policy</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/3.png" alt="" /></p>
+<ul>
+<li>We could use policy simulator to check the effectiveness of the policy.</li>
+<li>We could also create inline policy for a group.</li>
+</ul>
+<h3 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h3>
+<ol>
+<li>Implement MFA for the root user</li>
+<li>User an administrative user instead of root user</li>
+<li>AWS managed policies are updated as new services and actions are added</li>
+<li>A policy permission consists of an effect, service, action/operation and resource</li>
+<li>A user policy is an inline policy embedded in a user</li>
+<li>A group policy is embedded in a group</li>
+<li>Customer Managed policies work like AWS managed policies, but are created and managed by you</li>
+</ol>
+<h2 id="part-two-capturing-and-analyzing-logs"><a class="markdownIt-Anchor" href="#part-two-capturing-and-analyzing-logs"></a> Part Two: Capturing and Analyzing Logs</h2>
+<h3 id="module-overview"><a class="markdownIt-Anchor" href="#module-overview"></a> Module Overview</h3>
+<ol>
+<li>Capturing events with CloudTrail</li>
+<li>Viewing Logs with CloudWatch Logs</li>
+<li>Creating alerts with CloudWatch Alarms</li>
+<li>Searching logs with Athena</li>
+<li>Tracking changes with AWS config</li>
+</ol>
+<ul>
+<li>CloudTrail logs are stored in S3. Limit what you log to control costs</li>
+</ul>
+<h3 id="cloudtrail-event-types"><a class="markdownIt-Anchor" href="#cloudtrail-event-types"></a> CloudTrail event types</h3>
+<ul>
+<li>
+<p>Management: Configuration changes to AWS services. Reading resources. Logging into the management console. Assuming a role.</p>
+</li>
+<li>
+<p>Data: Access to S3 objects. Lambda function execution</p>
+</li>
+<li>
+<p>CloudTrail: Logs AWS actions. Stores logs in S3</p>
+</li>
+<li>
+<p>CloudWatch Logs: Aggregates logs from CloudTrail and non-AWS sources. Provides interface to view and search logs</p>
+</li>
+</ul>
+<h3 id="create-iam-service-role"><a class="markdownIt-Anchor" href="#create-iam-service-role"></a> Create IAM service role</h3>
+<ul>
+<li>Contains inline service policy that grants CloudTrail permissions to send logs to CloudWatch Logs</li>
+<li>Contains trust policy that allows CloudTrail to assume the role</li>
+<li>Role is an IAM principal for CloudTrail to use to authenticate to CloudWatch Logs</li>
+</ul>
+<h3 id="demo"><a class="markdownIt-Anchor" href="#demo"></a> Demo</h3>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/4.png" alt="" /></p>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/5.png" alt="" /></p>
+<h4 id="create-a-log-group-in-cloudwatch-logs"><a class="markdownIt-Anchor" href="#create-a-log-group-in-cloudwatch-logs"></a> Create a log group in CloudWatch Logs</h4>
+<ul>
+<li>Create an IAM role for CloudTrail to assume. The Role will have two permission statements. It can create log streams and it can put the log into CloudWatch Log groups.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/6.png" alt="" /></p>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/7.png" alt="" /></p>
+<ul>
+<li>The CloudTrail and the Role have a trusted relationship. If we have a look at the JSON policy. It will allow CloudTrail to assume the Role. The Role will give its permissions to CloudTrail.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/8.png" alt="" /></p>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/9.png" alt="" /></p>
+<ul>
+<li>Create CloudWatch Alarm we need to select a metric, in this case, IncomingLogEvents. We define the alarm so that it triggers the alarm if CloudTrail send more than 1 log to CloudWatch Logs within 1 minute period of time.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/10.png" alt="" /></p>
+<ul>
+<li>We also created new topic with an email address so I will get notified if this happens.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/11.png" alt="" /></p>
+<ul>
+<li>After the alarm has been created, the status is OK because we didn’t receive any logs in the last 1 minutes. And we treat missing logs as Good.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/12.png" alt="" /></p>
+<ul>
+<li>When there is logs coming in, the status will be changed to In alarm for that 1 minute period and will be changed back to OK the next minute.</li>
+<li>Notice the alarm logs are not in real time. There maybe a couple of minutes delay.</li>
+</ul>
+<h3 id="why-athena"><a class="markdownIt-Anchor" href="#why-athena"></a> Why Athena?</h3>
+<ul>
+<li>
+<p>Maybe you don’t want to use CloudWatch Logs. You can use SQL like queries to search thought logs and all S3 objects. If the files are in correct format (e.g. csv, JSON, CloudTrail logs stored in S3 are in JSON format)</p>
+</li>
+<li>
+<p>Athena usrs SQL, so to search files in s3, we need to provide the schema. AWS provides the schema for CloudTrail Logs</p>
+</li>
+</ul>
+<h3 id="demo-2"><a class="markdownIt-Anchor" href="#demo-2"></a> Demo</h3>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/13.png" alt="" /></p>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/14.png" alt="" /></p>
+<ul>
+<li>Note you need to create a save location for the Athena search result in S3 before run the query.</li>
+</ul>
+<h3 id="tracking-configuration-changes-in-aws-config"><a class="markdownIt-Anchor" href="#tracking-configuration-changes-in-aws-config"></a> Tracking Configuration Changes in AWS Config</h3>
+<ul>
+<li>Tracks configuration changes over time.</li>
+<li>AWS config can tell you the stats of all AWS services of any point of time in the past.</li>
+<li>Records changes in S3.</li>
+<li>Notifies of changes</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/15.png" alt="" /></p>
+<h3 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> Summary</h3>
+<ul>
+<li>CouldTrail tracks events</li>
+<li>ClousdWatch Logs aggregates logs from different sources</li>
+<li>CloudWatch Alarms trigger based on specific log activity</li>
+<li>Athena performs SQL queries against objects in S3</li>
+<li>AWS Config tracks configuration states over time</li>
+</ul>
+<h2 id="part-three-protecting-network-and-host-level-boundaries"><a class="markdownIt-Anchor" href="#part-three-protecting-network-and-host-level-boundaries"></a> Part Three: Protecting Network and Host-level Boundaries</h2>
+<h3 id="tic-tac-toe-web-application"><a class="markdownIt-Anchor" href="#tic-tac-toe-web-application"></a> Tic-tac-toe web application</h3>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/16.png" alt="" /></p>
+<ul>
+<li>Host-level boundary is the default security group between the public subnet and the EC2 instance(auto created).</li>
+<li>NACL(netwoek access control list): controls traffic in and out the subnet</li>
+<li>having both the security group and NACL gives you layers of security around your instance.</li>
+<li>The game data stored in DynamoDB, to communicate with it, we have two options</li>
+</ul>
+<ol>
+<li>We can go over the public internet via igw(internet gateway)</li>
+<li>We can also use a VPC endpoint, which is a non-internet private connection</li>
+</ol>
+<h3 id="module-overview-2"><a class="markdownIt-Anchor" href="#module-overview-2"></a> Module Overview</h3>
+<ol>
+<li>Creating a public subnet</li>
+<li>Creating and using an IAM instance profile</li>
+<li>Using SSH key pairs</li>
+<li>Using VPC endpoints</li>
+<li>Network access control lists</li>
+</ol>
+<h3 id="demo-3"><a class="markdownIt-Anchor" href="#demo-3"></a> Demo</h3>
+<ol>
+<li>Create VPC</li>
+<li>Create subnet</li>
+<li>Create igw</li>
+<li>Attach igw to VPC</li>
+<li>Add routes in VPC’s main route table</li>
+<li>Add VPC’s inbound rules</li>
+<li>Create IAM role to allow access to DynamoDB</li>
+<li>Role will contain a trust policy to allow EC2 instances to assume the role</li>
+<li>Launch instance and attach instance profile</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/17.png" alt="" /></p>
+<ul>
+<li>Create VPC</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/18.png" alt="" /></p>
+<ul>
+<li>Create public subnet, we use the CIDR block the same as our VPC because we are only going to create one subnet for this VPC</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/19.png" alt="" /></p>
+<ul>
+<li>Create internet gateway</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/20.png" alt="" /></p>
+<ul>
+<li>Attach internet gateway to VPC</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/21.png" alt="" /></p>
+<ul>
+<li>Edit the main route table, add another record. Route all traffic to igw. By doing this we make our subnet a public subnet</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/22.png" alt="" /></p>
+<ul>
+<li>Add two inbound rules in our VPC’s default security group. Use my home IP as source. So only at my home can I access the VPC services by HTTP or SSH.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/23.png" alt="" /></p>
+<ul>
+<li>Create IAM role to access DynamoDB</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/24.png" alt="" /></p>
+<ul>
+<li>Create a role and attach the policy to it. Because we choose EC2 as the service that will be using this role, the trusted entity is EC2. It also creates an instance profile for us.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/25.png" alt="" /></p>
+<ul>
+<li>Create an EC2 instance</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh ec2-user@13.55.117.52 -i .\hellcyAWSkey.pem</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Access EC2 instance via SSH</li>
+<li>You need to go to your private key location (pem) and change the access level to 400(linux) or change the Owner to yourself and remove all other groups and users. <a target="_blank" rel="noopener" href="https://superuser.com/questions/1296024/windows-ssh-permissions-for-private-key-are-too-open">Check here</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y install git python2-pip.noarch</span><br></pre></td></tr></table></figure>
+<ul>
+<li>install the app</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;benpiper&#x2F;dynamodb-tictactoe-example-app</span><br></pre></td></tr></table></figure>
+<ul>
+<li>clone the repo from github</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo pip install flask boto</span><br></pre></td></tr></table></figure>
+<ul>
+<li>install dependecies</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo python application.py</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/26.png" alt="" /></p>
+<ul>
+<li>cd to the application folder and run the app.</li>
+<li>You can play the game with other people who logs in</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/27.png" alt="" /></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl 169.254.169.254&#x2F;latest&#x2F;meta-data&#x2F;iam&#x2F;security-credentials&#x2F;tic-tac-toe-app</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/28.png" alt="" /></p>
+<ul>
+<li>this is the secret token generated by AWS STS(Security Token Service) using instance profile(from the role) to allow our instance to access DynamoDB.</li>
+</ul>
+<h3 id="using-vpc-endpoints"><a class="markdownIt-Anchor" href="#using-vpc-endpoints"></a> Using VPC Endpoints</h3>
+<ul>
+<li>Now we are going to change our traffic to go through a private link via VPC endpoint.</li>
+</ul>
+<h3 id="demo-4"><a class="markdownIt-Anchor" href="#demo-4"></a> Demo</h3>
+<ol>
+<li>Block outbound internet access from the instance</li>
+<li>Configure VPC endpoint</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup dynamodb.ap-southeast-2.amazonaws.com</span><br></pre></td></tr></table></figure>
+<ul>
+<li>look up the ip address of DynamoDB at our current AWS region</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -tp | grep python</span><br></pre></td></tr></table></figure>
+<ul>
+<li>check outbound connection from our EC2 instance to DynamoDB. Note our application needs to be running for this to work.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/29.png" alt="" /></p>
+<h4 id="create-vpc-endpoint"><a class="markdownIt-Anchor" href="#create-vpc-endpoint"></a> Create VPC Endpoint</h4>
+<ul>
+<li>New route rules will be added to the route table. This is to change the traffic sent to the DynamoDB from the private VPC endpint instead of the public igw</li>
+<li>Note it is required to create a policy for this VPC endpoint. The policy controls what the requests can do to the DynamoDB. Remember we already created a policy for a role and attached that role to our EC2 instance. They are two different policies. One for EC2, One for VPC endpoint.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/30.png" alt="" /></p>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/31.png" alt="" /></p>
+<ul>
+<li>
+<p>in the VPC’s security group. We need to remove the outbound rule for accessing public internet. Add a new rule to access DynamoDB endpoint.</p>
+</li>
+<li>
+<p>Note that we can access to the EC2 instance because we still have the inbound rules.</p>
+</li>
+<li>
+<p>Security Groups are stateful. They track the state of the connections to and from your instance. If you allow the traffic into your instance, then the security group will automatically allow the instance to reply to that traffic.</p>
+</li>
+<li>
+<p>Note there is a file <strong>bootstrap-responsive.css</strong> missing in the course app. I used FlieZilla uploaded this file to EC2. Below is the FlieZilla connection settings. Note port is 22.</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/32.png" alt="" /></p>
+<h3 id="network-access-control-lists"><a class="markdownIt-Anchor" href="#network-access-control-lists"></a> Network Access Control Lists</h3>
+<ul>
+<li>Security Group controls in/out traffic for a EC2 instance. While NACL controls all traffic in the subnet. They are two layers of security.</li>
+</ul>
+<h4 id="differences-between-security-group-and-nacl"><a class="markdownIt-Anchor" href="#differences-between-security-group-and-nacl"></a> Differences between Security Group and NACL</h4>
+<ol>
+<li>Security Group
+<ul>
+<li>Instance Level</li>
+<li>Stateful</li>
+<li>Unnumbered rules (rules don’t have order)</li>
+</ul>
+</li>
+<li>NACL
+<ul>
+<li>Subnet level</li>
+<li>Stateless</li>
+<li>Numbered rules (rules have order)</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>Stateful means security groups will automatically allow reply traffic.</p>
+</li>
+<li>
+<p>Stateless means if you only have inbound rule to access the instance. But do not have the outbound rule. Then the traffic can not leave the subnet. You have to setup both in/out rules to access an instance in the subnet.</p>
+</li>
+<li>
+<p>Numbered rules means each rule will have a number. Smaller number rules will be applied first(high priority).</p>
+</li>
+</ul>
+<h3 id="summary-3"><a class="markdownIt-Anchor" href="#summary-3"></a> Summary</h3>
+<ol>
+<li>A public subnet has a default route to an internet gateway</li>
+<li>Use an IAM instance profile to grant an instance access to an AWS service</li>
+<li>Decide whether to connect to AWS endpoints via the internet or a VPC endpoint</li>
+<li>Security groups and network access control lists act as firewalls but differ in significant ways</li>
+</ol>
+<h2 id="part-four-protecting-data-at-rest"><a class="markdownIt-Anchor" href="#part-four-protecting-data-at-rest"></a> Part Four: Protecting Data at Rest</h2>
+<ul>
+<li>Data at Rest is the data stored in a place(hard drive)</li>
+<li>Data in Transit is the data being sent in public internet</li>
+</ul>
+<ol>
+<li>Access Permissions
+<ul>
+<li>Bucket policies</li>
+<li>User policies</li>
+<li>Access Control lists</li>
+</ul>
+</li>
+<li>Encryption
+<ul>
+<li>Requires access to a key to encrypt and decrypt data</li>
+<li>if the key is gone. so is the data!</li>
+</ul>
+</li>
+</ol>
+<h3 id="module-overview-3"><a class="markdownIt-Anchor" href="#module-overview-3"></a> Module Overview</h3>
+<ol>
+<li>Create a customer master key(CMK)</li>
+<li>Encrypt an EBS volumn</li>
+<li>S3 access control lists, bucket policies, and user policies</li>
+<li>Securely grant anonymous access to S3 object</li>
+<li>Encrypt S3 object</li>
+</ol>
+<h3 id="demo-create-a-customer-master-key-using-kms"><a class="markdownIt-Anchor" href="#demo-create-a-customer-master-key-using-kms"></a> Demo Create a customer master key using KMS</h3>
+<ol>
+<li>Assign a key alias(friendly name)</li>
+<li>Define key administrators (people who manages the key)</li>
+<li>Define key users (people who will be using the key)</li>
+</ol>
+<h3 id="demo-encrypt-the-data-on-an-unencrypted-ebs-volume"><a class="markdownIt-Anchor" href="#demo-encrypt-the-data-on-an-unencrypted-ebs-volume"></a> Demo Encrypt the data on an unencrypted EBS volume</h3>
+<ol>
+<li>Stop the web1 instance (tic-tac-toe)</li>
+<li>Take a snapshot of the root volume</li>
+<li>Make an encrypted copy of the snapshot</li>
+<li>Create an AMI(instance image) using the encrypted snapshot</li>
+<li>Launch another instance using the new AMI</li>
+</ol>
+<h3 id="demo-s3-access-permissions"><a class="markdownIt-Anchor" href="#demo-s3-access-permissions"></a> Demo S3 Access Permissions</h3>
+<ol>
+<li>Create an S3 bucket</li>
+<li>Configure bucket access control lists</li>
+<li>Create a bucket policy</li>
+</ol>
+<ul>
+<li>There are two types of policies</li>
+</ul>
+<ol>
+<li>identity based policy
+<ul>
+<li>we set this up in IAM, we can grant policy to a IAM user</li>
+</ul>
+</li>
+<li>resource based policy
+<ul>
+<li>we set this up in resource page. We can add IAM users to the policy to let the resource know that these people can access it.</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Create a folder in the new S3 bucket and try to access this folder using another IAM user who only has read access to S3 buckets. Then try to use the new user to create another folder in S3 (will fail).</li>
+<li>Note folder in S3 is just another object(just look like a folder). So it requires the same permission as objects.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/33.png" alt="" /></p>
+<ul>
+<li>using Bucket inline policy generator, we can add another IAM user to the access list in S3 policy. Need to specify the IAM user ARN and S3 bucket ARN. After doing this we can create another folder using another IAM user.</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/34.png" alt="" /></p>
+<h3 id="demo-cloudfront-origin-access-identity"><a class="markdownIt-Anchor" href="#demo-cloudfront-origin-access-identity"></a> Demo CloudFront Origin Access Identity</h3>
+<ol>
+<li>Create an S3 bucket</li>
+<li>Create an origin access identity(OAI)</li>
+<li>Grant OAI access to the bucket</li>
+<li>Create a CloudFront distribution</li>
+</ol>
+<ul>
+<li>Note to grant OAI access to the S3 bucket, we need to create an inline policy for the S3 bucket. Tell the bucket to let our OAI user have the read access.</li>
+<li>Now only through the CloudFront can we access the bucket files.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"># Load named profile</span><br><span class="line">export AWS_PROFILE&#x3D;ben</span><br><span class="line"></span><br><span class="line"># Create S3 bucket</span><br><span class="line">aws s3api create-bucket --bucket yuan.com-cloudfront</span><br><span class="line"></span><br><span class="line"># Create and uplaod index.html document</span><br><span class="line">echo &quot;Hello, world!&quot; &gt; index.html</span><br><span class="line">aws s3 cp index.html s3:&#x2F;&#x2F;yuan.com-cloudfront&#x2F;</span><br><span class="line"></span><br><span class="line"># Create the origin access identity (OAI)</span><br><span class="line">aws cloudfront create-cloud-front-origin-access-identity --cloud-front-origin-access-identity-config CallerReference&#x3D;&quot;demo&quot;,Comment&#x3D;&quot;OAI for yuan.com-cloudfront&quot;</span><br><span class="line"></span><br><span class="line"># Apply a bucket policy granting read access to the OAI</span><br><span class="line">aws s3api put-bucket-policy --bucket yuan.com-cloudfront --policy file:&#x2F;&#x2F;bucketpolicy.json</span><br><span class="line"></span><br><span class="line"># Verify bucket policy</span><br><span class="line">aws s3api get-bucket-policy --bucket yuan.com-cloudfront</span><br><span class="line"></span><br><span class="line"># Create a CloudFront distribution</span><br><span class="line">aws cloudfront create-distribution --distribution-config file:&#x2F;&#x2F;dist-config.json</span><br></pre></td></tr></table></figure>
+<h3 id="demo-granting-anonymous-access-with-object-acls-and-bucket-policies"><a class="markdownIt-Anchor" href="#demo-granting-anonymous-access-with-object-acls-and-bucket-policies"></a> Demo Granting Anonymous Access with Object ACLs and Bucket Policies</h3>
+<ol>
+<li>Grant anonymous access to an individual S3 object</li>
+<li>Grant read permissions to everyone using the object’s ACL (Resources based policy)</li>
+<li>Use a bucket policy to grant everyone permission to perform the GetObject action against the object (identity based policy)</li>
+</ol>
+<ul>
+<li>
+<p>Note even if we logged as the IAM who has full access to S3 object (owner). When we try to access a certain file in S3 bucket. We will still get Access Denied response. Why is that? Because when we click the link to access S3 object, our browser will make an anonymous request to the object, which doesn’t not include any authentication information with it.</p>
+</li>
+<li>
+<p>Note if you are trying to modify bucket policy to give public access to a file. You have to make the bucket public first.</p>
+</li>
+</ul>
+<h3 id="encrypting-s3-objects-with-kms-managed-keys"><a class="markdownIt-Anchor" href="#encrypting-s3-objects-with-kms-managed-keys"></a> Encrypting S3 Objects with KMS-managed Keys</h3>
+<ol>
+<li>Generate a new CMK</li>
+<li>Enable encryption on our S3 bucket (existing files in bucket will not be encrypted)</li>
+<li>Verify that unauthorized users can’t decrypt data</li>
+</ol>
+<h3 id="summary-4"><a class="markdownIt-Anchor" href="#summary-4"></a> Summary</h3>
+<ol>
+<li>Use KMS to create customer master keys</li>
+<li>Use the key policy to grant principals permission to use the key</li>
+<li>To encrypt data on an existing EBS volume, snapshot the volume, and make an encrypted copy of a snapshot</li>
+<li>Enabling KMS encryption on an S3 bucket doesn’t encrypt existing objects.</li>
+<li>Don’t delete a key that’s being used to encrypt or decrypt data! (you can’t decrypt data after key’s deleted)</li>
+<li>To control access to S3, you can use access control lists, bucket policies, or user policies(identity based policies)</li>
+<li>Use object ACLs to grant anonymous access to individual objects</li>
+<li>Bucket policies contain the principal element while user policies don’t</li>
+</ol>
+<h2 id="part-five-protecting-data-in-transit"><a class="markdownIt-Anchor" href="#part-five-protecting-data-in-transit"></a> Part Five: Protecting Data in Transit</h2>
+<ul>
+<li>Encrypting data between users in public internet and AWS cloud</li>
+</ul>
+<h3 id="transport-layer-security-tls"><a class="markdownIt-Anchor" href="#transport-layer-security-tls"></a> Transport Layer Security (TLS)</h3>
+<ul>
+<li>People sometimes incorrectly call this SSL(secure sockets layer, which is the old technology that nobody uses anymore)</li>
+<li>HTTPS uses TLS (S stands for security which the underlying protocol is TLS)</li>
+</ul>
+<ol>
+<li>
+<p>Configure application to use TLS</p>
+<ul>
+<li>Application-dependent configuration</li>
+<li>independent of AWS</li>
+</ul>
+</li>
+<li>
+<p>Application Load Balancer (We use this in this course)</p>
+<ul>
+<li>Configure AWS application load balancer to use TLS</li>
+<li>Force all clients through the load balancer</li>
+</ul>
+</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/35.png" alt="" /></p>
+<ul>
+<li>We are going to create a load balancer and a TLS certificate using AWS ACM, then install the certificate on the load balancer. All users need to access the load balancer to access our instances (which hosted the tic-tac-toe application). And all traffic between users and load balancer are encrypted.</li>
+</ul>
+<h3 id="module-overview-4"><a class="markdownIt-Anchor" href="#module-overview-4"></a> Module Overview</h3>
+<ol>
+<li>Prepare the infrastructure to support an applicatioin load balancer</li>
+<li>Create a secure Application load balancer</li>
+</ol>
+<h3 id="demo-preparing-for-the-load-balancer"><a class="markdownIt-Anchor" href="#demo-preparing-for-the-load-balancer"></a> Demo Preparing for the Load Balancer</h3>
+<ol>
+<li>Create a new subnet in a different zone (load balancer requires instances to be at different AZs)</li>
+<li>Bring up an instance named web2</li>
+<li>Launch the application</li>
+<li>Reconfigure security group (permit access to/from load balancer)</li>
+</ol>
+<h3 id="demo-creating-a-secure-application-load-balancer"><a class="markdownIt-Anchor" href="#demo-creating-a-secure-application-load-balancer"></a> Demo Creating a Secure Application Load Balancer</h3>
+<ol>
+<li>Use the AWS Certificate Manager to create a TLS certificate</li>
+<li>Create an Application Load Balancer</li>
+<li>Create a DNS record for the application</li>
+<li>Browse to the application using HTTPS</li>
+</ol>
+<ul>
+<li>
+<p>If you use Route53 to control the DNS records of your domain. You can let AWS create the CNAME record for you.</p>
+</li>
+<li>
+<p>To create a load balancer, you need to specify the following</p>
+<ol>
+<li>Load Balancer type: HTTPS, internet facing</li>
+<li>VPC AZs (tic-tac-toe)</li>
+<li>Security groups (tic-tac-toe)</li>
+<li>Routing (new target group HTTP:80 to both instances)</li>
+<li>Register both instance as load balancer targets</li>
+<li>DNS name is the load balancer name we can browse to</li>
+<li>Create an A record in Route53 convert load balancer DNS name to a friendly domain name.</li>
+</ol>
+</li>
+<li>
+<p>Now you can browse to the URL using HTTPS</p>
+</li>
+</ul>
+<h3 id="summary-5"><a class="markdownIt-Anchor" href="#summary-5"></a> Summary</h3>
+<ol>
+<li>Choose where to terminate the TLS connection
+<ul>
+<li>Individual instances (you need to configure TLS connection of your application and install TLS certificate on each instance)</li>
+<li>Application Load Balancer (only need to install one TLS certificate on the load balancer)</li>
+</ul>
+</li>
+<li>ALB requires two availability zones</li>
+<li>ACM requires you to verify control of the domain name in the certificate</li>
+</ol>
+<h2 id="part-six-configuring-data-backup-replication-and-recovery"><a class="markdownIt-Anchor" href="#part-six-configuring-data-backup-replication-and-recovery"></a> Part Six: Configuring Data Backup, Replication, and Recovery</h2>
+<h3 id="module-overview-5"><a class="markdownIt-Anchor" href="#module-overview-5"></a> Module Overview</h3>
+<ol>
+<li>Versioning</li>
+<li>Lifecycle rules</li>
+<li>Cross-region replication</li>
+</ol>
+<h3 id="demo-versioning"><a class="markdownIt-Anchor" href="#demo-versioning"></a> Demo Versioning</h3>
+<ol>
+<li>Versioning prevents accidental deletion and overwriting of data</li>
+<li>Enable versioning</li>
+<li>Upload object</li>
+<li>Restoring versions</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/36.png" alt="" /></p>
+<ul>
+<li>After you enabling the versioning of a S3 bucket, when you deleted a file. AWS will not delete the file but instead hide it and give the file a deletion marker. In the version list, you can see all versions of the same file. And if you delete the version with deletion marker, you can bring the deleted files back.</li>
+</ul>
+<h3 id="lifecycle-management"><a class="markdownIt-Anchor" href="#lifecycle-management"></a> Lifecycle Management</h3>
+<ol>
+<li>Different storage classes provide different levels of redundency</li>
+<li>Standard is the default storage class</li>
+<li>Automatically migrate older objects to a cheaper class</li>
+<li>Automatically delete old objects</li>
+</ol>
+<h3 id="demo-liftcycle-management"><a class="markdownIt-Anchor" href="#demo-liftcycle-management"></a> Demo Liftcycle Management</h3>
+<ol>
+<li>Examine object storage classes</li>
+<li>Create a lifecycle rule</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Secure-Applications-and-Architectures/37.png" alt="" /></p>
+<ul>
+<li>This image explains the current lifecycle I set up for the bucket.</li>
+</ul>
+<ol>
+<li>On day 30, objects will be moved to One-Zone IA</li>
+<li>On day 31, objects will be added a delete marker and become previous versions</li>
+<li>On day 32, objects will be moved to Glacier</li>
+<li>On day 39, objects will be deleted permenately</li>
+</ol>
+<ul>
+<li>Note, small objects in Glacier will have higher costs (objects &lt; 128KB)</li>
+</ul>
+<h3 id="demo-cross-region-replication"><a class="markdownIt-Anchor" href="#demo-cross-region-replication"></a> Demo Cross-Region Replication</h3>
+<ol>
+<li>Congifure cross-region replication</li>
+<li>Replication doesn’t include existing objects</li>
+</ol>
+<ul>
+<li>When enable replication rules</li>
+</ul>
+<ol>
+<li>choose destination bucket</li>
+<li>choose keys to decrypt data in source bucket</li>
+<li>choose keys to encrypt data in destination bucket</li>
+</ol>
+<h3 id="summary-6"><a class="markdownIt-Anchor" href="#summary-6"></a> Summary</h3>
+<ol>
+<li>Versioning
+<ul>
+<li>Every change results in a new object version</li>
+<li>deleting an object creates a marker</li>
+<li>delete the marker to restore the object</li>
+</ul>
+</li>
+<li>Lifecycle Management
+<ul>
+<li>Move objects to different classes</li>
+<li>delete objects</li>
+</ul>
+</li>
+<li>Cross-region replication
+<ul>
+<li>Synchronously copy new objects to a different bucket</li>
+<li>Replicating to a different region offers protection against local catastrophes</li>
+</ul>
+</li>
+</ol>
+<h2 id="couse-summary"><a class="markdownIt-Anchor" href="#couse-summary"></a> Couse Summary</h2>
+<ul>
+<li>
+<p>Remember that the goal of security is protect the confidentiality, integrity, and availability of data. It’s that CIA triad.</p>
+</li>
+<li>
+<p><strong>Protecting AWS Credentials</strong>: At the start of this course, you learned how to configure identity and access management. This is like the building security system. It controls who can enter the building, what rooms they can go into, and so on.</p>
+</li>
+<li>
+<p><strong>Capturing and Analyzing Logs</strong>: After that, you learned how to capture and analyze logs using CloudTrail and CloudWatch. In a physical building, this would be the building’s cameras, security guards, and log books. You’re not just concerned with what should happen, but what did happen. You want to know everything that’s going on inside that building.</p>
+</li>
+<li>
+<p><strong>Protecting Network and Host-level Boundaries</strong>: However, perhaps the nature of your particular building is such that it’s not practical to identify everyone that exits and enters. If you’ve got a business that has clients coming in and out all the time, making them sign in and sign out can be a burden. In that case, you need a different way of controlling access to the building. This is analogous to protecting network and host-level boundaries in your AWS environment. Think of security groups and network access control lists. You’ll let strangers in your building, but you’re going to be strict about where they can go and what they can do.</p>
+</li>
+<li>
+<p><strong>Protecting Data at Rest</strong>: Next, you learned how to protect at rest using encryption and access controls. Think of a combination safe that contains a secret message. The safe is locked in a room that you have to use a badge to gain access to. First, you swipe your badge to get into the room, and then once in the room, you must possess the correct combination to open the safe.</p>
+</li>
+<li>
+<p><strong>Protecting Data in Transit</strong>: Next, you’ll learn how to protect data in transit by way of, yes, encryption. Again, if you want to take a top secret document out of the building and deliver it to someone, you might stick it in a locked briefcase or perhaps hire an armored courier to transport it for you. As long as the document is outside of the building, it remains under lock and key until it gets to its destination.</p>
+</li>
+<li>
+<p><strong>Configuring Data Backup, Replication and Recovery</strong>: Lastly, we looked at how to perform data backup, replication, and recovery. Basically, if all else fails and your data does get destroyed, at least it’s not gone forever. You can get it back.</p>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/" title="AWS SAA - Design Secure Applications and Architectures" target="_blank" rel="external">http://hellcy.github.io/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/02/21/Java-Learning-Path/" title="Java Learning Path"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/" title="AWS SAA - Architecting for Reliability on AWS"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

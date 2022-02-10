@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Dependency Injection in .NET | Hellcy&#39;s Blog</title>
+  <meta name="description" content="What is dependency injection? Dependency injection is a programming technique that makes a class independent of its dependencies. It achieves that by decoupling the usage of an object from its creati">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dependency Injection in .NET">
+<meta property="og:url" content="http://hellcy.github.io/2021/04/12/Dependency-Injection-in-NET/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="What is dependency injection? Dependency injection is a programming technique that makes a class independent of its dependencies. It achieves that by decoupling the usage of an object from its creati">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-12T11:05:18.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.658Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Dependency Injection">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/04/12/Dependency-Injection-in-NET/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#what-is-dependency-injection"><span class="toc-number">1.</span> <span class="toc-text"> What is dependency injection?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#benefits-of-loose-coupling"><span class="toc-number">1.1.</span> <span class="toc-text"> Benefits of Loose Coupling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dependency-injection-patterns"><span class="toc-number">1.2.</span> <span class="toc-text"> Dependency Injection Patterns</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-overview"><span class="toc-number">2.</span> <span class="toc-text"> Application Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tight-coupled-code"><span class="toc-number">2.1.</span> <span class="toc-text"> Tight Coupled Code</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#potential-problems"><span class="toc-number">2.2.</span> <span class="toc-text"> Potential problems</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repository-pattern"><span class="toc-number">3.</span> <span class="toc-text"> Repository Pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#crud-repository"><span class="toc-number">3.1.</span> <span class="toc-text"> CRUD Repository</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#using-dependency-injection-to-build-loosely-coupled-application"><span class="toc-number">4.</span> <span class="toc-text"> Using Dependency Injection to Build Loosely-coupled Application</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dependency-inversion-principle"><span class="toc-number">4.1.</span> <span class="toc-text"> Dependency Inversion Principle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object-composition"><span class="toc-number">4.2.</span> <span class="toc-text"> Object composition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#get-data-from-csv-file"><span class="toc-number">4.3.</span> <span class="toc-text"> Get Data from CSV file</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#decorator-pattern"><span class="toc-number">5.</span> <span class="toc-text"> Decorator pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unit-testing-with-dependency-injection"><span class="toc-number">6.</span> <span class="toc-text"> Unit Testing with Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#property-injection"><span class="toc-number">6.1.</span> <span class="toc-text"> Property Injection</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dependency-injection-containers"><span class="toc-number">7.</span> <span class="toc-text"> Dependency Injection Containers</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Dependency-Injection-in-NET" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Dependency Injection in .NET
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/12/Dependency-Injection-in-NET/" class="article-date">
+	  <time datetime="2021-04-12T11:05:18.000Z" itemprop="datePublished">12-04-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/12/Dependency-Injection-in-NET/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.8k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 10(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="what-is-dependency-injection"><a class="markdownIt-Anchor" href="#what-is-dependency-injection"></a> What is dependency injection?</h2>
+<p>Dependency injection is a programming technique that makes a class independent of its dependencies. It achieves that by decoupling the usage of an object from its creation. This helps you to follow SOLID’s dependency inversion and single responsiblity principles.</p>
+<h3 id="benefits-of-loose-coupling"><a class="markdownIt-Anchor" href="#benefits-of-loose-coupling"></a> Benefits of Loose Coupling</h3>
+<ul>
+<li>Easy to extend</li>
+<li>Easy to test</li>
+<li>Easy to maintain</li>
+<li>Facilitates parallel development (rare conflict)</li>
+<li>Facilitates late binding (runtime data binding)</li>
+</ul>
+<h3 id="dependency-injection-patterns"><a class="markdownIt-Anchor" href="#dependency-injection-patterns"></a> Dependency Injection Patterns</h3>
+<ul>
+<li>Constructor Injection</li>
+<li>Property Injection</li>
+<li>Method Injection</li>
+<li>Ambient Context</li>
+<li>Service Locator</li>
+</ul>
+<h2 id="application-overview"><a class="markdownIt-Anchor" href="#application-overview"></a> Application Overview</h2>
+<p>The application contains four layers</p>
+<ol>
+<li>View (UI elements) such as the buttons and the list box</li>
+<li>Presentation (UI logic): functions that the buttons call and the property that the data bound to the list box in the UI.</li>
+<li>Data Access: Code that knows how to interact with the data store. It knows how to make a web service call, and then translate the results into objects that the Presentation layer can use.</li>
+<li>Data Store: where we get the actual data, in this case, the web service.</li>
+</ol>
+<h3 id="tight-coupled-code"><a class="markdownIt-Anchor" href="#tight-coupled-code"></a> Tight Coupled Code</h3>
+<p>In the initial code, all four layers are tightly coupled.</p>
+<p>In the view layer, it creates PeopleViewModel()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public PeopleViewerWindow()</span><br><span class="line">&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    viewModel &#x3D; new PeopleViewModel();</span><br><span class="line">    this.DataContext &#x3D; viewModel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In the Presentation layer, it creates serviceReader()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public PeopleViewModel()</span><br><span class="line">&#123;</span><br><span class="line">    DataReader &#x3D; new ServiceReader();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In the Data Access layer, it hardcoded the web service url</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class ServiceReader</span><br><span class="line">&#123;</span><br><span class="line">    WebClient client &#x3D; new WebClient();</span><br><span class="line">    string baseUri &#x3D; &quot;http:&#x2F;&#x2F;localhost:9874&#x2F;api&#x2F;people&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="potential-problems"><a class="markdownIt-Anchor" href="#potential-problems"></a> Potential problems</h3>
+<ol>
+<li>
+<p>Hard to create unit test.<br />
+If I want to test UI element (like a button), I have to run the web services because they are tightly coupled. (PeopleViewerWindow needs PeopleViewModel which needs ServiceReader which needs WebClient).</p>
+</li>
+<li>
+<p>Hard to extend<br />
+If I want to add another Data Store like read data from a CSV file or SQL DB, and I also want to have the option to choose to use cached data store. Then in the PeopleViewModel I need to write something like this</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public PeopleViewModel() &#123;</span><br><span class="line">    switch(dataReaderType) &#123;</span><br><span class="line">        case &#39;service&#39;: DataReader &#x3D; new ServiceReader();</span><br><span class="line">            break;</span><br><span class="line">        case &#39;service_cached&#39;: DataReader &#x3D; new CachedServiceReader();</span><br><span class="line">            break;</span><br><span class="line">        case &#39;text&#39;: DataReader &#x3D; new CSVReader();</span><br><span class="line">            break;</span><br><span class="line">        case &#39;text_cached&#39;: DataReader &#x3D; new CachedCSVReader();</span><br><span class="line">            break;</span><br><span class="line">        case &#39;sql&#39;: DataReader &#x3D; new SQLReader();</span><br><span class="line">            break;</span><br><span class="line">        case &#39;sql_cached&#39;: DataReader &#x3D; new CachedSQLReader();</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This breaks the Single Responsibility Principle, which is one of the SOLID principles. Because it is now doing too many things</p>
+<ol>
+<li>Presentation logic</li>
+<li>Picking the data source (hardcoded web service url)</li>
+<li>Managing object lifetime</li>
+<li>Deciding when to use a cache</li>
+</ol>
+<h2 id="repository-pattern"><a class="markdownIt-Anchor" href="#repository-pattern"></a> Repository Pattern</h2>
+<p>Mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects.</p>
+<p>It separates our application from the data storage technology.</p>
+<p>In other words, we can say that a Repository Design Patternacts as a middleman or middle layer between the rest of the application and the data access logic. That means a repository pattern isolates all the data access code from the rest of the application. The advantage of doing so is that, if you need to do any change then you need to do in one place. Another benefit is that testing your controllers becomes easy because the testing framework need not run against the actual database access code.</p>
+<p>The idea is that the repository knows how to communicate with the data store whether it is using HTTP, reading a file from the file system, or making a database call. It then takes the data that comes back and turns it into normal C# objects that the rest of the application can understand. This is exactly what the service reader does now. It makes a HTTP request to the web service, then parses the JSON result into Person objects that the application can use.</p>
+<h3 id="crud-repository"><a class="markdownIt-Anchor" href="#crud-repository"></a> CRUD Repository</h3>
+<p>The Interface Segregation Principle says that interfaces should only contain what the client needs. Normally a Repository should contain all Create, Read, Update and Delete. But in this case we only need Read.</p>
+<h2 id="using-dependency-injection-to-build-loosely-coupled-application"><a class="markdownIt-Anchor" href="#using-dependency-injection-to-build-loosely-coupled-application"></a> Using Dependency Injection to Build Loosely-coupled Application</h2>
+<p>Create a new interface</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public interface IPersonReader</span><br><span class="line">&#123;</span><br><span class="line">    IEnumerable&lt;Person&gt; GetPeople();</span><br><span class="line">    Person GetPerson(int id);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In the Presentation layer, inject IPersonReader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public PeopleViewModel(IPersonReader dataReader)</span><br><span class="line">&#123;</span><br><span class="line">    DataReader &#x3D; dataReader;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now we don’t create new ServiceReader in the Presentation layer, instead we make it someone else’s responsibility by adding IPersonReader to a contrcutor parameter.</p>
+<p>IPersonReader could be ServiceReader or SQLReader or CSVReader but PeopleViewModel doesn’t care.</p>
+<p>IPersonReader need to be created before creating PeopleViewModel.</p>
+<p>In the UI layer, inject PeopleViewModel</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public PeopleViewerWindow(PeopleViewModel peopleViewModel)</span><br><span class="line">&#123;</span><br><span class="line">    InitializeComponent();</span><br><span class="line">    viewModel &#x3D; peopleViewModel;</span><br><span class="line">    this.DataContext &#x3D; viewModel;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Similar things happened in UI layer, now we don’t create new PeopleViewModel, instead we inject it to the constrctor.</p>
+<p>PeopleViewModel need to be created before creating PeopleViewerWindow but it doesn’t care, as long as it is being passed to the constructor.</p>
+<h3 id="dependency-inversion-principle"><a class="markdownIt-Anchor" href="#dependency-inversion-principle"></a> Dependency Inversion Principle</h3>
+<p>This is Dependency Inversion Principle in action, now the View Model and the Viewer Window are no longer responsible for creating or managing the lifetime of the dependencies. Instead, the dependency, the data reader, is given to the View Model and the Viewer Window to use.</p>
+<h3 id="object-composition"><a class="markdownIt-Anchor" href="#object-composition"></a> Object composition</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private static void ComposeObjects()</span><br><span class="line">&#123;</span><br><span class="line">    var serviceReader &#x3D; new ServiceReader();</span><br><span class="line">    var peopleViewModel &#x3D; new PeopleViewModel(serviceReader);</span><br><span class="line">    Application.Current.MainWindow &#x3D; new PeopleViewerWindow(peopleViewModel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The ServiceReader and PeopleViewModel objects have been created when the app starts. This code will run OnAppStarts.</p>
+<h3 id="get-data-from-csv-file"><a class="markdownIt-Anchor" href="#get-data-from-csv-file"></a> Get Data from CSV file</h3>
+<p>Because now the presentation layer and the data access layer are loosely coupled, if we want to change the data source, we could just create a CSVReader() instead of ServiceReader()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private static void ComposeObjects()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;var serviceReader &#x3D; new ServiceReader();</span><br><span class="line">    var serviceReader &#x3D; new CSVReader();</span><br><span class="line">    var peopleViewModel &#x3D; new PeopleViewModel(serviceReader);</span><br><span class="line">    Application.Current.MainWindow &#x3D; new PeopleViewerWindow(peopleViewModel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We just need to implement CSVReader class and create a new CSV object. We don’t need to change any existing code.</p>
+<h2 id="decorator-pattern"><a class="markdownIt-Anchor" href="#decorator-pattern"></a> Decorator pattern</h2>
+<p>Wrap an existing interface to add functionality</p>
+<p>The idea is we wrap an existing data reader, add the caching functionality and then expose the same data reader interface to the outside world.</p>
+<p>Our service reader implements the IPersonReader interface. We take that service reader and wrap it in a caching reader. This adds the caching funcationality that we need. The caching reader is also an IPersonReader. So it looks just like any other data reader to the rest of the application. By using a Decorator, we can wrap any of our existing data readers.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public class CachingReader : IPersonReader</span><br><span class="line">&#123;</span><br><span class="line">    private IPersonReader _wrappedReader;</span><br><span class="line">    private TimeSpan _cacheDuration &#x3D; new TimeSpan(0, 0, 30);</span><br><span class="line"></span><br><span class="line">    private IEnumerable&lt;Person&gt; _cachedItems;</span><br><span class="line">    private DateTime _dataDateTime;</span><br><span class="line"></span><br><span class="line">    public CachingReader(IPersonReader wrappedReader)</span><br><span class="line">    &#123;</span><br><span class="line">        _wrappedReader &#x3D; wrappedReader;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public IEnumerable&lt;Person&gt; GetPeople() &#123;...&#125;</span><br><span class="line"></span><br><span class="line">    public Person GetPerson(int id) &#123;...&#125;</span><br><span class="line"></span><br><span class="line">    private bool IsCacheValid &#123;...&#125;</span><br><span class="line"></span><br><span class="line">    private void ValidateCache() &#123;...&#125;</span><br><span class="line"></span><br><span class="line">    private void InvalidateCache() &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In this implementation, CachingReader implements IPersonReader, so it also has GetPeople and GetPerson functions. But it has some other functions (extra caching funcationality).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private static void ComposeObjects()</span><br><span class="line">&#123;</span><br><span class="line">    var wrappedReader &#x3D; new ServiceReader();</span><br><span class="line">    var reader &#x3D; new CachingReader(wrappedReader);</span><br><span class="line">    var peopleViewModel &#x3D; new PeopleViewModel(reader);</span><br><span class="line">    Application.Current.MainWindow &#x3D; new PeopleViewerWindow(peopleViewModel);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When we want to use the CachingReader, we could first create a ServiceReader, so it has GetPeople and GetPerson function, and we inject this ServiceReader to the CachingReader’s contructor, which adds the extra caching funcationality.</p>
+<p>This follows the <strong>Open/Closed Principle</strong>. Existing data readers can be extended without being modified.</p>
+<p>This also follows the <strong>Liskov substitution principle</strong>. This principle says that descendent classes (CachingReader) should behave the same way the base class (ServiceReader) behave. Meaning we could substitude a child class (CachingReader) for a base class (ServiceReader) in our application, and the application does not know the difference.</p>
+<p>We have extended the behavior in the child class, but the calling code does not know the difference.</p>
+<h2 id="unit-testing-with-dependency-injection"><a class="markdownIt-Anchor" href="#unit-testing-with-dependency-injection"></a> Unit Testing with Dependency Injection</h2>
+<p>Before when we need to test the ViewModel, the data service needs to run. Because of the old code looks like this.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public PeopleViewModel() &#123;</span><br><span class="line">    DataReader &#x3D; new ServiceReader();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class ServiceReader() &#123;</span><br><span class="line">    WebClient client &#x3D; new WebClient();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now we can just create a fake Reader and provide some fake Person data. The test of ViewModel is isolated from the Data Store.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">public void Test() &#123;</span><br><span class="line">    &#x2F;&#x2F; Arrange</span><br><span class="line">    IPersonReader reader &#x3D; GetFakeReader();</span><br><span class="line">    var viewModel &#x3D; new PeopleViewModel(reader);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Act</span><br><span class="line">    viewModel.RefreshPeople();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Assert</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Below is the real unit test code. By passing the FakeReader() to the PeopleViewModel(), we don’t need to create WebClient any more, which makes it easier to write unit test.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[TestMethod]</span><br><span class="line">public void People_OnRefreshPeople_IsPopulated()</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Arrange</span><br><span class="line">    var reader &#x3D; new FakeReader();</span><br><span class="line">    var viewModel &#x3D; new PeopleViewModel(reader);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Act</span><br><span class="line">    viewModel.RefreshPeople();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Assert</span><br><span class="line">    Assert.IsNotNull(viewModel.People);</span><br><span class="line">    Assert.AreEqual(2, viewModel.People.Count());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Next we want to test CSVReader(), but we need to put a real CSV data file in the project directory to make it work because it is expecting a filePath.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public CSVReader()</span><br><span class="line">&#123;</span><br><span class="line">    string filePath &#x3D; AppDomain.CurrentDomain.BaseDirectory + &quot;People.txt&quot;;</span><br><span class="line">    FileLoader &#x3D; new CSVFileLoader(filePath);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Luckly, the FileLoader is a public property which can be overrided.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public ICSVFileLoader FileLoader &#123; get; set; &#125;</span><br></pre></td></tr></table></figure>
+<p>So we could create a FakeFileReader that provides the fake data. We override the property with our own behavior so it doesn’t depend on the file system. This is called <strong>Property Injection</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[TestMethod]</span><br><span class="line">public void GetPeople_WithGoodRecords_ReturnsAllRecords()</span><br><span class="line">&#123;</span><br><span class="line">    var reader &#x3D; new CSVReader();</span><br><span class="line">    reader.FileLoader &#x3D; new FakeFileLoader(&quot;Good&quot;);</span><br><span class="line"></span><br><span class="line">    var result &#x3D; reader.GetPeople();</span><br><span class="line"></span><br><span class="line">    Assert.AreEqual(2, result.Count());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="property-injection"><a class="markdownIt-Anchor" href="#property-injection"></a> Property Injection</h3>
+<p>Class property is initialized for standard behavior. By default, the standard behavior is used. Property can be set to provide alternate behavior.</p>
+<p>One question is, why not use Constructor Injection like what we did in the previous charpter? Instead of creating CSVFileLoader in the CSVReader constructor, we could inject FileLoader.</p>
+<p>This is because we only use FakeFileLoader when doing unit test. In production, it will use CSVFileLoader 100% of the time.</p>
+<p>So Constructor injection is only good for when we want to force a decision on a dependency. Property injection is good for when we have a default dependency (CSVFileLoader) that we want to use most of the time.</p>
+<h2 id="dependency-injection-containers"><a class="markdownIt-Anchor" href="#dependency-injection-containers"></a> Dependency Injection Containers</h2>
+<ul>
+<li>Autofac</li>
+<li>Ninject</li>
+<li>Unity</li>
+<li>Castle Windsor</li>
+<li><a target="_blank" rel="noopener" href="http://Spring.NET">Spring.NET</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/04/12/Dependency-Injection-in-NET/" title="Dependency Injection in .NET" target="_blank" rel="external">http://hellcy.github.io/2021/04/12/Dependency-Injection-in-NET/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/04/14/Creating-Automated-Browser-Tests-with-Selenium-in-C/" title="Creating Automated Browser Tests with Selenium in C#"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/04/11/SQL-Fundamentals/" title="SQL Fundamentals"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

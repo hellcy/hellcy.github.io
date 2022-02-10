@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Learn iOS apprentice in 10 days | Hellcy&#39;s Blog</title>
+  <meta name="description" content="什么是iOS apprentice？   在完成了上一个任务之后，我总算迎来了又一个更加巨大的挑战，这次直接换了一个新的平台：iOS。我从来没有接触过iOS的编程，之前只是听说过Swift和Cocoa Touch，但是Xcode完全没有用过。于是经过一番上网查找，我发现了一个非常适合新手入门的教材： raywenderlich的iOS apprentice！    他总共包括四个部分，每一个部分">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn iOS apprentice in 10 days">
+<meta property="og:url" content="http://hellcy.github.io/2019/07/03/Learn-iOS-apprentice-in-10-days/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是iOS apprentice？   在完成了上一个任务之后，我总算迎来了又一个更加巨大的挑战，这次直接换了一个新的平台：iOS。我从来没有接触过iOS的编程，之前只是听说过Swift和Cocoa Touch，但是Xcode完全没有用过。于是经过一番上网查找，我发现了一个非常适合新手入门的教材： raywenderlich的iOS apprentice！    他总共包括四个部分，每一个部分">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/19.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/20.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/21.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/22.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/23.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/24.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/25.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/26.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/27.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/28.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/29.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/30.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/31.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/32.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/33.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/34.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/3-18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-19.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-20.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-21.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-22.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-23.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-24.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-25.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-26.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-27.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-28.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-29.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-30.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-31.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-32.png">
+<meta property="og:image" content="http://hellcy.github.io/images/iOS-Apprentice/4-33.png">
+<meta property="article:published_time" content="2019-07-03T05:25:31.000Z">
+<meta property="article:modified_time" content="2021-02-26T12:08:47.159Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="iOS">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/iOS-Apprentice/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2019/07/03/Learn-iOS-apprentice-in-10-days/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFios-apprentice"><span class="toc-number">1.</span> <span class="toc-text"> 什么是iOS apprentice？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bulls-eye"><span class="toc-number">2.</span> <span class="toc-text"> Bull’s Eye</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checklist"><span class="toc-number">3.</span> <span class="toc-text"> Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#protocol"><span class="toc-number">3.1.</span> <span class="toc-text"> Protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mvc-model"><span class="toc-number">3.2.</span> <span class="toc-text"> MVC model</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-number">3.3.</span> <span class="toc-text"> Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#initializer"><span class="toc-number">3.4.</span> <span class="toc-text"> Initializer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#delegates"><span class="toc-number">3.5.</span> <span class="toc-text"> Delegates</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BB%BA%E7%AB%8Bdelegate%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.6.</span> <span class="toc-text"> 建立delegate的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#optionals"><span class="toc-number">3.7.</span> <span class="toc-text"> Optionals</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#weak"><span class="toc-number">3.8.</span> <span class="toc-text"> Weak</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#save-data"><span class="toc-number">3.9.</span> <span class="toc-text"> Save data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#plist-file"><span class="toc-number">3.10.</span> <span class="toc-text"> .plist file</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#special-comments"><span class="toc-number">3.11.</span> <span class="toc-text"> Special comments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#type-casts"><span class="toc-number">3.12.</span> <span class="toc-text"> Type casts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array-of-arrays"><span class="toc-number">3.13.</span> <span class="toc-text"> Array of arrays</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#appdelegateswift"><span class="toc-number">3.14.</span> <span class="toc-text"> AppDelegate.swift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dictionary"><span class="toc-number">3.15.</span> <span class="toc-text"> Dictionary</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#user-defaults"><span class="toc-number">3.16.</span> <span class="toc-text"> User Defaults</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#local-notifications"><span class="toc-number">3.17.</span> <span class="toc-text"> Local Notifications</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mylocation"><span class="toc-number">4.</span> <span class="toc-text"> MyLocation</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-overview"><span class="toc-number">4.1.</span> <span class="toc-text"> App Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tabbed-application"><span class="toc-number">4.2.</span> <span class="toc-text"> Tabbed Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#corelocation-and-ask-for-permission"><span class="toc-number">4.3.</span> <span class="toc-text"> CoreLocation and ask for permission</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reverse-geocoding"><span class="toc-number">4.4.</span> <span class="toc-text"> Reverse geocoding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#auto-resizing"><span class="toc-number">4.5.</span> <span class="toc-text"> Auto-resizing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#class-inheritance-overriding-and-casts"><span class="toc-number">4.6.</span> <span class="toc-text"> Class Inheritance, overriding and casts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tag-location-screen"><span class="toc-number">4.7.</span> <span class="toc-text"> Tag Location Screen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-unwind-segue"><span class="toc-number">4.8.</span> <span class="toc-text"> The unwind segue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hud"><span class="toc-number">4.9.</span> <span class="toc-text"> HUD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#core-data"><span class="toc-number">4.10.</span> <span class="toc-text"> Core Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#notification-center"><span class="toc-number">4.11.</span> <span class="toc-text"> Notification center</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ownership-cycle-in-closure"><span class="toc-number">4.12.</span> <span class="toc-text"> Ownership cycle in closure</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#storesearch"><span class="toc-number">5.</span> <span class="toc-text"> StoreSearch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#app-overview-2"><span class="toc-number">5.1.</span> <span class="toc-text"> App Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#git-version-control"><span class="toc-number">5.2.</span> <span class="toc-text"> Git version control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-branch-and-merge"><span class="toc-number">5.3.</span> <span class="toc-text"> Create branch and merge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#debug-using-xcode"><span class="toc-number">5.4.</span> <span class="toc-text"> Debug using Xcode</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calling-the-web-service"><span class="toc-number">5.5.</span> <span class="toc-text"> Calling the web service</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asychronous-networking"><span class="toc-number">5.6.</span> <span class="toc-text"> Asychronous networking</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#downloadtask"><span class="toc-number">5.7.</span> <span class="toc-text"> DownloadTask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#landscape"><span class="toc-number">5.8.</span> <span class="toc-text"> Landscape</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#internationalization"><span class="toc-number">5.9.</span> <span class="toc-text"> Internationalization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#conclusion"><span class="toc-number">6.</span> <span class="toc-text"> Conclusion</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Learn-iOS-apprentice-in-10-days" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Learn iOS apprentice in 10 days
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/07/03/Learn-iOS-apprentice-in-10-days/" class="article-date">
+	  <time datetime="2019-07-03T05:25:31.000Z" itemprop="datePublished">03-07-2019</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Swift/" rel="tag">Swift</a>, <a class="article-tag-link-link" href="/tags/iOS/" rel="tag">iOS</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/07/03/Learn-iOS-apprentice-in-10-days/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 5.5k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 20(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="什么是ios-apprentice"><a class="markdownIt-Anchor" href="#什么是ios-apprentice"></a> 什么是iOS apprentice？</h2>
+<hr />
+<ul>
+<li>在完成了上一个任务之后，我总算迎来了又一个更加巨大的挑战，这次直接换了一个新的平台：iOS。我从来没有接触过iOS的编程，之前只是听说过Swift和Cocoa Touch，但是Xcode完全没有用过。于是经过一番上网查找，我发现了一个非常适合新手入门的教材： raywenderlich的iOS apprentice！</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/1.png" alt="iOS apprentice book" /></p>
+<ul>
+<li>他总共包括四个部分，每一个部分教你编写一个app，难度从低到高。</li>
+</ul>
+<ol>
+<li><a href="#bulls-eye">Bull’s Eye</a></li>
+<li><a href="#checklist">Checklist</a></li>
+<li><a href="#mylocation">MyLocation</a></li>
+<li><a href="#storesearch">StoreSearch</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+</ol>
+<h2 id="bulls-eye"><a class="markdownIt-Anchor" href="#bulls-eye"></a> Bull’s Eye</h2>
+<hr />
+<p><img src="/../images/iOS-Apprentice/2.png" alt="Bull Eye app" /></p>
+<p><img src="/../images/iOS-Apprentice/3.png" alt="Bull Eye app" /></p>
+<ul>
+<li>从怎么样创建一个新的single view app说起，非常容易上手</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4.png" alt="Project Navigator" /></p>
+<ul>
+<li>Project Navigator</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/5.png" alt="Obejct Library" /></p>
+<ul>
+<li>Obejct Library</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/6.png" alt="Drag item to view" /></p>
+<ul>
+<li>Drag item to view</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/7.png" alt="Make connections from object item to View Controller" /></p>
+<ul>
+<li>Make connections from object item to View Controller</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/8.png" alt="Attributes Inspector" /></p>
+<ul>
+<li>Attributes Inspector</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/9.png" alt="Item Outlet" /></p>
+<p><img src="/../images/iOS-Apprentice/10.png" alt="Item Outlet 2" /></p>
+<ul>
+<li>Item Outlet</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/11.png" alt="Another view controller" /></p>
+<ul>
+<li>Another view controller</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/12.png" alt="Segue" /></p>
+<ul>
+<li>Segue</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/13.png" alt="Add Constraints" /></p>
+<ul>
+<li>
+<p>Add Constraints</p>
+</li>
+<li>
+<p>第一个app基本上解决了很多界面上的问题，storyboard和editor之前的交流也讲了很多，@IBAction， @IBOutlet，segue等等一切都有涉及。之后第二个app就会更深层次的接触到iOS特有的模式了，比如delegate，还有一切经典的design pattern，比如MVC</p>
+</li>
+</ul>
+<h2 id="checklist"><a class="markdownIt-Anchor" href="#checklist"></a> Checklist</h2>
+<hr />
+<ul>
+<li>第二个app就没有那么简单了，他先讲了table view和navigation bar</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/14.png" alt="table view and navigation bar" /></p>
+<ul>
+<li>跟普通的view不同的是它由一行行的cell组成，这些cell可以被重复使用，当用户往下滑动时，更多的内容会被显示但是并不是每一行data都被存放在一个新的table cell里。离开显示范围的cell会重新出现在底部，并显示出新的data。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/15.png" alt="UITable view protocol" /></p>
+<h3 id="protocol"><a class="markdownIt-Anchor" href="#protocol"></a> Protocol</h3>
+<ul>
+<li>什么是protocol？他其实是一种已经被写好了的methods的集合，UITableView就是一个protocol，我们通过它来显示table view，但是如果我们想改变一些显示方式，让他更适应我们自己的app，那么就要override其中一些method，这很常见</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/16.png" alt="UITableView method override" /></p>
+<ul>
+<li>一般让一个table view更好的显示，我们需要override三个methods</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -&gt; Int</span><br><span class="line"></span><br><span class="line">override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell</span><br><span class="line"></span><br><span class="line">override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)</span><br></pre></td></tr></table></figure>
+<h3 id="mvc-model"><a class="markdownIt-Anchor" href="#mvc-model"></a> MVC model</h3>
+<ul>
+<li>MVC model是一种常见的设计模式，将代码分割成三个部分，每一个部分只负责他自己的任务，这样让程序结构更清晰。Model主要负责储存数据，view负责显示数据给用户，而controller负责显示正确的数据，包括运算等等</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/17.png" alt="MVC model" /></p>
+<h3 id="array"><a class="markdownIt-Anchor" href="#array"></a> Array</h3>
+<ul>
+<li>这个app将table cells中的数据储存在一个array中，新建了一个checklistItem model,这样的话每次如果有数据变动就只需要增加和删除array中的数据。</li>
+</ul>
+<h3 id="initializer"><a class="markdownIt-Anchor" href="#initializer"></a> Initializer</h3>
+<ul>
+<li>在Swift语言中，所有的variable， obejct都必须被初始化，所以很多时候我们需要一个初始化器来负责检查漏掉的变量。注意当我们有两个view controller需要传递data时，method的执行顺序是：假设A呼叫B</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">init() from B</span><br><span class="line">prepare() from A</span><br><span class="line">viewDidLoad() from B</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/iOS-Apprentice/18.png" alt="Initializer" /></p>
+<h3 id="delegates"><a class="markdownIt-Anchor" href="#delegates"></a> Delegates</h3>
+<ul>
+<li>Delegates是ios编程中非常重要的一个概念，当你需要把一些值从一个view传到另一个view时，你通常不希望这两个view相互知道太多除了需要值之外的其他东西，如果两个view之间的联系太紧密，那么他们和其他view再建立关联就会更麻烦。所以一种通常的办法是写一个protocol，包含所有delegate methods，再让另外一个view成为它的delegate。这种办法称为loose coupling。 A是B的delegate，然而B根本不知道A的存在，只知道他有一个delegate可以接受他想要传递的值。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/19.png" alt="Delegate" /></p>
+<h3 id="建立delegate的步骤"><a class="markdownIt-Anchor" href="#建立delegate的步骤"></a> 建立delegate的步骤</h3>
+<ol>
+<li>在B中建立delegate protocol</li>
+<li>在B中建立一个delegate optional variable</li>
+<li>在B中，需要传递信息时呼叫delegate method</li>
+<li>在A中conformB的delegate protocol（inheritance</li>
+<li>告诉B，A是自己的delegate，一般在A的prepare method中做这一步</li>
+</ol>
+<h3 id="optionals"><a class="markdownIt-Anchor" href="#optionals"></a> Optionals</h3>
+<ul>
+<li>Optional variable在declare的时候用？来表示，表明这个变量有可能是nil，在使用的时候也需要加？在varibale name的后面，如果使用了exclamation mark叹号！，则表示在此时不管变量是什么，强行取得其中的值，此时程序员保证变量在此时不可能是nil，风险也由程序员承担。是用叹号叫做force unwrapping</li>
+</ul>
+<h3 id="weak"><a class="markdownIt-Anchor" href="#weak"></a> Weak</h3>
+<ul>
+<li>Weak表示两个objects之间的关系，当A对B的关系是strong时表示A是B的owner。当两个obejcts之间都是strong的关系我们可能会产生ownership cycle的问题从而导致memroy leak，因为没有人有资格destroy它的owner。所以我们尽量要维护一种一强一弱的对应关系。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/20.png" alt="strong-strong relationship" /></p>
+<p><img src="/../images/iOS-Apprentice/21.png" alt="strong-weak relationship" /></p>
+<ul>
+<li>一般来说，A如果是B的owner，A给B传值时在A的prepare method中，此时B的instance已经被建立，A很容易把值传给B的properties，并指认成为B的delegate，B给A传值则需要在合适的时候呼叫delegate methods</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/22.png" alt="Views pass value" /></p>
+<h3 id="save-data"><a class="markdownIt-Anchor" href="#save-data"></a> Save data</h3>
+<ul>
+<li>app会在合适的时候将用户数据保存到手机本地，每一个app都有一个属于自己的folder，也叫做sandbox，每个sandbox之间不能访问，这就预防了一些恶意软件在用户不知情的情况下窃取保存在用户手机其他地方的数据。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/23.png" alt="Saving data" /></p>
+<ul>
+<li>数据一般会保存在这样的一个path中，我们可以看到application后面接着一串32的字母的应用ID</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/24.png" alt="data path" /></p>
+<h3 id="plist-file"><a class="markdownIt-Anchor" href="#plist-file"></a> .plist file</h3>
+<ul>
+<li>什么是.plist文件？它是一种ios用来储存数据的文件，它遵循XML格式，每一个app都有一个info.plist file，他就是用来保存这个app的配置信息</li>
+</ul>
+<h3 id="special-comments"><a class="markdownIt-Anchor" href="#special-comments"></a> Special comments</h3>
+<ul>
+<li>在编写代码时我们可以使用 // MARK：- 的形式来告诉Xcode我们开始了一个section，这样在jump bar中我们就可以快速定位variable，methods的位置。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/25.png" alt="MARK comments" /></p>
+<p><img src="/../images/iOS-Apprentice/26.png" alt="Jump bar for MARK comments" /></p>
+<h3 id="type-casts"><a class="markdownIt-Anchor" href="#type-casts"></a> Type casts</h3>
+<ul>
+<li>我们使用 as! 来给一个variable赋予一种data type，告诉Swift以后把它当成某一种type来处理，因为有时候我们知道它的type，可是Swift却不知道。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/27.png" alt="Type casts" /></p>
+<h3 id="array-of-arrays"><a class="markdownIt-Anchor" href="#array-of-arrays"></a> Array of arrays</h3>
+<ul>
+<li>当app的结构变得复杂时，数据的结构也要相应的变化以适应这些变化，我们可以使用嵌套的array来储存更多的数据</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/28.png" alt="nested arrays" /></p>
+<h3 id="appdelegateswift"><a class="markdownIt-Anchor" href="#appdelegateswift"></a> AppDelegate.swift</h3>
+<ul>
+<li>这个文件用来负责当app刚启动时或快要结束时的一些情况，我们不需要每过一会就储存数据，只需要每当用户退出app或者切换app时，所以这些method需要在AppDelegate里面修改</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/29.png" alt="AppDelegate file" /></p>
+<h3 id="dictionary"><a class="markdownIt-Anchor" href="#dictionary"></a> Dictionary</h3>
+<ul>
+<li>和array类似，dictionary也是一种储存数据的类型，只不过它是将数据按照key-value pair来排列的，当需要拿到某一个数据时，我们需要给dictionary相应的key。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/30.png" alt="dictionary" /></p>
+<h3 id="user-defaults"><a class="markdownIt-Anchor" href="#user-defaults"></a> User Defaults</h3>
+<ul>
+<li>User Defaults就是一个dictionary类型的数据储存文件，它包含户用的配置信息，我们使用它储存一些app刚开始时的默认配置。</li>
+</ul>
+<h3 id="local-notifications"><a class="markdownIt-Anchor" href="#local-notifications"></a> Local Notifications</h3>
+<ul>
+<li>当获得用户许可后，app可以定时在app不活跃时像互用手机发送提醒</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/31.png" alt="Notification authorization" /></p>
+<p><img src="/../images/iOS-Apprentice/32.png" alt="Permission dialog" /></p>
+<p><img src="/../images/iOS-Apprentice/33.png" alt="Notification message" /></p>
+<ul>
+<li>这些基本就是第二个app的全部内容了，关于代码的部分可以在我的github的iOSApprenticePratice里面找到，下面是整个app的final storyboard</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/34.png" alt="final storyboard" /></p>
+<h2 id="mylocation"><a class="markdownIt-Anchor" href="#mylocation"></a> MyLocation</h2>
+<h3 id="app-overview"><a class="markdownIt-Anchor" href="#app-overview"></a> App Overview</h3>
+<ul>
+<li>第三个app我们要做一个可以通过GPS显示当前位置信息，并可以储存，增加照片和类别，在以后可以查看的app。完成之后的效果如下</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-1.png" alt="app overview" /></p>
+<h3 id="tabbed-application"><a class="markdownIt-Anchor" href="#tabbed-application"></a> Tabbed Application</h3>
+<ul>
+<li>之前的checklist我们学会了如何制作一个有navigation bar的app，这回我们要在app中增加一个tab bar，就是下屏幕最低端有一个导航条，可以切换不同的页面。许多主流的app都有类似的功能。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-2.png" alt="create tab bar" /><br />
+<img src="/../images/iOS-Apprentice/3-3.png" alt="tab bar" /><br />
+<img src="/../images/iOS-Apprentice/3-4.png" alt="tab bar storyboard" /></p>
+<h3 id="corelocation-and-ask-for-permission"><a class="markdownIt-Anchor" href="#corelocation-and-ask-for-permission"></a> CoreLocation and ask for permission</h3>
+<ul>
+<li>要想让app获得GPS信息，我们需要现象用户获得许可，如果用户拒绝让app使用GPS，我们则无法获得权限。我们需要在info.plist里面增加一个record，表示我们需要获得许可，之后我们还会请求照片查看和地图view的许可。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-5.png" alt="GPS service permission" /></p>
+<h3 id="reverse-geocoding"><a class="markdownIt-Anchor" href="#reverse-geocoding"></a> Reverse geocoding</h3>
+<ul>
+<li>当我们获得了GPS信息，也就是当前位置的经纬度之后，我们还需要将他们转换成地址信息，否则用户也无法直接通过经纬度对当前位置有什么具体的概念。我们要做的是使用swift内置的CLGeocoder.reverseGeocodeLocation来转换。然后我们就可以得到地址信息了。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-6.png" alt="reverse geocoder" /></p>
+<h3 id="auto-resizing"><a class="markdownIt-Anchor" href="#auto-resizing"></a> Auto-resizing</h3>
+<ul>
+<li>自动调整尺寸大小是一个非常重要的功能，现在市面上的iPhone屏幕尺寸很多，我们如果想对每一个尺寸做优化，为非常耗时，所以使用auto-resizing，让swift知道element在屏幕上的相对位置，比如距离屏幕底端100px，宽度等于屏幕宽度。这样swift就可以画出他的坐标，对于不同大小的屏幕也不会超出屏幕之外。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-7.png" alt="Auto-resizing" /><br />
+<img src="/../images/iOS-Apprentice/3-8.png" alt="Auto-resizing" /></p>
+<h3 id="class-inheritance-overriding-and-casts"><a class="markdownIt-Anchor" href="#class-inheritance-overriding-and-casts"></a> Class Inheritance, overriding and casts</h3>
+<ul>
+<li>现在我们来说一下OOP中非常重要的一个概念，class。object就是class的一个具象，而class是这个具象的类。inheritance就是子类可以继承他的parent class的信息。而overriding是说子类可以改变parent class的一些信息，让他有自己的特点。比如汽车是一个parent class，而公交车就是汽车这个class的一个子类，汽车如果有一个property是说自己的轮子个数为4.那么公交车就可以overr这个property，将轮子个数改为8，或者12，或任意。。。casts则是说某些时候swift并不知道现在的变量到底是什么类，只知道他是属于哪个大类的，那么我们如果要使用只存在于子类的properties，我们就需要将这个变量cast成我们想要的类。一般用as!</li>
+</ul>
+<h3 id="tag-location-screen"><a class="markdownIt-Anchor" href="#tag-location-screen"></a> Tag Location Screen</h3>
+<ul>
+<li>接下来我们看看怎么给现在获得的位置信息添加一些其他的信息，比如description，photo，category。那么我们就需要一个table，这个table我们知道他会有多少行，所以不需要使用prototype cells，使用static cells就可以了。制作一个这样的table非常基本，description用text view，image picker我们之后会讲，category使用disclosure indicator，其他cell就用right detailed就可以。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-9.png" alt="tag location screen" /></p>
+<h3 id="the-unwind-segue"><a class="markdownIt-Anchor" href="#the-unwind-segue"></a> The unwind segue</h3>
+<ul>
+<li>当我们点击category时会进入到另一个table with prototype cells。再选一个category后就会回到之前的这个tag location screen，像这种返回式的我们可以使用unwind segue来实现</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-10.png" alt="unwind segue" /></p>
+<h3 id="hud"><a class="markdownIt-Anchor" href="#hud"></a> HUD</h3>
+<ul>
+<li>heads-up display是一种popover view，其实他就是一种view，只不过正常的view现实时其他的view会先被destory以节省memory，但是HUD往往会将背景设置成本透明并保留之前的view，让app有一种层叠的感觉。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-11.png" alt="HUD" /></p>
+<h3 id="core-data"><a class="markdownIt-Anchor" href="#core-data"></a> Core Data</h3>
+<ul>
+<li>Core Data相当于储存在本地的数据，swift使用SqlLite数据库储存本地数据，我们需要将所有的location信息储存在Core Data中，以便以后打开app时查看之前tag的地点</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-12.png" alt="Core Data" /></p>
+<h3 id="notification-center"><a class="markdownIt-Anchor" href="#notification-center"></a> Notification center</h3>
+<ul>
+<li>跟iPhone提醒不一样的是，swift有一个Notification center可以让开发者方便的listen从app任何地方发出的notification。比如我想在用户任何时候对储存在Core Data里的Locations信息进行读取，增加，删除，修改的时候得到提醒，我就可以在appDelegate里设置一个notification method，任何地方发出的LocationsUpdatedNotification都会被我捕捉到，并在这个method里面进行相应的操作。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-13.png" alt="notification center" /></p>
+<ul>
+<li>The Locations Tab: 这个view就是显示所有储存在Core Data Locations里面的信息。基本的table with prototype cells，难点在于将Core Data信息提取并转换成相应的type，还有就是在不关闭app的状态下，新增的location可以马上更新到Core Data并显示在此view中，不过有了notification center相信各位也知道怎么做了。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-14.png" alt="The locations tab" /></p>
+<ul>
+<li>
+<p>Custom table view cell: 将一个cell的layout写在一个新的文件中，使得代码更易读。跟写在LocationsTabViewController是一样的，只不过拉outlets的时候选新的文件就好了。</p>
+</li>
+<li>
+<p>Map Kit View: 我们可以在info.plist里增加map view来获得显示apple map的许可。</p>
+</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-15.png" alt="map view plist" /><br />
+<img src="/../images/iOS-Apprentice/3-16.png" alt="map view" /></p>
+<ul>
+<li>Image Picker: 同样，请求获取照片查看器的许可</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-17.png" alt="image picker plist" /></p>
+<h3 id="ownership-cycle-in-closure"><a class="markdownIt-Anchor" href="#ownership-cycle-in-closure"></a> Ownership cycle in closure</h3>
+<ul>
+<li>先复习一下什么是closure，他其实就是一个method，没什么特殊的，只不过他需要依附于另一个method才能存在。在某些条件被满足时，closure block里面的代码会被执行，比如一段时间过后，api返回成功之后等等。在执行closure时，我们往往会用到被依附的method的property，这时我们需要使用self来显式调用。然而这表示我们对这个property有一种strong reference，并可能导致在closure被执行之前，即使被依附的method所在的class无法被destory，造成memory leak，这是我们就需要使用weak self来破坏ownership cycle。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/3-18.png" alt="closure ownership cycle" /></p>
+<ul>
+<li>剩下的就是一些外观，音效和动画的改变了，这里就不赘述了。</li>
+</ul>
+<h2 id="storesearch"><a class="markdownIt-Anchor" href="#storesearch"></a> StoreSearch</h2>
+<h3 id="app-overview-2"><a class="markdownIt-Anchor" href="#app-overview-2"></a> App Overview</h3>
+<ul>
+<li>这本书的最后一个app将用到向apple store发送request获取信息，使用version contorl tools，对iPad等大屏幕设备的适配，异步通信以及把app上传到app store，可以说是一个简单的软件开发流程了。最终完成的结果如下</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-1.png" alt="final storyboard" /></p>
+<h3 id="git-version-control"><a class="markdownIt-Anchor" href="#git-version-control"></a> Git version control</h3>
+<ul>
+<li>是一个代码管理软件，当我们完成一个阶段的代码后，希望把他保存成一个副本，以后可以随时返回到这个地方。Xcode可以接连到github等网站进行更好的代码管理，也可以使用terminal。我比较喜欢使用terminal，常用的几个指令是：</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-2.png" alt="Xcode git version control" /><br />
+<img src="/../images/iOS-Apprentice/4-3.png" alt="terminal version control" /></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add *</span><br><span class="line">git commit -m <span class="string">&quot;commit message&quot;</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当我们想在已经工作的代码中新加一些功能却又害怕出错，然后又改不回来，我们可以使用git创建一个新的branch，然后在新的branch中肆意更改，不用害怕出问题，这就相当于一个副本，如果改不会去了可以直接删掉，git会保存最后工作的版本。若果一切顺利，也可以将新的branch与master合并</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-15.png" alt="git merch branch" /></p>
+<ul>
+<li>当我们在View Controller中创建outlet时，应该使用weak relationship，这是因为每一个view都基本是从另一个super view中继承而来的，所以如果使用strong relationship，将导致view无法被摧毁。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-4.png" alt="view relationship" /></p>
+<h3 id="create-branch-and-merge"><a class="markdownIt-Anchor" href="#create-branch-and-merge"></a> Create branch and merge</h3>
+<ul>
+<li>NeXT Interface Builder: nib file or xib file, 是一种局部storyboard，比如如果我们想设计一种table cell，就可以创建一个新的nib file，然后将这种custom table cell发给任何一个storyboard中的table view， nib file给我们提供多的灵活性</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-5.png" alt="create new nib file" /><br />
+<img src="/../images/iOS-Apprentice/4-6.png" alt="nib storyboard" /></p>
+<h3 id="debug-using-xcode"><a class="markdownIt-Anchor" href="#debug-using-xcode"></a> Debug using Xcode</h3>
+<ul>
+<li>与其他IDE相似，可以设置breakpoint来暂停程序，查看此时各个变量的值。在debug console中输入p instanceName 可以print出想要查看的object的值</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-7.png" alt="Xcode debug" /><br />
+<img src="/../images/iOS-Apprentice/4-8.png" alt="debug console" /></p>
+<h3 id="calling-the-web-service"><a class="markdownIt-Anchor" href="#calling-the-web-service"></a> Calling the web service</h3>
+<ul>
+<li>这个app的第一个重头戏就是send API request, 这也是软件开发中最常见的也是必不可少的技能，API request最常见的有两种，GET 和 POST， GET一般用来从远端提取数据，POST一般用来添加或改变远端数据，而API就是本地程序和远端数据连接的接口。本书使用了最简单的没有任何限制的GET request。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-9.png" alt="call web service" /><br />
+<img src="/../images/iOS-Apprentice/4-10.png" alt="data response" /></p>
+<ul>
+<li>encode the url text to escape special characters: 在向API发送请求时我们经常需要一同发送一些parameters，但是space和很多其他它特殊符号都是不能被正常处理的，所以我们需要encode url再发送</li>
+<li>Parse JSON data: 返回的数据一般是以JSON的形式组成的，所以我们需要deserilize，Swift有提供官方的decoder可以直接使用</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-11.png" alt="JSON format" /></p>
+<ul>
+<li>using network link conditioner: 从发送API请求到收到数据总会有那么几秒钟时间，这时如果你的程序是在主线程上，你将无法执行任何操作。直到获取数据。如果网络速度很慢，那么结果将非常糟糕，我们可以使用network link conditioner这一额外开发工具来模拟网速极慢的状态。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-12.png" alt="network link conditioner" /></p>
+<h3 id="asychronous-networking"><a class="markdownIt-Anchor" href="#asychronous-networking"></a> Asychronous networking</h3>
+<ul>
+<li>那么如果解决这几秒钟的类似于死机的状态呢？我们可以使用多线程，并将API请求的操作放到另外一个线程中，这样主线程将不受影响，注意，所有和界面变化相关的操作都应该放在主线程。所以即使数据没有收到，用户也可以进行其他操作，比如取消请求。。。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-14.png" alt="asynchronous networking overview" /><br />
+<img src="/../images/iOS-Apprentice/4-13.png" alt="asynchronous networking code" /></p>
+<ul>
+<li>URLSession: 这是一个专门用来负责多线程的API。他可以负责下载请求，数据请求等很多工作。本书使用URLSession来处理异步通信问题。</li>
+<li>Segmented Control: 这是一个很常用的UI模块, 每次切换时可以把segmentedIndex的值传给controller来负责update UI</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-16.png" alt="segmented control" /></p>
+<h3 id="downloadtask"><a class="markdownIt-Anchor" href="#downloadtask"></a> DownloadTask</h3>
+<ul>
+<li>Show DetailView with Present Modally segue: 当点击每个table cell时，会出现这样的一个显示详细信息的窗口，并且也可以看到下面的table view，这个做法其实很简单，每当swift切换到一个新的view时，之前的view默认会被摧毁，但是我们可以改变delegate method，让之前的view保留，并把新的view背景设置成透明。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-17.png" alt="details view" /></p>
+<ul>
+<li>Dynamic type text: 一些app的字体可以根据用户的系统设置而改变，这就要求我们使用默认字体大小，类似于headline</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-18.png" alt="dynamic type" /></p>
+<ul>
+<li>对于一款手机app来说，好的排版是非常重要的，因为涉及到不同的屏幕尺寸，使用auto-resizing让排版适应所有类型的手机可以扩大目标受众，而不是只为一款手机开发</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-19.png" alt="app constraints" /><br />
+<img src="/../images/iOS-Apprentice/4-20.png" alt="detail popup view" /></p>
+<h3 id="landscape"><a class="markdownIt-Anchor" href="#landscape"></a> Landscape</h3>
+<ul>
+<li>对于像iPad和iPhone Plus的机型来说，很多时候我们会把手机横置，这个时候因为屏幕的宽度和高度变化，我们希望app可以呈现出另一种不同的layout以适应变化的屏幕。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-21.png" alt="landscape mode" /></p>
+<ul>
+<li>对于这种情况，swift定义了size classes，我们可以通过查看size class区分手机什么时候是横置的。拿iPhone 6 Plus来举例。如下图，当手机竖置的时候，手机屏幕的高度（vertical）是regular模式，而宽度是compact模式，而当手机处于横置的状态时，手机的高度变成了compact模式，而宽度变成了regular模式。这样，我们在写代码的时候，就可以对每一种situation，制定不同的显示模式了。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-22.png" alt="size classes" /></p>
+<ul>
+<li>Enums with associated values: 在StoreSearch这个app中，用户有没有perform search action一共有四种状态，1.还没有search。 2.正在searching。 3. search结束，并且没有找到任何结果。 4.search结束，并且找到了至少一种结果。 那么对于这样一种状态，与其定义四个变量然后在viewcontroller里面查看这四个变量的true/false值，不如直接定义一个enum然后只需查看这一个enum的值即可。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-23.png" alt="enum code" /><br />
+<img src="/../images/iOS-Apprentice/4-24.png" alt="enum code" /></p>
+<h3 id="internationalization"><a class="markdownIt-Anchor" href="#internationalization"></a> Internationalization</h3>
+<ul>
+<li>有时候，我们希望让我们的app被来自不同国家使用不同语言的人使用，那么我们就需要将我们的app翻译成不同的语言。我们可以在info tab里新加一种语言。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-25.png" alt="localization add a new language" /></p>
+<ul>
+<li>另外，针对不同的view，我们还需要对每个view新加对应的语言文件。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-26.png" alt="add new language file for each view" /></p>
+<ul>
+<li>至于那些不在storyboard里显示的语言信息，我们需要使用NSLocalizedString把所有的语言文本标记出来，再添加到strings文件中去</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-27.png" alt="localized strings" /></p>
+<ul>
+<li>split view contorlle for iPad: split view是大屏幕设备常用的显示模式，例如iPad和iPhone plus。它可以轻松的利用空间，显示出原本需要两个view才能显示出的内容。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-28.png" alt="split view" /><br />
+<img src="/../images/iOS-Apprentice/4-29.png" alt="split view app" /></p>
+<ul>
+<li>config elements in storyboard based on size class: 但如果我们用之前的view size，在iPad等设备上就会显得很小，所以我们需要针对大屏幕设备进行优化。我们可以在attribute tab找到constant，点击加号来增加一个针对不同情况的尺寸，之前说到iPad设备在横置模式（landscape）下高度和宽度都是regular的，所以这里wR hR就是width Regular, height Regular。这种情况下我们将view size改为500.</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-30.png" alt="wR hR constant size" /></p>
+<ul>
+<li>popovers view controller: 如图所示，这是一个在一个view之上的popover view,可以用来表示一个新的menu</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-31.png" alt="popover view" /></p>
+<ul>
+<li>email compose sheet: 这是一个可以在app中打开的内建email系统，提前设置好标题和收件人，当用户执行这个method，直接输入email的内容，就可以发送到开发者的邮箱，前提是用户必须提前设置好email账户。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-32.png" alt="email sheet" /></p>
+<ul>
+<li>beta testing (test flight): 当你完成一个app之后，可以把它发布到app store，这需要几个步骤，首先你需要提交一个build，在进入iTunes connect查看提交的app，在这里你可以分配给同一个team的其他测试者，这一步称为internal testing，如果一切都没问题，你可以submit app to app store. 如果app通过apple的审查，就可以进行external testing，将app的测试码发给任何人，他们可以通过测试码下载并测试app。</li>
+</ul>
+<p><img src="/../images/iOS-Apprentice/4-33.png" alt="distributing app to store" /></p>
+<h2 id="conclusion"><a class="markdownIt-Anchor" href="#conclusion"></a> Conclusion</h2>
+<ul>
+<li>
+<p>本来想用10天的时间看完这本将近1100页的书，最后用了将近20天才完成。在做最后一个app的时候又有其他的工作加进来，周末又一直有活动，才又延长了这么长时间，不过完成了就是好的，对于一个对iOS没有任何经验的人来说，的确是一本不可多得的好书，如果对自己的编程能力有信心，之前又接触过Java或者C++,直接读这本是没有任何问题的，不过如果没有任何编程经验，从另外一本Swift Apprentice开始更好，从了解swift语言基本开始，使用Xcode playground。</p>
+</li>
+<li>
+<p>这四个app基本解决了我制作其他app时的所有问题，常用的storyboard object都用了，constraints，delegate, extension, custom with nib, localizition, API calling, local library, local database, simple animation, multi-threading, git, debug到最后app publish都有涉及。</p>
+</li>
+<li>
+<p>不过在跟着做完所有app之后，我觉得还是需要自己制作一个app，在脱离了guide之后，靠自己的能力解决所有过程中的问题，能使学到的知识更加牢固。</p>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2019/07/03/Learn-iOS-apprentice-in-10-days/" title="Learn iOS apprentice in 10 days" target="_blank" rel="external">http://hellcy.github.io/2019/07/03/Learn-iOS-apprentice-in-10-days/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/07/23/Payment-Gateway-API/" title="Payment Gateway API"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/06/24/Mifare-card-read-and-write/" title="Mifare card read and write"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

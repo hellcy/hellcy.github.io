@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>C# LINQ | Hellcy&#39;s Blog</title>
+  <meta name="description" content="LINQ  SQL-like syntax in C# and Visual Basic Query any type of collection (IEnumerable&lt;T&gt;) Query external data sources (xml, databases, JSON, CSV)   SQL Query vs LINQ Query Syntax    SQL LINQ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C# LINQ">
+<meta property="og:url" content="http://hellcy.github.io/2021/04/20/C-LINQ/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="LINQ  SQL-like syntax in C# and Visual Basic Query any type of collection (IEnumerable&lt;T&gt;) Query external data sources (xml, databases, JSON, CSV)   SQL Query vs LINQ Query Syntax    SQL LINQ">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-20T13:07:27.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.658Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="LINQ">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/04/20/C-LINQ/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#linq"><span class="toc-number">1.</span> <span class="toc-text"> LINQ</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sql-query-vs-linq-query-syntax"><span class="toc-number">1.1.</span> <span class="toc-text"> SQL Query vs LINQ Query Syntax</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#two-linq-syntaxes"><span class="toc-number">1.2.</span> <span class="toc-text"> Two LINQ Syntaxes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linq-operations"><span class="toc-number">1.3.</span> <span class="toc-text"> LINQ Operations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#select-and-order-operations"><span class="toc-number">2.</span> <span class="toc-text"> Select and Order Operations</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#projection-only-select-specific-columns-from-an-object"><span class="toc-number">2.1.</span> <span class="toc-text"> Projection (only select specific columns from an object)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#projection-with-anonymous-class"><span class="toc-number">2.2.</span> <span class="toc-text"> Projection with Anonymous Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ordering-data"><span class="toc-number">2.3.</span> <span class="toc-text"> Ordering Data</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order-by-two-fields"><span class="toc-number">2.4.</span> <span class="toc-text"> Order by Two Fields</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#extract-multiple-or-single-elements"><span class="toc-number">3.</span> <span class="toc-text"> Extract Multiple or Single Elements</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#where-expression"><span class="toc-number">3.1.</span> <span class="toc-text"> Where Expression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extension-method"><span class="toc-number">3.2.</span> <span class="toc-text"> Extension Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-a-single-item"><span class="toc-number">3.3.</span> <span class="toc-text"> Select a Single Item</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#extract-distinct-values-assign-values-and-partition-collections"><span class="toc-number">4.</span> <span class="toc-text"> Extract Distinct Values, Assign Values and Partition Collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set-operations"><span class="toc-number">4.1.</span> <span class="toc-text"> Set Operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#take-specific-amount-of-elements"><span class="toc-number">4.2.</span> <span class="toc-text"> Take Specific Amount of Elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#skip-specific-amount-of-elements"><span class="toc-number">4.3.</span> <span class="toc-text"> Skip specific amount of elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select-distinct-values"><span class="toc-number">4.4.</span> <span class="toc-text"> Select Distinct Values</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#identify-what-kind-of-data-is-contained-in-collections"><span class="toc-number">5.</span> <span class="toc-text"> Identify What Kind of Data is Contained in Collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#all-will-return-a-true-or-false-value-to-see-if-all-items-meet-the-requirement"><span class="toc-number">5.1.</span> <span class="toc-text"> All() will return a true or false value to see if all items meet the requirement.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any-will-return-true-if-any-of-the-item-meet-the-requirement-and-will-return-false-will-all-items-doesnt-meet-the-requirement"><span class="toc-number">5.2.</span> <span class="toc-text"> Any() will return true if any of the item meet the requirement. And will return false will all items doesn’t meet the requirement.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#contains-can-be-used-in-primitive-types-and-objects"><span class="toc-number">5.3.</span> <span class="toc-text"> Contains can be used in primitive types and objects</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#compare-and-union-two-collections"><span class="toc-number">6.</span> <span class="toc-text"> Compare and Union Two Collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sequenceequal"><span class="toc-number">6.1.</span> <span class="toc-text"> SequenceEqual()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#except"><span class="toc-number">6.2.</span> <span class="toc-text"> Except</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intersect"><span class="toc-number">6.3.</span> <span class="toc-text"> Intersect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unions"><span class="toc-number">6.4.</span> <span class="toc-text"> Unions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#concat"><span class="toc-number">6.5.</span> <span class="toc-text"> Concat()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#joining-two-collections-together"><span class="toc-number">7.</span> <span class="toc-text"> Joining Two Collections Together</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#inner-join"><span class="toc-number">7.1.</span> <span class="toc-text"> Inner Join</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inner-join-with-two-fields"><span class="toc-number">7.2.</span> <span class="toc-text"> Inner Join with two fields</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aggregating-data-in-collections"><span class="toc-number">8.</span> <span class="toc-text"> Aggregating Data in Collections</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#count"><span class="toc-number">8.1.</span> <span class="toc-text"> Count()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#min-and-max"><span class="toc-number">8.2.</span> <span class="toc-text"> Min() and Max()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#average-and-sum"><span class="toc-number">8.3.</span> <span class="toc-text"> Average() and Sum()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#custom-calculation-using-aggregate"><span class="toc-number">8.4.</span> <span class="toc-text"> Custom Calculation using Aggregate()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#deferred-execution"><span class="toc-number">9.</span> <span class="toc-text"> Deferred Execution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#streaming-operators"><span class="toc-number">10.</span> <span class="toc-text"> Streaming Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#non-streaming-operators"><span class="toc-number">11.</span> <span class="toc-text"> Non-Streaming Operators</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-yield-keyword"><span class="toc-number">12.</span> <span class="toc-text"> The yield keyword</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-C-LINQ" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      C# LINQ
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/20/C-LINQ/" class="article-date">
+	  <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/LINQ/" rel="tag">LINQ</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/20/C-LINQ/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.6k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 22(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="linq"><a class="markdownIt-Anchor" href="#linq"></a> LINQ</h2>
+<ul>
+<li>SQL-like syntax in C# and Visual Basic</li>
+<li>Query any type of collection (<code>IEnumerable&lt;T&gt;</code>)</li>
+<li>Query external data sources (xml, databases, JSON, CSV)</li>
+</ul>
+<h3 id="sql-query-vs-linq-query-syntax"><a class="markdownIt-Anchor" href="#sql-query-vs-linq-query-syntax"></a> SQL Query vs LINQ Query Syntax</h3>
+<table>
+<thead>
+<tr>
+<th>SQL</th>
+<th>LINQ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SELECT * FROM Products</td>
+<td>FROM prod IN Products SELECT prod</td>
+</tr>
+<tr>
+<td>SELECT Name FROM Products</td>
+<td>FROM prod in Products SELECT <a target="_blank" rel="noopener" href="http://prod.Name">prod.Name</a></td>
+</tr>
+<tr>
+<td>SELECT * FROM Products WHERE ListPrice &gt; 10</td>
+<td>FROM prod in Products WHERE prod.ListPrice &gt; 10 SELECT prod</td>
+</tr>
+</tbody>
+</table>
+<h3 id="two-linq-syntaxes"><a class="markdownIt-Anchor" href="#two-linq-syntaxes"></a> Two LINQ Syntaxes</h3>
+<table>
+<thead>
+<tr>
+<th>Query</th>
+<th>Method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FROM prod in Products SELECT prod</td>
+<td>Products.Select(prod =&gt; prod)</td>
+</tr>
+<tr>
+<td>FROM prod in Products SELECT <a target="_blank" rel="noopener" href="http://prod.Name">prod.Name</a></td>
+<td>Products.Select(prod =&gt; <a target="_blank" rel="noopener" href="http://prod.Name">prod.Name</a>)</td>
+</tr>
+<tr>
+<td>FROM prod in Products WHERE prod.ListPrice &gt; 10 SELECT prod</td>
+<td>Products.Where(prod =&gt; prod.ListPrice &gt; 10).Select(prod =&gt; prod)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="linq-operations"><a class="markdownIt-Anchor" href="#linq-operations"></a> LINQ Operations</h3>
+<ul>
+<li>Select</li>
+<li>Projection (Change shape, select only certain properties from an object)</li>
+<li>Order (ascending/descending)</li>
+<li>Get an Element (find, first, last, single)</li>
+<li>Filter (where)</li>
+<li>Iteration/Partioning (foreach, skip, take)</li>
+<li>Quantify (any, all, contains)</li>
+<li>Set Comparison (equal, except, intersection)</li>
+<li>Set Operations (union, concat)</li>
+<li>Joining (inner joins, outer joins)</li>
+<li>Grouping (groupby, subquery, groupjoin)</li>
+<li>Distinct Sets (distinct)</li>
+<li>Aggregation (count, sum, min, max, average)</li>
+</ul>
+<h2 id="select-and-order-operations"><a class="markdownIt-Anchor" href="#select-and-order-operations"></a> Select and Order Operations</h2>
+<h3 id="projection-only-select-specific-columns-from-an-object"><a class="markdownIt-Anchor" href="#projection-only-select-specific-columns-from-an-object"></a> Projection (only select specific columns from an object)</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products</span><br><span class="line">                select new Product</span><br><span class="line">                &#123;</span><br><span class="line">                    ProductID &#x3D; prod.ProductID,</span><br><span class="line">                    Name &#x3D; prod.Name,</span><br><span class="line">                    Size &#x3D; prod.Size,</span><br><span class="line">                &#125;).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; Products.Select(prod &#x3D;&gt; new Product</span><br><span class="line">    &#123;</span><br><span class="line">        ProductID &#x3D; prod.ProductID,</span><br><span class="line">        Name &#x3D; prod.Name,</span><br><span class="line">        Size &#x3D; prod.Size</span><br><span class="line">    &#125;).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="projection-with-anonymous-class"><a class="markdownIt-Anchor" href="#projection-with-anonymous-class"></a> Projection with Anonymous Class</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    var products &#x3D; (from prod in Products</span><br><span class="line">                    select new</span><br><span class="line">                    &#123;</span><br><span class="line">                        Identifier &#x3D; prod.ProductID,</span><br><span class="line">                        ProductName &#x3D; prod.Name,</span><br><span class="line">                        ProductSize &#x3D; prod.Size</span><br><span class="line">                    &#125;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Loop through anonymous class</span><br><span class="line">    foreach (var prod in products)</span><br><span class="line">    &#123;</span><br><span class="line">        sb.AppendLine($&quot;Product ID: &#123;prod.Identifier&#125;&quot;);</span><br><span class="line">        sb.AppendLine($&quot;   Product Name: &#123;prod.ProductName&#125;&quot;);</span><br><span class="line">        sb.AppendLine($&quot;   Product Size: &#123;prod.ProductSize&#125;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    var products &#x3D; Products.Select(prod &#x3D;&gt; new</span><br><span class="line">    &#123;</span><br><span class="line">        Identifier &#x3D; prod.ProductID,</span><br><span class="line">        ProductName &#x3D; prod.Name,</span><br><span class="line">        ProductSize &#x3D; prod.Size</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Loop through anonymous class</span><br><span class="line">    foreach (var prod in products)</span><br><span class="line">    &#123;</span><br><span class="line">        sb.AppendLine($&quot;Product ID: &#123;prod.Identifier&#125;&quot;);</span><br><span class="line">        sb.AppendLine($&quot;   Product Name: &#123;prod.ProductName&#125;&quot;);</span><br><span class="line">        sb.AppendLine($&quot;   Product Size: &#123;prod.ProductSize&#125;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="ordering-data"><a class="markdownIt-Anchor" href="#ordering-data"></a> Ordering Data</h3>
+<p>When using Method Syntax to order data, the .Select() method is optional when you are simply selecting the complete object as the return value</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void OrderBy()</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        Products &#x3D; (from prod in Products orderby prod.Name select prod).ToList();</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        Products &#x3D; Products.OrderBy(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Total Products: &#123;Products.Count&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Order by Descending</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void OrderByDescending()</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        Products &#x3D; (from prod in Products orderby prod.Name descending select prod).ToList();</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        Products &#x3D; Products.OrderByDescending(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Total Products: &#123;Products.Count&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="order-by-two-fields"><a class="markdownIt-Anchor" href="#order-by-two-fields"></a> Order by Two Fields</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public void OrderByTwoFields()</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        Products &#x3D; (from prod in Products orderby prod.Color descending, prod.Name).ToList();</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        Products &#x3D; Products.OrderByDescending(prod &#x3D;&gt; prod.Color).ThenBy(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Total Products: &#123;Products.Count&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="extract-multiple-or-single-elements"><a class="markdownIt-Anchor" href="#extract-multiple-or-single-elements"></a> Extract Multiple or Single Elements</h2>
+<h3 id="where-expression"><a class="markdownIt-Anchor" href="#where-expression"></a> Where Expression</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void WhereExpression()</span><br><span class="line">&#123;</span><br><span class="line">    string search &#x3D; &quot;L&quot;;</span><br><span class="line"></span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        Products &#x3D; (from prod in Products where prod.Name.StartsWith(search) select prod).ToList();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        Products &#x3D; Products.Where(prod &#x3D;&gt; prod.Name.StartsWith(search)).ToList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Total Products: &#123;Products.Count&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Where with multiple fields</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void WhereTwoFields()</span><br><span class="line">&#123;</span><br><span class="line">    string search &#x3D; &quot;L&quot;;</span><br><span class="line">    decimal cost &#x3D; 100;</span><br><span class="line"></span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        Products &#x3D; (from prod in Products where prod.Name.StartsWith(search) &amp;&amp; prod.StandardCost &gt; cost).ToList();</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        Products &#x3D; Products.Where(prod &#x3D;&gt; prod.Name.StartsWith(search) &amp;&amp; prod.StandardCost &gt; cost).ToList();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Total Products: &#123;Products.Count&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Using Custom Extension Method</li>
+</ul>
+<h3 id="extension-method"><a class="markdownIt-Anchor" href="#extension-method"></a> Extension Method</h3>
+<p>Extension methods enable you to “add” methods to existing types without creating a new derived type, recompiling, or otherwise modifying the original type. Extension methods are static methods, but they’re called as if they were instance methods on the extended type.</p>
+<p>The most common extension methods are the LINQ standard query operators that add query functionality to the existing <code>System.Collections.IEnumerable</code> and <code>System.Collections.Generic.IEnumerable&lt;T&gt;</code> types.</p>
+<p>Extension methods are defined as <code>static</code> methods but are called by using instance method syntax. Their first parameter specifies which type the method operates on. The parameter is preceded by the <code>this</code> modifier.</p>
+<p>Extension method is just a static method under the hood.</p>
+<p>In the example, the result of <code>(from prod in Products select prod)</code> is an <code>IEnumerable&lt;Product&gt;</code> which is why <code>ByColor()</code> can be applied to this</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static IEnumerable&lt;Product&gt; ByColor(</span><br><span class="line">    this IEnumerable&lt;Product&gt; query, string color)</span><br><span class="line">&#123;</span><br><span class="line">    return query.Where(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; color);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products select prod).ByColor(search).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; Products.ByColor(search).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="select-a-single-item"><a class="markdownIt-Anchor" href="#select-a-single-item"></a> Select a Single Item</h3>
+<ul>
+<li>First, will throw an Exception if item not found.</li>
+<li>Last, same as First</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        value &#x3D; (from prod in Products select prod).First(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; search);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        value &#x3D; Products.First(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; search);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Found: &#123;value&#125;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">catch</span><br><span class="line">&#123;</span><br><span class="line">    ResultText &#x3D; &quot;Not Found&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>FirstOrDefault, value will be null if item not found, will not throw an Exception</li>
+<li>LastOrDefault, same as FirstOrDefault</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from prod in Products select prod).First(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; search);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; Products.First(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; search);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">if (value &#x3D;&#x3D; null)</span><br><span class="line">&#123;</span><br><span class="line">    ResultText &#x3D; &quot;Not Found&quot;;</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    ResultText &#x3D; $&quot;Found: &#123;value&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Single, will throw an Exception if item not found or multiple items found.</li>
+</ul>
+<p>Single is supposed to be used to found a unique item, like primary key. The Exception thrown if multiple items are found is InvalidOperationException.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        value &#x3D; (from prod in Products select prod).Single(prod &#x3D;&gt; prod.ProductID &#x3D;&#x3D; search);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        value &#x3D; Products.Single(prod &#x3D;&gt; prod.ProductID &#x3D;&#x3D; search);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Found: &#123;value&#125;&quot;;</span><br><span class="line">&#125;</span><br><span class="line">catch</span><br><span class="line">&#123;</span><br><span class="line">    ResultText &#x3D; &quot;Not Found, or multiple elements found&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>SingleOrDefault, value will be NULL if no item found, but will still throw an Exception if multiple items found.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">try</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        value &#x3D; (from prod in Products select prod).SingleOrDefault(prod &#x3D;&gt; prod.ProductID &#x3D;&#x3D; search);</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        value &#x3D; Products.SingleOrDefault(prod &#x3D;&gt; prod.ProductID &#x3D;&#x3D; search);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (value &#x3D;&#x3D; null)</span><br><span class="line">    &#123;</span><br><span class="line">        ResultText &#x3D; &quot;Not Found&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        ResultText &#x3D; $&quot;Found: &#123;value&#125;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">catch</span><br><span class="line">&#123;</span><br><span class="line">    ResultText &#x3D; &quot;Multiple elements found&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="extract-distinct-values-assign-values-and-partition-collections"><a class="markdownIt-Anchor" href="#extract-distinct-values-assign-values-and-partition-collections"></a> Extract Distinct Values, Assign Values and Partition Collections</h2>
+<h3 id="set-operations"><a class="markdownIt-Anchor" href="#set-operations"></a> Set Operations</h3>
+<ul>
+<li>Iterate over entire collection</li>
+<li>Set a property value in collection (similar to a SQL UPDATE)</li>
+</ul>
+<p>In this example, the object has a NameLength property and we need to assign the value <code>prop.Name.Length</code> to this <code>prop.NameLength</code> property.</p>
+<p>For the Query approach, we need to declare a tmp variable because it has to be a statement, not an assignment. But the Method approach doesn’t have this issue.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public void ForEach()</span><br><span class="line">&#123;</span><br><span class="line">    if (UseQuerySyntax)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Query Syntax</span><br><span class="line">        Products &#x3D; (from prod in Products</span><br><span class="line">                    let tmp &#x3D; prod.NameLength &#x3D; prod.Name.Length</span><br><span class="line">                    select prod).ToList();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; Method Syntax</span><br><span class="line">        Products.ForEach(prod &#x3D;&gt; prod.NameLength &#x3D; prod.Name.Length);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ResultText &#x3D; $&quot;Total Products: &#123;Products.Count&#125;&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In this example we have a Sales object, and we need to calculate how many item we have sold for a certain product.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">private decimal SalesForProduct(Product prod)</span><br><span class="line">&#123;</span><br><span class="line">    return Sales.Where(sale &#x3D;&gt; sale.ProductID &#x3D;&#x3D; prod.ProductID)</span><br><span class="line">                .Sum(sale &#x3D;&gt; sale.LineTotal);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>We could then use this to set the TotalSales property for each Product</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products</span><br><span class="line">                let tmp &#x3D; prod.TotalSales &#x3D; SalesForProduct(prod)</span><br><span class="line">                select prod).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products.ForEach(prod &#x3D;&gt; prod.TotalSales &#x3D; SalesForProduct(prod));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="take-specific-amount-of-elements"><a class="markdownIt-Anchor" href="#take-specific-amount-of-elements"></a> Take Specific Amount of Elements</h3>
+<p>Take the first 5 elements from the list</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products</span><br><span class="line">                orderby prod.Name</span><br><span class="line">                select prod).Take(5).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; Products.OrderBy(prod &#x3D;&gt; prod.Name).Take(5).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>TakeWhile(): take elements while condition is true</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products</span><br><span class="line">                orderby prod.Name</span><br><span class="line">                select prod).TakeWhile(prod &#x3D;&gt; prod.Name.StartsWith(&quot;A&quot;)).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; Products.OrderBy(prod &#x3D;&gt; prod.Name).TakeWhile(prod &#x3D;&gt; prod.Name.StartsWith(&quot;A&quot;)).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="skip-specific-amount-of-elements"><a class="markdownIt-Anchor" href="#skip-specific-amount-of-elements"></a> Skip specific amount of elements</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products</span><br><span class="line">                orderby prod.Name</span><br><span class="line">                select prod).Skip(20).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; Products.OrderBy(prod &#x3D;&gt; prod.Name).Skip(20).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Skip elements while condition is true</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in Products</span><br><span class="line">                orderby prod.Name</span><br><span class="line">                select prod).SkipWhile(prod &#x3D;&gt; prod.Name.StartsWith(&quot;A&quot;)).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; Products.OrderBy(prod &#x3D;&gt; prod.Name).SkipWhile(prod &#x3D;&gt; prod.Name.StartsWith(&quot;A&quot;)).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="select-distinct-values"><a class="markdownIt-Anchor" href="#select-distinct-values"></a> Select Distinct Values</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    colors &#x3D; (from prod in Products select prod.Color).Distinct().ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    colors &#x3D; Products.Select(prod &#x3D;&gt; prod.Color).Distinct().ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="identify-what-kind-of-data-is-contained-in-collections"><a class="markdownIt-Anchor" href="#identify-what-kind-of-data-is-contained-in-collections"></a> Identify What Kind of Data is Contained in Collections</h2>
+<h3 id="all-will-return-a-true-or-false-value-to-see-if-all-items-meet-the-requirement"><a class="markdownIt-Anchor" href="#all-will-return-a-true-or-false-value-to-see-if-all-items-meet-the-requirement"></a> All() will return a true or false value to see if all items meet the requirement.</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from prod in Products select prod).All(prod &#x3D;&gt; prod.Name.Contains(search));</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; Products.All(prod &#x3D;&gt; prod.Name.Contains(search));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="any-will-return-true-if-any-of-the-item-meet-the-requirement-and-will-return-false-will-all-items-doesnt-meet-the-requirement"><a class="markdownIt-Anchor" href="#any-will-return-true-if-any-of-the-item-meet-the-requirement-and-will-return-false-will-all-items-doesnt-meet-the-requirement"></a> Any() will return true if any of the item meet the requirement. And will return false will all items doesn’t meet the requirement.</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from prod in Products select prod).Any(prod &#x3D;&gt; prod.Name.Contains(search));</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; Products.Any(prod &#x3D;&gt; prod.Name.Contains(search));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="contains-can-be-used-in-primitive-types-and-objects"><a class="markdownIt-Anchor" href="#contains-can-be-used-in-primitive-types-and-objects"></a> Contains can be used in primitive types and objects</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">bool value &#x3D; true;</span><br><span class="line">List&lt;int&gt; numbers &#x3D; new List&lt;int&gt; &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from num in numbers select num).Contains(3);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; numbers.Contains(3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>When using Contains() on a collection of objects. We need to use EqualityComparer, because by default objects are compared by reference not value.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class ProductIdComparer : EqualityComparer&lt;Product&gt; &#123;</span><br><span class="line">    public override bool Equals(Product x, Product y) &#123;</span><br><span class="line">        return (x.ProductID &#x3D;&#x3D; y.ProductID);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public override int GetHashCode(Product obj) &#123;</span><br><span class="line">    return obj.ProductID.GetHashCode();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now when calling Contains() method, we pass in the Comparer object, so it will loop through all products and compare each one with our prodToFind Product. The Comparer will use prodToFind as the first parameter and each Product as the second parameter.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">int search &#x3D; 744;</span><br><span class="line">bool value &#x3D; true;</span><br><span class="line">ProductIdComparer pc &#x3D; new ProductIdComparer();</span><br><span class="line">Product prodToFind &#x3D; new Product &#123; ProductID &#x3D; search &#125;;</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from prod in Products select prod).Contains(prodToFind, pc);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; Products.Contains(prodToFind, pc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="compare-and-union-two-collections"><a class="markdownIt-Anchor" href="#compare-and-union-two-collections"></a> Compare and Union Two Collections</h2>
+<h3 id="sequenceequal"><a class="markdownIt-Anchor" href="#sequenceequal"></a> SequenceEqual()</h3>
+<p>Compares two collections for equlity.</p>
+<ul>
+<li>For Simple data types (int, decimal, boolean…) it checks values</li>
+<li>For object data types checks reference</li>
+<li>If you want to compare values in objects, you need to create a comparer class to check the values inside each properties.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Use SequenceEqual on primitives</span><br><span class="line">bool value &#x3D; true;</span><br><span class="line">&#x2F;&#x2F; Create a list of numbers</span><br><span class="line">List&lt;int&gt; list1 &#x3D; new List&lt;int&gt; &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line">&#x2F;&#x2F; Create a list of numbers</span><br><span class="line">List&lt;int&gt; list2 &#x3D; new List&lt;int&gt; &#123; 1, 2, 3, 4, 5 &#125;;</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from num in list1 select num).SequenceEqual(list2);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; list1.SequenceEqual(list2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If we want to compare each object in a collection by value, we need to create a new Comparer override the Compare method.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">bool value &#x3D; true;</span><br><span class="line">ProductComparer pc &#x3D; new ProductComparer();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list1 &#x3D; ProductRepository.GetAll();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list2 &#x3D; ProductRepository.GetAll();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Remove an element from &#39;list1&#39; to make the collections different</span><br><span class="line">list1.RemoveAt(0);</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    value &#x3D; (from num in list1 select num).SequenceEqual(list2, pc);</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    value &#x3D; list1.SequenceEqual(list2, pc);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="except"><a class="markdownIt-Anchor" href="#except"></a> Except</h3>
+<ul>
+<li>It finds all values in one list, but not the other, returns a collection of items.</li>
+<li>Similar to Contains and SequenceEqual, if we are comparing primitive types, we can just use it, but if we are comparing objects values, we need to create a Comparer class and override the Compare method.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">List&lt;int&gt; exceptions &#x3D; new List&lt;int&gt;();</span><br><span class="line">&#x2F;&#x2F; Create a list of numbers</span><br><span class="line">List&lt;int&gt; list1 &#x3D; new List&lt;int&gt; &#123; 1, 2, 3, 4 &#125;;</span><br><span class="line">&#x2F;&#x2F; Create a list of numbers</span><br><span class="line">List&lt;int&gt; list2 &#x3D; new List&lt;int&gt; &#123; 3, 4, 5 &#125;;</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    exceptions &#x3D; (from num in list1 select num).Except(list2).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    exceptions &#x3D; list1.Except(list2).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Using Except on a collection of objects</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ProductComparer pc &#x3D; new ProductComparer();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list1 &#x3D; ProductRepository.GetAll();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list2 &#x3D; ProductRepository.GetAll();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Remove all products with color &#x3D; &quot;Black&quot; from &#39;list2&#39;</span><br><span class="line">&#x2F;&#x2F; to give us a difference in the two lists</span><br><span class="line">list2.RemoveAll(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;Black&quot;);</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from prod in list1 select prod).Except(list2, pc).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; list1.Except(list2, pc).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="intersect"><a class="markdownIt-Anchor" href="#intersect"></a> Intersect</h3>
+<ul>
+<li>It finds all values in common between both lists</li>
+<li>Similar to Contains, SequenceEqual and Except, it compares values for primitive types and references for objects. We need to create comparer class to check values in properties.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">ProductComparer pc &#x3D; new ProductComparer();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list1 &#x3D; ProductRepository.GetAll();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list2 &#x3D; ProductRepository.GetAll();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Remove &#39;black&#39; products from &#39;list1&#39;</span><br><span class="line">list1.RemoveAll(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;Black&quot;);</span><br><span class="line">&#x2F;&#x2F; Remove &#39;red&#39; products from &#39;list2&#39;</span><br><span class="line">list2.RemoveAll(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;Red&quot;);</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from num in list1 select num).Intersect(list2, pc).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; list1.Intersect(list2, pc).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="unions"><a class="markdownIt-Anchor" href="#unions"></a> Unions</h3>
+<ul>
+<li>It adds the contents of two lists together.</li>
+<li>Union() checks for duplicates</li>
+<li>Concat() does not check for duplicates</li>
+<li>Use comparer class with objects</li>
+</ul>
+<p>Union() need Comparer to eliminate duplicates</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">ProductComparer pc &#x3D; new ProductComparer();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list1 &#x3D; ProductRepository.GetAll();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list2 &#x3D; ProductRepository.GetAll();</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from num in list1 select num).Union(list2, pc).OrderBy(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; list1.Union(list2, pc).OrderBy(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="concat"><a class="markdownIt-Anchor" href="#concat"></a> Concat()</h3>
+<ul>
+<li>Adds the contents of two collections with duplicates</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list1 &#x3D; ProductRepository.GetAll();</span><br><span class="line">&#x2F;&#x2F; Load all Product Data</span><br><span class="line">List&lt;Product&gt; list2 &#x3D; ProductRepository.GetAll();</span><br><span class="line"></span><br><span class="line">if (UseQuerySyntax)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Query Syntax</span><br><span class="line">    Products &#x3D; (from num in list1 select num).Concat(list2).OrderBy(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; Method Syntax</span><br><span class="line">    Products &#x3D; list1.Concat(list2).OrderBy(prod &#x3D;&gt; prod.Name).ToList();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="joining-two-collections-together"><a class="markdownIt-Anchor" href="#joining-two-collections-together"></a> Joining Two Collections Together</h2>
+<h3 id="inner-join"><a class="markdownIt-Anchor" href="#inner-join"></a> Inner Join</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">var query &#x3D; Products.Join(Sales, prod &#x3D;&gt; prod.ProductID, sale &#x3D;&gt; sale.ProductID, (prod, sale) &#x3D;&gt; new</span><br><span class="line">&#123;</span><br><span class="line">    prod.ProductID,</span><br><span class="line">    prod.Name,</span><br><span class="line">    prod.Color,</span><br><span class="line">    prod.StandardCost,</span><br><span class="line">    prod.ListPrice,</span><br><span class="line">    prod.Size,</span><br><span class="line">    sale.SalesOrderID,</span><br><span class="line">    sale.OrderQty,</span><br><span class="line">    sale.UnitPrice,</span><br><span class="line">    sale.LineTotal,</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h3 id="inner-join-with-two-fields"><a class="markdownIt-Anchor" href="#inner-join-with-two-fields"></a> Inner Join with two fields</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">short qty &#x3D; 6;</span><br><span class="line"></span><br><span class="line">var query &#x3D; Products.Join(</span><br><span class="line">    Sales,</span><br><span class="line">    prod &#x3D;&gt; new &#123; prod.ProductID, Qty &#x3D; qty &#125;,</span><br><span class="line">    sale &#x3D;&gt; new &#123; sale.ProductID, Qty &#x3D; sale.OrderQty &#125;,</span><br><span class="line">    (prod, sale) &#x3D;&gt; new</span><br><span class="line">    &#123;</span><br><span class="line">        prod.ProductID,</span><br><span class="line">        prod.Name,</span><br><span class="line">        prod.Color,</span><br><span class="line">        prod.StandardCost,</span><br><span class="line">        prod.ListPrice,</span><br><span class="line">        prod.Size,</span><br><span class="line">        sale.SalesOrderID,</span><br><span class="line">        sale.OrderQty,</span><br><span class="line">        sale.UnitPrice,</span><br><span class="line">        sale.LineTotal</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="aggregating-data-in-collections"><a class="markdownIt-Anchor" href="#aggregating-data-in-collections"></a> Aggregating Data in Collections</h2>
+<h3 id="count"><a class="markdownIt-Anchor" href="#count"></a> Count()</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Count(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;Yellow&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Another way using Where</span><br><span class="line">value &#x3D; Products.Where(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;Yellow&quot;).Count();</span><br></pre></td></tr></table></figure>
+<h3 id="min-and-max"><a class="markdownIt-Anchor" href="#min-and-max"></a> Min() and Max()</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Min(prod &#x3D;&gt; prod.ListPrice);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Max(prod &#x3D;&gt; prod.ListPrice);</span><br></pre></td></tr></table></figure>
+<h3 id="average-and-sum"><a class="markdownIt-Anchor" href="#average-and-sum"></a> Average() and Sum()</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Average(prod &#x3D;&gt; prod.ListPrice);</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Sum(prod &#x3D;&gt; prod.ListPrice);</span><br></pre></td></tr></table></figure>
+<h3 id="custom-calculation-using-aggregate"><a class="markdownIt-Anchor" href="#custom-calculation-using-aggregate"></a> Custom Calculation using Aggregate()</h3>
+<p>The first parameter initialize an internal variable, which setup the start value.</p>
+<p>The second parameter is an anonymous function which you pass the initial value and loop through each item in the collection</p>
+<ul>
+<li>Aggregate Sum</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Aggregate(0m, (sum, prod) &#x3D;&gt; sum +&#x3D; prod.ListPrice);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Aggregate Multiply</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">value &#x3D; Products.Aggregate(0m, (sum, prod &#x3D;&gt; sum +&#x3D; prod.ListPrice * prod.Qty));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Aggregate with GroupBy and Having</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var stats &#x3D; Products.GroupBy(sale &#x3D;&gt; sale.Size)</span><br><span class="line">    .Where(sizeGroup &#x3D;&gt; sizeGroup.Count() &gt; 0)</span><br><span class="line">    .Select(sizeGroup &#x3D;&gt; new &#123;</span><br><span class="line">        Size &#x3D; sizeGroup.Key,</span><br><span class="line">        TotalProducts &#x3D; sizeGroup.Count(),</span><br><span class="line">        Max &#x3D; sizeGroup.Max(s &#x3D;&gt; s.ListPrice),</span><br><span class="line">        Min &#x3D; sizeGroup.Min(s &#x3D;&gt; s.ListPrice),</span><br><span class="line">        Average &#x3D; sizeGroup.Average(s &#x3D;&gt; s.ListPrice)</span><br><span class="line">    &#125;)</span><br><span class="line">    .OrderBy(result &#x3D;&gt; result.Size)</span><br><span class="line">    .Select(result &#x3D;&gt; result);</span><br></pre></td></tr></table></figure>
+<h2 id="deferred-execution"><a class="markdownIt-Anchor" href="#deferred-execution"></a> Deferred Execution</h2>
+<ul>
+<li>A LINQ query is a data structure ready to execute</li>
+<li>Query is not executed until a value is needed</li>
+<li>The execution happens with one of the folloing functions (<code>foreach()</code>, <code>Count()</code>, <code>ToList()</code>, <code>OrderBy()</code>…)</li>
+</ul>
+<h2 id="streaming-operators"><a class="markdownIt-Anchor" href="#streaming-operators"></a> Streaming Operators</h2>
+<ul>
+<li>Results can be returned prior to the entire collection is read</li>
+<li>Examples: Distinct(), GroupBy(), Join(), Select(), Skip(), Take(), Union(), Where()</li>
+</ul>
+<h2 id="non-streaming-operators"><a class="markdownIt-Anchor" href="#non-streaming-operators"></a> Non-Streaming Operators</h2>
+<ul>
+<li>All data in collection must be read before a result can be returned</li>
+<li>Examples: Except(), GroupBy(), GroupJoin(), Intersect(), Join(), OrderBy(), ThenBy()</li>
+</ul>
+<h2 id="the-yield-keyword"><a class="markdownIt-Anchor" href="#the-yield-keyword"></a> The yield keyword</h2>
+<p>When write our own Filter function, we could use <code>yield</code> to make the function to be Streaming. So it returns data while looping through the collection.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static IEnumrable&lt;T&gt; Filter&lt;T&gt; (this IEnumrable&lt;T&gt; source, Func&lt;T, bool&gt; predicate) &#123;</span><br><span class="line">    foreach(var item in source) &#123;</span><br><span class="line">        if (predicate(item)) &#123;</span><br><span class="line">            yield return item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In the below example, Where and Take are both Streaming Operators, so this query will loop through the collection until the requirement is met. That is when it found the first item that has Color red. It doesn’t need to go through the entire collection.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Products &#x3D; Products.Where(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;red&quot;).Take(1).ToList();</span><br></pre></td></tr></table></figure>
+<p>However, in this example, because <code>OrderBy()</code> is an non-streaming operator, so it will loop through the entire list first, order them by <a target="_blank" rel="noopener" href="http://prod.Name">prod.Name</a>, then apply the Where condition. Non-streaming operator will go before the Streaming operator.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Products &#x3D; Products.Where(prod &#x3D;&gt; prod.Color &#x3D;&#x3D; &quot;red&quot;).OrderBy(prod &#x3D;&gt; prod.Name).ToList();</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/04/20/C-LINQ/" title="C# LINQ" target="_blank" rel="external">http://hellcy.github.io/2021/04/20/C-LINQ/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/05/26/TCP-IP/" title="TCP/IP"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/04/20/Entity-Framework-Core-5/" title="Entity Framework Core 5"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

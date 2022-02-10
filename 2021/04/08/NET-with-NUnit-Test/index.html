@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>.NET with NUnit Test | Hellcy&#39;s Blog</title>
+  <meta name="description" content="What is NUnit? NUnit is a unit-testing framework for all .Net languages. Initially ported from JUnit, the current production release, version 3, has been completely rewritten with many new features a">
+<meta property="og:type" content="article">
+<meta property="og:title" content=".NET with NUnit Test">
+<meta property="og:url" content="http://hellcy.github.io/2021/04/08/NET-with-NUnit-Test/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="What is NUnit? NUnit is a unit-testing framework for all .Net languages. Initially ported from JUnit, the current production release, version 3, has been completely rewritten with many new features a">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-08T13:06:15.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.659Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Unit Tests">
+<meta property="article:tag" content=".NET">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/04/08/NET-with-NUnit-Test/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#what-is-nunit"><span class="toc-number">1.</span> <span class="toc-text"> What is NUnit?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nuget-packages"><span class="toc-number">1.1.</span> <span class="toc-text"> NuGet Packages</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#your-first-nunit-test-case"><span class="toc-number">1.2.</span> <span class="toc-text"> Your First NUnit Test Case</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#why-write-automated-tests"><span class="toc-number">2.</span> <span class="toc-text"> Why Write Automated Tests?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#understanding-the-nunit-test-framework"><span class="toc-number">3.</span> <span class="toc-text"> Understanding the NUnit Test Framework</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nunit-attributes-overview"><span class="toc-number">3.1.</span> <span class="toc-text"> NUnit attributes Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nunite-assertions-overview"><span class="toc-number">3.2.</span> <span class="toc-text"> NUnite Assertions Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-logical-arrange-act-assert-test-phases"><span class="toc-number">3.3.</span> <span class="toc-text"> The Logical Arrange, Act, Assert Test Phases</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#qualities-of-good-tests"><span class="toc-number">3.4.</span> <span class="toc-text"> Qualities of Good Tests</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#asserting-on-different-types-of-results"><span class="toc-number">4.</span> <span class="toc-text"> Asserting on Different Types of Results</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#how-many-asserts-per-test"><span class="toc-number">4.1.</span> <span class="toc-text"> How many asserts per test?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-on-equality"><span class="toc-number">4.2.</span> <span class="toc-text"> Asserting on Equality</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#adding-custom-failure-message"><span class="toc-number">4.3.</span> <span class="toc-text"> Adding custom failure message</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-on-floating-numbers"><span class="toc-number">4.4.</span> <span class="toc-text"> Asserting on Floating Numbers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-on-null-values"><span class="toc-number">4.5.</span> <span class="toc-text"> Asserting on Null Values</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-on-string-values"><span class="toc-number">4.6.</span> <span class="toc-text"> Asserting on String Values</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-on-boolean-values"><span class="toc-number">4.7.</span> <span class="toc-text"> Asserting on Boolean Values</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-within-ranges"><span class="toc-number">4.8.</span> <span class="toc-text"> Asserting within Ranges</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#asserting-on-objects"><span class="toc-number">4.9.</span> <span class="toc-text"> Asserting on Objects</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#controlling-test-execution"><span class="toc-number">5.</span> <span class="toc-text"> Controlling Test Execution</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-driven-tests-and-reducing-code-duplication"><span class="toc-number">6.</span> <span class="toc-text"> Data Driven Tests and Reducing Code Duplication</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#create-test-case-from-centralized-data-class"><span class="toc-number">6.1.</span> <span class="toc-text"> Create Test Case from Centralized Data Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-test-case-with-data-from-file"><span class="toc-number">6.2.</span> <span class="toc-text"> Create Test Case with Data from File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-test-cases-with-values-sequential-and-range"><span class="toc-number">6.3.</span> <span class="toc-text"> Create Test Cases with Values, Sequential and Range</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-custom-category-attribute"><span class="toc-number">6.4.</span> <span class="toc-text"> Create Custom Category Attribute</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-NET-with-NUnit-Test" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      .NET with NUnit Test
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/08/NET-with-NUnit-Test/" class="article-date">
+	  <time datetime="2021-04-08T13:06:15.000Z" itemprop="datePublished">08-04-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/NET/" rel="tag">.NET</a>, <a class="article-tag-link-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/08/NET-with-NUnit-Test/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.5k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 9(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="what-is-nunit"><a class="markdownIt-Anchor" href="#what-is-nunit"></a> What is NUnit?</h2>
+<p>NUnit is a unit-testing framework for all .Net languages. Initially ported from JUnit, the current production release, version 3, has been completely rewritten with many new features and support for a wide range of .NET platforms.</p>
+<h3 id="nuget-packages"><a class="markdownIt-Anchor" href="#nuget-packages"></a> NuGet Packages</h3>
+<ol>
+<li>NUnit</li>
+<li>NUnit3TestAdapter</li>
+<li>Microsoft.NET.Test.Sdk</li>
+</ol>
+<h3 id="your-first-nunit-test-case"><a class="markdownIt-Anchor" href="#your-first-nunit-test-case"></a> Your First NUnit Test Case</h3>
+<p>Add <code>[TestFixture]</code> and <code>[Test]</code> to mark code as tests</p>
+<p>Test can be run in Test Explorer and in Command Line</p>
+<h2 id="why-write-automated-tests"><a class="markdownIt-Anchor" href="#why-write-automated-tests"></a> Why Write Automated Tests?</h2>
+<p>Help to find defects and regressions. When we make a change to the project, we may find that unintentionally break one of the existing tests. Something that once working is no longer working.</p>
+<p>Automated Tests give us greater confidence that the software is working as it should.</p>
+<h2 id="understanding-the-nunit-test-framework"><a class="markdownIt-Anchor" href="#understanding-the-nunit-test-framework"></a> Understanding the NUnit Test Framework</h2>
+<ul>
+<li>
+<p>NUnit Library</p>
+<ul>
+<li>Attributes e.g. <code>[Test]</code></li>
+<li>Assertions</li>
+</ul>
+</li>
+<li>
+<p>Test Runner</p>
+<ul>
+<li>Recognizes attributes</li>
+<li>Execute test methods</li>
+<li>Report test results</li>
+<li>Test explorer</li>
+<li>donet test</li>
+</ul>
+</li>
+</ul>
+<h3 id="nunit-attributes-overview"><a class="markdownIt-Anchor" href="#nunit-attributes-overview"></a> NUnit attributes Overview</h3>
+<ol>
+<li><code>[TestFixture]</code>: Mark a class that contains tests</li>
+<li><code>[Test]</code>: Mark a method as a test</li>
+<li><code>[Category]</code>: Organize tests into categories</li>
+<li><code>[TestCase]</code>: Data driven test cases</li>
+<li><code>[Values]</code>: Data driven test parameters</li>
+<li><code>[Sequential]</code>: How to combine test data</li>
+<li><code>[SetUp]</code>: Run code before each test</li>
+<li><code>[OneTimeSetUp]</code>: Run code before first test in class</li>
+</ol>
+<h3 id="nunite-assertions-overview"><a class="markdownIt-Anchor" href="#nunite-assertions-overview"></a> NUnite Assertions Overview</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Constraint Model of assertions (newer)</span><br><span class="line">Assert.That(sut.Years, Is.EqualTo(1));</span><br><span class="line">Assert.That(test result, constraint instance);</span><br></pre></td></tr></table></figure>
+<p>This Classic Model is still supported but since no new features have been added to it for some time. the constraint-based model must be used in order to have full access to NUnit’s capabilities.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Classic Model of assertions (older)</span><br><span class="line">Assert.AreEqual(1, sut.Years);</span><br><span class="line">Assert.NotNull(sut.Years);</span><br><span class="line">Assert.xyz(...);</span><br></pre></td></tr></table></figure>
+<h3 id="the-logical-arrange-act-assert-test-phases"><a class="markdownIt-Anchor" href="#the-logical-arrange-act-assert-test-phases"></a> The Logical Arrange, Act, Assert Test Phases</h3>
+<ol>
+<li>Arrange: Set up test objects, initialize test data</li>
+<li>Act: call methods, set property, to cause some effect in the project</li>
+<li>Assert: compare returned value/end state with expected</li>
+</ol>
+<h3 id="qualities-of-good-tests"><a class="markdownIt-Anchor" href="#qualities-of-good-tests"></a> Qualities of Good Tests</h3>
+<ul>
+<li>Fast</li>
+<li>Repeatable</li>
+<li>Isolated: One Test should not depend on others to run</li>
+<li>Trustworthy</li>
+<li>Valuable</li>
+</ul>
+<h2 id="asserting-on-different-types-of-results"><a class="markdownIt-Anchor" href="#asserting-on-different-types-of-results"></a> Asserting on Different Types of Results</h2>
+<p><strong>Asserts</strong>: Evaluate and verify the outcome of a test based on a returned result, final object state, or the occurence of events observed during execution. An assert should either pass or fail.</p>
+<h3 id="how-many-asserts-per-test"><a class="markdownIt-Anchor" href="#how-many-asserts-per-test"></a> How many asserts per test?</h3>
+<p>A single test usually focuses on testing a single ‘behaviour’. Multiple asserts are usually ok if all the asserts are related to testing this single behaviour.</p>
+<h3 id="asserting-on-equality"><a class="markdownIt-Anchor" href="#asserting-on-equality"></a> Asserting on Equality</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; compare value</span><br><span class="line">Assert.That(a, Is.EqualTo(...));</span><br><span class="line">Assert.That(a, Is.Not.EqualTo(...));</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; compare reference</span><br><span class="line">Assert.That(a, Is.SameAs(...));</span><br><span class="line">Assert.That(a, Is.Not.SameAs(...));</span><br></pre></td></tr></table></figure>
+<h3 id="adding-custom-failure-message"><a class="markdownIt-Anchor" href="#adding-custom-failure-message"></a> Adding custom failure message</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Assert.That(a, Is.EqualTo(...), &quot;Custom Error Message&quot;);</span><br></pre></td></tr></table></figure>
+<h3 id="asserting-on-floating-numbers"><a class="markdownIt-Anchor" href="#asserting-on-floating-numbers"></a> Asserting on Floating Numbers</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Assert.That(a, Is.EqualTo(0.33).Within(0.001));</span><br><span class="line">Assert.That(a, Is.EqualTo(0.33).Within(10).Percent);</span><br></pre></td></tr></table></figure>
+<h3 id="asserting-on-null-values"><a class="markdownIt-Anchor" href="#asserting-on-null-values"></a> Asserting on Null Values</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">string name &#x3D; &quot;yuan&quot;;</span><br><span class="line"></span><br><span class="line">Assert.That(name, Is.Null); &#x2F;&#x2F; fail</span><br><span class="line">Assert.That(name, Is.Not.Null); &#x2F;&#x2F; pass</span><br></pre></td></tr></table></figure>
+<h3 id="asserting-on-string-values"><a class="markdownIt-Anchor" href="#asserting-on-string-values"></a> Asserting on String Values</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">string name &#x3D; &quot;yuan&quot;;</span><br><span class="line"></span><br><span class="line">Assert.That(name, Is.Empty); &#x2F;&#x2F; fail</span><br><span class="line">Assert.That(name, Is.Not.Empty); &#x2F;&#x2F; pass</span><br><span class="line"></span><br><span class="line">Assert.That(name, Is.EqualTo(&quot;yuan&quot;)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(name, Is.EqualsTo(&quot;YUAN&quot;)); &#x2F;&#x2F; fail, case-sensitive</span><br><span class="line">Assert.That(name, Is.EqualTo(&quot;YUAN&quot;).IgnoreCase); &#x2F;&#x2F; pass</span><br><span class="line"></span><br><span class="line">Assert.That(name, Does.StartWith(&quot;yu&quot;)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(name, Does.EndWith(&quot;an&quot;)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(name, Does.Contain(&quot;ua)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(name, Does.Not.Contain(&quot;kk&quot;)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(name, Does.StartWith(&quot;yu&quot;)</span><br><span class="line">                    .And</span><br><span class="line">                    .EndWith(&quot;an&quot;)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(name, Does.StartWith(&quot;kk&quot;)</span><br><span class="line">                    .Or</span><br><span class="line">                    .EndWith(&quot;an&quot;)); &#x2F;&#x2F; pass</span><br></pre></td></tr></table></figure>
+<h3 id="asserting-on-boolean-values"><a class="markdownIt-Anchor" href="#asserting-on-boolean-values"></a> Asserting on Boolean Values</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">bool isTrue &#x3D;  true;</span><br><span class="line"></span><br><span class="line">Assert.That(isTrue); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(isTrue, Is.True); &#x2F;&#x2F; pass</span><br><span class="line"></span><br><span class="line">bool isFalse &#x3D; false;</span><br><span class="line"></span><br><span class="line">Assert.That(isFalse &#x3D;&#x3D; false); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(isFalse, Is.False); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(isFalse, Is.Not.True); &#x2F;&#x2F; pass</span><br></pre></td></tr></table></figure>
+<h3 id="asserting-within-ranges"><a class="markdownIt-Anchor" href="#asserting-within-ranges"></a> Asserting within Ranges</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int i &#x3D; 42;</span><br><span class="line"></span><br><span class="line">Assert.That(i, Is.GreaterThan(42)); &#x2F;&#x2F; fail</span><br><span class="line">Assert.That(i, Is.GreaterThanOrEqualTo(42)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(i, Is.LessThan(42)); &#x2F;&#x2F; fail</span><br><span class="line">Assert.That(i, Is.GreaterThanOrEqualTo(42)); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(i, Is.InRange(40, 50)); &#x2F;&#x2F; pass</span><br><span class="line"></span><br><span class="line">DateTiem d1 &#x3D; new DateTime(2021, 2, 20);</span><br><span class="line">DateTiem d2 &#x3D; new DateTime(2021, 2, 25);</span><br><span class="line"></span><br><span class="line">Assert.That(d1, Is.EqualTo(d2)); &#x2F;&#x2F; fail</span><br><span class="line">Assert.That(d1, Is.EqualTo(d2).Within(4).Days); &#x2F;&#x2F; fail</span><br><span class="line">Assert.That(d1, Is.EqualTo(d2).Within(5).Days); &#x2F;&#x2F; pass</span><br></pre></td></tr></table></figure>
+<h3 id="asserting-on-objects"><a class="markdownIt-Anchor" href="#asserting-on-objects"></a> Asserting on Objects</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">class Product &#123;</span><br><span class="line">    int ProductId &#123;get; set;&#125;</span><br><span class="line">    string ProductName &#123;get; set;&#125;</span><br><span class="line"></span><br><span class="line">    Product(int ProductId, string ProductName) &#123;</span><br><span class="line">        this.ProductId &#x3D; ProductId;</span><br><span class="line">        this.ProductName &#x3D; ProductName;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var products &#x3D; new List&lt;Product&gt; &#123;</span><br><span class="line">    new Product(1, &quot;a&quot;),</span><br><span class="line">    new Product(2, &quot;b&quot;),</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Assert.That(products, Has.Exactly(2).Items); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(products, Is,Unique); &#x2F;&#x2F; pass</span><br><span class="line">Assert.That(products, Has.Exactly(1)</span><br><span class="line">                        .Property(&quot;ProductName&quot;).EqualTo(&quot;a&quot;)</span><br><span class="line">                        .And</span><br><span class="line">                        .Property(&quot;ProductId).EqualTo(1));</span><br><span class="line"></span><br><span class="line">Assert.That(products, Has.Exactly(1)</span><br><span class="line">                        .Matches&lt;Product&gt;(</span><br><span class="line">                        item &#x3D;&gt; item.ProductName &#x3D;&#x3D; &quot;a&quot; &amp;&amp;</span><br><span class="line">                                item.ProductId &#x3D;&#x3D; 1</span><br><span class="line">                        ));</span><br></pre></td></tr></table></figure>
+<h2 id="controlling-test-execution"><a class="markdownIt-Anchor" href="#controlling-test-execution"></a> Controlling Test Execution</h2>
+<p>Use <code>[Ignore]</code> to skip tests. <code>[Ignore]</code> could also be put before class to skip the entire test class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[Ignore(&quot;Custom reason why we need to skip this test&quot;)]</span><br><span class="line">public void TestWillNotRun() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Use <code>[Category]</code> to add test cases to categories, we can only run tests for certain category.</p>
+<p>In Test Explorer, we can group tests by <strong>Traits</strong>, which is just another name for Category</p>
+<p>One Test Case can belongs to multiple <code>[Category]</code>.</p>
+<p><code>[Category]</code> can be applied to <strong>Class</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[Category(&quot;Category 1&quot;)]</span><br><span class="line">public void TestInCategoryOne() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>[SetUp]</code> code will be executed before each test. So it is a good place to define variables and objects.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">    private List&lt;Product&gt; products;</span><br><span class="line">    private string test;</span><br><span class="line"></span><br><span class="line">    [SetUp]</span><br><span class="line">    public void Setup() &#123;</span><br><span class="line">        products &#x3D; new List&lt;Products&gt; &#123;</span><br><span class="line">            new Product(1, &quot;a&quot;),</span><br><span class="line">            new Product(2, &quot;b&quot;),</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        test &#x3D; &quot;test&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>[TearDown]</code> code will be executed after each test, it is the place to dispose all unnecessary objects</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class TestClass &#123;</span><br><span class="line">    [TearDown]</span><br><span class="line">    public void Setup() &#123;</span><br><span class="line">        if (products !&#x3D; null) &#123;</span><br><span class="line">            ((IDisposable)products).Dispose();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>[OneTimeSetUp]</code> code will be executed once before the first test case. Define objects that will not be modified by test cases here.</p>
+<p><code>[OneTimeTearDown]</code> code will be executed once after the last test case. Dispose any objects here.</p>
+<h2 id="data-driven-tests-and-reducing-code-duplication"><a class="markdownIt-Anchor" href="#data-driven-tests-and-reducing-code-duplication"></a> Data Driven Tests and Reducing Code Duplication</h2>
+<p><code>[TestCase]</code>: If we want to run the same test but with different data, we could pass different variables into the test function.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[TestCase(200_000, 6.5, 30, 1264.14)]</span><br><span class="line">[TestCase(200_000, 10, 30, 1755.14)]</span><br><span class="line">[TestCase(500_000, 10, 30, 4387.86)]</span><br><span class="line">public void CalculateCorrectMonthlyRepayment(decimal principal, decimal interestRate, int termInYears, decimal expectedMonthlyPayment)</span><br><span class="line">&#123;</span><br><span class="line">    var sut &#x3D; new LoanRepaymentCalculator();</span><br><span class="line"></span><br><span class="line">    var monthlyPayment &#x3D; sut.CalculateMonthlyRepayment(</span><br><span class="line">                            new LoanAmount(&quot;USD&quot;, principal), interestRate, new LoanTerm(termInYears));</span><br><span class="line"></span><br><span class="line">    Assert.That(monthlyPayment, Is.EqualTo(expectedMonthlyPayment));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[TestCase(200_000, 6.5, 30, ExpectedResult &#x3D; 1264.14)]</span><br><span class="line">[TestCase(200_000, 10, 30, ExpectedResult &#x3D; 1755.14)]</span><br><span class="line">[TestCase(500_000, 10, 30, ExpectedResult &#x3D; 4387.86)]</span><br><span class="line">public decimal CalculateCorrectMonthlyRepayment_SimplifiedTestCase(decimal principal, decimal interestRate, int termInYears)</span><br><span class="line">&#123;</span><br><span class="line">    var sut &#x3D; new LoanRepaymentCalculator();</span><br><span class="line"></span><br><span class="line">    return sut.CalculateMonthlyRepayment(new LoanAmount(&quot;USD&quot;, principal), interestRate, new LoanTerm(termInYears));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="create-test-case-from-centralized-data-class"><a class="markdownIt-Anchor" href="#create-test-case-from-centralized-data-class"></a> Create Test Case from Centralized Data Class</h3>
+<p><code>[TestCaseSource(typeof(Class_Name), &quot;Function_Name&quot;)]</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[TestCaseSource(typeof(MonthlyRepaymentTestData), &quot;TestCases&quot;)]</span><br><span class="line">public void CalculateCorrectMonthlyRepayment_Centralized(decimal principal, decimal interestRate, int termInYears, decimal expectedMonthlyPayment)</span><br><span class="line">&#123;</span><br><span class="line">    var sut &#x3D; new LoanRepaymentCalculator();</span><br><span class="line"></span><br><span class="line">    var monthlyPayment &#x3D; sut.CalculateMonthlyRepayment(</span><br><span class="line">                            new LoanAmount(&quot;USD&quot;, principal), interestRate, new LoanTerm(termInYears));</span><br><span class="line"></span><br><span class="line">    Assert.That(monthlyPayment, Is.EqualTo(expectedMonthlyPayment));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="create-test-case-with-data-from-file"><a class="markdownIt-Anchor" href="#create-test-case-with-data-from-file"></a> Create Test Case with Data from File</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[TestCaseSource(typeof(MonthlyRepaymentCsvData), &quot;GetTestCases&quot;, new object[] &#123; &quot;Data.csv&quot; &#125;)]</span><br><span class="line">public void CalculateCorrectMonthlyRepayment_Csv(decimal principal, decimal interestRate, int termInYears, decimal expectedMonthlyPayment)</span><br><span class="line">&#123;</span><br><span class="line">    var sut &#x3D; new LoanRepaymentCalculator();</span><br><span class="line"></span><br><span class="line">    var monthlyPayment &#x3D; sut.CalculateMonthlyRepayment(</span><br><span class="line">                            new LoanAmount(&quot;USD&quot;, principal), interestRate, new LoanTerm(termInYears));</span><br><span class="line"></span><br><span class="line">    Assert.That(monthlyPayment, Is.EqualTo(expectedMonthlyPayment));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="create-test-cases-with-values-sequential-and-range"><a class="markdownIt-Anchor" href="#create-test-cases-with-values-sequential-and-range"></a> Create Test Cases with Values, Sequential and Range</h3>
+<p>Without <code>[Sequential]</code>, it will create 3 * 3 * 3 = 27 test cases<br />
+With <code>[Sequential]</code>, it will only create 3 test cases</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[Sequential]</span><br><span class="line">public void CalculateCorrectMonthlyRepayment_Combinatorial(</span><br><span class="line">    [Values(100_000, 200_000, 500_000)] decimal principal,</span><br><span class="line">    [Values(6.5, 10, 20)] decimal interestRate,</span><br><span class="line">    [Values(10, 20, 30)] int termInYears)</span><br><span class="line">&#123;</span><br><span class="line">    var sut &#x3D; new LoanRepaymentCalculator();</span><br><span class="line"></span><br><span class="line">    var monthlyPayment &#x3D; sut.CalculateMonthlyRepayment(new LoanAmount(&quot;USD&quot;, principal), interestRate, new LoanTerm(termInYears));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="create-custom-category-attribute"><a class="markdownIt-Anchor" href="#create-custom-category-attribute"></a> Create Custom Category Attribute</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple &#x3D; false)]</span><br><span class="line">class ProductComparisonAttribute : CategoryAttribute</span><br><span class="line">&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>Then we can use Custom Attribute like this</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[Test]</span><br><span class="line">[ProductComparison]</span><br><span class="line">public void CustomAttributeTest() &#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/04/08/NET-with-NUnit-Test/" title=".NET with NUnit Test" target="_blank" rel="external">http://hellcy.github.io/2021/04/08/NET-with-NUnit-Test/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/04/11/SQL-Fundamentals/" title="SQL Fundamentals"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/04/03/JavaScript-Fundamentals/" title="JavaScript Fundamentals"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

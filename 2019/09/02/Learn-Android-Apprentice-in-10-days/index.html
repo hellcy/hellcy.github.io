@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Learn Android Apprentice in 10 days | Hellcy&#39;s Blog</title>
+  <meta name="description" content="开始学习使用Android Studio   在iOS的学习告一段落了之后，现在开始学习Android应用的开发   他总共包括六个部分，前四个部分每一部分教你编写一个app，难度从低到高。后面两部分会告诉你怎么向下兼容和发布。跟之前的iOS教程很像。    TimeFighter Checklist Conclusion   TimeFighter  这个app会从怎么set up Andro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Learn Android Apprentice in 10 days">
+<meta property="og:url" content="http://hellcy.github.io/2019/09/02/Learn-Android-Apprentice-in-10-days/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="开始学习使用Android Studio   在iOS的学习告一段落了之后，现在开始学习Android应用的开发   他总共包括六个部分，前四个部分每一部分教你编写一个app，难度从低到高。后面两部分会告诉你怎么向下兼容和发布。跟之前的iOS教程很像。    TimeFighter Checklist Conclusion   TimeFighter  这个app会从怎么set up Andro">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/22.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/19.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/20.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/21.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/25.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/26.png">
+<meta property="article:published_time" content="2019-09-02T10:01:47.000Z">
+<meta property="article:modified_time" content="2021-02-26T12:08:47.159Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Kotlin">
+<meta property="article:tag" content="Android Studio">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/Learn-Android-Apprentice-in-10-days/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2019/09/02/Learn-Android-Apprentice-in-10-days/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E4%BD%BF%E7%94%A8android-studio"><span class="toc-number">1.</span> <span class="toc-text"> 开始学习使用Android Studio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#timefighter"><span class="toc-number">2.</span> <span class="toc-text"> TimeFighter</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constraint-layouts"><span class="toc-number">2.1.</span> <span class="toc-text"> Constraint Layouts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#activities"><span class="toc-number">2.2.</span> <span class="toc-text"> Activities</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strings"><span class="toc-number">2.3.</span> <span class="toc-text"> Strings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#oriendtation-changes"><span class="toc-number">2.4.</span> <span class="toc-text"> Oriendtation changes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#val-and-var"><span class="toc-number">2.5.</span> <span class="toc-text"> val and var</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-colors-and-styles"><span class="toc-number">2.6.</span> <span class="toc-text"> App colors and styles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#animations"><span class="toc-number">2.7.</span> <span class="toc-text"> Animations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#menu"><span class="toc-number">2.8.</span> <span class="toc-text"> Menu</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checklist"><span class="toc-number">3.</span> <span class="toc-text"> Checklist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#recyclerview"><span class="toc-number">3.1.</span> <span class="toc-text"> RecyclerView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sharedpreferences"><span class="toc-number">3.2.</span> <span class="toc-text"> SharedPreferences</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#edittext"><span class="toc-number">3.3.</span> <span class="toc-text"> EditText</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#intent"><span class="toc-number">3.4.</span> <span class="toc-text"> Intent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parcelable"><span class="toc-number">3.5.</span> <span class="toc-text"> Parcelable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fragment"><span class="toc-number">3.6.</span> <span class="toc-text"> Fragment</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Learn-Android-Apprentice-in-10-days" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Learn Android Apprentice in 10 days
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/09/02/Learn-Android-Apprentice-in-10-days/" class="article-date">
+	  <time datetime="2019-09-02T10:01:47.000Z" itemprop="datePublished">02-09-2019</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a>, <a class="article-tag-link-link" href="/tags/Kotlin/" rel="tag">Kotlin</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/09/02/Learn-Android-Apprentice-in-10-days/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 2.3k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 10(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="开始学习使用android-studio"><a class="markdownIt-Anchor" href="#开始学习使用android-studio"></a> 开始学习使用Android Studio</h2>
+<ul>
+<li>
+<p>在iOS的学习告一段落了之后，现在开始学习Android应用的开发</p>
+</li>
+<li>
+<p>他总共包括六个部分，前四个部分每一部分教你编写一个app，难度从低到高。后面两部分会告诉你怎么向下兼容和发布。跟之前的iOS教程很像。</p>
+</li>
+</ul>
+<ol>
+<li><a href="#TimeFighter">TimeFighter</a></li>
+<li><a href="#Checklist">Checklist</a></li>
+<li><a href="#Conclusion">Conclusion</a></li>
+</ol>
+<h2 id="timefighter"><a class="markdownIt-Anchor" href="#timefighter"></a> TimeFighter</h2>
+<ul>
+<li>这个app会从怎么set up Android Studio开始，我们直接跳过，到最开始写代码的部分</li>
+</ul>
+<h3 id="constraint-layouts"><a class="markdownIt-Anchor" href="#constraint-layouts"></a> Constraint Layouts</h3>
+<ul>
+<li>和iOS App很像，手机app必须考虑到对象在手机屏幕上的位置问题，Android有提供很多种layoutdexuanze，其中Constraint是最常用的一种，他可以规定目标到屏幕的相对位置</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/1.png" alt="Constraint Layouts" /></p>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/2.png" alt="Constraint Layouts" /></p>
+<h3 id="activities"><a class="markdownIt-Anchor" href="#activities"></a> Activities</h3>
+<ul>
+<li>在确定了诸如Textview，Button等对象的位置之后，我们需要在代码层面对其进行操作，我们可以在Aciticity中创建这些变量对象，然后通过在Layout中设置的ID找到他们，Activity其实就是iOS中的ViewController。</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/3.png" alt="Activities TextView and Button" /></p>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/4.png" alt="Activities find by id" /></p>
+<h3 id="strings"><a class="markdownIt-Anchor" href="#strings"></a> Strings</h3>
+<ul>
+<li>我们会将一个app中用到的所有文字集中在一个文件中，这个文件叫做Strings.xml，这样以后本地化加其他语言或者更改一个单词，这个单词虽然在app中可能出现了很多次，但是我们只需要在Strings里面改一次就可以了</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/5.png" alt="Strings" /></p>
+<h3 id="oriendtation-changes"><a class="markdownIt-Anchor" href="#oriendtation-changes"></a> Oriendtation changes</h3>
+<ul>
+<li>
+<p>在手机屏幕方向改变时，系统会做三件事，1.save properties, 2. destroys current activity, 3. recreates the activity for the new orientation by calling onCreate and resets any properties specified by the developer</p>
+</li>
+<li>
+<p>所以在改变方向时，我们需要及时保存需要用到的变量，在接下来现实的Activity中显示，保证过程不会丢失。</p>
+</li>
+</ul>
+<h3 id="val-and-var"><a class="markdownIt-Anchor" href="#val-and-var"></a> val and var</h3>
+<ul>
+<li>Basically, val and var both are used to declare a variable. var is like a general variable and can be assigned multiple times and is known as the mutable variable in Kotlin. Whereas val is a constant variable and can not be assigned multiple times and can be Initialized only single time and is known as the immutable variable in Kotlin.</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/6.png" alt="Save properties" /></p>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/7.png" alt="pass properties to next screen" /></p>
+<h3 id="app-colors-and-styles"><a class="markdownIt-Anchor" href="#app-colors-and-styles"></a> App colors and styles</h3>
+<ul>
+<li>Android project中有许多文件夹，其中res包含着app需要用到的所有资源resources，常用的Strings，Animations，Menus，Colors and Styles都在这里, 通过直接更改Colors里面颜色的hex值来改变app中元素的颜色，更方便的管理同一种类型的东西</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/8.png" alt="Colors and styles" /></p>
+<h3 id="animations"><a class="markdownIt-Anchor" href="#animations"></a> Animations</h3>
+<ul>
+<li>Animations也在res文件夹里，她负责调用以及调配动画，图片里的动画效果是使用内置的bounce_interpolator，在2秒钟内把目标元素增大2倍，以50%处为中心，并缩小至原来的大小。</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/9.png" alt="Animations" /></p>
+<h3 id="menu"><a class="markdownIt-Anchor" href="#menu"></a> Menu</h3>
+<ul>
+<li>Menu同样他也在res文件夹中，他管理所有跟系统菜单相关的元素，比如我们想在屏幕上方的菜单栏中加入一个button，就需要在这里定义</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/10.png" alt="Menu" /></p>
+<ul>
+<li>我们加了一个Menu，当点击时会冒出一个AlertDialog</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/11.png" alt="AlertDialog" /></p>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/12.png" alt="AlertDialog in app" /></p>
+<ul>
+<li>这就是第一个app所讲的全部内容了，基本就是把project中需要用到的功能讲了一遍，没有用到任何复杂的语法，更多的讲的是Android Studio这个IDE的使用。接下来进行第二个app</li>
+</ul>
+<h2 id="checklist"><a class="markdownIt-Anchor" href="#checklist"></a> Checklist</h2>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/13.png" alt="ListMaker" /></p>
+<h3 id="recyclerview"><a class="markdownIt-Anchor" href="#recyclerview"></a> RecyclerView</h3>
+<ul>
+<li>
+<ol>
+<li>The RecyclerView asks the Adapter for an item, or a ViewHolder at a given position. 2. The Adapter reaches into a pool of ViewHolders that have been created. 3. Either a a new ViewHolder is returned, or a new one is created. 4. The Adapter then binds this ViewHolder to a data item at the given position. 5. The ViewHolder is returned back to the RecyclerView for display</li>
+</ol>
+</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/15.png" alt="RecyclerView" /></p>
+<ul>
+<li>
+<p>In general, Adapters give your RecyclerView the data it wants to show. They have a clever way to calculate how many rows of data you want to show, which you’ll cover shortly. ViewHolders are the visual containers for your item. Think of them as cells in the table. This is where you tell your RecyclerView what each item should look like. These are basically little tiny layout items used to display the data at any given position in the list of data. As you scroll through a RecyclerView, instead of creating new ViewHolders, RecyclerView will recycle ViewHolders that have moved offscreen and populate them with new data, ready to be shown at the bottom of the list. This process repeats endlessly as you scroll through your RecyclerView. This recycling of ViewHolder to display list items helps to avoid janking in your app.</p>
+</li>
+<li>
+<p>RecycleView 的本质是循环使用table中的cell，当一个cell网上滑出屏幕时，我们可以让他重新出现在底部，但是显示不同的数据，这就要求我们在写代码时要把table，cell和数据分开来，每个部分各司其职</p>
+</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/16.png" alt="cell" /></p>
+<ul>
+<li>这个是cell部分，它由两个textview组成。对应上图中的viewHolder</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/14.png" alt="table" /></p>
+<ul>
+<li>这个是table部分，它包含多个cell，并可以循环利用cell。对应上图中的adapter。我们需要在adapter中implement recycleview必须的成分例如包含多少个viewholder，每个viewholder的数据应该从哪里取。。</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/17.png" alt="data input" /></p>
+<ul>
+<li>
+<p>除了recycleview本身，我们应该把data source设置成动态的，也就是说我们可以输入自己的数据，并加进recycleview中。</p>
+</li>
+<li>
+<p>下面我们在代码层面解释一下如何构建一个recycleView</p>
+</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/22.png" alt="recycleView functions" /></p>
+<ul>
+<li>首先我们需要继承RecyclerView Adapter并implement这三个function，RecyclerView还有很多其他function可以override但是这三个是必须的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">override fun getItemCount(): Int &#123;</span><br><span class="line">    return accounts.size</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>getItemCount return一个Int，它表示这个表格中有几行，一般是return数据的size</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreateViewHolder(</span><br><span class="line">    parent: ViewGroup,</span><br><span class="line">    viewType: Int</span><br><span class="line">): CustomViewHolder &#123;</span><br><span class="line">    val view &#x3D; LayoutInflater.from(parent.context).inflate(R.layout.view_holder_custom, parent, false)</span><br><span class="line"></span><br><span class="line">    return CustomViewHolder(view)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>onCreateViewHolder定义一个table cell的layout，我们返回一个layout文件，所以对于每个不同的recyclerView，我们还需要新建一个Layout file用于储存cell的layout</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">override fun onBindViewHolder(holder: CustomViewHolder, position: Int) &#123;</span><br><span class="line">    holder.label.text &#x3D; &quot;Some text&quot;</span><br><span class="line">    holder.itemView.setOnClickListener &#123;</span><br><span class="line">        clickListener.listItemClicked(position)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>onBindViewHolder会把我们的数据放到我们新建的cell layout中，另外注意到我加了一个ClickListener，所以之后我们点击每行的时候就会运行listItemClicked function，然后在那里就可以添加另外的代码，可以跳到另一个View等。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class CustomViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) &#123;</span><br><span class="line">    val sampleData &#x3D; itemView.findViewById(R.id.sampleData) as TextView</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>我们还需要一个class去连接table cell layout file</p>
+</li>
+<li>
+<p>这样基本上一个RecyclerView就完成了，之后我们只需要将数据从Activity或者Fragment传入RecyclerView Adapter就可以了</p>
+</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/18.png" alt="data input 2" /></p>
+<h3 id="sharedpreferences"><a class="markdownIt-Anchor" href="#sharedpreferences"></a> SharedPreferences</h3>
+<ul>
+<li>
+<p>SharedPreferences lets you save small collections of key-value pairs that you can retrieve later. If you need a way to quickly save small bits of data in your app, SharedPreferences is one of the first solutions you should consider</p>
+</li>
+<li>
+<p>这就需要用到sharedpreference，它类似于一个dictionary，里面由key-value pairs组成。可以储存size较小的数据。类似于表格信息</p>
+</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/19.png" alt="SharedPreferences" /></p>
+<h3 id="edittext"><a class="markdownIt-Anchor" href="#edittext"></a> EditText</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val listTitleEditText &#x3D; EditText(this) </span><br><span class="line">listTitleEditText.inputType &#x3D; InputType.TYPE_CLASS_TEXT</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建一个input text field，并给它指明一个InputType， 这样Android就会显示合适的keyboard</li>
+</ul>
+<h3 id="intent"><a class="markdownIt-Anchor" href="#intent"></a> Intent</h3>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/20.png" alt="Intent communication" /></p>
+<ul>
+<li>当我们需要让一个页面与另一个页面进行交流时，我们需要通过Intent将数据传送过去。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">private fun showListDetail(list: TaskList) &#123;</span><br><span class="line">    val listDetailIntent &#x3D; Intent(this, ListDetailActivity::class.java)</span><br><span class="line">    listDetailIntent.putExtra(INTENT_LIST_KEY, list)</span><br><span class="line">    startActivity(listDetailIntent)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; get from other Activity</span><br><span class="line">list &#x3D; intent.getParcelableExtra(MainActivity.INTENT_LIST_KEY)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>在上面这个function中，this是我们现在所在的Activity，ListDetailActivity是我们将要过去的Activity，TaskList是我们要传送的数据。</p>
+</li>
+<li>
+<p>我们需要规定一个Key，这样的新的页面中我们就知道用Key来获取相应的数据。</p>
+</li>
+<li>
+<p>但是还有一个问题，就是自定义的object不能直接通过intent传送，我们需要把他变成Parcelable的object</p>
+</li>
+</ul>
+<h3 id="parcelable"><a class="markdownIt-Anchor" href="#parcelable"></a> Parcelable</h3>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/21.png" alt="Implement Parcelable" /></p>
+<ul>
+<li>在定义object的class中，implement parcelable，Android Studio会自动把需要的function写好</li>
+</ul>
+<h3 id="fragment"><a class="markdownIt-Anchor" href="#fragment"></a> Fragment</h3>
+<ul>
+<li>Fragment是android语言中一个非常重要的部分，他必须附属于一个Activity，Fragment的本质是可以让相同的部分用同一个Fragment表示，并在多处使用，以节省代码长度，让App保持整洁一致。</li>
+</ul>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/25.png" alt="Create Fragment" /></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">class ListSelectionFragment : Fragment() &#123;</span><br><span class="line">    &#x2F;&#x2F; 1</span><br><span class="line">    private var listener: OnListItemFragmentInteractionListener? &#x3D; null</span><br><span class="line">    interface OnListItemFragmentInteractionListener &#123;</span><br><span class="line">    fun onListItemClicked(list: TaskList)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 2</span><br><span class="line">    companion object &#123;</span><br><span class="line">    fun newInstance(): ListSelectionFragment &#123;</span><br><span class="line">    val fragment &#x3D; ListSelectionFragment()</span><br><span class="line">    return fragment</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#x2F;&#x2F; 3</span><br><span class="line">override fun onAttach(context: Context) &#123;</span><br><span class="line">    super.onAttach(context)</span><br><span class="line">    if (context is OnListItemFragmentInteractionListener) &#123;</span><br><span class="line">    listener &#x3D; context</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">    throw RuntimeException(context.toString() + &quot; must implement</span><br><span class="line">OnListItemFragmentInteractionListener&quot;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    &#x2F;&#x2F; 4</span><br><span class="line">    override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 5</span><br><span class="line">    override fun onCreateView(inflater: LayoutInflater, container:</span><br><span class="line">ViewGroup?,</span><br><span class="line">    savedInstanceState: Bundle?): View? &#123;</span><br><span class="line">    return inflater.inflate(R.layout.fragment_list_selection, container,</span><br><span class="line">false)</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;&#x2F; 6</span><br><span class="line">    override fun onDetach() &#123;</span><br><span class="line">    super.onDetach()</span><br><span class="line">    listener &#x3D; null</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/Learn-Android-Apprentice-in-10-days/26.png" alt="Fragment lifecycle" /></p>
+<ul>
+<li>Fragment由几个重要部分组成，首先，当Fragment第一次被附属于某个Activity时onAttach会被执行。然后onCreate， 在这两个地方你可以initialize一些变量等</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreate(savedInstanceState: Bundle?) &#123;</span><br><span class="line">    super.onCreate(savedInstanceState)</span><br><span class="line"></span><br><span class="line">    transactions &#x3D; arguments?.getParcelableArrayList&lt;WestpacTransaction&gt;(&quot;Transactions&quot;)!!</span><br><span class="line">    refundedAmount &#x3D; arguments?.getDouble(&quot;RefundedAmount&quot;)!!</span><br><span class="line">    refundAmount &#x3D; arguments?.getDouble(&quot;RefundAmount&quot;)!!</span><br><span class="line">    updatedBalance &#x3D; arguments?.getDouble(&quot;UpdatedBalance&quot;)!!</span><br><span class="line">    primaryAccount &#x3D; paperCutAccountManager.readPrimaryAccount()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>之后onCreateView，这个地方会把数据等object显示在View中，所以需要在这里把变量和UI object绑定。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">override fun onCreateView(</span><br><span class="line">    inflater: LayoutInflater, container: ViewGroup?,</span><br><span class="line">    savedInstanceState: Bundle?</span><br><span class="line">): View? &#123;</span><br><span class="line">    val activity &#x3D; activity as AppCompatActivity?</span><br><span class="line">    if (activity !&#x3D; null) &#123;</span><br><span class="line">        activity.supportActionBar!!.show()</span><br><span class="line">        activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)</span><br><span class="line">        activity.supportActionBar?.title &#x3D; &quot;Refund Complete&quot;</span><br><span class="line">        activity.nav_view.isVisible &#x3D; false</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; Inflate the layout for this fragment</span><br><span class="line">    val view &#x3D; inflater.inflate(R.layout.fragment_refund_complete, container, false)</span><br><span class="line">    view.AccountNameLabel.text &#x3D; primaryAccount.AccountName</span><br><span class="line">    view.AccountBalanceLabel.text &#x3D; &quot;$&quot; + &quot;%.2f&quot;.format(updatedBalance)</span><br><span class="line">    view.refundAmount.text &#x3D; &quot;$&quot; + &quot;%.2f&quot;.format(refundedAmount)</span><br><span class="line">    view.DoneButton.setOnClickListener &#123; v -&gt;</span><br><span class="line">        doneButtonPressed()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    view.refundCompleteTable.adapter &#x3D; RefundCompleteTableViewAdapter(transactions, this)</span><br><span class="line">    view.refundCompleteTable.layoutManager &#x3D; LinearLayoutManager(activity)</span><br><span class="line"></span><br><span class="line">    return view</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>之后是Companion object，当这个Fragment被创建时，如果你需要给它传值，它需要在这里被定义，有点像是Fragment的Constructor</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">companion object &#123;</span><br><span class="line">    val TAG &#x3D; RefundCompleteFragment::class.java.simpleName</span><br><span class="line">    @JvmStatic</span><br><span class="line">    fun newInstance(transactions: ArrayList&lt;WestpacTransaction&gt;, refundedAmount: Double, refundAmount: Double, updatedBalance: Double): RefundCompleteFragment &#123;</span><br><span class="line">        val fragment &#x3D; RefundCompleteFragment()</span><br><span class="line">        val args &#x3D; Bundle()</span><br><span class="line">        args.putParcelableArrayList(&quot;Transactions&quot;, transactions)</span><br><span class="line">        args.putDouble(&quot;RefundedAmount&quot;, refundedAmount)</span><br><span class="line">        args.putDouble(&quot;RefundAmount&quot;, refundAmount)</span><br><span class="line">        args.putDouble(&quot;UpdatedBalance&quot;, updatedBalance)</span><br><span class="line">        fragment.arguments &#x3D; args</span><br><span class="line">        return fragment</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2019/09/02/Learn-Android-Apprentice-in-10-days/" title="Learn Android Apprentice in 10 days" target="_blank" rel="external">http://hellcy.github.io/2019/09/02/Learn-Android-Apprentice-in-10-days/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/10/24/Single-Sign-On-Introduction/" title="Single Sign On Introduction"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/08/16/Swift-tips-and-tricks/" title="Swift tips and tricks"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

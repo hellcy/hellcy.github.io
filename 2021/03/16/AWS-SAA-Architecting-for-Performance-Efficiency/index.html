@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>AWS SAA Architecting For Performance Efficiency | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Part One: Understanding the Design Principles Part Two: Considering Compute Performance Options Part Three: Reviewing Storage Performance Options Part Four: Examing Database Performance Options Part">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS SAA Architecting For Performance Efficiency">
+<meta property="og:url" content="http://hellcy.github.io/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Part One: Understanding the Design Principles Part Two: Considering Compute Performance Options Part Three: Reviewing Storage Performance Options Part Four: Examing Database Performance Options Part">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/7.png">
+<meta property="article:published_time" content="2021-03-16T04:36:37.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.657Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="AWS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-For-Performance-Efficiency/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-one-understanding-the-design-principles"><span class="toc-number">1.</span> <span class="toc-text"> Part One: Understanding the Design Principles</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-two-considering-compute-performance-options"><span class="toc-number">2.</span> <span class="toc-text"> Part Two: Considering Compute Performance Options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#aws-compute-options"><span class="toc-number">2.1.</span> <span class="toc-text"> AWS compute options</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ec2-elastic-cloud-compute"><span class="toc-number">2.1.1.</span> <span class="toc-text"> EC2 Elastic Cloud Compute</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ecs-elastic-container-service"><span class="toc-number">2.1.2.</span> <span class="toc-text"> ECS Elastic Container Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aws-lambda"><span class="toc-number">2.1.3.</span> <span class="toc-text"> AWS Lambda</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#applying-our-knowledge"><span class="toc-number">2.1.4.</span> <span class="toc-text"> Applying our knowledge</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-three-reviewing-storage-performance-options"><span class="toc-number">3.</span> <span class="toc-text"> Part Three: Reviewing Storage Performance Options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#s3"><span class="toc-number">3.1.</span> <span class="toc-text"> S3</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#glacier"><span class="toc-number">3.2.</span> <span class="toc-text"> Glacier</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ebs-elastic-block-storage"><span class="toc-number">3.3.</span> <span class="toc-text"> EBS (Elastic Block Storage)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#efs"><span class="toc-number">3.4.</span> <span class="toc-text"> EFS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-four-examing-database-performance-options"><span class="toc-number">4.</span> <span class="toc-text"> Part Four: Examing Database Performance Options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-on-ec2"><span class="toc-number">4.1.</span> <span class="toc-text"> Install on EC2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rds"><span class="toc-number">4.2.</span> <span class="toc-text"> RDS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamodb"><span class="toc-number">4.3.</span> <span class="toc-text"> DynamoDB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redshift"><span class="toc-number">4.4.</span> <span class="toc-text"> Redshift</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-five-evaluating-network-performance-options"><span class="toc-number">5.</span> <span class="toc-text"> Part Five: Evaluating Network Performance Options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#region-and-az"><span class="toc-number">5.1.</span> <span class="toc-text"> Region and AZ</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#local-zones"><span class="toc-number">5.1.1.</span> <span class="toc-text"> Local Zones</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudfront"><span class="toc-number">5.2.</span> <span class="toc-text"> CloudFront</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#route53"><span class="toc-number">5.3.</span> <span class="toc-text"> Route53</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#traffic-flow"><span class="toc-number">5.3.1.</span> <span class="toc-text"> Traffic flow</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#direct-connect"><span class="toc-number">5.4.</span> <span class="toc-text"> Direct Connect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vpc-endpoints"><span class="toc-number">5.5.</span> <span class="toc-text"> VPC endpoints</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ec2-instance-types"><span class="toc-number">5.6.</span> <span class="toc-text"> EC2 instance types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply-our-knowledge"><span class="toc-number">5.7.</span> <span class="toc-text"> Apply our knowledge</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-six-preparing-to-improve-your-architecture"><span class="toc-number">6.</span> <span class="toc-text"> Part Six: Preparing to Improve Your Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cicd-pipeline-continuous-integration-continuous-deployment"><span class="toc-number">6.1.</span> <span class="toc-text"> CI&#x2F;CD pipeline (Continuous Integration&#x2F; Continuous Deployment)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudformation"><span class="toc-number">6.2.</span> <span class="toc-text"> CloudFormation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudformation-templates"><span class="toc-number">6.3.</span> <span class="toc-text"> CloudFormation templates</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-seven-monitoring-your-architecture"><span class="toc-number">7.</span> <span class="toc-text"> Part Seven: Monitoring Your Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#monitor"><span class="toc-number">7.1.</span> <span class="toc-text"> Monitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#respond"><span class="toc-number">7.2.</span> <span class="toc-text"> Respond</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cloudwatch"><span class="toc-number">7.3.</span> <span class="toc-text"> CloudWatch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-a-log-to-delete-s3-object"><span class="toc-number">7.4.</span> <span class="toc-text"> Create a log to delete S3 object</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-eight-understanding-the-trade-offs"><span class="toc-number">8.</span> <span class="toc-text"> Part Eight: Understanding the Trade-offs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#possible-trade-offs"><span class="toc-number">8.1.</span> <span class="toc-text"> Possible Trade-offs</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#queuing"><span class="toc-number">8.2.</span> <span class="toc-text"> Queuing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-paritioning"><span class="toc-number">8.3.</span> <span class="toc-text"> Data Paritioning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caching"><span class="toc-number">8.4.</span> <span class="toc-text"> Caching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#compression"><span class="toc-number">8.5.</span> <span class="toc-text"> Compression</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-AWS-SAA-Architecting-for-Performance-Efficiency" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AWS SAA Architecting For Performance Efficiency
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/" class="article-date">
+	  <time datetime="2021-03-16T04:36:37.000Z" itemprop="datePublished">16-03-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/AWS/" rel="tag">AWS</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 2.2k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 13(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ol>
+<li><a href="#Part1">Part One: Understanding the Design Principles</a></li>
+<li><a href="#Part2">Part Two: Considering Compute Performance Options</a></li>
+<li><a href="#Part3">Part Three: Reviewing Storage Performance Options</a></li>
+<li><a href="#Part4">Part Four: Examing Database Performance Options</a></li>
+<li><a href="#Part5">Part Five: Evaluating Network Performance Options</a></li>
+<li><a href="#Part6">Part Six: Preparing to Improve Your Architecture</a></li>
+<li><a href="#Part7">Part Seven: Monitoring Your Architecture</a></li>
+<li><a href="#Part8">Part Eight: Understanding the Trade-offs</a></li>
+</ol>
+<h2 id="part-one-understanding-the-design-principles"><a class="markdownIt-Anchor" href="#part-one-understanding-the-design-principles"></a> <a href="#title" title="Part 1">Part One: Understanding the Design Principles</a></h2>
+<p>There are three main differences compare traditional on premises application and cloud application. 1. Cost. 2. Security and 3. Performance. We are going to focus on number three. Performance.</p>
+<p>Cloud services are changing fast.</p>
+<p>Go global: AWS have many regions, deploy application to the region that close to the user to reduce the latancy.</p>
+<p>Go global: local region will comply to the laws and regulations</p>
+<ol>
+<li>Go global</li>
+<li>Think serverless</li>
+<li>Use new technologies</li>
+<li>Experiment often</li>
+<li>Right tool for the task</li>
+</ol>
+<h2 id="part-two-considering-compute-performance-options"><a class="markdownIt-Anchor" href="#part-two-considering-compute-performance-options"></a> <a href="#title" title="Part 2">Part Two: Considering Compute Performance Options</a></h2>
+<p>What does compute performance includes?</p>
+<p>Processing -&gt; CPU</p>
+<p>Capacity -&gt; Storage</p>
+<p>Scaling</p>
+<p>Responsive</p>
+<p>Economical</p>
+<p>Understand your workload</p>
+<p>Undetstand AWS compute</p>
+<p>Need to gather and analyze data, and testing</p>
+<h3 id="aws-compute-options"><a class="markdownIt-Anchor" href="#aws-compute-options"></a> AWS compute options</h3>
+<h4 id="ec2-elastic-cloud-compute"><a class="markdownIt-Anchor" href="#ec2-elastic-cloud-compute"></a> EC2 Elastic Cloud Compute</h4>
+<p>The default option, virtualized servers. IssA (infrustructure as a service)</p>
+<p>Choose resources. You own the OS.(You are responsible for patching the OS and config all aspects of it.)</p>
+<p>EC2 General resources</p>
+<ol>
+<li>vCPUs</li>
+<li>Memory</li>
+<li>Storage</li>
+<li>Network</li>
+</ol>
+<p>EC2 extra features</p>
+<ol>
+<li>Burstable: if your EC2 is not using its full compute power, you gain credits which you can use in the future when you need it to burst the compute power of your instance for a short period of time.</li>
+<li>GPU</li>
+<li>FPGA (Filled Programmable Gate Arrays): Allows you to create customized hardware accelerators</li>
+</ol>
+<p>Instance Types</p>
+<ol>
+<li>General Purpose: Standard, balanced</li>
+<li>Compute optimized: high compute power</li>
+<li>Memory optimized: for memory intensive workloads</li>
+<li>Accelerated computing: GPU or FPGA</li>
+<li>Storage optimized: high storage</li>
+<li>Bare metal</li>
+</ol>
+<p>EC2 Auto Scaling</p>
+<ol>
+<li>Metrics based: scale up or down based on the metric you choose</li>
+<li>Schedule based: scale up or down for a booked time</li>
+<li>Health based: replace unhealthy instances</li>
+</ol>
+<h4 id="ecs-elastic-container-service"><a class="markdownIt-Anchor" href="#ecs-elastic-container-service"></a> ECS Elastic Container Service</h4>
+<p>Similar workloads as EC2</p>
+<p>Migrate apps to the cloud, long running apps, batch processing, Microservices</p>
+<p>Better utilize resources. Can run multiple containers on a single instance. ELB, balance traffic to each container, Autoscaling.</p>
+<p>AWS Fargate: manages the instances on which your containers run. you don’t need to manage the server instances.</p>
+<h4 id="aws-lambda"><a class="markdownIt-Anchor" href="#aws-lambda"></a> AWS Lambda</h4>
+<p>FaaS (Function as a service). Serverless computing.</p>
+<p>Backend processing, Event processing, Stream processing, Data processing</p>
+<p>AWS resource triggers: other resources can trigger Lambda functions</p>
+<p>You can choose memory needed for a lambda function</p>
+<p>Advantages: Simply execute code. We don’t need to worry about the servers that run our Lambda codes.</p>
+<p>Automatic scaling for Lambda function.</p>
+<p>Fault tolerant: if a function fails, AWS will trigger the function again</p>
+<p>Pay for usage</p>
+<h4 id="applying-our-knowledge"><a class="markdownIt-Anchor" href="#applying-our-knowledge"></a> Applying our knowledge</h4>
+<p>1. A company called Globomantics wants to move their application to cloud. They have customers globally.</p>
+<p>The first application they want to move to cloud is an app that collections data from clinical trails. Doctors enter information each time they do checkings.</p>
+<p>Considerations for Choice</p>
+<ol>
+<li>First app of many</li>
+<li>Time should be fast</li>
+<li>Predicatable usage</li>
+</ol>
+<p>They want to use ECS. Lift and shift: Easy to containerize the app. Able to scale. Able to choose instance sizes.</p>
+<p>Allows them to leverage for future applications. Different containers in a single instance. Save costs</p>
+<p>2. They also want to build a new web application for the cloud. Allow people to register medical devices. Share medical devices globally.</p>
+<p>Considerations for Choice</p>
+<ol>
+<li>Manage costs</li>
+<li>Global reach</li>
+<li>Minimal maintenance</li>
+</ol>
+<p>They want to go with Lambda. Services behind a static site to save costs. Only pay for runtime.</p>
+<p>Lambda scales besed on demand. Can be deployed to multiple regions. No servers to maintain.</p>
+<h2 id="part-three-reviewing-storage-performance-options"><a class="markdownIt-Anchor" href="#part-three-reviewing-storage-performance-options"></a> <a href="#title" title="Part 3">Part Three: Reviewing Storage Performance Options</a></h2>
+<h3 id="s3"><a class="markdownIt-Anchor" href="#s3"></a> S3</h3>
+<p>data is encrypted. Access Managemenet(IAM), Lifecycle management. Query in place.(Don’t need to move the data to query it using SQL like command)</p>
+<ol>
+<li>
+<p>Shared Access</p>
+</li>
+<li>
+<p>Low latency</p>
+</li>
+<li>
+<p>High thoughput: move data in or out S3 quickly</p>
+</li>
+<li>
+<p>High Availability: available for multiple availability zones</p>
+</li>
+<li>
+<p>High durability: data is duplicated across multiple availability zones</p>
+</li>
+<li>
+<p>Standard</p>
+</li>
+<li>
+<p>Intelligent Tier</p>
+</li>
+<li>
+<p>Standard Infrequent Access(IA)(high latency)</p>
+</li>
+<li>
+<p>One-Zone Infrequent Access(low availability, low durability)</p>
+</li>
+</ol>
+<h3 id="glacier"><a class="markdownIt-Anchor" href="#glacier"></a> Glacier</h3>
+<p>Immutable, data do not change once they are in Glacier.</p>
+<p>Durable</p>
+<p>Query stored data without retrieval.</p>
+<ol>
+<li>Archival storage</li>
+<li>Encrypted</li>
+<li>Access Control</li>
+<li>Audit logging</li>
+</ol>
+<p>Latency options.</p>
+<ol>
+<li>Expedited. latency in minutes.</li>
+<li>Standard. Default, number of hours to get data back.</li>
+<li>Bulk. cheaper and takes longer.</li>
+</ol>
+<p>Economical, put data in Glacier is cheap and high durable.</p>
+<p>Deep Archive. The cheapest and longest. normally 6-12 hours. Do not access data frequently, 2-3 times a year.</p>
+<h3 id="ebs-elastic-block-storage"><a class="markdownIt-Anchor" href="#ebs-elastic-block-storage"></a> EBS (Elastic Block Storage)</h3>
+<p>Attached to EC2 instances.</p>
+<p>Multi-Attach, storage volumn can be attached to up to 16 instances. Instances must be in same availability zone.</p>
+<p>Data is Replicated to multiple availbility zones. high availability and durability</p>
+<p>Access control.</p>
+<ol>
+<li>Provisioned IOPS SSD</li>
+<li>Standard Purpose IOPS SSD</li>
+<li>Cold HDD</li>
+<li>Thoughput optimized HDD</li>
+</ol>
+<p>Snapshots: a snapshots of a storage in that time and can be shared to other zones.</p>
+<p>Elastic volumes. pay for what actually stored.</p>
+<h3 id="efs"><a class="markdownIt-Anchor" href="#efs"></a> EFS</h3>
+<ol>
+<li>General Purpose</li>
+<li>MAX I/O</li>
+</ol>
+<p>Same example as before. Migrating to AWS storage. It is one of the web applications. It requires global access. Data will be collected from clinical trials. And some data will be entered on daliy basis.</p>
+<p>They need shared access of data.</p>
+<p>Data must be durable.</p>
+<p>Data will be stored in a long term basis.</p>
+<p>S3 and Glacier: high durable. Access from ECS containers. Multiple access. Long term storage.</p>
+<p>New application. Provide medical devices to people who need it. Global user base.</p>
+<p>Lower cost. Local access. Non-critical images(could be lost, no big problem).</p>
+<p>S3: single region. Reduced Redundancy Storage(RRD).</p>
+<h2 id="part-four-examing-database-performance-options"><a class="markdownIt-Anchor" href="#part-four-examing-database-performance-options"></a> <a href="#title" title="Part 4">Part Four: Examing Database Performance Options</a></h2>
+<h3 id="install-on-ec2"><a class="markdownIt-Anchor" href="#install-on-ec2"></a> Install on EC2</h3>
+<p>we could choose to install a Database on a EC2 instance. But that means we need to do all the backup, restore ourselves. We are not using the serverless managed services provided by AWS. But in some cases, we have to choose this way. Situations like: 1. Control Environment. we want to control everything. 2. Certified. Maybe the services in AWS are not certified by the customer. 3. Specific tools. Our application needs some tools that have to work with standalone database.</p>
+<ol>
+<li>RDS</li>
+<li>DynamoDB</li>
+<li>Redshift</li>
+</ol>
+<h3 id="rds"><a class="markdownIt-Anchor" href="#rds"></a> RDS</h3>
+<p>Default choice. Complex queries. Consistent transactions.</p>
+<ol>
+<li>
+<p>Multi-AZ</p>
+</li>
+<li>
+<p>Read replicas</p>
+</li>
+<li>
+<p>Encryption</p>
+</li>
+<li>
+<p>Backups and snapshots</p>
+</li>
+<li>
+<p>Instance type</p>
+</li>
+<li>
+<p>Storage type</p>
+</li>
+<li>
+<p>Network setup</p>
+</li>
+<li>
+<p>Backup</p>
+</li>
+</ol>
+<h3 id="dynamodb"><a class="markdownIt-Anchor" href="#dynamodb"></a> DynamoDB</h3>
+<p>Flexible structure</p>
+<ol>
+<li>Flexible structure</li>
+<li>Less complex queries: You are able to query on particular keys, the partition key and any secondary keys that you define. Can’t join tables.</li>
+<li>Low latency</li>
+<li>Transactions</li>
+<li>Global tables: store data in multiple regions</li>
+<li>Encryption</li>
+<li>Evolving schema: supports changes and growth in your application(add/remove columns…)</li>
+<li>Integration with Lambda</li>
+</ol>
+<p>Partition key: store data on different nodes of the database</p>
+<p>Secondary indexes</p>
+<p>Provisioned capacity: number of reads and writes. Dynamodb will auto scale</p>
+<p>on-demand capacity: pay for what you use. No auto scaling.</p>
+<h3 id="redshift"><a class="markdownIt-Anchor" href="#redshift"></a> Redshift</h3>
+<p>Large scale analytics</p>
+<p>Setup in minutes</p>
+<p>Warehouse and data lake</p>
+<ol>
+<li>Encryption</li>
+<li>Scale to petabytes</li>
+<li>Query S3</li>
+<li>Economical</li>
+</ol>
+<p>Node type</p>
+<ol>
+<li>Dense compute: fast CPUs, large RAM and SSD for fast performance</li>
+<li>Dense storage</li>
+</ol>
+<p>Same example as before.</p>
+<p>They want to have minimum effort to do the migration</p>
+<p>They want to leverage managed services</p>
+<p>Improve availability</p>
+<p>They have decided to use RDS. Using SQL server. Structured data. No servers to manage. High availability</p>
+<p>New application.</p>
+<p>DynamoDB. Flexible data structure(NoSQL). Trigger action(Lambda integration). Flexible cost structure(On-demand pricing). Global tables.</p>
+<h2 id="part-five-evaluating-network-performance-options"><a class="markdownIt-Anchor" href="#part-five-evaluating-network-performance-options"></a> <a href="#title" title="Part 5">Part Five: Evaluating Network Performance Options</a></h2>
+<h3 id="region-and-az"><a class="markdownIt-Anchor" href="#region-and-az"></a> Region and AZ</h3>
+<p>Regions are geographical area. One region may have multiple AZs that are also isolated to each other.</p>
+<p>While the AZs are isolated geographically, they are connected by AWS that allows data to be transferred between each zones.</p>
+<h4 id="local-zones"><a class="markdownIt-Anchor" href="#local-zones"></a> Local Zones</h4>
+<p>Some users still think the regions provided by AWS have high latency. They can choose to use local zones. They are built in large cities and connected to near by regions with low latency, high throughput connectivity. Local zones don’t have all the services provided by AWS as normal AZs.</p>
+<p>Why do we choose one region over another?</p>
+<ol>
+<li>Laws and Regulations: e.g. Some governments required that any data of their citizens remain in their countries</li>
+<li>User location: put application closer to your end users.</li>
+<li>Data location</li>
+<li>Cost</li>
+</ol>
+<h3 id="cloudfront"><a class="markdownIt-Anchor" href="#cloudfront"></a> CloudFront</h3>
+<p>Global network: CloudFront is outside of AWS regions, that deliver our applications to end users</p>
+<p>Content delivery: Similar to CDN</p>
+<ol>
+<li>Static content: static content is cached to the place closer to end users to reduce latency</li>
+<li>Dynamic content: AWS also supported Dynamic content (intelligent caching)</li>
+<li>Intelligent: you can setup geo-restrictions to not allow edge content to deliver content to certain geo-locations</li>
+<li>Programmable: Lambda at edge: create serverless functions at edge locations. Put compute power closer to your end users.</li>
+</ol>
+<h3 id="route53"><a class="markdownIt-Anchor" href="#route53"></a> Route53</h3>
+<p>DNS solution for AWS: translate a user-friendly URL to the IP address</p>
+<p>Private DNS: Route53 supports private DNS, you can setup friendly names for your internal services</p>
+<h4 id="traffic-flow"><a class="markdownIt-Anchor" href="#traffic-flow"></a> Traffic flow</h4>
+<p>If you deploy your solution to multiple regions, you can config so that your users only send requests to their regions.</p>
+<ol>
+<li>Latency routing: Traffic flow will determine the region that will be serving the content with the least latency</li>
+<li>Geographic routing: route users to the cloest region.</li>
+<li>Health based routing: not route users to a region that with unhealthy status.</li>
+<li>Round robin routing: route user to the next region available. Route traffic evenly to all regions.</li>
+</ol>
+<h3 id="direct-connect"><a class="markdownIt-Anchor" href="#direct-connect"></a> Direct Connect</h3>
+<p>Instead of going through public internet, AWS will create a dedicated line for users to connect from AWS to your data center. It is encrypted and you can config the speed.</p>
+<h3 id="vpc-endpoints"><a class="markdownIt-Anchor" href="#vpc-endpoints"></a> VPC endpoints</h3>
+<p>Normally, if your VPC wants to connect to other AWS services, it can only go through public internet, but with VPC endpoints, it can connect to other AWS services directly through the private internet AWS network</p>
+<h3 id="ec2-instance-types"><a class="markdownIt-Anchor" href="#ec2-instance-types"></a> EC2 instance types</h3>
+<p>some EC2 instance types have better internet performance than others. Pay attention to it before you launch the EC2 instance. Choose the type that suitable for your applications.</p>
+<h3 id="apply-our-knowledge"><a class="markdownIt-Anchor" href="#apply-our-knowledge"></a> Apply our knowledge</h3>
+<p>They want their application to be deployed in a single region but to multiple AZs. They use AWS ECS(elastic container service) to manage their application. And use AWS Fargate to manage their containers. They also choose to use Multi-AZ RDS for their DB. They also want their Data to be stored in S3. So they want a VPC endpoint for S3 to reduce latency. So when they want to access data in S3. they don’t need to go through public internet.</p>
+<p>They also have a new application that they want to have a friendly domain name. Reduced latency and managed cost. So they have decided to use Route53. because the application is hosted on S3 buckets. They need to register domain names for each S3 bucket. And configure Route 53 to route traffic to right S3 bucket using their domain names. They also want to have a global portal that has links to each deployed regions.</p>
+<h2 id="part-six-preparing-to-improve-your-architecture"><a class="markdownIt-Anchor" href="#part-six-preparing-to-improve-your-architecture"></a> <a href="#title" title="Part 6">Part Six: Preparing to Improve Your Architecture</a></h2>
+<h3 id="cicd-pipeline-continuous-integration-continuous-deployment"><a class="markdownIt-Anchor" href="#cicd-pipeline-continuous-integration-continuous-deployment"></a> CI/CD pipeline (Continuous Integration/ Continuous Deployment)</h3>
+<p>We need to have repeatable builds, repeatable infrastructrue and Controlled tests</p>
+<p><img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/1.png" alt="" /></p>
+<h3 id="cloudformation"><a class="markdownIt-Anchor" href="#cloudformation"></a> CloudFormation</h3>
+<ol>
+<li>Infrastructure template(JSON or YAML)</li>
+<li>Automate creation</li>
+<li>Ensure consistency</li>
+</ol>
+<h3 id="cloudformation-templates"><a class="markdownIt-Anchor" href="#cloudformation-templates"></a> CloudFormation templates</h3>
+<p><img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/2.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/3.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/4.png" alt="" /></p>
+<ol>
+<li>Format version</li>
+<li>Description</li>
+<li>Parameters</li>
+<li>Resources</li>
+<li>Output</li>
+</ol>
+<h2 id="part-seven-monitoring-your-architecture"><a class="markdownIt-Anchor" href="#part-seven-monitoring-your-architecture"></a> <a href="#title" title="Part 7">Part Seven: Monitoring Your Architecture</a></h2>
+<h3 id="monitor"><a class="markdownIt-Anchor" href="#monitor"></a> Monitor</h3>
+<ol>
+<li>Resources</li>
+<li>Application</li>
+<li>Operations</li>
+</ol>
+<h3 id="respond"><a class="markdownIt-Anchor" href="#respond"></a> Respond</h3>
+<ol>
+<li>Ignore</li>
+<li>Manually</li>
+<li>Automate</li>
+<li>Modify</li>
+</ol>
+<h3 id="cloudwatch"><a class="markdownIt-Anchor" href="#cloudwatch"></a> CloudWatch</h3>
+<p>Metrics</p>
+<ol>
+<li>Application</li>
+<li>Infrastructure</li>
+<li>AWS or on-premises</li>
+</ol>
+<p>Actions: Autoscaling.</p>
+<p>Actions: Messages</p>
+<p>Actions: Lambda functions can be triggered from CloudWatch</p>
+<p>Analytics: CloudWatch can store months of histoical data for you to analyse</p>
+<h3 id="create-a-log-to-delete-s3-object"><a class="markdownIt-Anchor" href="#create-a-log-to-delete-s3-object"></a> Create a log to delete S3 object</h3>
+<ol>
+<li>Create CloudTrail Trail</li>
+<li>Create Lambda function</li>
+<li>Create CloudWatch Rule</li>
+</ol>
+<p>Create a CloudTrail Trail</p>
+<p><img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/5.png" alt="" /></p>
+<p>Create a Lambda function</p>
+<p><img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/6.png" alt="" /></p>
+<p>Create CloudWatch Rule</p>
+<p><img src="/../images/AWS-SAA-Architecting-For-Performance-Efficiency/7.png" alt="" /></p>
+<h2 id="part-eight-understanding-the-trade-offs"><a class="markdownIt-Anchor" href="#part-eight-understanding-the-trade-offs"></a> <a href="#title" title="Part 8">Part Eight: Understanding the Trade-offs</a></h2>
+<ol>
+<li>Time</li>
+<li>Cost</li>
+<li>Memory</li>
+<li>Efficiency</li>
+<li>Complexity</li>
+</ol>
+<h3 id="possible-trade-offs"><a class="markdownIt-Anchor" href="#possible-trade-offs"></a> Possible Trade-offs</h3>
+<ol>
+<li>Queuing</li>
+<li>Partitioning</li>
+<li>Caching</li>
+<li>Compression</li>
+</ol>
+<h3 id="queuing"><a class="markdownIt-Anchor" href="#queuing"></a> Queuing</h3>
+<p>AWS SQS (simple queuing service)</p>
+<ol>
+<li>Decouple (producer, consumer)</li>
+<li>Scale independently (add producer or delete consumer)</li>
+<li>Acceptable delay</li>
+<li>Time vs Efficiency</li>
+</ol>
+<h3 id="data-paritioning"><a class="markdownIt-Anchor" href="#data-paritioning"></a> Data Paritioning</h3>
+<p>For example: RDBMS doesn’t have partition. so we need to consider what data goes into which instance of database, that increase complexity. Whereas many NoSQL DB already has partition. In DynamoDB, we have partition key for each table. The data that has the same partition key will go into the same node. So when choose a partition key, choose a key that roughly evenly distributed across the data.</p>
+<ol>
+<li>Complexity / consistency vs Time</li>
+<li>RDBMS vs NoSQL</li>
+<li>Distribution</li>
+<li>Maintenance</li>
+</ol>
+<h3 id="caching"><a class="markdownIt-Anchor" href="#caching"></a> Caching</h3>
+<p>Cache: heavliy used data will be stored in memory.</p>
+<p>Read Replics: if you have a read replica of your DB, users can go into read replica if they only read. Reduce the traffic of your primary server.</p>
+<p>CDN: take data and store data closer to users place.</p>
+<p>Memory/ consistency vs Time</p>
+<h3 id="compression"><a class="markdownIt-Anchor" href="#compression"></a> Compression</h3>
+<ol>
+<li>Code assets: reduce the size of source code to reduce the time to load the application</li>
+<li>Files: same. redurce the size of file will reduce the transfer time</li>
+<li>Time vs memory</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/" title="AWS SAA Architecting For Performance Efficiency" target="_blank" rel="external">http://hellcy.github.io/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/04/03/JavaScript-Fundamentals/" title="JavaScript Fundamentals"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/03/16/React-Overview/" title="React Overview"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

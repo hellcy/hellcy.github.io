@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Data Structures | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Bianry Search  Use O(1) to make a T(n) problem T(n&#x2F;2). So the total time complexity would be O(logn). Ignore half of the problems in O(1) time. First Bad Version Search in a Big Sorted Array. Double">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Structures">
+<meta property="og:url" content="http://hellcy.github.io/2020/03/02/Data-Structures/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Bianry Search  Use O(1) to make a T(n) problem T(n&#x2F;2). So the total time complexity would be O(logn). Ignore half of the problems in O(1) time. First Bad Version Search in a Big Sorted Array. Double">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-02T03:04:10.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.658Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Data Structures">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2020/03/02/Data-Structures/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#bianry-search"><span class="toc-number">1.</span> <span class="toc-text"> Bianry Search</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bianry-tree-and-divide-conquer"><span class="toc-number">2.</span> <span class="toc-text"> Bianry Tree and Divide &amp; Conquer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bfs"><span class="toc-number">3.</span> <span class="toc-text"> BFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dfs"><span class="toc-number">4.</span> <span class="toc-text"> DFS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linked-list-and-array"><span class="toc-number">5.</span> <span class="toc-text"> Linked List and Array</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#subarray"><span class="toc-number">6.</span> <span class="toc-text"> Subarray</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#two-pointers"><span class="toc-number">7.</span> <span class="toc-text"> Two pointers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sort-colors"><span class="toc-number">7.1.</span> <span class="toc-text"> Sort Colors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-step-reverse"><span class="toc-number">8.</span> <span class="toc-text"> 3 Step Reverse</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quick-select"><span class="toc-number">9.</span> <span class="toc-text"> Quick Select</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hash-heap"><span class="toc-number">10.</span> <span class="toc-text"> Hash &amp; Heap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dynamic-programming"><span class="toc-number">11.</span> <span class="toc-text"> Dynamic Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%9B%9B%E8%A6%81%E7%B4%A0"><span class="toc-number">11.1.</span> <span class="toc-text"> 动态规划四要素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8C%89%E7%85%A7%E7%8A%B6%E6%80%81%E5%88%86%E7%B1%BB"><span class="toc-number">11.2.</span> <span class="toc-text"> 动态规划的类型，按照状态分类</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Data-Structures" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Data Structures
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/03/02/Data-Structures/" class="article-date">
+	  <time datetime="2020-03-02T03:04:10.000Z" itemprop="datePublished">02-03-2020</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/03/02/Data-Structures/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 4.7k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 21(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="bianry-search"><a class="markdownIt-Anchor" href="#bianry-search"></a> Bianry Search</h2>
+<ul>
+<li>Use O(1) to make a T(n) problem T(n/2). So the total time complexity would be O(logn).</li>
+<li>Ignore half of the problems in O(1) time.</li>
+<li>First Bad Version</li>
+<li>Search in a Big Sorted Array. Double the search number every time, then serach from n to 2n</li>
+<li>Find Minimum in Rotated Sorted Array. Divide the array into a normal sorted array and a smaller rotated sorted array.</li>
+<li>Search in a 2D matrix. Perform Binary Search 2 times. First find the row, then perform binary search on that row.</li>
+<li>Search for a Range. Find the target number then perform binary search on its left and right.</li>
+<li>Maximum Number in Mountain Sequence. Check mid number to see if it is incresing or decresing, we can return any mountain value.</li>
+</ul>
+<h2 id="bianry-tree-and-divide-conquer"><a class="markdownIt-Anchor" href="#bianry-tree-and-divide-conquer"></a> Bianry Tree and Divide &amp; Conquer</h2>
+<ul>
+<li>There are 3 ways to traverse a binary tree. Pre order, In order and post order</li>
+<li>You need to know both resursive version and iterative version.</li>
+<li>DFS includes pre order, in order, post order, divide &amp; conquer</li>
+<li>Bianry tree has height from O(logn) to O(n), traverse a binary tree takes O(n) time.</li>
+<li>In order traverse a binary search tree is an increasing order traverse.</li>
+<li>Maximum depth of Binary tree. Resursive: Divide and conquer/ traverse</li>
+<li>Subtree with Maximum Average</li>
+<li>Lowest Common Ancestor: Divide &amp; Conquer, check leftsubtree and rightsubtree. See if they return A or B or null</li>
+<li>Validate Binary Search Tree. Bottom up, return max and min return to the parent node.</li>
+<li>Convert Binary Search Tree to Doubly Linked List. Inorder traverse it into a list and convert it.</li>
+<li>Flattern Binary Tree to Linked List. node.right = head of left subtree, tail of left subtree = head of right subtree.</li>
+<li>Insert and delete a node from a Binary Search Tree</li>
+</ul>
+<h2 id="bfs"><a class="markdownIt-Anchor" href="#bfs"></a> BFS</h2>
+<ul>
+<li>
+<ol>
+<li>make a list and put all start nodes into the list</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>traverse the list to get new nodes for the next level</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>use Queue for BFS</li>
+</ol>
+</li>
+<li>Graph BFS</li>
+<li>Social Network</li>
+<li>六度理论 你和世界上任何一个人之间最多间隔6个人 Linkedin BFS看第几层有相同好友</li>
+<li>树和图的区别，树是单向的，图可以是双向的（或者单项）</li>
+<li>在遍历图中，会有环，可以用HashSet检查是否曾经访问过某个节点</li>
+<li>树的特性，树中如果有N个点，就会有N-1条边。树中的所有点连通。用Queue和Set访问并保存所有Graph中的点</li>
+<li>构造Graph， 可以用 Map&lt;Integer, Set&lt;Integer&gt;&gt; Graph其实就是保存着（每个点和与他相邻的点的Set）的Map</li>
+<li>BFS on a 2D-array</li>
+<li>Number of islands</li>
+<li>Wall and Gates</li>
+<li>什么时候使用BFS？</li>
+<li>
+<ol>
+<li>Tree的层次遍历</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>2D-array中求连通性，灌水</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>拓扑排序</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>图的最短路径</li>
+</ol>
+</li>
+</ul>
+<h2 id="dfs"><a class="markdownIt-Anchor" href="#dfs"></a> DFS</h2>
+<ul>
+<li>Recursion</li>
+<li>Combination</li>
+<li>Permutation</li>
+<li>Graph</li>
+<li>Non-Recursion</li>
+<li>什么时候使用DFS？</li>
+<li>
+<ol>
+<li>找所有方案，排列，组合</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>找最优方案（最短，最长）（大部分是动态规划，也有可能是DFS）</li>
+</ol>
+</li>
+<li>Questions</li>
+<li>
+<ol>
+<li>Combination sum</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Palindrome Partitioning 所有的切割问题都是组合问题</li>
+</ol>
+</li>
+<li>切割abc字符串，有两个切割位 a1b2c， 可以切ab之间也可以切bc之间，把数字12放入代表切割位，所以切割的方式有</li>
+<li>a b c [1,2]</li>
+<li>a bc [1]</li>
+<li>ab c [2]</li>
+<li>abc []</li>
+<li>以上可以看出四种切割方式可以用数字表示</li>
+<li>所以n个字母的切割问题可以看作是n - 1个数字的组合问题</li>
+<li>Backtracking</li>
+<li>Permutation的去重与Combination相似，可以先定义一个boolean数组存放visited信息</li>
+<li>N皇后</li>
+<li>每一行和每一列都是1…n的一种排列</li>
+<li>如何判断皇后在同一斜线上： 横坐标与纵坐标之差相等，或者横坐标与纵坐标之和相等</li>
+<li>Word Ladder: BFS, 把ListWord转换成graph的形式，对于每个word，先找到所有可能的变换，总共有单词长度*26种，然后这些变换中存在于Wordlist中的就是他的neighbor，就可以变成标准的BFS问题</li>
+<li>Word Ladder 2：Backtracking + BFS， 先从End往Begin做BFS找到每个单词距离End的长度，保证Backtrack时不会遍历更远的单词。再从Begin往End做backtracking</li>
+</ul>
+<h2 id="linked-list-and-array"><a class="markdownIt-Anchor" href="#linked-list-and-array"></a> Linked List and Array</h2>
+<ul>
+<li>Reverse linked list</li>
+<li>Reverse linked list in k group</li>
+<li>Use dummy node to save the list head</li>
+<li>画图去理解linked list的变化</li>
+<li>dummy node practices</li>
+</ul>
+<ol>
+<li>partition-list</li>
+<li>merge two sorted list</li>
+<li>reverse linked list 2</li>
+<li>swap two nodes in linked list</li>
+<li>reorder list</li>
+<li>rotate list</li>
+</ol>
+<ul>
+<li>Copy list with random pointer -&gt; similar to clone graph</li>
+<li>Linked List Cycle 1 and 2 -&gt; Floyd’s Tortoise and Hare</li>
+<li>Sort List -&gt; how many sort algorithm has time complexity O(nlogn)?</li>
+</ul>
+<ol>
+<li>Quick Sort, with O(1) Space Complexity</li>
+<li>Merge Sort, with O(n) space</li>
+<li>Heap Sort</li>
+</ol>
+<ul>
+<li>Merge two sorted array</li>
+<li>Merge small array into big array</li>
+<li>intersection of two arrays</li>
+<li>Median of two sorted arrays -&gt; find the (m + n) / 2th number, use O(logn)</li>
+<li>Median</li>
+<li>Kth largest element</li>
+<li>Merge Sort practice</li>
+<li>Quick Sort practice</li>
+<li>Same integers will not remain their relative order in the old list after using quick sort. Merge sort will keep the relative order of same integers</li>
+<li>Merge sort will first split the array into two subarray until there is only one number left in the array, then sort, then merge the two sorted array back to one array. From small array to big array</li>
+<li>Qucik sort will first pick a pivot value, sort the entire array based on the pivot value. Then sort the two small array. From big array two small array</li>
+<li>Note in Quick Sort, when we find a value equals to the pivot value, we don’t swap it, leave it as where it is. We need to split these values as even as possible.</li>
+<li>Quick sort while loop condition: while (left &lt;= right). Don’t forget the equal sign</li>
+</ul>
+<h2 id="subarray"><a class="markdownIt-Anchor" href="#subarray"></a> Subarray</h2>
+<ul>
+<li>PrefixSum, HashMap to store prefixsum, then linear scan, So O(n) time and space</li>
+<li>Maximum subarray</li>
+<li>Minimum subarray</li>
+<li>subarray sum equals k</li>
+<li>number of subarray equals k</li>
+</ul>
+<h2 id="two-pointers"><a class="markdownIt-Anchor" href="#two-pointers"></a> Two pointers</h2>
+<ul>
+<li>O(n) time complexity</li>
+<li>同向双指针</li>
+<li>Move zeros</li>
+<li>Remove duplicate number in array</li>
+<li>Remove duplicate numbers in sorted array -&gt; tortise and hare cycle detection</li>
+<li>相向双指针</li>
+<li>valid palindrome</li>
+<li>rotate string -&gt; three step reverse, when reverse a string, one start from begin and another start from end</li>
+<li>recover rotated sorted array -&gt; similar to above, find the rotate point, three step reverse.</li>
+<li>Two Sum 1-7</li>
+<li>Two Sum 1 -&gt; 最普通的Two Sum， 可以使用HashMap，或者先排序在使用相向双指针，这样可以不是用额外空间，但是时间复杂度是O(nlogn)</li>
+<li>Two Sum 2 - Data Structure Design -&gt; HashMap</li>
+<li>Two Sum 3 - Array is sorted -&gt; 相向双指针</li>
+<li>Two sum 7 - unique pairs -&gt; 找到所有符合的数对,相向双指针，当找到一对时，left++,right–,并继续。如果遇到重复比如1,1,3,4,4,每次我们移动时，移动到与之前的数不一样的数为止。注意此方法要求数组是有序的。</li>
+<li>3Sum -&gt; 使用Two sum的结果，对于array中的每一个不等的数，检查是否有一对数的和等于它的相反数。可以使用HashMap或者two pointers，记住two pointers必须先排序数组。Two pointers的速度远快于HashMap</li>
+<li>Valid Triangle Number -&gt; 检查有多少组三个数可以组成合法的三角形的三条边。注意我们只需要检查最小的两个数的和大于第三个数即可. 从最大的数开始loop，使用Two pointers，对于每一个符合的left and right， 所有大于left的数都是符合的，所以每当我们找到一组合法的left and right，count += （right - left）. 详情查看leetcode 611</li>
+<li>对于求2个变量如何组合的问题，可以循环其中一个变量，然后研究另外一个变量如何变化</li>
+<li>对于求3个变量如何组合的问题，可以循环其中一个变量，然后研究另外2个变量如何变化</li>
+<li>对于求4个变量如何组合的问题，可以循环其中两个变量，然后研究另外2个变量如何变化</li>
+<li>Two Sum less than k</li>
+<li>Two Sum greater than k -&gt; same as triangle count</li>
+<li>Two Sum closest to target -&gt; two pointers start from begin and end, keep updating diff</li>
+<li>3 Sum closest to target -&gt; similar to above, loop one value and use two sum as a template</li>
+<li>4 Sum</li>
+<li>Two Sum - difference equals to target -&gt; 同向双指针。两数之差等于target，先排序，两个pointers都在开始，如果他们的差大于target，小数往后移，如果他们的差小于target，大数往后移 O(n) time complexity</li>
+<li>Partition array</li>
+<li>move elements &lt; k to the left and elements &gt;= k to the right, this is a smaller step in quick sort</li>
+<li>Parition array while loop condition: while (left &lt; right). No equal sign</li>
+<li>Letters by case</li>
+<li>Partition array by parity</li>
+<li>Interleaving positive and negative numbers -&gt; first count positive and negative numbers, then decide starts from positive or negative, then use two pointers in the same direction.</li>
+</ul>
+<h3 id="sort-colors"><a class="markdownIt-Anchor" href="#sort-colors"></a> Sort Colors</h3>
+<ol>
+<li>
+<p>sort 3 colors in group, we can use partition array two times, first time split one color, next split the rest two colors.</p>
+</li>
+<li>
+<p>We could also count the number of each color and modify the array to match the occurance of colors</p>
+</li>
+<li>
+<p>three pointers</p>
+</li>
+<li>
+<p>i pointer only moves when find ones and zeros, if it finds two, it will swap it with right. Throw two to the right</p>
+</li>
+<li>
+<p>so left pointer will never find two.</p>
+</li>
+<li>
+<p>so when i pointer finds zero, after swap it with left pointer, throw zero to the left, left pointer will only throw one back, so they can both move to right by 1</p>
+</li>
+</ol>
+<ul>
+<li>Sort Colors 2 (rainbow sort) -&gt; 使用多次Partition， 每次将一般的颜色分到array的左右，比如只有四种颜色，一次partition将1，2分到左边，3，4分到右边。花费O（n）的时间将T(k)的问题变成T(k/2)的问题。总共的时间复杂度为O(nlogk)</li>
+<li>这个解法有点像Quick Sort。注意Quick sort and Rainbow sort的while loop条件均为 while(left &lt; right)。可以不用要等号</li>
+<li>其他比较高频的排序方法：</li>
+<li>Pancake Sort</li>
+<li>Sleep Sort</li>
+<li>Spaghetti Sort</li>
+<li>Bogo Sort</li>
+</ul>
+<h2 id="3-step-reverse"><a class="markdownIt-Anchor" href="#3-step-reverse"></a> 3 Step Reverse</h2>
+<ul>
+<li>Three step reverse</li>
+<li>Recover rotated sorted array -&gt; First use 3 step reverse then two pointer reverse.</li>
+<li>3 step reverse</li>
+<li>First find the rotate point</li>
+<li>Reverse the first part(before rotate point) of the String/array</li>
+<li>Reverse the second part(after rotate point) of the String/array</li>
+<li>Reverse the entire String/array</li>
+</ul>
+<h2 id="quick-select"><a class="markdownIt-Anchor" href="#quick-select"></a> Quick Select</h2>
+<ul>
+<li>Quick Select 快速选择算法</li>
+<li>思想类似于快速排序,利用O(n)的时间找到前right个大数，再看k与right的关系决定下一步recursion的范围</li>
+<li>O(n) + O(n/2) + O(n/4) +… = O(n) time</li>
+<li>kth largest element</li>
+<li>Median</li>
+<li>kth smallest element</li>
+<li>Median of two sorted arrays</li>
+</ul>
+<h2 id="hash-heap"><a class="markdownIt-Anchor" href="#hash-heap"></a> Hash &amp; Heap</h2>
+<ul>
+<li>了解他们的原理和应用</li>
+<li>TreeMap</li>
+<li>队列Queue</li>
+<li>支持操作O(1) push O(1) pop O(1) top,多做跟BFS有关的题目</li>
+<li>栈Stack</li>
+<li>支持操作O(1) push O(1) pop O(1) top,非递归实现DFS的主要数据结构</li>
+<li>哈希表Hash</li>
+<li>支持操作O(1) insert O(1) find O(1) delete, Hash table / Hash map / Hash set的区别是什么</li>
+<li>Hash Set只存key不存value</li>
+<li>Hash map存key和value</li>
+<li>Hash table，多线程安全，当多个线程同时访问一个Hash table时，它可以保证数据安全，Hash Map无法做到</li>
+<li>Hash function -&gt; 对于任意的Key，得到一个固定且无规律的介于0到capacity - 1的整数</li>
+<li>数据结构分为连续性和离散型，array为连续性，List为离散型</li>
+<li>一些著名的Hash算法：MD5， SHA-1， SHA-2，主要用于加密</li>
+<li>用于算法中的Hash function很想进制转换</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int hashfun(String key) &#123;</span><br><span class="line">    int sum &#x3D; 0;</span><br><span class="line">    for (int i &#x3D; 0; i &lt; key.length(); ++i) &#123;</span><br><span class="line">        sum &#x3D; sum * 31 + (int)(key.charAt(i));</span><br><span class="line">        sum &#x3D; sum % HASH_TABLE_SIZE;</span><br><span class="line">    &#125;</span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Magic number - 31</li>
+<li>通过经验得出31的冲突更少（Collision）</li>
+<li>Magic number取质数更好，如果数太大影响效率，数太小冲突太多</li>
+<li>Closed Hashing - line sweep</li>
+<li>当哈希表发生冲突时，把新的数据插入到下一个空的位置</li>
+<li>寻找，不断的找下一个位置直到找到value或者找到空位为止</li>
+<li>删除，把值删除后用一个deleted标记出来，这个位置并不为空</li>
+<li>缺点，当我们插入和删除的次数很多时，很多位置都会被标记为deleted，寻找的效率会变低</li>
+<li>Open Hashing</li>
+<li>每一个位置都是一个链表，当发生冲突时加到链表的开头，这样不用每次都遍历到链表末尾，寻找时搜寻整个链表</li>
+<li>Rehashing</li>
+<li>当hash table size不够用了怎么办？</li>
+<li>像ArrayList那样不断倍增</li>
+<li>怎么定义满？当实际的存储个数达到总共空间的1/10(经验值)时，我们就需要rehash</li>
+<li>回顾ArrayList的倍增：当ArrayList满时，把size扩大两倍，把前面的所有数复制到后一半新扩大的ArrayList中</li>
+<li>Hash Table的倍增：如果移动之前的数，会影响到hash function，所以我们会先扩大hash table， 再把hash table中的所有值重新放到hash function算出它在新的hash table中的位置，重新插入</li>
+<li>Rehashing很慢，所以在定义hash table的时候最好提前定义一个size，让他尽量不要rehash</li>
+<li>在存储快的和存储慢的介质之间都会存在Cache的问题，不仅在CPU和内存之间有</li>
+<li>使用链表储存数据的的插入顺序，使用哈希表判断将要插入的数据是否已经存在于链表中</li>
+<li>LinkedHashMap = DoublyLinkedList + HashMap</li>
+<li>LRU Cache -&gt; 使用HashMap + DoublyLinkedList可以解决</li>
+<li>Heap</li>
+<li>支持操作O(logn) add O(logn) remove O(1) MIN or MAX,求最大值或最小值只可取其一</li>
+<li>ugly number 2</li>
+<li>top k largest number 2 -&gt; 使用PriorityQueue只保存k个数</li>
+<li>merge k sorted list -&gt; Add all list heads to a heap, poll the smallest head, add to ans, then add next node to heap.</li>
+<li>注意要会写heap的comparator</li>
+<li>Practice</li>
+</ul>
+<ol>
+<li>high five</li>
+<li>k closest points</li>
+<li>data stream median</li>
+<li>kth smallest number in sorted matrix</li>
+</ol>
+<h2 id="dynamic-programming"><a class="markdownIt-Anchor" href="#dynamic-programming"></a> Dynamic Programming</h2>
+<ul>
+<li>动态规划的分类</li>
+<li>Triangle -&gt; 入门题</li>
+<li>注意以下代码中n为三角形的高度</li>
+<li>第一种方法 DFS Traverse, Top-down</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">void traverse(int x, int y, int sum) &#123;</span><br><span class="line">    if (x &#x3D;&#x3D; n) &#123;</span><br><span class="line">    &#x2F;&#x2F; found a whole path from top to bottom</span><br><span class="line">    if (sum &lt; best) &#123;</span><br><span class="line">        best &#x3D; sum;</span><br><span class="line">    &#125;</span><br><span class="line">    return;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    traverse(x + 1, y, sum + A[x][y]);</span><br><span class="line">    traverse(x + 1, y + 1, sum + A[x][y]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">best &#x3D; MAXINT;</span><br><span class="line">traverse(0, 0, 0);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>每一个节点都分出来两条路径，相当于一个binary tree， 它的节点个数是2^n, 所以这个方法的时间复杂度是O(2^n)</li>
+<li>第二种方法 DFS Divide and Conquer, bottom-up</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; return minimum path from (x, y) to bottom</span><br><span class="line">int divideConquer(int x, int y) &#123;</span><br><span class="line">    if (x &#x3D;&#x3D; n) &#123;</span><br><span class="line">    return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    return A[x][y] + Math.min(</span><br><span class="line">    divideConquer(x + 1, y),</span><br><span class="line">    divideConquer(x + 1, y + 1)</span><br><span class="line">    );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">divideConquer(0, 0);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>与之前一样，每一个节点都分出来两条路径，相当于一个binary tree， 它的节点个数是2^n, 所以这个方法的时间复杂度是O(2^n)</li>
+<li>DFS实际上是在枚举，把所有的方案都列出来然后看哪个更好</li>
+<li>我们做了很多重复计算，因为实际上我们只需要计算三角形所有节点（n<sup>2个）的最短路径，DFS却计算了（2</sup>n个）节点，很多节点我们计算了很多遍。所以我们需要把每个节点的结果保存下来，下次需要的时候就不需要重新算了</li>
+<li>第三种方法 DFS Divide and conquer + Memorization</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; return minimum path from (x, y) to bottom</span><br><span class="line">int divideConquer(int x, int y) &#123;</span><br><span class="line">    &#x2F;&#x2F; row index from 0 to n - 1</span><br><span class="line">    if (x &#x3D;&#x3D; n) return 0;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; if we already got the minimum path from (x, y) to bottom, just return it</span><br><span class="line">    if (hash[x][y] !&#x3D; Integer.MAX_VALUE) return hash[x][y]</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; set before return</span><br><span class="line">    hash[x][y] &#x3D; A[x][y] + Math.min(divideConquer(x + 1, y), divideConquer(x + 1, y + 1));</span><br><span class="line"></span><br><span class="line">    return hash[x][y]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">initialize: hash[*][*] &#x3D; Integer.MAX_VALUE;</span><br><span class="line">answer: divideConquer(0, 0);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在每次计算节点最小值之前，先看看之前有没有算过这个节点的结果，如果有直接从数组中拿到结果并返回，没有算过我们再递归, O(n^2) time</li>
+<li>记忆化搜索的本质：动态规划，省去了重复计算</li>
+<li>多重循环 vs 记忆化搜索</li>
+<li>第四种方法 多重循环，自底向上</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">int[][] dp &#x3D; new int[row][row]; &#x2F;&#x2F; dp[i][j] 表示从i， j出发走到最后一层的最小路径长度</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 初始化，终点先有值,最后一层</span><br><span class="line">for (int i &#x3D; 0; i &lt; n; ++i) &#123;</span><br><span class="line">    dp[n - 1][i] &#x3D; triangle[n - 1][i];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 循环递推求解</span><br><span class="line">for (int i &#x3D; n - 2; i &gt;&#x3D; 0; --i) &#123;</span><br><span class="line">    for (int j &#x3D; 0; j &lt;&#x3D; i; ++j) &#123;</span><br><span class="line">    dp[i][j] &#x3D; Math.min(dp[i + 1][j], dp[i + 1][j +1]) + A[i][j]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 求结果： 起点</span><br><span class="line">return dp[0][0];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>O(n^2) time,没有递归</li>
+<li>第五种方法 多重循环，自顶向下</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">int[][] dp &#x3D; new int[row][row];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 初始化，起点</span><br><span class="line">dp[0][0] &#x3D; triangle[0][0];</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 初始化三角形的左边和右边</span><br><span class="line">for (int i &#x3D; 1; i &lt; row; ++i) &#123;</span><br><span class="line">    dp[i][0] &#x3D; dp[i - 1][0] + triangle[i][0]; &#x2F;&#x2F; 左边</span><br><span class="line">    dp[i][i] &#x3D; dp[i - 1][i - 1] + triangle[i][i]; &#x2F;&#x2F; 右边</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; top down</span><br><span class="line">for (int i &#x3D; 1; i &lt; row; ++i) &#123;</span><br><span class="line">    for (int j &#x3D; 1; j &lt; i; ++j) &#123;</span><br><span class="line">    dp[i][j] &#x3D; Math.min(dp[i - 1][j], dp[i - 1][j - 1]) + triangle[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Math.min(dp[row - 1][0], dp[row - 1][1], dp[row - 1][2]...);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这个方法中dp[x][y]表示从上到下到这个点的最短路径</li>
+<li>O(n^2) time,没有递归,但是这个方法我们必须提前算出三角形的左边和右边，因为对于三角形的每一个结点dp[x][y]，我们在计算到他的最短路径的时候，我们需要用到它前一层的两个点dp[x-1][y]和dp[x-1][y-1].但是对于每一层的最左边和最右边的点，我们再上一层找不到再靠左边或者右边的点，所以为了避免越界，我们必须提前算出两条边的所有点。</li>
+<li>什么情况下使用动态规划？</li>
+<li>满足下满三个条件之一：</li>
+</ul>
+<ol>
+<li>求最大值最小值</li>
+<li>判断是否可行</li>
+<li>统计方案个数</li>
+</ol>
+<ul>
+<li>上面这三个情况极有可能需要使用动态规划</li>
+<li>什么情况下不使用动态规划？</li>
+</ul>
+<ol>
+<li>求出所有具体的方案，而不是方案的个数 -&gt; palindrome-paritioning</li>
+<li>输入数据是一个集合而不是序列,意思是如果我们可以将数据调换位置，则很有可能不使用动态规划，动态规划需要有方向性 -&gt; longest-consecutive-sequence</li>
+<li>暴力算法的复杂度已经是多项式级别。 动态规划擅长优化指数级别的复杂度（2^n, n!）到多项式级别的复杂度(n^2, n^3)</li>
+</ol>
+<h3 id="动态规划四要素"><a class="markdownIt-Anchor" href="#动态规划四要素"></a> 动态规划四要素</h3>
+<ol>
+<li>状态，储存小规模问题的结果</li>
+<li>方程，状态之间怎么联系</li>
+<li>初始化，最极限的小状态是什么，起点</li>
+<li>答案，最终的状态是什么，终点</li>
+</ol>
+<h3 id="动态规划的类型按照状态分类"><a class="markdownIt-Anchor" href="#动态规划的类型按照状态分类"></a> 动态规划的类型，按照状态分类</h3>
+<ol>
+<li>坐标型 triangle 10%</li>
+<li>接龙型 20%</li>
+<li>划分型</li>
+<li>匹配型</li>
+<li>背包型</li>
+<li>区间型 longest palindrome</li>
+<li>树图型 tree matrix</li>
+<li>博弈型 判断是否可行</li>
+</ol>
+<ul>
+<li>坐标型动态规划</li>
+<li>状态</li>
+<li>f[x]:表示我从起点走到坐标x。。。</li>
+<li>f[x][y]:表示我从起点走到坐标x, y…</li>
+<li>方程：研究走到x， y这个点之前的一步</li>
+<li>practice: minimum path sum</li>
+<li>动态规划不应该存在循环依赖，从一个状态不会回到之前的一个状态</li>
+<li>当我们初始化一个二维数组的动态规划时，需要初始化第0行和第0列</li>
+<li>Unique path</li>
+<li>Unique path 2</li>
+<li>Climbing Stairs</li>
+<li>Jump game</li>
+<li>Jump game 2</li>
+<li>接龙型动态规划</li>
+<li>告诉你一个规则然后求最长的状态可以是多少，比如数组中求最大递增子序列</li>
+<li>Longest increasing subsequence</li>
+<li>Russian Doll Envelopes</li>
+<li>Largest Divisible Subset</li>
+<li>Frog jump</li>
+<li>总结</li>
+<li>动态规划的实质是记忆化搜索，避免重复计算中间结果</li>
+<li>动态规划四要素：初始化，方程，起点，终点</li>
+<li>什么时候使用动态规划:最优，可行，方案数（而非具体方案）</li>
+<li>什么时候不使用：求具体方案，输入数据为集合而非序列（可调整顺序），暴力算法时间复杂度已经是O(n^2, n^3)</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2020/03/02/Data-Structures/" title="Data Structures" target="_blank" rel="external">http://hellcy.github.io/2020/03/02/Data-Structures/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/04/03/Think-Python/" title="Think Python"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/10/24/Single-Sign-On-Introduction/" title="Single Sign On Introduction"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

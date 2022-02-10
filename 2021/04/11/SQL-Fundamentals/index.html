@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>SQL Fundamentals | Hellcy&#39;s Blog</title>
+  <meta name="description" content="WHERE 1SELECT * FROM Table WHERE ColumnName &lt;&gt; &#39;Some value&#39;. This Query will not return Null values. To return Null values we need to check if Column is NULL 1SELECT * FROM Table WHERE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL Fundamentals">
+<meta property="og:url" content="http://hellcy.github.io/2021/04/11/SQL-Fundamentals/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="WHERE 1SELECT * FROM Table WHERE ColumnName &lt;&gt; &#39;Some value&#39;. This Query will not return Null values. To return Null values we need to check if Column is NULL 1SELECT * FROM Table WHERE">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-04-11T10:05:17.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.660Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/04/11/SQL-Fundamentals/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#where"><span class="toc-number">1.</span> <span class="toc-text"> WHERE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#like"><span class="toc-number">2.</span> <span class="toc-text"> LIKE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functions"><span class="toc-number">3.</span> <span class="toc-text"> Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#group-by-and-having"><span class="toc-number">4.</span> <span class="toc-text"> GROUP BY and HAVING</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#join"><span class="toc-number">5.</span> <span class="toc-text"> JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#inner-join"><span class="toc-number">5.1.</span> <span class="toc-text"> INNER JOIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cross-join"><span class="toc-number">5.2.</span> <span class="toc-text"> CROSS JOIN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outer-join"><span class="toc-number">5.3.</span> <span class="toc-text"> OUTER JOIN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#union"><span class="toc-number">6.</span> <span class="toc-text"> UNION</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#union-all"><span class="toc-number">6.1.</span> <span class="toc-text"> UNION ALL</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#insert"><span class="toc-number">7.</span> <span class="toc-text"> INSERT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#insert-select"><span class="toc-number">7.1.</span> <span class="toc-text"> INSERT SELECT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update-and-delete"><span class="toc-number">8.</span> <span class="toc-text"> UPDATE and DELETE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-table"><span class="toc-number">9.</span> <span class="toc-text"> CREATE TABLE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-view"><span class="toc-number">10.</span> <span class="toc-text"> CREATE VIEW</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transaction"><span class="toc-number">11.</span> <span class="toc-text"> TRANSACTION</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#savepoint-and-rollback"><span class="toc-number">11.1.</span> <span class="toc-text"> SAVEPOINT and ROLLBACK</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#constraint"><span class="toc-number">12.</span> <span class="toc-text"> Constraint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#index"><span class="toc-number">13.</span> <span class="toc-text"> INDEX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#trigger"><span class="toc-number">14.</span> <span class="toc-text"> TRIGGER</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-SQL-Fundamentals" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SQL Fundamentals
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/11/SQL-Fundamentals/" class="article-date">
+	  <time datetime="2021-04-11T10:05:17.000Z" itemprop="datePublished">11-04-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/SQL/" rel="tag">SQL</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/11/SQL-Fundamentals/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 740(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="where"><a class="markdownIt-Anchor" href="#where"></a> WHERE</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Table WHERE ColumnName &lt;&gt; &#39;Some value&#39;.</span><br></pre></td></tr></table></figure>
+<p>This Query will not return Null values.</p>
+<p>To return Null values we need to check if <code>Column is NULL</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM Table WHERE ColumnName IS NULL</span><br></pre></td></tr></table></figure>
+<h2 id="like"><a class="markdownIt-Anchor" href="#like"></a> LIKE</h2>
+<p>If a column has type <code>varchar(50)</code>, and in one row its value doesn’t have length 50. Spaces will be added to the end.</p>
+<p>So <code>WHERE ColumnName LIKE '%SomeValue'</code> will return nothing. You can write the query like this. <code>WHERE ColumnName LIKE '%SomeValue%'</code></p>
+<h2 id="functions"><a class="markdownIt-Anchor" href="#functions"></a> Functions</h2>
+<ul>
+<li>LEFT(): return the left most char from string</li>
+<li>RIGHT(): return the right most char from string</li>
+<li>LTRIM(): remove the spaces on the left of string</li>
+<li>RTRIM(): remove the spaces on the right of string</li>
+</ul>
+<h2 id="group-by-and-having"><a class="markdownIt-Anchor" href="#group-by-and-having"></a> GROUP BY and HAVING</h2>
+<p>GROUP BY will group values into different groups. HAVING can filter out some values after GROUP BY.</p>
+<h2 id="join"><a class="markdownIt-Anchor" href="#join"></a> JOIN</h2>
+<h3 id="inner-join"><a class="markdownIt-Anchor" href="#inner-join"></a> INNER JOIN</h3>
+<p>The default JOIN, rows will be returned if they appear in both tables</p>
+<h3 id="cross-join"><a class="markdownIt-Anchor" href="#cross-join"></a> CROSS JOIN</h3>
+<p>Will return the combination of rows from Table A and Table B. If Table A has 4 rows and Table B has 10 row, it will return 40 rows.</p>
+<h3 id="outer-join"><a class="markdownIt-Anchor" href="#outer-join"></a> OUTER JOIN</h3>
+<ul>
+<li>LEFT OUTER JOIN (LEFT JOIN)</li>
+</ul>
+<p>The OUTER keyword is optional. LEFT OUTER JOIN is the same as LEFT JOIN. Values will be returned if it appear in the LEFT table. It doesn’t need to be in the RIGHT table.</p>
+<ul>
+<li>RIGHT OUTER JOIN (RIGHT JOIN)</li>
+</ul>
+<p>RIGHT OUTER JOIN is the same as RIGHT JOIN. Values will be returned if it appear in the RIGHT table. It doesn’t need to be in the LEFT table.</p>
+<ul>
+<li>FULL OUTER JOIN (FULL JOIN)</li>
+</ul>
+<p>Values will be returned if they appear in either LEFT table or RIGHT table.</p>
+<h2 id="union"><a class="markdownIt-Anchor" href="#union"></a> UNION</h2>
+<p>UNION can be placed between SELECT queries.</p>
+<p>Rows will be appended for each SELECT.</p>
+<p>Each SELECT must have same number of Columns and DataType needs to match.</p>
+<h3 id="union-all"><a class="markdownIt-Anchor" href="#union-all"></a> UNION ALL</h3>
+<p>If SELECT queries return same rows, they will all be returned.</p>
+<h2 id="insert"><a class="markdownIt-Anchor" href="#insert"></a> INSERT</h2>
+<h3 id="insert-select"><a class="markdownIt-Anchor" href="#insert-select"></a> INSERT SELECT</h3>
+<p>The values returned from SELECT will be inserted immediately. Works will multiple rows.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO TableA(ColumnA, ColumnB)</span><br><span class="line">SELECT ColumnA, ColumnB</span><br><span class="line">FROM TableB</span><br></pre></td></tr></table></figure>
+<h2 id="update-and-delete"><a class="markdownIt-Anchor" href="#update-and-delete"></a> UPDATE and DELETE</h2>
+<p>If we want to delete some value in a row, we could SET it to NULL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UPDATE Table SET ColumnName &#x3D; NULL WHERE RowId &#x3D; 1</span><br></pre></td></tr></table></figure>
+<h2 id="create-table"><a class="markdownIt-Anchor" href="#create-table"></a> CREATE TABLE</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE TableName </span><br><span class="line">(</span><br><span class="line">ProductId int NOT NULL,</span><br><span class="line">Quantity int NOT NULL DEFAULT 1,</span><br><span class="line">ProductName varchar(10) NULL</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="create-view"><a class="markdownIt-Anchor" href="#create-view"></a> CREATE VIEW</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE VIEW ViewName AS </span><br><span class="line">SELECT *</span><br><span class="line">FROM Table</span><br><span class="line">WHERE ...</span><br></pre></td></tr></table></figure>
+<p>VIEW is a temp Table, it can save complex SELECT queries and can be reused later.</p>
+<h2 id="transaction"><a class="markdownIt-Anchor" href="#transaction"></a> TRANSACTION</h2>
+<p>If there is error in the middle of a TRANSACTION, it will not COMMIT</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">BEGIN TRANSACTION</span><br><span class="line">-- Multiple UPDATE&#x2F;INSERT&#x2F;DELETE queries</span><br><span class="line">COMMIT TRANSACTION</span><br></pre></td></tr></table></figure>
+<h3 id="savepoint-and-rollback"><a class="markdownIt-Anchor" href="#savepoint-and-rollback"></a> SAVEPOINT and ROLLBACK</h3>
+<p>If error happens in the middle of a TRANSACTION and we don’t want to ROLLBACK to the start. We can create SAVEPOINT and let it ROLLBACK to that point.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">BEGIN TRANSACTION</span><br><span class="line"></span><br><span class="line">INSERT INTO Table(ColumnA, ColumnB) VALUES (1, 2);</span><br><span class="line"></span><br><span class="line">SAVE TRANSACTION PointOne;</span><br><span class="line"></span><br><span class="line">INSERT INTO Table(ColumnA, ColumnB) VALUE (1, 2);</span><br><span class="line"></span><br><span class="line">If @@ERROR &lt;&gt; 0 ROLLBACK TRANSACTION PointOne;</span><br><span class="line"></span><br><span class="line">COMMIT TRANSACTION</span><br></pre></td></tr></table></figure>
+<p>In the above code, if the second INSERT failed, @@ERROR will return a non-zero value, it will ROLLBACK to SAVEPOINT PointOne.</p>
+<h2 id="constraint"><a class="markdownIt-Anchor" href="#constraint"></a> Constraint</h2>
+<ul>
+<li>Primary key</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Table </span><br><span class="line">(</span><br><span class="line">    RowId int NOT NULL PRIMARY KEY</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Foreign key</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Table </span><br><span class="line">(</span><br><span class="line">    RowId int NOT NULL PRIMARY KEY,</span><br><span class="line">    ForeignId int NOT NULL REFERENCES TableB(Id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>Foreign Key values must come from Primary key in the other table.</p>
+<p>Primary key records cannot be deleted unless all Foreign key records were deleted first.</p>
+<p>Some DBMS support CASCADE DELETE, which will delete the Primary key record and related Foreign key record in other tables.</p>
+<ul>
+<li>UNIQUE</li>
+</ul>
+<p>One table could have multiple UNIQUE Constraint.</p>
+<ul>
+<li>CHECK</li>
+</ul>
+<p>Further restrict values in this Column</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE Table </span><br><span class="line">(</span><br><span class="line">    quantity int NOT NULL CHECK (quantity &gt; 0),</span><br><span class="line">    gender varchar(1) NOT NULL CHECK (gender LIKE &#39;[MF]&#39;)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="index"><a class="markdownIt-Anchor" href="#index"></a> INDEX</h2>
+<p>If you create an index on a Column, DB will sort this Column and store it. Next time you SELECT by this Column, DB will search faster (binary search) because it is sorted.</p>
+<p>But add index to a Column will decrease the efficiency of doing UPDATE/INSERT/DELETE on those Columns. Because DB needs to update INDEX on those Columns.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE INDEX Table_Column_Index</span><br><span class="line">ON Table (Column);</span><br></pre></td></tr></table></figure>
+<h2 id="trigger"><a class="markdownIt-Anchor" href="#trigger"></a> TRIGGER</h2>
+<p>TRIGGER will be execute when certain changes happen to a table</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER Table_trigger</span><br><span class="line">ON Table</span><br><span class="line">FOR INSERT, UPDATE</span><br><span class="line">AS </span><br><span class="line">UPDATE Table</span><br><span class="line">SET ColumnName &#x3D; Upper(ColumnName)</span><br><span class="line">WHERE Table.Id &#x3D; inserted.Id</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/04/11/SQL-Fundamentals/" title="SQL Fundamentals" target="_blank" rel="external">http://hellcy.github.io/2021/04/11/SQL-Fundamentals/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/04/12/Dependency-Injection-in-NET/" title="Dependency Injection in .NET"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/04/08/NET-with-NUnit-Test/" title=".NET with NUnit Test"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

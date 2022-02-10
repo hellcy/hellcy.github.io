@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>React Overview | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Setting up a Development Environment  Create folder and package.json file  123mkdir diy-reactcd diy-reactnpm init --y  Install Main Dependencies  Install Express  1npm i express  Install React and Re">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React Overview">
+<meta property="og:url" content="http://hellcy.github.io/2021/03/16/React-Overview/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Setting up a Development Environment  Create folder and package.json file  123mkdir diy-reactcd diy-reactnpm init --y  Install Main Dependencies  Install Express  1npm i express  Install React and Re">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-16T00:22:53.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.660Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="React">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/03/16/React-Overview/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#setting-up-a-development-environment"><span class="toc-number">1.</span> <span class="toc-text"> Setting up a Development Environment</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#install-main-dependencies"><span class="toc-number">1.1.</span> <span class="toc-text"> Install Main Dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install-development-dependencies"><span class="toc-number">1.2.</span> <span class="toc-text"> Install Development Dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reference"><span class="toc-number">1.3.</span> <span class="toc-text"> Reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#the-basics"><span class="toc-number">2.</span> <span class="toc-text"> The Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reacts-basic-concepts"><span class="toc-number">2.1.</span> <span class="toc-text"> React’s Basic Concepts</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#components"><span class="toc-number">2.1.1.</span> <span class="toc-text"> Components</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reactive-updates"><span class="toc-number">2.1.2.</span> <span class="toc-text"> Reactive updates</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#virtual-views-in-memory"><span class="toc-number">2.1.3.</span> <span class="toc-text"> Virtual views in memory</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tradeoffs"><span class="toc-number">3.</span> <span class="toc-text"> Tradeoffs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#framework-vs-library"><span class="toc-number">3.1.</span> <span class="toc-text"> Framework vs Library</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-binding"><span class="toc-number">3.2.</span> <span class="toc-text"> Data Binding</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js-centric"><span class="toc-number">3.3.</span> <span class="toc-text"> JS Centric</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#separate-vs-single-file"><span class="toc-number">3.4.</span> <span class="toc-text"> Separate vs Single File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#standard-vs-non-standard"><span class="toc-number">3.5.</span> <span class="toc-text"> Standard vs Non-standard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#community-vs-corporate"><span class="toc-number">3.6.</span> <span class="toc-text"> Community vs Corporate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#decisions-to-make"><span class="toc-number">4.</span> <span class="toc-text"> Decisions to make</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-React-Overview" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React Overview
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/03/16/React-Overview/" class="article-date">
+	  <time datetime="2021-03-16T00:22:53.000Z" itemprop="datePublished">16-03-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/React/" rel="tag">React</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/03/16/React-Overview/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.1k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 6(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="setting-up-a-development-environment"><a class="markdownIt-Anchor" href="#setting-up-a-development-environment"></a> Setting up a Development Environment</h2>
+<ol>
+<li>Create folder and package.json file</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir diy-react</span><br><span class="line">cd diy-react</span><br><span class="line">npm init --y</span><br></pre></td></tr></table></figure>
+<h3 id="install-main-dependencies"><a class="markdownIt-Anchor" href="#install-main-dependencies"></a> Install Main Dependencies</h3>
+<ol start="2">
+<li>Install Express</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i express</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>Install React and React-dom</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i react react-dom</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>Install webpack</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i webpack webpack-cli</span><br></pre></td></tr></table></figure>
+<p>Webpack is a module bunlder. A react application usually contains multiple modules and depends on many external modules too. When we ship the application to the browser we need to bundle all necessary files into a single bundle and ship it to the browser.</p>
+<ol start="5">
+<li>Install Babel</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-loader @babel&#x2F;core @babel&#x2F;node @babel&#x2F;preset-env @babel&#x2F;preset-react</span><br></pre></td></tr></table></figure>
+<p>Babel is the package that compiles JSX into regular React API calls.</p>
+<h3 id="install-development-dependencies"><a class="markdownIt-Anchor" href="#install-development-dependencies"></a> Install Development Dependencies</h3>
+<ol start="6">
+<li>Install nodemon</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D nodemon</span><br></pre></td></tr></table></figure>
+<p>nodemon is a package that lets us automatically restart node when we change things in node.</p>
+<ol start="7">
+<li>Install ESLint</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D eslint babel-eslint eslint-plugin-react eslint-plugin-react-hooks</span><br></pre></td></tr></table></figure>
+<p>ESLint will immediately analyze your code and tell you the problems, you can have consistent styling to your code by using ESLint.</p>
+<ol start="8">
+<li>Configure ESLint</li>
+</ol>
+<p>Go to your project directory, create a new file called ‘.eslintrc.js’ and paste the below code.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">    parser: &#39;babel-eslint&#39;,</span><br><span class="line">    env: &#123;</span><br><span class="line">      browser: true,</span><br><span class="line">      commonjs: true,</span><br><span class="line">      es6: true,</span><br><span class="line">      node: true,</span><br><span class="line">      jest: true,</span><br><span class="line">    &#125;,</span><br><span class="line">    parserOptions: &#123;</span><br><span class="line">      ecmaVersion: 2020,</span><br><span class="line">      ecmaFeatures: &#123;</span><br><span class="line">        impliedStrict: true,</span><br><span class="line">        jsx: true,</span><br><span class="line">      &#125;,</span><br><span class="line">      sourceType: &#39;module&#39;,</span><br><span class="line">    &#125;,</span><br><span class="line">    plugins: [&#39;react&#39;, &#39;react-hooks&#39;],</span><br><span class="line">    extends: [</span><br><span class="line">      &#39;eslint:recommended&#39;,</span><br><span class="line">      &#39;plugin:react&#x2F;recommended&#39;,</span><br><span class="line">      &#39;plugin:react-hooks&#x2F;recommended&#39;,</span><br><span class="line">    ],</span><br><span class="line">    settings: &#123;</span><br><span class="line">      react: &#123;</span><br><span class="line">        version: &#39;detect&#39;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    rules: &#123;</span><br><span class="line">      &#x2F;&#x2F; You can do your customizations here...</span><br><span class="line">      &#x2F;&#x2F; For example, if you don&#39;t want to use the prop-types package,</span><br><span class="line">      &#x2F;&#x2F; you can turn off that recommended rule with: &#39;react&#x2F;prop-types&#39;: [&#39;off&#39;]</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<ol start="9">
+<li>Configure Jest</li>
+</ol>
+<p>jest is the package to test React applications</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i -D jest babel-jest react-test-renderer</span><br></pre></td></tr></table></figure>
+<ol start="10">
+<li>Basic React application structure</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">diy-react&#x2F;</span><br><span class="line">  dist&#x2F;</span><br><span class="line">    main.js</span><br><span class="line">  src&#x2F;</span><br><span class="line">    index.js</span><br><span class="line">    components&#x2F;</span><br><span class="line">      App.js</span><br><span class="line">    server&#x2F;</span><br><span class="line">      server.js</span><br></pre></td></tr></table></figure>
+<p>dist: for distribution, webpack will put production-ready files to here<br />
+src: for React code files<br />
+components: for React components<br />
+server: for server files</p>
+<ol start="11">
+<li>Configure Webpack and Babel</li>
+</ol>
+<p>Under project root directory, create a new file called ‘babel.config.js’ and paste the below code</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  presets: [&#39;@babel&#x2F;preset-env&#39;, &#39;@babel&#x2F;preset-react&#39;],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Under project root directory, create a new file called ‘webpack.config.js’ and paste the below code<br />
+This will tell webpack to invoke babel for all files that end with .js. This is to convert JSX code to regular React API calls.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.js$&#x2F;,</span><br><span class="line">        exclude: &#x2F;node_modules&#x2F;,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: &#39;babel-loader&#39;,</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ol start="12">
+<li>Create npm scripts for development</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;dev:server&quot;: &quot;nodemon --exec .&#x2F;node_modules&#x2F;.bin&#x2F;babel-node src&#x2F;server&#x2F;server.js --ignore dist&#x2F;&quot;,</span><br></pre></td></tr></table></figure>
+<p>This script will run nodemon command, which is run babel-node on a server.js file</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;dev:bundler&quot;: &quot;webpack -w --mode&#x3D;development&quot;</span><br></pre></td></tr></table></figure>
+<p>This script will run the webpack command, in Watch mode(readable code, not minified) and in development node</p>
+<h3 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://jscomplete.com/learn/1rd-reactful">Setting up React Development Environment</a></li>
+</ol>
+<hr />
+<ul>
+<li>
+<p>For Angular, Vue and Ember they put fake JS in HTML. Whereas React put fake HTML in JS (JSX), React is Javascript-centric, makes JS more powerful to handle HTML</p>
+</li>
+<li>
+<p>React is lightweighted, you can slowly migrate your app from other technologies to React</p>
+</li>
+<li>
+<p>React is lean and you only import the package you want to use.</p>
+</li>
+<li>
+<p>React is one way data binding, it required more code, you need to expilictly declare a change handler. But this gives you more control and east to debug</p>
+</li>
+</ul>
+<h2 id="the-basics"><a class="markdownIt-Anchor" href="#the-basics"></a> The Basics</h2>
+<h3 id="reacts-basic-concepts"><a class="markdownIt-Anchor" href="#reacts-basic-concepts"></a> React’s Basic Concepts</h3>
+<h4 id="components"><a class="markdownIt-Anchor" href="#components"></a> Components</h4>
+<ul>
+<li>Like functions</li>
+<li>Input: props, state | Output: UI</li>
+<li>Reusable and composable</li>
+<li>Can be used as normal HTML tags <code>&lt;Component /&gt;</code></li>
+<li>Can manage a private state</li>
+</ul>
+<h4 id="reactive-updates"><a class="markdownIt-Anchor" href="#reactive-updates"></a> Reactive updates</h4>
+<ul>
+<li>When the state of a React component, the input, changes, the user interface it represents, the output, changes as well</li>
+</ul>
+<h4 id="virtual-views-in-memory"><a class="markdownIt-Anchor" href="#virtual-views-in-memory"></a> Virtual views in memory</h4>
+<ul>
+<li>We don’t write HTML when building applications using React. We generate HTML using Javascript</li>
+<li>Build smaller components such as buttons, forms, then build more complex components using the smaller components. Each component consist of HTML and JS.</li>
+</ul>
+<h2 id="tradeoffs"><a class="markdownIt-Anchor" href="#tradeoffs"></a> Tradeoffs</h2>
+<h3 id="framework-vs-library"><a class="markdownIt-Anchor" href="#framework-vs-library"></a> Framework vs Library</h3>
+<ul>
+<li>Frameworks offer more opinion and standardization, but React’s library approach allows you to select only the tools that you need and pick the best tools for your use case.</li>
+</ul>
+<h3 id="data-binding"><a class="markdownIt-Anchor" href="#data-binding"></a> Data Binding</h3>
+<ul>
+<li>Other frameworks strive to be concise, using techniques like two‑way binding and abstractions over JavaScript operations. But React is explicit, so code is more readable and scalable at the admitted expense of doing a little more typing on the keyboard.</li>
+</ul>
+<h3 id="js-centric"><a class="markdownIt-Anchor" href="#js-centric"></a> JS Centric</h3>
+<ul>
+<li>React chooses to be JavaScript‑centric instead of template‑centric. React’s JavaScript‑centric approach is easier to understand and debug and requires learning less unique syntax, but at the cost of requiring modern JavaScript knowledge.</li>
+</ul>
+<h3 id="separate-vs-single-file"><a class="markdownIt-Anchor" href="#separate-vs-single-file"></a> Separate vs Single File</h3>
+<ul>
+<li>Many frameworks utilize a separate template file. In contrast, each React component is a single autonomous file that you can work with and test in isolation.</li>
+</ul>
+<h3 id="standard-vs-non-standard"><a class="markdownIt-Anchor" href="#standard-vs-non-standard"></a> Standard vs Non-standard</h3>
+<ul>
+<li>The web component standard has been around for years, yet it continues to lack broad adoption. Non‑standard approaches, like React and Angular, remain more popular because they offer the same power, more rapid innovation, and a superior developer experience.</li>
+</ul>
+<h3 id="community-vs-corporate"><a class="markdownIt-Anchor" href="#community-vs-corporate"></a> Community vs Corporate</h3>
+<ul>
+<li>And React is corporate‑backed, which means its design is influenced by Facebook’s needs. But Facebook continues to accept input from the community and has evolved React into a highly flexible and well‑supported system.</li>
+</ul>
+<h2 id="decisions-to-make"><a class="markdownIt-Anchor" href="#decisions-to-make"></a> Decisions to make</h2>
+<ol>
+<li>Develop environment - create-react-app</li>
+<li>Classes or Functions - Functions</li>
+<li>Types - PropTypes, TypeScript, Flow</li>
+</ol>
+<ul>
+<li>TypeScript is a superset of JavaScript that adds strong typing support and compiles down to plain JavaScript</li>
+<li>Flow: adding static type checking to JavaScrWipt</li>
+</ul>
+<ol start="4">
+<li>States - Plain React, Flux, Redux, MobX</li>
+</ol>
+<ul>
+<li>Component State: Plain React</li>
+<li>Centralized State: Flux, Redux</li>
+<li>Observable State: MobX</li>
+</ul>
+<ol start="5">
+<li>Styling - Plain CSS/Sass/Less, CSS in JS<br />
+W</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/03/16/React-Overview/" title="React Overview" target="_blank" rel="external">http://hellcy.github.io/2021/03/16/React-Overview/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/03/16/AWS-SAA-Architecting-for-Performance-Efficiency/" title="AWS SAA Architecting For Performance Efficiency"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/03/11/ASP-NET-Core-with-SignalR/" title="ASP.NET Core with SignalR"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

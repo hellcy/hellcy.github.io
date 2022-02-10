@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Harvard CS75 Web Development | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Chapter 0: HTTP Chapter 1: PHP Chapter 2: PHP Continued Chapter 3: MVC XML Chapter 4: SQL Chapter 5: SQL Continued Chapter 6: JavaScript Chapter 7: AJAX Chapter 8: Security Chapter 9: Scalability   C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Harvard CS75 Web Development">
+<meta property="og:url" content="http://hellcy.github.io/2020/06/30/Harvard-CS75-Web-Development/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Chapter 0: HTTP Chapter 1: PHP Chapter 2: PHP Continued Chapter 3: MVC XML Chapter 4: SQL Chapter 5: SQL Continued Chapter 6: JavaScript Chapter 7: AJAX Chapter 8: Security Chapter 9: Scalability   C">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/16.png">
+<meta property="article:published_time" content="2020-06-30T06:49:58.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.659Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Web Development">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/Harvard-CS75-Web-Development/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2020/06/30/Harvard-CS75-Web-Development/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-0-http"><span class="toc-number">1.</span> <span class="toc-text"> Chapter 0: HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#what-happens-after-you-pressing-enter"><span class="toc-number">1.1.</span> <span class="toc-text"> What happens after you pressing Enter?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#what-happens-when-you-reach-the-target-website"><span class="toc-number">1.2.</span> <span class="toc-text"> What happens when you reach the target website?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-1-php"><span class="toc-number">2.</span> <span class="toc-text"> Chapter 1: PHP</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apache"><span class="toc-number">2.1.</span> <span class="toc-text"> Apache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-2-php-continued"><span class="toc-number">3.</span> <span class="toc-text"> Chapter 2: PHP Continued</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#let-website-remember-your-login-with-sessions"><span class="toc-number">3.1.</span> <span class="toc-text"> Let website remember your login with sessions</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-3-mvc-xml"><span class="toc-number">4.</span> <span class="toc-text"> Chapter 3: MVC XML</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mvc"><span class="toc-number">4.1.</span> <span class="toc-text"> MVC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xml"><span class="toc-number">4.2.</span> <span class="toc-text"> XML</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-4-sql"><span class="toc-number">5.</span> <span class="toc-text"> Chapter 4: SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-5-sql-continued"><span class="toc-number">6.</span> <span class="toc-text"> Chapter 5: SQL Continued</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-6-javascript"><span class="toc-number">7.</span> <span class="toc-text"> Chapter 6: JavaScript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#global-objects"><span class="toc-number">7.1.</span> <span class="toc-text"> Global objects</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#array"><span class="toc-number">7.2.</span> <span class="toc-text"> Array</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-handlers"><span class="toc-number">7.3.</span> <span class="toc-text"> Event handlers</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-7-ajax"><span class="toc-number">8.</span> <span class="toc-text"> Chapter 7: AJAX</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#xmlhttprequest-properties"><span class="toc-number">8.1.</span> <span class="toc-text"> XMLHttpRequest properties</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-8-security"><span class="toc-number">9.</span> <span class="toc-text"> Chapter 8: Security</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-9-scalability"><span class="toc-number">10.</span> <span class="toc-text"> Chapter 9: Scalability</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vertical-scaling"><span class="toc-number">10.1.</span> <span class="toc-text"> Vertical Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#horizontal-scaling"><span class="toc-number">10.2.</span> <span class="toc-text"> Horizontal Scaling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#load-balancing"><span class="toc-number">10.3.</span> <span class="toc-text"> Load Balancing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caching"><span class="toc-number">10.4.</span> <span class="toc-text"> Caching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shared-session-statesticky-session"><span class="toc-number">10.5.</span> <span class="toc-text"> Shared Session State(Sticky session)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cookie"><span class="toc-number">10.6.</span> <span class="toc-text"> Cookie</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#load-balancer"><span class="toc-number">10.7.</span> <span class="toc-text"> Load Balancer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#php-accelerators"><span class="toc-number">10.8.</span> <span class="toc-text"> PHP Accelerators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#caching-2"><span class="toc-number">10.9.</span> <span class="toc-text"> Caching</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-replication-master-slave"><span class="toc-number">10.10.</span> <span class="toc-text"> Data Replication: Master: slave</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">10.11.</span> <span class="toc-text">Data Replication: Master: Master</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#partitioning"><span class="toc-number">10.12.</span> <span class="toc-text"> Partitioning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#high-availiability"><span class="toc-number">10.13.</span> <span class="toc-text"> High Availiability</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#security"><span class="toc-number">10.14.</span> <span class="toc-text"> Security</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reference"><span class="toc-number">10.15.</span> <span class="toc-text"> Reference</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Harvard-CS75-Web-Development" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Harvard CS75 Web Development
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/06/30/Harvard-CS75-Web-Development/" class="article-date">
+	  <time datetime="2020-06-30T06:49:58.000Z" itemprop="datePublished">30-06-2020</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Web-Development/" rel="tag">Web Development</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/06/30/Harvard-CS75-Web-Development/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 9.7k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 51(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ol>
+<li><a href="#chapter-0-http">Chapter 0: HTTP</a></li>
+<li><a href="#chapter-1-php">Chapter 1: PHP</a></li>
+<li><a href="#chapter-2-php-continued">Chapter 2: PHP Continued</a></li>
+<li><a href="#chapter-3-mvc-xml">Chapter 3: MVC XML</a></li>
+<li><a href="#chapter-4-sql">Chapter 4: SQL</a></li>
+<li><a href="#chapter-5-sql-continued">Chapter 5: SQL Continued</a></li>
+<li><a href="#chapter-6-javascript">Chapter 6: JavaScript</a></li>
+<li><a href="#chapter-7-ajax">Chapter 7: AJAX</a></li>
+<li><a href="#chapter-8-security">Chapter 8: Security</a></li>
+<li><a href="#chapter-9-scalability">Chapter 9: Scalability</a></li>
+</ol>
+<h2 id="chapter-0-http"><a class="markdownIt-Anchor" href="#chapter-0-http"></a> Chapter 0: HTTP</h2>
+<h3 id="what-happens-after-you-pressing-enter"><a class="markdownIt-Anchor" href="#what-happens-after-you-pressing-enter"></a> What happens after you pressing Enter?</h3>
+<ul>
+<li>The URL address will be translate to an IP address. 我们现在所用的IP address是ipv4,它由四组0-255的数字组成，总共32bits，可以有40亿总可能，我们现在每个人都有很多设备，ipv4的组合已经快不够用了。</li>
+<li>所以新的ipv6要替代原来的ip address，它由8组4位的16进制组成，总共有128bits</li>
+<li>怎么样将hostname网址转换成IP address呢？我们需要用到DNS（Domain name server）,他储存有ip address到hostname的一个mapping table，如果你访问的网址不在这个DNS里，他就会不断的访问上级服务器，直到访问到root server，root server知道谁有可能知道这个ip address，在不断的访问到下级服务器/DNS，直到找到并把hostname转换成ip address</li>
+<li>互联网就像一个邮件系统，我们现在知道邮件该送给谁，我们知道自己的ip address(return address). 我们就可以把信息送给我们想送的网站，<a target="_blank" rel="noopener" href="http://xn--google-hh4kj42j.com">比如google.com</a>，他收到信后，会拆开看我们相访问哪个网址，比如index.html,然后把我们想要的内容装进信封，颠倒送件人和收件人，然后送回来，我们拆开信封看到html信息，浏览器就会显示这些信息</li>
+<li>Private Ip address</li>
+<li>对于一个家庭来说，所有的设备共享一个公共ip，但是每个设备都会有自己的private ip，192.168.x.y. 或者172.16.x.y. 当你需要很多设备时，比如在大型公司，你可以使用10.x.y.z</li>
+<li>TCP/IP</li>
+<li>IP用来确认谁要向谁传送信息，TCP就是传送协议</li>
+<li>Port Number</li>
+<li>信息的传送有很多种，不光是HTTP，还有邮件，短信等等，我们使用不同的port number来让服务器知道进来的request是哪种请求，比如HTTP: TCP 80，我们让服务器听取port 80的网页请求，还可以SMTP: TCP 25让服务器听取port 25 的邮件请求， HTTPS： TCP 443, 加密的网页请求。</li>
+<li>现在的浏览器会自动在网址后面加上port number</li>
+<li>Getting your own domain name</li>
+<li>我们的设备虽然可以联网，但是他只有一个公共ip，如果我们想host我们自己的网站，我们就需要有一个域名 GoDaddy, NameCheap</li>
+<li>Hosting your own website</li>
+<li>当我们有了域名之后，我们还需要一个web server用来存放我们的网站相关文件，HTML， CSS， JAVASCRIPT等等，这需要我们再找一个提供DNS服务的公司（<a target="_blank" rel="noopener" href="http://dreamhost.com">dreamhost.com</a>），向他们租用一些online storeage，他们也会提供两个ip addresses（还有一个是备用的）。并且与我们的域名关联</li>
+<li>DNS</li>
+<li>例子：如果你的网站是一个邮件服务网站，比如Google email。我们的email虽然可以是yuan@unicard.com，但是其实我们使用的是Google的邮件服务，DNS识别出以unicard结尾的邮件地址是属于Google的一个服务，并把他发送到Google的服务器。</li>
+<li>NS Name Server</li>
+<li>一个NS record的作用是告诉大家哪个name server知道关于我们域名的一些信息</li>
+<li>NS stands for ‘name server’ and this record indicates which DNS server is authoritative for that domain (which server contains the actual DNS records). A domain will often have multiple NS records which can indicate primary and backup name servers for that domain</li>
+<li>A</li>
+<li>A record的作用是把ip address和域名相连(Domain name to ip address)</li>
+<li>CNAME Canonical name</li>
+<li>与A record不同的是CNAME是把域名和域名相连(Domain name to domain name)，因为比如我们相用Google的邮件服务，所以我们想把yuan@unicard.com，关联到yuan@google.com,然后Google用他们呢的DNS server去把他转换成ip address，我们就不用担心Google改变他的ip address了。 再比如说，如果Dell公司的客户服务是外包出去的，那么我们访问Dell的网站，在通过Dell官网进入到他们的客户服务网站，我们就会发现我们从<code>Dell.com</code> 到了<code>customerService.com</code>，这样可能不太好，Dell想让他的网站看起来是一个整体，所以就可以用CNAME让<code>customerService.com</code>的名字隐藏起来，只显示成<code>support.dell.com</code></li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/1.png" alt="" /></p>
+<ul>
+<li>MX Mail Exchange</li>
+<li>MX record把负责处理请求的server和他们的ip address相连，这样就可以知道进来的email请求该由哪个server负责</li>
+</ul>
+<h3 id="what-happens-when-you-reach-the-target-website"><a class="markdownIt-Anchor" href="#what-happens-when-you-reach-the-target-website"></a> What happens when you reach the target website?</h3>
+<ul>
+<li>Web host</li>
+<li>Web host companies host multiple websites with one ip address, they share one ip address. Server response with different content based on the headers in the request</li>
+<li>If the hosting server is using Php v4.3, you have to use the same. If the hosting server is down, all websites related to this server is also down.</li>
+<li>VPS(Virtual Private Server)</li>
+<li>VMware, Parallels, Virtual Box</li>
+<li>Install multiple instances of Windows or Linux or MacOS on the server, and you can control the software and tools on that VPS</li>
+<li>SSH/SFTP</li>
+<li>SSH: Connecting to a remote server and execute commands on it. SFTP: Transfer files to a remote server.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">telnet www.google.com 80</span><br><span class="line"></span><br><span class="line">GET &#x2F; HTTP&#x2F;1.1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">(press enter twice)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>If your webiste is hosted by a server that are shared with other website, you have to send a get request with a host header specify your domain name. Otherwise the server don’t know what content to return.</li>
+<li>nslookup <a target="_blank" rel="noopener" href="http://google.com">google.com</a></li>
+<li>will list ip address for that host</li>
+<li>sudo vi /etc/hosts</li>
+<li>this is a local ip address &lt;-&gt; domain name mapping table, browser will check this file first before sending any request</li>
+</ul>
+<h2 id="chapter-1-php"><a class="markdownIt-Anchor" href="#chapter-1-php"></a> Chapter 1: PHP</h2>
+<h3 id="apache"><a class="markdownIt-Anchor" href="#apache"></a> Apache</h3>
+<ul>
+<li>Configuration file for Apache web server: httpd.conf, apache.conf, apache2.conf</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/2.png" alt="" /></p>
+<ol>
+<li>listen to port 80 of any ip addresses of incoming requests</li>
+<li>ServerName and ServerAlias: the destination of the incoming requests, both will need an A record in DNS to work (or CNAME)</li>
+<li>CustomLog, ErrorLog: Specify where to save the log files</li>
+<li>DocumentRoot: Root path of your website</li>
+<li>port 443 uses SSL(Secure socket layer), needs a certificate to be installed on the server.<br />
+SSL: there are two keys, public key and private key, when a user visits our website, the website sends the public key to the user’s machine, user uses it to encrypt the message. Then when our website receives the message from the user, we use the private to decrypt it to get the original message. But this is not enough, we need to ask some Certificate Authorization(CA) for a certificate. This is because user doesn’t trust our website. but because our website is trusted by a CA, so the user can trust our website. Certificate needs to be digitally signed.</li>
+<li>SSLCertificateKeyFile: the private key on the server</li>
+<li>SSLCertificateFile: the certificate</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mod_rewrite</span><br><span class="line"></span><br><span class="line">RewriteEngine On</span><br><span class="line">RewriteCond %&#123;HTTP_HOST&#125; !^www\.cs75\.net [NC]</span><br><span class="line">RewriteRule (.*) https:&#x2F;&#x2F;www.cs75.net&#x2F;$1 [R&#x3D;301, L]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<ol>
+<li>HTTP_HOST is an environment variable, it is the host name. In English, the first line is a condition, it is saying if the host name is not starting with <a target="_blank" rel="noopener" href="http://www.cs75.net">www.cs75.net</a>(Regex), do the following line, [NC], no case, case insensetive</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>(.*) one or more any characters, it remembers what user was typing, redirect user to the correct URL, 301 move permanently, the browser saves the result and next time will redirect you automatically. whereas 302 is move temporarily.</li>
+</ol>
+</li>
+<li>The reason to do this is to make sure the URL in user’s browser is the website URL. Because there are multiple ways to visit the website and not typing the website URl. We could use ip address, we could use ‘udo vi /etc/hosts’(see end of lecture 0). So this will make sure that the URL will always be <a target="_blank" rel="noopener" href="http://www.cs75.net">www.cs75.net</a> no matter what user originally typed.</li>
+<li>XAMPP</li>
+<li>Linux, Apache, MySQL, PHP, Perl</li>
+<li>We can set up our dynamic website without using remote virtual server, people from outside world cannot visit it. But it is good for development purposes</li>
+<li>GET/POST</li>
+<li>GET: will change the state of the url, add parameters behind the quesiont mark ‘?’, parameters are separated by &amp;, everything will be shown in URL, not good to send sensitive or huge information</li>
+<li>POST: can upload files(images), it is not in URL, can send sensitive information. Post request cannot be copied. One of the downsides of POST is that when user click reload or backbutton, browser will try to submit the form again, you may end up buying things twice. One of the solutions would be, whenever user submitted a form, immediately redirect user to another website page with only GET request, so they cannot revisit the POST request page anymore.</li>
+<li>PHP</li>
+<li>Very well documented. Interpreted(alternative to compiled) language, you don’t need to compile it first then to run it, you can just give your code to a interpreter and it will run. Downside is performance. Once a C++ language be compiled, the complied code can be run by CPU superfast. whereas PHP needs to be interpreted everytime.</li>
+<li>suPHP</li>
+<li>Web servers usually have root user(administrator) and other users. If you are user A, and you want the web server to be able to use your PHP code. You have to set them to be readable. Then another user B would be able to see your PHP code. Use suPHP could solve this issue. It makes sure that web server can only execute A’s code when A’s logged in. And B cannot see it when B’s logged in. And A can only delete A’s file, so no one else could modify or break A’s code. If A’s website’s users upload files or images, they are stored in the server where only A can see.</li>
+<li>Variables</li>
+<li>Data Types(loose in PHP), PHP functions will return different data types based on situations</li>
+<li>Superglobals</li>
+</ul>
+<ol>
+<li>$_COOKIE, key values from browser</li>
+<li>$_ENV, lower details of user’s machine</li>
+<li>$_FILES</li>
+<li>$_GET, hash table</li>
+<li>$_POST, array</li>
+<li>$_REQUEST, details from requests</li>
+<li>$_SERVER, user agent, browser and OS</li>
+<li>$_SESSION, states, save values</li>
+</ol>
+<ul>
+<li>Command line</li>
+<li>mkdir, make directory</li>
+<li>cd, change directory</li>
+<li>cat/more, show content of a file</li>
+<li>ls, list content of a directory</li>
+<li>. current folder</li>
+<li>… parent folder</li>
+<li>ls -al, list permission settings for all files in current directory</li>
+<li>chmod, change mode of a file or directory: e.g. chmod a+r filename: give read access to a file called filename</li>
+<li>permission settings looks like this: -rw-rw-r–, the first - means it is a file or it can be ‘d’ for directory, it can then be split into three groups, they are the owner, the group and the world.</li>
+<li>Use $_GET[‘username’] to get the variable values user send by GET request.</li>
+<li>Use htmlspecialchars to escape all html tags to sanity check user inputs</li>
+</ul>
+<h2 id="chapter-2-php-continued"><a class="markdownIt-Anchor" href="#chapter-2-php-continued"></a> Chapter 2: PHP Continued</h2>
+<ul>
+<li>PHP is an interpreted language, it can be run at anywhere no matter what the PC is like. Compiled language depends on the PC, it may run at one PC and may not run at another.</li>
+<li>POST request</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;pre&gt;</span><br><span class="line">    &lt;?php print_r($_POST) ?&gt;</span><br><span class="line">&lt;&#x2F;pre&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>use print_r to recursivly display all data inside the POST request</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">    if (empty($_POST[&#39;fname&#39;]) || empty($_POST[&#39;lname&#39;])) &#123;</span><br><span class="line">        header(&quot;Location: http:&#x2F;&#x2F;localhost&#x2F;yuan&quot;);</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>check if necessary form information is filled(not empty). If not, redirect user back to the previous form page. header(“Location: URL”) is to redirect user</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;? if (empty($_POST[&#39;fname&#39;]) || empty($_POST[&#39;lname&#39;])): ?&gt;</span><br><span class="line">    You must provide your full name and gender to continue. Go &lt;a href&#x3D;&quot;index.html&quot;&gt;back&lt;&#x2F;a&gt;</span><br><span class="line">&lt;? else: ?&gt;</span><br><span class="line">    You are registered!</span><br><span class="line">    &lt;pre&gt;&lt;? print_r($_POST) ?&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;? endif ?&gt; </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;? if (empty($_POST[&#39;fname&#39;]) || empty($_POST[&#39;lname&#39;])) &#123; ?&gt;</span><br><span class="line">    You must provide your full name and gender to continue. Go &lt;a href&#x3D;&quot;index.html&quot;&gt;back&lt;&#x2F;a&gt;</span><br><span class="line">&lt;? &#125; else &#123; ?&gt;</span><br><span class="line">    You are registered!</span><br><span class="line">    &lt;pre&gt;&lt;? print_r($_POST) ?&gt;&lt;&#x2F;pre&gt;</span><br><span class="line">&lt;? &#125; ?&gt; </span><br></pre></td></tr></table></figure>
+<ul>
+<li>if else conditions in PHP supports both colon and curly brackets</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">if (!empty($_POST[&#39;fname&#39;]) &amp;&amp; !empty($_POST[&#39;lname&#39;])) &#123;</span><br><span class="line">    $to &#x3D; &#39;chengyuan82281681@hotmail.com&#39;;</span><br><span class="line">    $subject &#x3D; &#39;Registration&#39;;</span><br><span class="line">    $body &#x3D; &quot;This person just registered!\n\n&quot; .</span><br><span class="line">    $_POST[&#39;fname&#39;] . &quot;\n&quot; .</span><br><span class="line">    $_POST[&#39;lname&#39;];</span><br><span class="line">    $headers &#x3D; &quot;From: chengyuan82281681@hotmail.com\r\n&quot;;</span><br><span class="line">    mail($to, $subject, $body, $headers);</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">    header(&quot;Location: http:&#x2F;&#x2F;localhost&#x2F;yuan&#x2F;index.html&quot;);</span><br><span class="line">    exit;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Dot symbol is a concatenation symbol, connect two strings into one</li>
+<li>This mail function comes with PHP doesn’t uaually work on local network, because ISP blocks outbound port 25 for SMTP. Same reason as they block port 80.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">    if (isset($_POST[&#39;action&#39;])) &#123;</span><br><span class="line">        if (empty($_POST[&#39;fname&#39;]) || empty($_POST[&#39;lname&#39;])) &#123;</span><br><span class="line">            $error &#x3D; true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br><span class="line"></span><br><span class="line">&lt;? if ($error): ?&gt;</span><br><span class="line">    &lt;div style&#x3D;&quot;color: red&quot;&gt;You must fill out the form!&lt;&#x2F;div&gt;</span><br><span class="line">&lt;? endif ?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>To be able to check form errors using PHP code, index.html has to be changed to index.php</li>
+<li>in index.php, setup a variable named ‘action’(other names work too) and send it to the backend, the server code will know if user submit a form by checking by variable.</li>
+<li>if form has errors, send user back to itself with errors.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$DORMS &#x3D; array(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;);</span><br><span class="line">&lt;? foreach ($DORMS as $dorm): ?&gt;</span><br><span class="line">    &lt;option value&#x3D;&quot;&lt;?&#x3D; $dorm ?&gt;&quot;&gt;&lt;?&#x3D; $dorm ?&gt;&lt;&#x2F;option&gt; </span><br><span class="line">&lt;? endforeach ?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Define array in PHP</li>
+<li>Foreach loop in PHP</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">    foreach ($DORMS as $dorm) &#123;</span><br><span class="line">        if (isset($_POST[&quot;dorm&quot;]) &amp;&amp; $_POST[&quot;dorm&quot;] &#x3D;&#x3D; $dorm)</span><br><span class="line">            echo &quot;&lt;option selected&#x3D;&#39;selected&#39; value&#x3D;&#39;$dorm&#39;&gt;$dorm&lt;&#x2F;option&gt;&quot;;</span><br><span class="line">        else</span><br><span class="line">            echo &quot;&lt;option value&#x3D;&#39;$dorm&#39;&gt;$dorm&lt;&#x2F;option&gt;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>When redirect user back because there are some errors in the form, the selected value will stay</li>
+<li>Xdebug: extension of PHP to debug.</li>
+</ul>
+<h3 id="let-website-remember-your-login-with-sessions"><a class="markdownIt-Anchor" href="#let-website-remember-your-login-with-sessions"></a> Let website remember your login with sessions</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;?</span><br><span class="line">    &#x2F;&#x2F; 1</span><br><span class="line">    session_start();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 2</span><br><span class="line">    define(&quot;USER&quot;, &quot;yuan&quot;);</span><br><span class="line">    define(&quot;PASS&quot;, &quot;123&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 3</span><br><span class="line">    if (isset($_POST[&quot;user&quot;]) &amp;&amp; isset($_POST[&quot;pass&quot;])) &#123;</span><br><span class="line">        if ($_POST[&quot;user&quot;] &#x3D;&#x3D; USER &amp;&amp; $_POST[&quot;pass&quot;] &#x3D;&#x3D; PASS) &#123;</span><br><span class="line">            $_SESSION[&quot;authenticated&quot;] &#x3D; true;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; 4 save user in cookie for a week</span><br><span class="line">            setcookie(&quot;user&quot;, $_POST[&quot;user&quot;], time() + 7 * 24 * 60 * 60);</span><br><span class="line">            </span><br><span class="line">            &#x2F;&#x2F; redirect user to home page, using absolute path.</span><br><span class="line">            redirect(&quot;home.php&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; 5</span><br><span class="line">    function redirect($file) &#123;</span><br><span class="line">        $host &#x3D; $_SERVER[&quot;HTTP_HOST&quot;];</span><br><span class="line">        $path &#x3D; rtrim(dirname($_SERVER[&quot;PHP_SELF&quot;]), &quot;&#x2F;\\&quot;); &#x2F;&#x2F; current php directory, trim out unwanted leading slashes</span><br><span class="line">        header(&quot;Location: http:&#x2F;&#x2F;$host$path&#x2F;$file&quot;);</span><br><span class="line">        exit;</span><br><span class="line">    &#125;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<ol>
+<li>this will enable session, must be at the top of your code. Make sure no whitespaces or any code in front of this.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>Define constants</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>check user form data are exist and valid</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>Session will be saved on the web server on the disk with a unique session id. Cookie will saved on the client machine. Everytime user visit the website, it will show us the cookies, web server will quickly open up the file saved with the same session id, and grab all the values(key-value pairs) to our webpage. Webpage also can access to the user Cookies.</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>define functions in PHP</li>
+</ol>
+</li>
+<li>Note: make sure to give web server user the write permission to the session folder. Otherwise it cannot write session variables to the file. Also, make sure to use session_start(); in home.php as well. So it can have access to the session variables after redirecting. Any sensitive information should not be stored in the Cookies.</li>
+<li>Note: make sure to give web server user the write permission to the session folder. Otherwise it cannot write session variables to the file. Also, make sure to use session_start(); in home.php as well. So it can have access to the session variables after redirecting.</li>
+</ul>
+<h2 id="chapter-3-mvc-xml"><a class="markdownIt-Anchor" href="#chapter-3-mvc-xml"></a> Chapter 3: MVC XML</h2>
+<h3 id="mvc"><a class="markdownIt-Anchor" href="#mvc"></a> MVC</h3>
+<ul>
+<li>Change permission to write and read directory or files:</li>
+<li>Read: r = 4</li>
+<li>Write: w = 2</li>
+<li>Execute: x = 1</li>
+<li>adds them up to get the mode code.</li>
+<li>e.g. sudo chmod 644 filename means: give the file the permission level: -rw-r–r--</li>
+<li>sudo chmod 700 filename: give the file the permission level -rwx------</li>
+<li>commonly used mode of files:</li>
+<li>644: can be read and write by the file owner, also can be read by other group of users and the whole world.</li>
+<li>600: can be read and write by the file owner only.</li>
+<li>html 644</li>
+<li>gif 644</li>
+<li>jpg 644</li>
+<li>css 644</li>
+<li>js 644</li>
+<li>png 644</li>
+<li>php 600</li>
+<li>For directory: Read means user can list all content inside a directory(same as the ls command in terminal). Execute means user can go into this directory(same as the cd command).</li>
+<li>Common permission level for directory:</li>
+<li>dir 711: user can go into this directory, can read/write all its files. Other groups or outside world can only go into this directory. If they know the exact filename in this directory and has read permission to that particular file. They can read it. But they can’t list all filenames of that directory.</li>
+<li>dir 755: user can go into this directory, can read/write all its files, Other groups or outside world can go inside and list all files.</li>
+<li>Use different hostname with only one web server. Change the hosts table file to give your domain a different name locally instead of localhost. sudo vi /etc/hosts</li>
+<li>Use RewriteModule to manipulate the URL, route user to correct places with cleaner URLs</li>
+</ul>
+<h3 id="xml"><a class="markdownIt-Anchor" href="#xml"></a> XML</h3>
+<p><img src="/../images/Harvard-CS75-Web-Development/3.png" alt="" /></p>
+<ul>
+<li>XML is an extensible markup language where you can extend structure without breaking existing data and applications.</li>
+<li>Adding more children to an element is 100% fine.</li>
+<li>Config files can be XML, you can add more KEYs and variables to the config files later.</li>
+<li>Escape entities(pre-defined keywords) in XML: <code>&amp;amp;amp; &amp;amp;lt; &amp;amp;gt; &amp;amp;apos; &amp;amp;quot;</code></li>
+<li>Declare your own entity: <code>&amp;lt;!ENTITY nbsp &quot;&amp;amp;#160;&quot;&amp;gt;</code></li>
+<li>SimpleXML API: See XML in a Tree Structure</li>
+<li>DOM(Document Object Model)</li>
+<li>RSS</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/4.png" alt="" /></p>
+<ul>
+<li>In PHP, we can use SimpleXML API to read an XML file and load its contents.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;?</span><br><span class="line">    $dom &#x3D; simplexml_load_file(&quot;lectures.xml&quot;);</span><br><span class="line">    foreach ($dom-&gt;xpath(&quot;&#x2F;lectures&#x2F;lecture&quot;) as $lecture) &#123;</span><br><span class="line">    print &quot;&quot;;</span><br><span class="line">    print &quot;Lecture &quot; . $lecture[&quot;number&quot;] . &quot;: &quot;;</span><br><span class="line">    print $lecture-&gt;title;</span><br><span class="line">    print &quot;&quot;;</span><br><span class="line">    &#125;</span><br><span class="line">?&lt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Recall dot symbol . in PHP means concatenation.</li>
+<li>Select XML node from PHP using xpath: If you only want to display certain lecture, for example, lecture 3, you could add additional condition in xpath<br />
+<code>$dom-&gt;xpath(&quot;/lectures/lecture[@number='3']&quot;)</code></li>
+<li>@ is short for attributes, we can expend it as ‘attributes::’</li>
+<li>We can also start at any given node and go to its parent, chlid or siblings by define the axis in the path(below is just an example and will not work):<br />
+<code>$dom-&gt;xpath(&quot;/parent::lectures/child::lecture[attributes::number='3']&quot;)</code></li>
+</ul>
+<h2 id="chapter-4-sql"><a class="markdownIt-Anchor" href="#chapter-4-sql"></a> Chapter 4: SQL</h2>
+<ul>
+<li>CSV(comma separated values)</li>
+<li>PSV(Pipe separated values) pipe is the vertical line in the keyboard |</li>
+<li>TSV(Tab separated values)</li>
+<li>CSV</li>
+<li>fgetcsv: load csv file content into an array of arrays</li>
+<li>fputcsv: write content to a csv file</li>
+<li>XML: SimpleXML</li>
+<li>MySQL: database</li>
+<li>SQLite: Allow you to use SQL without an actual Database, it is just a file stored in your disk.</li>
+<li>SQL</li>
+<li>CREATE</li>
+<li>ALTER</li>
+<li>DROP</li>
+<li>SELECT</li>
+<li>INSERT</li>
+<li>UPDATE</li>
+<li>DELETE</li>
+<li>Connection MySQL to PHP: MyPHPAdmin</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&gt;?</span><br><span class="line">    &#x2F;&#x2F; enable sessions</span><br><span class="line">    session_start();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; connect to databsae</span><br><span class="line">    if (($connection &#x3D; mysqli_connect(&quot;localhost&quot;, &quot;yuan&quot;, &quot;123&quot;, &quot;yuan_lecture&quot;)) &#x3D;&#x3D;&#x3D; false)</span><br><span class="line">    die(&quot;Could not connect to database&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; if username and password were submitted, check them</span><br><span class="line">    if (isset($_POST[&quot;user&quot;]) &amp;&amp; isset($_POST[&quot;pass&quot;]))</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; prepare SQL</span><br><span class="line">        $sql &#x3D; sprintf(&quot;SELECT * FROM users WHERE username&#x3D;&#39;%s&#39;&quot;, mysqli_real_escape_string($connection, $_POST[&quot;user&quot;]));</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; execute query</span><br><span class="line">        $result &#x3D; mysqli_query($connection, $sql);</span><br><span class="line">        if ($result &#x3D;&#x3D;&#x3D; false)</span><br><span class="line">            die(&quot;Could not query database&quot;);</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; check whether we found a row</span><br><span class="line">        if (mysqli_num_rows($connection, $result) &#x3D;&#x3D; 1) &#123;</span><br><span class="line">            &#x2F;&#x2F; fetch row</span><br><span class="line">            $row &#x3D; mysqli_fetch_assoc($connection, $result);</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; check password</span><br><span class="line">            if ($row[&quot;password&quot;] &#x3D;&#x3D; $_POST[&quot;pass&quot;]) &#123;</span><br><span class="line">            &#x2F;&#x2F; remember that user&#39;s logged in</span><br><span class="line">            $_SESSION[&quot;authenticated&quot;] &#x3D; true;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; redirect user to home page, using absolute path.</span><br><span class="line">            redirect(&quot;home.php&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    function redirect($file) &#123;</span><br><span class="line">    $host &#x3D; $_SERVER[&quot;HTTP_HOST&quot;];</span><br><span class="line">    $path &#x3D; rtrim(dirname($_SERVER[&quot;PHP_SELF&quot;]), &quot;&#x2F;\\&quot;); &#x2F;&#x2F; current php directory, trim out unwanted leading slashes</span><br><span class="line">    header(&quot;Location: http:&#x2F;&#x2F;$host$path&#x2F;$file&quot;);</span><br><span class="line">    exit;</span><br><span class="line">    &#125;</span><br><span class="line">?&lt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<ol>
+<li>in mysql_connect(), the first variable is the DB server, second is username of the DB, thrid is the password of the DB</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>mysql_real_escape_string is preventing SQL injection attack.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>$result is a temporary table get from DB</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>mysql_num_rows return number of rows in the temp table</li>
+</ol>
+</li>
+<li>
+<ol start="5">
+<li>mysql_fetch_assoc return an associated array with keys and values from the temp table</li>
+</ol>
+</li>
+<li>One way hash password</li>
+<li>It is not good to store password in the DB in plain text. So we should use a hash function to hash the password into some random characters, whenever user logs in, we use the same algorithm to hash the password and check if it equals to the same random characters in the DB.</li>
+<li>SQL indexes, Constraints</li>
+<li>PRIMARY KEY</li>
+<li>INDEX: doing a binary search or some other tree structure to a column, so it will be much faster to run a query. Cost more disk space. The below image shows that this table has two indexes, and it is using BTREE structure to store all values.</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/8.png" alt="" /></p>
+<ul>
+<li>UNIQUE</li>
+<li>FULLTEXT</li>
+<li>BLOB (Binary Large Object) -&gt; etc. Images</li>
+<li>Although you can store images into DB, it cost space, it would be better to store it in a folder(file system), and store the link to this file into the DB.</li>
+<li>Foriegn Key: is a primary key in another table</li>
+</ul>
+<h2 id="chapter-5-sql-continued"><a class="markdownIt-Anchor" href="#chapter-5-sql-continued"></a> Chapter 5: SQL Continued</h2>
+<ul>
+<li>CRUD (Create Read Update Delete) model</li>
+<li>VARCHAR will save more space than using CHAR, because it uses different length of chars for each value.</li>
+<li>CHAR will use same length of chars for all values, but it will run query faster, because it knows the length of values, it can move to next value by adding the length to the current position. (For VARCHAR it has to keep searching until reach to the end of the value.)</li>
+<li>AI (Auto Increment) Good for IDs, plus one each time. When you delete the ID, the ID number will NOT be reused.</li>
+<li>Float numbers: 32-bit or 64-bit numbers are finite. If we are using it to represents real numbers(infinite), SQL will round the number to its closest number that it can find. e.g. if you enter 1.9, it might give you 1.89999999 instead. So it is not good to use Float to represent Money etc… important values</li>
+<li>MySQL Functions</li>
+<li>PDO(Portable Data Object)</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/5.png" alt="" /></p>
+<ul>
+<li>Assign variables to values, so when you change database next time, you don’t have to change the code. You just need to change the variables of PDO arguments.</li>
+<li>JOIN</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/6.png" alt="" /><br />
+<img src="/../images/Harvard-CS75-Web-Development/7.png" alt="" /></p>
+<ul>
+<li>Join tables together. Get data from multiple tables at once.</li>
+<li>In the above example, we could further create another table that has Product_Id and Product_Name, and use only Product_Id in the orders table.</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/9.png" alt="" /></p>
+<ul>
+<li>Only the person that have sold products are displayed.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT Employees.Name, Orders.Product</span><br><span class="line">FROM Employees</span><br><span class="line">JOIN Orders ON Employees.Employee_ID &#x3D; Orders.Employee_ID</span><br></pre></td></tr></table></figure>
+<ul>
+<li>This is another syntax to use to join tables. This is the same as the other SQL syntax shown above.</li>
+<li>Left Join, Right Join</li>
+<li>Their are differnt type of joins, they decides which table should carry more weight in this query. For example, in the Employees table, if someone has left the company and is no longer exist in the Employees table. But his sell history is still in the orders table. We want to keep the sell history. Then we could use a Right Join, it will display all sell history related. But will show NULL in the Employee_ID(because there is no corresponding Employee_ID in the Employees table).</li>
+<li>Race Conditions(Atomicity)</li>
+<li>In computer programming, an operation done by a computer is considered atomic if it is guaranteed to be isolated from other operations that may be happening at the same time. Put another way, atomic operations are indivisible.</li>
+<li>INSERT INTO table (a,b,c) VALUES (1,2,3) ON DUPLICATE KEY UPDATE c=c+1;</li>
+<li>This will help you to merge SELECT and UPDATE into one query. Potentially solve the race conditions issue(NOT enough though).</li>
+<li>Transactions</li>
+<li>Transactions means do the following queries atomically, do not allow any other queries perform in the meantime.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION;</span><br><span class="line">UPDATE ACCOUNT SET BALANCE &#x3D; BALANCE - 1000 WHERE NUMBER &#x3D; 2;</span><br><span class="line">UPDATE ACCOUNT SET BALANCE &#x3D; BALANCE + 1000 WHERE NUMBER &#x3D; 1;</span><br><span class="line">COMMIT;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In the example above, we transfer 1000 balance from account 1 to account 2 at the same time.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">START TRANSACTION;</span><br><span class="line">UPDATE ACCOUNT SET BALANCE &#x3D; BALANCE - 1000 WHERE NUMBER &#x3D; 2;</span><br><span class="line">UPDATE ACCOUNT SET BALANCE &#x3D; BALANCE + 1000 WHERE NUMBER &#x3D; 1;</span><br><span class="line">SELECT BALANCE FROM ACCOUNT WHERE NUMBER &#x3D; 2;</span><br><span class="line"># suppose account number 2 has a negative balance here!</span><br><span class="line">ROLLBACK;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In the example above, if we find something wrong happened after we perform the transaction, ROLLBACK will undo all the changes in the transaction.</li>
+<li>Locks (MyISAM)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LOCK TABLES account WRITE;</span><br><span class="line">SELECT balance FROM account WHERE number &#x3D; 2;</span><br><span class="line">UPDATE account SET balance &#x3D; 1500 WHERE number &#x3D; 2;</span><br><span class="line">UNLOCK TABLES;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>‘LOCK TABLES account WRITE;’’ will lock the table ‘account’, prevening people from WRITING to the table.</li>
+<li>One downside is that LOCK will lock the entire table, so no one can write to the table even if they are updating other accounts.</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/10.png" alt="" /></p>
+<ul>
+<li>Add Foreign key constraints so that the DB knows the primary key in one table is related to another foreign key in another table.</li>
+<li>ON DELETE RESTRICT and ON UPDATE RESTRICT means if we want to delete something that is actually a primary key in a table, DB will reject it because it is related to another tables. If we changed it to CASCADE, then if we delete a record that is a primary key, DB will delete all records that are related to this primary key in other tables too.</li>
+</ul>
+<h2 id="chapter-6-javascript"><a class="markdownIt-Anchor" href="#chapter-6-javascript"></a> Chapter 6: JavaScript</h2>
+<ul>
+<li>Javacript, like PHP, is also an interpreted language. Node.js is a server side js language.</li>
+</ul>
+<h3 id="global-objects"><a class="markdownIt-Anchor" href="#global-objects"></a> Global objects</h3>
+<ol>
+<li>Array</li>
+<li>Boolean</li>
+<li>Date</li>
+<li>Function</li>
+<li>Math</li>
+<li>Number</li>
+<li>Object</li>
+<li>RegExp</li>
+<li>String</li>
+</ol>
+<h3 id="array"><a class="markdownIt-Anchor" href="#array"></a> Array</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var array &#x3D; [];</span><br><span class="line">array[0] &#x3D; &#39;abc&#39;;</span><br><span class="line">array.push(&#39;abc&#39;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Array doesn’t have a fixed length, you can use index or ‘push’ method to add elements.</li>
+<li>Put cursor in form field that is empty.</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/11.png" alt="" /></p>
+<ul>
+<li>Document is a super global object. It is a DOM(document object model)</li>
+</ul>
+<p><img src="/../images/Harvard-CS75-Web-Development/12.png" alt="" /></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">    function validate(f)</span><br><span class="line">    &#123;</span><br><span class="line">        if (f.email.value &#x3D;&#x3D; &quot;&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            alert(&quot;You must provide an email adddress.&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (f.password1.value &#x3D;&#x3D; &quot;&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            alert(&quot;You must provide a password.&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (f.password1.value !&#x3D; f.password2.value)</span><br><span class="line">        &#123;</span><br><span class="line">            alert(&quot;You must provide the same password twice.&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (!f.agreement.checked)</span><br><span class="line">        &#123;</span><br><span class="line">            alert(&quot;You must agree to our terms and conditions.&quot;);</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line">&lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;form action&#x3D;&quot;process.php&quot; method&#x3D;&quot;get&quot; name&#x3D;&quot;registration&quot; onsubmit&#x3D;&quot;return validate(this);&quot;&gt;</span><br><span class="line">    Email: &lt;input name&#x3D;&quot;email&quot; type&#x3D;&quot;text&quot;&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    Password: &lt;input name&#x3D;&quot;password1&quot; type&#x3D;&quot;password&quot;&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    Password (again): &lt;input name&#x3D;&quot;password2&quot; type&#x3D;&quot;password&quot;&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    I agree to the terms and conditions: &lt;input name&#x3D;&quot;agreement&quot; type&#x3D;&quot;checkbox&quot;&gt;</span><br><span class="line">    &lt;br&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;Submit&quot;&gt;</span><br><span class="line">&lt;&#x2F;form&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>check the form fields values at client side using Javascript. validate(this), is passing ‘document.forms.registration’ to the function.</li>
+<li>Both client side and server side form validation and necessary. User’s can change js using tools like inspector console and bypass the client side validation.</li>
+<li>Regular Expressions</li>
+<li>Object</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var obj &#x3D; &#123;&#125;;</span><br><span class="line">obj.key &#x3D; value;</span><br><span class="line">obj[&#39;key&#39;] &#x3D; value;</span><br><span class="line">var obj &#x3D; &#123;key: value&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="event-handlers"><a class="markdownIt-Anchor" href="#event-handlers"></a> Event handlers</h3>
+<ol>
+<li>onblur</li>
+<li>onchange</li>
+<li>onclick</li>
+<li>onfocus</li>
+<li>onkeydown</li>
+<li>onkeyup</li>
+<li>onload</li>
+<li>onmousedown</li>
+<li>onmouseup</li>
+<li>onmouseout</li>
+<li>onmouseover</li>
+<li>onresize</li>
+<li>onselect</li>
+<li>onsubmit</li>
+</ol>
+<ul>
+<li>Call a function as a reference</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        function blinker()</span><br><span class="line">        &#123;</span><br><span class="line">            var blinks &#x3D; document.getElementsByTagName(&quot;blink&quot;);</span><br><span class="line">            for (var i &#x3D; 0; i &lt; blinks.length; i++)</span><br><span class="line">            &#123;</span><br><span class="line">                if (blinks[i].style.visibility &#x3D;&#x3D; &quot;hidden&quot;)</span><br><span class="line">                    blinks[i].style.visibility &#x3D; &quot;visible&quot;;</span><br><span class="line">                else</span><br><span class="line">                    blinks[i].style.visibility &#x3D; &quot;hidden&quot;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        window.setInterval(blinker, 500);</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">    &lt;center&gt;</span><br><span class="line">        &lt;blink&gt;&lt;h1&gt;hello, world&lt;&#x2F;h1&gt;&lt;&#x2F;blink&gt;</span><br><span class="line">    &lt;&#x2F;center&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Notice in the code above, when we call the blinker function in window.setInterval(blinker, 500), we are not adding () at the end of the function name. This is because we are passing a reference of that function(blinker) to it. If we use window.setInterval(blinker(), 500), we are passing the return result of blinker function to it, which will not work because blinker function doesn’t return anything.</li>
+<li>Anonymous function(lambda function)</li>
+<li>window.setInterval(function() { alert(“HI”); }, 5000);</li>
+<li>Javascript code can be minimized to save traffic. Variable names and spaces will be shrinked.</li>
+</ul>
+<h2 id="chapter-7-ajax"><a class="markdownIt-Anchor" href="#chapter-7-ajax"></a> Chapter 7: AJAX</h2>
+<p><img src="/../images/Harvard-CS75-Web-Development/13.png" alt="" /></p>
+<ul>
+<li>XML and json and data transfer machanism, json tends to be much more popular thesedays</li>
+<li>XMLHttpRequest</li>
+</ul>
+<ol>
+<li>abort()</li>
+<li>getAllResponseHeaders()</li>
+<li>getResponseHeader()</li>
+<li>open(method, url)</li>
+<li>open(method, url, async)</li>
+<li>open(method, url, async, user)</li>
+<li>open(method, url, async, user, password)</li>
+<li>send()</li>
+<li>send(data)</li>
+<li>setRequestHeader(header, value)</li>
+</ol>
+<h3 id="xmlhttprequest-properties"><a class="markdownIt-Anchor" href="#xmlhttprequest-properties"></a> XMLHttpRequest properties</h3>
+<ol>
+<li>onreadystatechange</li>
+<li>readyState(0 unitialized, 1 open, 2 sent, 3 receiving, 4 loaded)</li>
+<li>responseBody</li>
+<li>responseText</li>
+<li>responseXML</li>
+<li>status(200 OK, 404 Not Found, 500 Internal Server Error)</li>
+<li>statusText</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">function handler()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; only handle requests in &quot;loaded&quot; state</span><br><span class="line">        if (xhr.readyState &#x3D;&#x3D; 4)</span><br><span class="line">        &#123;</span><br><span class="line">            if (xhr.status &#x3D;&#x3D; 200)</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F; get XML</span><br><span class="line">                var xml &#x3D; xhr.responseXML;</span><br><span class="line"></span><br><span class="line">                &#x2F;&#x2F; update price</span><br><span class="line">                var prices &#x3D; xml.getElementsByTagName(&quot;price&quot;);</span><br><span class="line">                if (prices.length &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    var price &#x3D; prices[0].firstChild.nodeValue;</span><br><span class="line">                    document.getElementById(&quot;price&quot;).innerHTML &#x3D; price;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                &#x2F;&#x2F; update low</span><br><span class="line">                var lows &#x3D; xml.getElementsByTagName(&quot;low&quot;);</span><br><span class="line">                if (lows.length &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    var low &#x3D; lows[0].firstChild.nodeValue;</span><br><span class="line">                    document.getElementById(&quot;low&quot;).innerHTML &#x3D; low;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                &#x2F;&#x2F; update high</span><br><span class="line">                var highs &#x3D; xml.getElementsByTagName(&quot;high&quot;);</span><br><span class="line">                if (highs.length &#x3D;&#x3D; 1)</span><br><span class="line">                &#123;</span><br><span class="line">                    var high &#x3D; highs[0].firstChild.nodeValue;</span><br><span class="line">                    document.getElementById(&quot;high&quot;).innerHTML &#x3D; high;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">                alert(&quot;Error with Ajax call!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>if PHP return data as XML type, ajax has a function called responseXML, but it is not very easy to get the data you want. Because XML data structure is quite complex.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        &#x2F;&#x2F; an XMLHttpRequest</span><br><span class="line">        var xhr &#x3D; null;</span><br><span class="line">        &#x2F;*</span><br><span class="line">            * void</span><br><span class="line">            * quote()</span><br><span class="line">            *</span><br><span class="line">            * Gets a quote.</span><br><span class="line">            *&#x2F;</span><br><span class="line">        function quote()</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; instantiate XMLHttpRequest object</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                xhr &#x3D; new XMLHttpRequest();</span><br><span class="line">            &#125;</span><br><span class="line">            catch (e)</span><br><span class="line">            &#123;</span><br><span class="line">                xhr &#x3D; new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; handle old browsers</span><br><span class="line">            if (xhr &#x3D;&#x3D; null)</span><br><span class="line">            &#123;</span><br><span class="line">                alert(&quot;Ajax not supported by your browser!&quot;);</span><br><span class="line">                return;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; get symbol</span><br><span class="line">            var symbol &#x3D; document.getElementById(&quot;symbol&quot;).value;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; construct URL</span><br><span class="line">            var url &#x3D; &quot;quote7.php?symbol&#x3D;&quot; + symbol;</span><br><span class="line"></span><br><span class="line">            &#x2F;&#x2F; get quote</span><br><span class="line">            xhr.onreadystatechange &#x3D;</span><br><span class="line">            function()</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F; only handle loaded requests</span><br><span class="line">                if (xhr.readyState &#x3D;&#x3D; 4)</span><br><span class="line">                &#123;</span><br><span class="line">                    if (xhr.status &#x3D;&#x3D; 200)</span><br><span class="line">                    &#123;</span><br><span class="line">                        &#x2F;&#x2F; evaluate JSON</span><br><span class="line">                        var quote &#x3D; eval(&quot;(&quot; + xhr.responseText + &quot;)&quot;);</span><br><span class="line"></span><br><span class="line">                        &#x2F;&#x2F; show JSON in textarea</span><br><span class="line">                        document.getElementById(&quot;code&quot;).value &#x3D; xhr.responseText;</span><br><span class="line"></span><br><span class="line">                        &#x2F;&#x2F; insert quote into DOM</span><br><span class="line">                        var div &#x3D; document.createElement(&quot;div&quot;);</span><br><span class="line">                        var text &#x3D; document.createTextNode(symbol + &quot;: &quot; + quote.price);</span><br><span class="line">                        div.appendChild(text);</span><br><span class="line">                        document.getElementById(&quot;quotes&quot;).appendChild(div);</span><br><span class="line">                    &#125;</span><br><span class="line">                    else</span><br><span class="line">                        alert(&quot;Error with Ajax call!&quot;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            xhr.open(&quot;GET&quot;, url, true);</span><br><span class="line">            xhr.send(null);</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">    &lt;title&gt;&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">    &lt;form onsubmit&#x3D;&quot;quote(); return false;&quot;&gt;</span><br><span class="line">        Symbol: &lt;input id&#x3D;&quot;symbol&quot; type&#x3D;&quot;text&quot;&gt;</span><br><span class="line">        &lt;br&gt;&lt;br&gt;</span><br><span class="line">        &lt;input type&#x3D;&quot;submit&quot; value&#x3D;&quot;Get Quote&quot;&gt;</span><br><span class="line">    &lt;&#x2F;form&gt;</span><br><span class="line">    &lt;br&gt;&lt;br&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;quotes&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;br&gt;&lt;br&gt;</span><br><span class="line">    &lt;textarea cols&#x3D;&quot;80&quot; id&#x3D;&quot;code&quot; rows&#x3D;&quot;16&quot;&gt;&lt;&#x2F;textarea&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Encode ajax response to json and return to js as an object. json_encode is a PHP function that convert data into json string. ‘eval’ is a js function that convert json data into js object.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function() &#123;</span><br><span class="line">    $(&quot;#form&quot;).submit(function() &#123;</span><br><span class="line">        $.ajax(&#123;</span><br><span class="line">        url: &quot;quote7.php&quot;,</span><br><span class="line">        data: &#123; </span><br><span class="line">        symbol: $(&quot;#symbol&quot;).val()</span><br><span class="line">        &#125;,</span><br><span class="line">        success: function(data) &#123;</span><br><span class="line">            $(&quot;#price&quot;).html(data.price);</span><br><span class="line">            $(&quot;#high&quot;).html(data.high);</span><br><span class="line">            $(&quot;#low&quot;).html(data.low);</span><br><span class="line">        &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        return false;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Another even cleaner example is to using jQuery. Dollar sign $ is short for ‘jQuery’. $(&quot;#form&quot;) is equals to jQuery(&quot;#form&quot;)</li>
+<li>jQuery is a library that provides more functionality to your code. $(document) is passing document to the jQuery library so you can use the extra features that jQuery provides.</li>
+<li>.ready is to make sure the whole html page is being loaded correctly. Because some of the code in ready function may require html elements.</li>
+<li>.ajax function takes one argument, which is in the parentheses, the argument is an object. JS only has two data structures, array and object, which represented by [] and {} respectively.</li>
+<li>the object in .ajax function has three keys, url, data and success.</li>
+<li>url takes a string, which is the url we will go to.</li>
+<li>data takes an object, which is the data we send.</li>
+<li>success takes an anonymous function, it is only being called when ajax request is success.(state is ready and response code is 200)</li>
+<li>the anonymous function after the .submit event handler return false because we don’t want to submit the form again, we already got the data from the ajax call.</li>
+<li>Content Types</li>
+<li>Specify the data type of the current file.</li>
+<li>HTML (text/html) (default)</li>
+<li>XML (text/XML)</li>
+<li>JSON (application/json)</li>
+<li>PHP + JSON</li>
+<li>json_encode($value): convert data to json on server side to be ready to send</li>
+<li>eval(string): convert data from json to object so we can access it on the client side</li>
+<li>Same Origin Policy</li>
+<li>We are not allowed to display data we get from another domain. We can make ajax call at JS and get response, but we cannot display it. You cannot embed it into your DOM. CORS can override this.</li>
+</ul>
+<h2 id="chapter-8-security"><a class="markdownIt-Anchor" href="#chapter-8-security"></a> Chapter 8: Security</h2>
+<ul>
+<li>Obvious Threats</li>
+<li>Telnet, FTP, HTTP, MySQL</li>
+<li>suPHP, all users can only access to their own files. No one can delete or modify your files.</li>
+<li>Session Hijacking(scenarios)</li>
+<li>Physical Access</li>
+<li>Packet Sniffing: For website not using HTTPS</li>
+<li>Session Fixation: Guess the session ID</li>
+<li>XSS: Cross site scripting attack</li>
+<li>SSL Certificate</li>
+<li>Public key Cryptography</li>
+<li>There is a public key and a private key. Imagine we want to buy something from a website. Before we sending credit card information to the website. The website will send me the public key(can be see by everyone). And we are going to use the public key to encrypt the information. Only the private key can be used to decrypt the information. And only the website has the private key. Likewise, if the website wants to send me some information. I need to send it the public key too. And use my private key to decrypt it when I receive the information.</li>
+<li>SQL injection attacks</li>
+<li>mysql_real_escape_string(): put backslash to quote etc…</li>
+<li>Same-Origin Policy: You can only get data from the same origin as your HTML DOM. (ajax calls)</li>
+<li>CORS can override same origin policy, jsonp</li>
+<li>Attacks</li>
+<li>CSRF (Cross-site scripting forgery): If you login to some stock trade website recently and saved your login session. And you visited the bad website in the meantime and being tricked to click the link in their website. The link is actually a request and will send a request to the stock trade website to buy some stock. Note: User click a link could send both GET/POST request. Forms can be hidden and submitted by JS code. So just change the buying request to POST request doesn’t solve this issue.</li>
+<li>1.The way to prevent this is whenever you want to send a request, the website will send a random session token back to you. And you have to add this token in the request to be able to make the request work. The CSRF link will never know what the token is.</li>
+<li>2.CAPTCHA: enter some words that easy for human to see but not for machine.</li>
+<li>3.Whenever you want to checkout, the website will make you log out immediately when you click the checkout button.</li>
+<li>XSS</li>
+<li>You can access to the Cookie from JS</li>
+<li>And there is a flawed website which writing values to its body, and you can be tricked to click the link and send your Cookie to other people.</li>
+<li>An attacker can use XSS to send a malicious script to an unsuspecting user. The end user’s browser has no way to know that the script should not be trusted, and will execute the script. Because it thinks the script came from a trusted source, the malicious script can access any cookies, session tokens, or other sensitive information retained by the browser and used with that site.</li>
+<li>Escape HTML special chars</li>
+</ul>
+<h2 id="chapter-9-scalability"><a class="markdownIt-Anchor" href="#chapter-9-scalability"></a> Chapter 9: Scalability</h2>
+<h3 id="vertical-scaling"><a class="markdownIt-Anchor" href="#vertical-scaling"></a> Vertical Scaling</h3>
+<ul>
+<li>增加服务器的CPU，内存，硬盘等，但总会不够用</li>
+</ul>
+<ol>
+<li>CPU: cores, L2 cache…</li>
+<li>Disk: PATA, SATA, SAS, RAID</li>
+<li>RAID(Redundent array of independent disks)
+<ol>
+<li>RAID 0 :如果你有n块磁盘，原来只能同时写一块磁盘，写满了再下一块，做了RAID 0之后，n块可以同时写，速度提升很快，但由于没有备份，可靠性很差。n最少为2。</li>
+<li>RAID 1: 正因为RAID 0太不可靠，所以衍生出了RAID1。如果你有n块磁盘，把其中n/2块磁盘作为镜像磁盘，在往其中一块磁盘写入数据时，也同时往另一块写数据。坏了其中一块时，镜像磁盘自动顶上，可靠性最佳，但空间利用率太低。n最少为2。</li>
+<li>RAID 10: 是RAID 0 和RAID 1 的结合，同时写入n/2的硬盘并将剩下n/2作为备份，可靠性和速度都有，但是需要两倍的钱。</li>
+<li>RAID 3：为了说明白RAID 5，先说RAID 3.RAID 3是若你有n块盘，其中1块盘作为校验盘，剩余n-1块盘相当于作RAID 0同时读写，当其中一块盘坏掉时，可以通过校验码还原出坏掉盘的原始数据。这个校验方式比较特别，奇偶检验，1 XOR 0 XOR 1=0，0 XOR 1 XOR 0=1，最后的数据时校验数据，当中间缺了一个数据时，可以通过其他盘的数据和校验数据推算出来。但是这有个问题，由于n-1块盘做了RAID 0，每一次读写都要牵动所有盘来为它服务，而且万一校验盘坏掉就完蛋了。最多允许坏一块盘。n最少为3.</li>
+<li>RAID 5：在RAID 3的基础上有所区别，同样是相当于是1块盘的大小作为校验盘，n-1块盘的大小作为数据盘，但校验码分布在各个磁盘中，不是单独的一块磁盘，也就是分布式校验盘，这样做好处多多。最多坏一块盘。n最少为3.</li>
+<li>RAID 6：在RAID 5的基础上，又增加了一种校验码，和解方程似的，一种校验码一个方程，最多有两个未知数，也就是最多坏两块盘。</li>
+</ol>
+</li>
+<li>RAM</li>
+</ol>
+<h3 id="horizontal-scaling"><a class="markdownIt-Anchor" href="#horizontal-scaling"></a> Horizontal Scaling</h3>
+<ul>
+<li>增加更多的服务器，而不是提升每个服务器的配置。当我们拥有多于一个服务器时，当用户向服务器发送请求时，我们要一个load balancer去将进来的request平均分配给所有的服务器。load balancer拥有一个public IP。而每一个服务器有一个private IP，他们不需要public IP</li>
+</ul>
+<h3 id="load-balancing"><a class="markdownIt-Anchor" href="#load-balancing"></a> Load Balancing</h3>
+<ul>
+<li>如何给服务器平均分配request？我们可以将所有可用的服务器IP列出来，第一个request给第一个服务器，第二个request给第二个服务器，以此类推直到回到第一个，然后循环，这种方法叫做round-robin，优点是他不需要主动询问服务器的当前状态如何</li>
+</ul>
+<h3 id="caching"><a class="markdownIt-Anchor" href="#caching"></a> Caching</h3>
+<ul>
+<li>当用户通过load balancer登录到一号服务器时，他的登录信息如果保存在一号服务器，那么在他下一个request被分配到其他服务器时，他就需要再次登录，如果他在使用一个购物网站，他将一件商品加入到一号服务器的购物车中，然后又在二号服务器登录却找不到他的购物车，也不能结帐，这就会成为一个大问题</li>
+</ul>
+<h3 id="shared-session-statesticky-session"><a class="markdownIt-Anchor" href="#shared-session-statesticky-session"></a> Shared Session State(Sticky session)</h3>
+<ul>
+<li>我们可以将session，也就是用户信息储存在另外一个服务器中</li>
+<li>Shared Storage</li>
+<li>FC (Fiber Channel), iSCSI, MySQL, NFS</li>
+<li>Replicate your database, use more than one database to store sessions in case one goes down</li>
+</ul>
+<h3 id="cookie"><a class="markdownIt-Anchor" href="#cookie"></a> Cookie</h3>
+<ul>
+<li>当用户首次登陆时，load balancer可以想用户电脑中加入一个cookie，包含一些加密的服务器信息，所以当用户在短时间内再次访问时，load balancer就知道该将用户的请求发送到哪个服务器</li>
+</ul>
+<h3 id="load-balancer"><a class="markdownIt-Anchor" href="#load-balancer"></a> Load Balancer</h3>
+<ul>
+<li>Software: ELB(Amazon’s Elastic Load Balancer), HAProxy(High Availability Proxy), LVS(Linux Virtual Server)</li>
+<li>Hardware: Barracuda, Cisco, Citrix, F5</li>
+</ul>
+<h3 id="php-accelerators"><a class="markdownIt-Anchor" href="#php-accelerators"></a> PHP Accelerators</h3>
+<ul>
+<li>当我们在调用python程序时，我们需要先将以py结尾的代码文件编译成可直接执行的文件，然后再运行可执行文件得到结果。这样做的目的是当我们想再次得到结果时，我们不需要再次编译，可以直接运行执行文件。</li>
+<li>这样做可以提升效率，但是如果我们有任何的代码改动，我们就需要重新编译。</li>
+<li>PHP Accelerators有一样的逻辑，用户在发送相同的请求时，网站会直接运行可执行文件以提升速度</li>
+</ul>
+<h3 id="caching-2"><a class="markdownIt-Anchor" href="#caching-2"></a> Caching</h3>
+<ul>
+<li>.html</li>
+<li>Caching就是一种将你经常访问的数据提前保存到你的电脑上以便下次快速显示的技术。对于PHP来说，HTML网页是自动生成的，意味着每次用户访问时PHP都会重新生成一个新的重复的HTML文件。</li>
+<li>如果我们将所有的HTML网页都事先编译好储存在服务器上，用户访问时就可以快速拿到这些静态网页，因为不需要每次都进行编译。这就是一种Caching</li>
+<li>这样做的坏处是，当你需要更改整个网站的风格时，你就需要更改所有的HTML文件。</li>
+<li>MySQL Query Cache：MySQL会将一些query的结果caching，第一次运行时如果你的table很大，或者你要找的column没有index，他会运行一段时间，但是下次你就会更快的看到结果</li>
+<li>memcached</li>
+<li>memory cache， 内存的读写要比硬盘快很多，所以我们如果有一百万个用户，服务器SQL拿到一个用户数据可能会需要很长时间，我们可以将这个用户数据保存在memory里面，下次就可以快速得到</li>
+<li>下面是PHP将用户数据保存到memcache的代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$memcache &#x3D; memchache_connect(HOST, PORT);</span><br><span class="line">$user &#x3D; memcache_get($memcache, $id);</span><br><span class="line">&#x2F;&#x2F; 如果内存里面没有这个用户的id，我们就从数据库中拿取，之后把他添加到内存中</span><br><span class="line">if (is_null($user))</span><br><span class="line">&#123;</span><br><span class="line">    $bdh &#x3D; new PDO(DSN, USER, PASS;</span><br><span class="line">    $result &#x3D; $dbh-&gt;query(&quot;SELECT * FROM users WHERE id &#x3D; $id&quot;);</span><br><span class="line">    $user &#x3D; $result-&gt;fetch(PDO:FETCH_ASSOC); &#x2F;&#x2F; this is to get the associated array of data(username, email address,...)</span><br><span class="line">    memcache_set($memcache, $user[&#39;id&#39;], $user)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果我们一直将数据添加到内存中，内存总有一天会不够用，这时我们就需要删除一些数据来释放空间，我们可以删除最早的数据（LRU， Least Recent Used）或者最少用到的数据(LFU, Least Frequent Used)</li>
+</ul>
+<h3 id="data-replication-master-slave"><a class="markdownIt-Anchor" href="#data-replication-master-slave"></a> Data Replication: Master: slave</h3>
+<ul>
+<li>主从关系的服务器复制，所有的附属服务器要从主服务器中拿取数据，要将新数据写入主服务器，一切以主服务器为准，优点在于当主服务器down机时，我们可以自动化一个过程：因为所有服务器的数据都是一样的，我们可以将一个附属服务器晋升为新的主服务器。以保证服务不间断</li>
+<li>适用于读多于写的网站，所有的读取都去附属服务器，所有的写入都去主服务器</li>
+<li>缺点是当主服务器down机时，写入会短暂失效一段时间直到其中一个附属服务器成为新的主服务器</li>
+</ul>
+<h3>Data Replication: Master: Master</h3>
+- 当其中一个主服务器失效时，我们还有另外一个，从而保证不会有服务间断的时间.同样，读取请求发送到附属服务器，写入发送到主服务器
+<p><img src="/../images/Harvard-CS75-Web-Development/14.png" alt="" /></p>
+<ul>
+<li>上面的图片还是有一个缺点，就是如果load balancer失效了，整个服务还是会断开。所以我们需要有两个相同作用的load balancer</li>
+<li>Load Balancer: active: active</li>
+<li>每个load balancer都负责分配任务，并且他们会不断的每个一段时间向另一个load balancer发送一个heart beat，以证明自己的存在。如果任何一个load balancer没有收到另一个的心跳，他就将负责所有的流量</li>
+<li>Load Balancer: active: passive</li>
+<li>与之前相似，只不过一开始只有一个load balancer负责所有的流量，并且向passive的load balancer发送心跳，如果passive load balancer没有接收到心跳，他就把自己提升为active load balancer，并开始负责所有的任务。</li>
+</ul>
+<h3 id="partitioning"><a class="markdownIt-Anchor" href="#partitioning"></a> Partitioning</h3>
+<p><img src="/../images/Harvard-CS75-Web-Development/15.png" alt="" /></p>
+<ul>
+<li>将整个服务系统复制，供多个不同的客户使用，Facebook早期将不同学校的用户分到不同的服务器中，<a target="_blank" rel="noopener" href="http://xn--harvard-lr4kp4co76w.facebook.com">类似于harvard.facebook.com</a>, <a target="_blank" rel="noopener" href="http://MIT.facebook.com">MIT.facebook.com</a>,以此来降低流量的压力。这样的话当你想联系不同大学的人时，就会有些困难。另外一个例子是我们可以将用户分配到不同的服务器中based on他们的名字，A-M到第一个，N-Z到第二个</li>
+</ul>
+<h3 id="high-availiability"><a class="markdownIt-Anchor" href="#high-availiability"></a> High Availiability</h3>
+<p><img src="/../images/Harvard-CS75-Web-Development/16.png" alt="" /></p>
+<ul>
+<li>不同的服务器之间互相听取对方的心跳，并随时准备take over当另外的服务器offline</li>
+<li>网络层和web server层之间需要load balancer web server层和DB层之间也需要load balancer，load balancer会将第一个返回的DB的信息加到Cookie中返回给用户，这样用户在Cookie过期之前都会被route到同一个服务器, 这样就保证用户不会被分配到另一个服务器里面却没有他最新的数据，服务器之间也会相互同步。 每一层之间的load balancer也需要多个以保证一个offlice不会影响全局。可以使用active active或者active passive， DB也需要多个，可以是Master Master或者Master Slave. 最后就是这样的一个Data center也需要多个，就像AWS一样在US， Aisa， Europe都会有服务器。</li>
+</ul>
+<h3 id="security"><a class="markdownIt-Anchor" href="#security"></a> Security</h3>
+<ul>
+<li>什么样的traffic可以进入data center？TCP 80和443</li>
+<li>什么样的traffic可以从load balancer到web server？TCP 80. 我们可以在load balancer中加入证书并解密所有的traffic，然后之后的所有traffic都保持不加密的状态，因为我们已经进入到data center，不需要在担心安全问题，所以让load balancer去做揭秘这样的繁重工作，web server只负责应付无秘traffic</li>
+<li>什么样的traffic从web server到DB？一般的SQL queries 也是 TCP 3306（port number 3306 is the default number SQL query uses）</li>
+<li>注意web server之间并不能交流。</li>
+<li>我们之所以设置这些规则，只让这些port的traffic进入，是因为加如其中一个web server被攻占了，那么它也只能向DB发送SQL请求，不能向其他web server发送443或者80请求，将破坏控制在最小。</li>
+</ul>
+<h3 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=-W9F__D3oY4">S75 (Summer 2012) Lecture 9 Scalability Harvard Web Development David Malan</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2020/06/30/Harvard-CS75-Web-Development/" title="Harvard CS75 Web Development" target="_blank" rel="external">http://hellcy.github.io/2020/06/30/Harvard-CS75-Web-Development/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/08/27/Dynamic-Programming/" title="Dynamic Programming"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/05/10/Data-Structures-Advanced/" title="Data Structures Advanced"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

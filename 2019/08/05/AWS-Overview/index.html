@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>AWS Overview | Hellcy&#39;s Blog</title>
+  <meta name="description" content="什么是AWS？  AWS是Amazon的云服务，我现在用到的是其中的API Gateway和Lambda，API Gateway就是API网关，当网关收到request时，可以运行对应的Lambda function，生成response，然后返回。   Lambda function and API Gateway  Introduction Create AWS Serverless App">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS Overview">
+<meta property="og:url" content="http://hellcy.github.io/2019/08/05/AWS-Overview/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是AWS？  AWS是Amazon的云服务，我现在用到的是其中的API Gateway和Lambda，API Gateway就是API网关，当网关收到request时，可以运行对应的Lambda function，生成response，然后返回。   Lambda function and API Gateway  Introduction Create AWS Serverless App">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/29.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/30.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/31.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/32.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/33.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/34.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/35.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/36.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/37.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/38.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/39.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/40.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/44.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/41.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/42.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/43.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/20.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/19.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/21.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/22.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/24.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/23.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/25.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/26.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/27.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/28.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/45.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/46.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/47.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/49.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-Overview/48.png">
+<meta property="article:published_time" content="2019-08-05T09:03:22.000Z">
+<meta property="article:modified_time" content="2021-02-26T12:08:47.158Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="AWS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/AWS-Overview/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2019/08/05/AWS-Overview/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFaws"><span class="toc-number">1.</span> <span class="toc-text"> 什么是AWS？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lambda-function-and-api-gateway"><span class="toc-number">2.</span> <span class="toc-text"> Lambda function and API Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#api-gateway"><span class="toc-number">2.1.</span> <span class="toc-text"> API Gateway</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lambda-function"><span class="toc-number">2.2.</span> <span class="toc-text"> Lambda function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#test-api-gateway-and-lambda-function"><span class="toc-number">2.3.</span> <span class="toc-text"> Test API Gateway and Lambda function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#create-aws-serverless-application"><span class="toc-number">2.4.</span> <span class="toc-text"> Create AWS Serverless Application</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#calling-trusted-frame-from-swift"><span class="toc-number">2.5.</span> <span class="toc-text"> Calling trusted frame from swift</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9api%E5%9F%9F%E5%90%8D-custom-domain-names"><span class="toc-number">2.6.</span> <span class="toc-text"> 更改API域名 Custom Domain Names</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#change-lambda-function-outbound-ip-address-to-static"><span class="toc-number">2.7.</span> <span class="toc-text"> change lambda function outbound IP address to static</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B7%E4%BD%93%E5%81%9A%E6%B3%95"><span class="toc-number">2.8.</span> <span class="toc-text"> 具体做法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E7%82%B9"><span class="toc-number">2.9.</span> <span class="toc-text"> 需要注意的点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reference"><span class="toc-number">2.10.</span> <span class="toc-text"> Reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#use-iam-to-restrict-api"><span class="toc-number">3.</span> <span class="toc-text"> Use IAM to restrict API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reference-2"><span class="toc-number">3.1.</span> <span class="toc-text"> Reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#use-s3-to-host-webpage"><span class="toc-number">4.</span> <span class="toc-text"> Use S3 to host webpage</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reference-3"><span class="toc-number">4.1.</span> <span class="toc-text"> Reference</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#aws-simple-email-services"><span class="toc-number">5.</span> <span class="toc-text"> AWS Simple Email Services</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#reference-4"><span class="toc-number">5.1.</span> <span class="toc-text"> Reference</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-AWS-Overview" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AWS Overview
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2019/08/05/AWS-Overview/" class="article-date">
+	  <time datetime="2019-08-05T09:03:22.000Z" itemprop="datePublished">05-08-2019</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/AWS/" rel="tag">AWS</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2019/08/05/AWS-Overview/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.8k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 15(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="什么是aws"><a class="markdownIt-Anchor" href="#什么是aws"></a> 什么是AWS？</h2>
+<ul>
+<li>AWS是Amazon的云服务，我现在用到的是其中的API Gateway和Lambda，API Gateway就是API网关，当网关收到request时，可以运行对应的Lambda function，生成response，然后返回。</li>
+</ul>
+<ol>
+<li><a href="#lambda-function-and-api-gateway">Lambda function and API Gateway</a>
+<ol>
+<li>Introduction</li>
+<li><a href="#create-aws-serverless-application">Create AWS Serverless Application</a></li>
+<li><a href="#%E6%9B%B4%E6%94%B9API%E5%9F%9F%E5%90%8D-custom-domain-names">更改API域名 Custom Domain Names</a></li>
+<li><a href="#change-lambda-function-outbound-ip-address-to-static">change lambda function outbound IP address to static</a></li>
+</ol>
+</li>
+<li><a href="#use-iam-to-restrict-api">Use IAM to restrict API</a></li>
+<li><a href="#use-s3-to-host-webpage">Use S3 to host webpage</a></li>
+<li><a href="#aws-simple-email-services">AWS Simple Email Services</a></li>
+</ol>
+<h2 id="lambda-function-and-api-gateway"><a class="markdownIt-Anchor" href="#lambda-function-and-api-gateway"></a> Lambda function and API Gateway</h2>
+<p><img src="/../images/AWS-Overview/1.png" alt="create API Gateway" /></p>
+<p><img src="/../images/AWS-Overview/2.png" alt="API Gateway Overview" /></p>
+<h3 id="api-gateway"><a class="markdownIt-Anchor" href="#api-gateway"></a> API Gateway</h3>
+<ul>
+<li>他总共分成6个部分，第一个部分是Test，也就是send test request的地方，sample request会先到达Method Request，在这里你可以往request里面加入Query string parameters, Http headers, Request body来让request符合Lambda的要求。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/3.png" alt="Proxy integration" /></p>
+<ul>
+<li>再下一个部分是Integration Request，在这里可以选择对应的Lambda function，让request知道该去往哪个Lambda，并且可以勾选Use Lambda Proxy integration, 如果勾选，它代表着AWS会帮你把request中的信息(包括query parameter, header, body等)保存到一个类似Dictionary的结构中，在lambda里面可以直接通过key name调用，不用手动提取信息。在下一部分就是运行相应的Lambda function了，这个在接下来的Lambda部分中讲。当Lambda运行完之后会生成一个response，如果勾选了之前的Proxy integration，这个地方就是灰色的，不能查看，因为它会帮你把response里的信息自动填充到header，body。。。并且使用自带的response template model，所以你就不用操心这个了。不然的话你可以手动设置response的格式。最后一个部分是Method response，当设置好reponse格式之后，你可以把response status code，连同optional的header和body返回给用户。还可以设置body的格式，比如JSON。</li>
+</ul>
+<h3 id="lambda-function"><a class="markdownIt-Anchor" href="#lambda-function"></a> Lambda function</h3>
+<ul>
+<li>这里是你真正处理请求并返回数据的地方，AWS支持很多种语言的function。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/5.png" alt="Lambda function" /></p>
+<p><img src="/../images/AWS-Overview/12.png" alt="Lambda Runtime language" /></p>
+<ul>
+<li>
+<p>我是用C#，这需要在Visual Studio中安装AWS package，在unget manager里面搜索AWS就可以找到AWS SDK了。安装之后就可以新建AWS solution并publish到AWS Lambda中。</p>
+</li>
+<li>
+<p>这次我需要写的function就是调用Westpac API，所以其实是用户先调用AWS API，然后这个API再调用Westpac API。。。</p>
+</li>
+<li>
+<p>如果request中含有parameter或者body信息，那么在function中的APIGatewayProxyRequest中就会含有这些参数信息，这就是之前勾选了proxy integration的好处</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/6.png" alt="code1" /></p>
+<p><img src="/../images/AWS-Overview/7.png" alt="code2" /></p>
+<ul>
+<li>在上传时新建一个Lambda function，另外下面的Method name要对应刚刚C#中的method name，因为有时候我们会在一个solution中写多个method，连接多个Lambda function，所以要一一对应。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/9.png" alt="upload Lambda function" /></p>
+<h3 id="test-api-gateway-and-lambda-function"><a class="markdownIt-Anchor" href="#test-api-gateway-and-lambda-function"></a> Test API Gateway and Lambda function</h3>
+<ul>
+<li>之后就是用AWS测试刚刚写好的API了，注意测试之前要先deploy API Gateway，确保与Lambda function对应，这个可以在lambda function中的API Gateway endpoint里看到，如果能看到endpoint url，就说明对应成功了。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/4.png" alt="API Gateway endpoint url" /></p>
+<ul>
+<li>测试的时候可以加query strings，就是request中的parameters，右边可以看到测试结果，因为这个是GET request，所以我们不能加Request Body。在POST request中是可以的。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/8.png" alt="test API Gateway" /></p>
+<ul>
+<li>这个是另外一个POST request with JSON body</li>
+</ul>
+<p><img src="/../images/AWS-Overview/11.png" alt="POST request with JSON body" /></p>
+<h3 id="create-aws-serverless-application"><a class="markdownIt-Anchor" href="#create-aws-serverless-application"></a> Create AWS Serverless Application</h3>
+<p><img src="/../images/AWS-Overview/29.png" alt="AWS Serverless Application" /></p>
+<ul>
+<li>这更像是一个Lambda project，可以让API gateway一次连接多个Lambda functions，也可以在Visual Studio里调整API Gateway的一些设置</li>
+</ul>
+<p><img src="/../images/AWS-Overview/30.png" alt="API gatewat settings" /></p>
+<ul>
+<li>这是project包含的template文件，我们可以设置API的类型，Request的类型，路径，以及这个API对AWS的可操作权限等</li>
+</ul>
+<p><img src="/../images/AWS-Overview/31.png" alt="API Gateway sturcture" /></p>
+<ul>
+<li>
+<p>发布后在API Gateway中就可以看到这个层级结构和template是完全一样的</p>
+</li>
+<li>
+<p>之前讲到我们可以在API Gateway中测试API，其实在Visual Studio里，发布之前我们就可以debug他，就是debug所在的位置，只不过现在显示的是Mock test tool</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/32.png" alt="Mock test tool" /></p>
+<ul>
+<li>
+<p>他长这个样子</p>
+</li>
+<li>
+<p>其中有两个需要注意的地方，第一个是我们需要调用的function，因为这是一个lambda projects，包含多个lambda functions，所以调用哪一个必须提前声明</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/33.png" alt="execute lambda function" /></p>
+<ul>
+<li>
+<p>还有一个就是input，因为我使用的proxy，所以在列表中选择proxy，会生成一个template，然后我们需要什么input就在相应的地方加就可以了</p>
+</li>
+<li>
+<p>比如如果要在request body里加，就找到body所在的位置，query parameter和path parameter同理</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/34.png" alt="proxy template" /></p>
+<ul>
+<li>最后说一下如何发布，跟之前的lambda function一样，只不过我们需要创建一个S3 bucket来存放所有的历史版本。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/35.png" alt="publish S3 bucket" /></p>
+<ul>
+<li>他会自动清理之前旧版的project，当状态显示的是update complete，我们就知道他已经可以使用了</li>
+</ul>
+<p><img src="/../images/AWS-Overview/36.png" alt="publish complete" /></p>
+<h3 id="calling-trusted-frame-from-swift"><a class="markdownIt-Anchor" href="#calling-trusted-frame-from-swift"></a> Calling trusted frame from swift</h3>
+<ul>
+<li>另外一个任务是，因为我们不能经受任何信用卡信息，所以我们需要用到westpac trusted frame，通过调用这个Javascript library来让用户将信用卡信息直接发送到westpac的服务器，然后处理westpac的response就可以了。但是有一个问题是，我们希望用户能在我们的手机app上也可以调用westpac API，可以这个trusted frame是一个只支持web application的Javascript library，这就需要我们在Swift中加入WebKit，同时在用户在含有trusted frame的web page中submit form时，将返回的信息发送到Swift的某个Method中。简而言之，我们需要在javascript中调用Swift</li>
+</ul>
+<h3 id="更改api域名-custom-domain-names"><a class="markdownIt-Anchor" href="#更改api域名-custom-domain-names"></a> 更改API域名 Custom Domain Names</h3>
+<ul>
+<li>AWS API的标准名字是这样的格式</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;api-id.execute-api.region.amazonaws.com&#x2F;stage</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这很复杂而且跟API的功能也没有任何联系</li>
+<li>我们可以更改他的域名，让他的名字更有意义</li>
+</ul>
+<p><img src="/../images/AWS-Overview/37.png" alt="Costom domain name" /></p>
+<ul>
+<li>
+<p>在新建域名时，我们可以给域名增加certificate，这需要通过在AWS ACM(certificate manager)中新增certificate来实现</p>
+</li>
+<li>
+<p>我们还需要在internet中新建一个我们想要的域名，然后用route 53来把这个域名和API关联起来，上图中的Target domain name就是自定义域名需要关联的域名。在route 53中找到hosted zones，然后新增一行record，把target domain name填入，再自定义一个域名就可以了</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/38.png" alt="domain settings" /></p>
+<ul>
+<li>AWS API分为两种，一种是Edge Optimized，另一个是Regional，在API Gateway中每一个API的settings中可以看到，也可以更改其Endpoint type</li>
+</ul>
+<p><img src="/../images/AWS-Overview/39.png" alt="API Endpoint Type" /></p>
+<ul>
+<li>最后测试一下看看域名是不是成功了，记住route 53需要一点时间才能把域名建好并且go live，所以等几分钟再试</li>
+</ul>
+<p><img src="/../images/AWS-Overview/40.png" alt="test domain" /></p>
+<ul>
+<li>本节参考了这些文章，可以点击以获取更多信息。</li>
+</ul>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-custom-domains.html">Set Up a Custom Domain Name for an API in API Gateway</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/apigateway/latest/developerguide/how-to-edge-optimized-custom-domain-name.html">How to Create an Edge-Optimized Custom Domain Name</a></li>
+</ol>
+<h3 id="change-lambda-function-outbound-ip-address-to-static"><a class="markdownIt-Anchor" href="#change-lambda-function-outbound-ip-address-to-static"></a> change lambda function outbound IP address to static</h3>
+<ul>
+<li>
+<p>我们还可以设置API outbound request的IP，有些时候，当我们需要调用外部API时，他们会有IP地址的限制，只有来自特定whitelist的IP地址发送的请求才会被接受。所以我们需要设置我们发送API时请求的IP地址。因为Lambda function是通过AWS发送的，在被发送时它的IP地址是随机的，虽然不是动态IP，但是每次发送的地址都不一样，我们没办法把所有的IP都加近whitelist。</p>
+</li>
+<li>
+<p>针对这个问题，我们可以通过把lambda function加入VPC来解决，VPC可以看作是包含一组IP地址的内部云，我们给它加上一个出口，让所有在此VPC的请求都通过这个出口发送出去，这样所有的lambda都会只有一个我们指定的IP了。</p>
+</li>
+<li>
+<p>我们具体来解释一下AWS VPC的构造</p>
+</li>
+<li>
+<p>如果AWS EC2是一个云服务器，那么VPC就是这个云服务器的网络层，负责设备之间的信息传输。它由几个重要部分构成</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/44.png" alt="VPC" /></p>
+<ol>
+<li>Subnet: 包含一组指定范围的IP，IP格式参照<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">CIDR</a></li>
+<li>Route table: 包含信息传输的规则，什么地方来的请求应该到什么地方去，类似一个交通枢纽，负责指挥数据的方向</li>
+<li>Internet gateway: VPC的一个重要组成部分，负责VPC内部信息和外部网络的交流，就是这个VPC的出口</li>
+<li>Elastic IP: 一个公开的IPv4地址，我们要把它赋给NAT，这样就可以让外部和NAT内部通过这个公开IP进行交流</li>
+<li>NAT Gateway: Network Address Translator Gateway, 与Internet Gateway类似，不同的是它可以让private subnet中的数据通过它与外部网络交流</li>
+</ol>
+<h3 id="具体做法"><a class="markdownIt-Anchor" href="#具体做法"></a> 具体做法</h3>
+<ol>
+<li>新建一个VPC</li>
+<li>新建一个Internet Gateway，与VPC相连</li>
+<li>新建一个Public subnet，并在route table中新建一个规则，让所有通过这个public subnet的数据流向Internet Gateway</li>
+<li>新建一个Elastic IP</li>
+<li>新建一个NAT Gateway，把Elastic IP赋给它，并将它放入public subnet中</li>
+<li>新建一个private subnet，并在route table中新建一个规则，让所有通过这个private subnet的数据流向NAT Gateway</li>
+<li>将lambda function放入private subnet</li>
+</ol>
+<ul>
+<li>
+<p>这样一切就设置完成了，当lambda被执行时，数据会通过private subnet，根据route table的规则流向NAT gateway</p>
+</li>
+<li>
+<p>NAT Gateway将数据赋予Elastic IP，因为NAT在public subnet中，根据route table规则流向Internet Gateway</p>
+</li>
+<li>
+<p>Internet Gateway将数据发给外部网络，此时所有数据都会来自同一个Elastic IP</p>
+</li>
+</ul>
+<h3 id="需要注意的点"><a class="markdownIt-Anchor" href="#需要注意的点"></a> 需要注意的点</h3>
+<ul>
+<li>在将lambda function放入subnet时，只给它private subnet，不要给public subnet，因为这样他就有可能不通过NAT gateway</li>
+</ul>
+<p><img src="/../images/AWS-Overview/41.png" alt="add VPC to lambda" /></p>
+<ul>
+<li>给lambda function加VPC需要一个AWS permission</li>
+</ul>
+<p><img src="/../images/AWS-Overview/42.png" alt="add VPC permission to lambda" /></p>
+<ul>
+<li>可以创建另一个lambda function，只接受特定IP来测试整个流程是否成功。图为限制IP的policy</li>
+</ul>
+<p><img src="/../images/AWS-Overview/43.png" alt="whitelist ip" /></p>
+<h3 id="reference"><a class="markdownIt-Anchor" href="#reference"></a> Reference</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@matthewleak/aws-lambda-functions-with-a-static-ip-89a3ada0b471">AWS Lambda functions with a static IP</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html">Configuring a Lambda Function to Access Resources in a VPC</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/awesome-cloud/aws-vpc-difference-between-internet-gateway-and-nat-gateway-c9177e710af6">AWS — Difference between Internet gateway and NAT gateway</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/vpc/latest/userguide/what-is-amazon-vpc.html">What Is Amazon VPC?</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html">What Is Amazon EC2?</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses</a></li>
+</ol>
+<h2 id="use-iam-to-restrict-api"><a class="markdownIt-Anchor" href="#use-iam-to-restrict-api"></a> Use IAM to restrict API</h2>
+<ul>
+<li>
+<p>HTTP basic authentication是一种保护API免受外界攻击的方式，当我们尝试打开某些URL时，有时会出现这个界面让我们输入用户名和密码，这就是一种Basic authentication<br />
+<img src="/../images/AWS-Overview/13.png" alt="browser pop up authentication window" /></p>
+</li>
+<li>
+<p>这种机制依赖于HTTP Authentication Framework，他的步骤是：</p>
+</li>
+</ul>
+<ol>
+<li>某些人尝试访问一个受保护的URL</li>
+<li>服务器返回401未授权的HTTP code，包括一个WWW-Authenticate header with value Basic</li>
+<li>浏览器弹出要求用户输入用户名和密码的窗口</li>
+<li>请求再次被发送，包括用户输入的授权信息在header中</li>
+</ol>
+<p><img src="/../images/AWS-Overview/14.png" alt="API authentication procedure" /></p>
+<ul>
+<li>
+<p>那么这个简单的API authentication怎么实现呢？</p>
+</li>
+<li>
+<p>首先我们去到已经建好的API Gateway中，点击Gateway responses选项，选中Unauthorized，在这里我们可以设置返回什么样的信息给用户当他们尝试访问这个URL时。</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/15.png" alt="set 401 response" /></p>
+<ul>
+<li>当我们添加了WWW-Authenticate header，浏览器就会弹出窗口要求用户自证身份</li>
+</ul>
+<p><img src="/../images/AWS-Overview/20.png" alt="test pop up window" /></p>
+<ul>
+<li>之后我们需要写一个Lambda function去检查用户提交的信息是否是正确的，也就是检查用户名和密码。这个function也叫做custom authorizer</li>
+</ul>
+<p><img src="/../images/AWS-Overview/16.png" alt="authentication lambda function" /></p>
+<ul>
+<li>接下来我们需要让我们的API知道当他接收到Authentication信息时需要调用哪个lambda function来检查，所以去到API gateway的Authorizer选项，新建一个Authorizer，在lambda function中选中我们刚刚写好的lambda function</li>
+</ul>
+<p><img src="/../images/AWS-Overview/17.png" alt="create authorizer" /></p>
+<ul>
+<li>最后我们还需要让API gateway知道哪个URL endpoint是需要保护的，因为一个API gatewat往往包括很多个URL，我们需要指定一个或多个URL调用刚刚新建的Authorizer</li>
+</ul>
+<p><img src="/../images/AWS-Overview/18.png" alt="set authorizer" /></p>
+<ul>
+<li>
+<p>最后别忘了Deploye API，不然所有的设置并不会生效</p>
+</li>
+<li>
+<p>我们可以测试一下看看访问相同的URL，如果不添加authentication information的话，服务器就会返回401 Unauthorized</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/19.png" alt="test Unauthorized" /></p>
+<ul>
+<li>除了使用自定义的Authorizer，AWS也内置有IAM (Identity Access Management),在之前的Method Request如果我们选择使用AWS_IAM的话，也可以限制用户对于API的访问</li>
+</ul>
+<p><img src="/../images/AWS-Overview/21.png" alt="AWS_IAM" /></p>
+<ul>
+<li>但是我们必须在request中添加AWS signature，这需要使用到AWS给每个account的access key和secret key，其中secret key只有在一开始generate的时候才会看到，之后就看不到了，所以一定要保存在一个安全的地方，要不然的话只能重新generate一对新的key</li>
+</ul>
+<p><img src="/../images/AWS-Overview/22.png" alt="AWS access key" /></p>
+<p><img src="/../images/AWS-Overview/24.png" alt="AWS signature" /></p>
+<ul>
+<li>另外我们可以在resource policy中限制可以访问API的ip address，所以即使用户输入了正确的Authentication information，我们也不能让没有权限的区域访问API</li>
+</ul>
+<p><img src="/../images/AWS-Overview/23.png" alt="resource policy" /></p>
+<ul>
+<li>
+<p>这种IP address limitation也可以在自定义的lambda function中使用</p>
+</li>
+<li>
+<p>另外，如果要blacklist or whitelist a range of ip addresses，可以使用CIDR notation net mask，在ip address后面加一个斜杠和一个数字，数字表示从左往右有多少bit是在范围外的。</p>
+</li>
+<li>
+<p>例如“110.142.216.1/24&quot; 就表示了ip range from 110.142.216.1 to 110.142.216.255</p>
+</li>
+</ul>
+<h3 id="reference-2"><a class="markdownIt-Anchor" href="#reference-2"></a> Reference</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@Da_vidgf/http-basic-auth-with-api-gateway-and-serverless-5ae14ad0a270">HTTP Basic Auth with API Gateway and Serverless</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/blogs/compute/control-access-to-your-apis-using-amazon-api-gateway-resource-policies/">Control access to your APIs using Amazon API Gateway resource policies</a></li>
+<li><a target="_blank" rel="noopener" href="https://aws.amazon.com/premiumsupport/knowledge-center/api-gateway-resource-policy-whitelist/">How do I use a resource policy to whitelist certain IP addresses to access my API Gateway API?</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-resource-policies-examples.html#apigateway-resource-policies-source-ip-address-example">API Gateway Resource Policy Examples</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing">Classless Inter-Domain Routing</a></li>
+</ol>
+<h2 id="use-s3-to-host-webpage"><a class="markdownIt-Anchor" href="#use-s3-to-host-webpage"></a> Use S3 to host webpage</h2>
+<ul>
+<li>S3是一个储存文件的服务，一般来说我们需要把网页放到服务器里去host它，但是S3也提供了host webpage的功能，我们只需要新建一个bucket。</li>
+</ul>
+<p><img src="/../images/AWS-Overview/1.png" alt="AWS S3 create bucket" /><br />
+<img src="/../images/AWS-Overview/25.png" alt="" /></p>
+<ul>
+<li>上传我们需要host的webpage</li>
+</ul>
+<p><img src="/../images/AWS-Overview/26.png" alt="AWS S3 upload file" /></p>
+<ul>
+<li>注意在设置里面关闭block public access，毕竟我们需要访问它来获得数据</li>
+</ul>
+<p><img src="/../images/AWS-Overview/27.png" alt="AWS S3 block access" /></p>
+<ul>
+<li>最后我们需要打开hosting</li>
+</ul>
+<p><img src="/../images/AWS-Overview/28.png" alt="AWS S3 hosting" /></p>
+<ul>
+<li>这样的话我们就可以通过AWS S3来host webpage，不需要使用自己的服务器了</li>
+</ul>
+<h3 id="reference-3"><a class="markdownIt-Anchor" href="#reference-3"></a> Reference</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html">AWS S3 Getting Started</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html">What is AWS S3?</a></li>
+</ol>
+<h2 id="aws-simple-email-services"><a class="markdownIt-Anchor" href="#aws-simple-email-services"></a> AWS Simple Email Services</h2>
+<ul>
+<li>
+<p>使用AWS发送Email是一件非常简单的事情，通过以下步骤可以创建一个AWS User with email sending policyies并使用C#发送邮件</p>
+</li>
+<li>
+<p>首先我们需要创建一个AWS User，拿到发送Email的Credentials</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/45.png" alt="SMTP Credentials" /></p>
+<ul>
+<li>然后我们需要设置想用什么邮箱地址发送邮件，我们需要验证，并登陆对应邮箱点击验证链接</li>
+</ul>
+<p><img src="/../images/AWS-Overview/46.png" alt="Verify sender Email address" /></p>
+<ul>
+<li>之后我们可以测试一下能不能发送Test Email，这里不需要用到Credentials</li>
+</ul>
+<p><img src="/../images/AWS-Overview/47.png" alt="Send Test Emails" /></p>
+<ul>
+<li>然后我们就可以看代码了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">public void SendEmail()</span><br><span class="line">    &#123;</span><br><span class="line">        String FROM &#x3D; &quot;sender email address&quot;;</span><br><span class="line">        String FROMNAME &#x3D; &quot;Your Name&quot;;</span><br><span class="line">        String TO &#x3D; &quot;receiver email address&quot;;</span><br><span class="line">        String SMTP_USERNAME &#x3D; &quot;Credentials Username&quot;;</span><br><span class="line">        String SMTP_PASSWORD &#x3D; &quot;Credentials Password&quot;;</span><br><span class="line">        String HOST &#x3D; &quot;Your AWS host location&quot;;</span><br><span class="line">        int PORT &#x3D; 587;</span><br><span class="line">        String SUBJECT &#x3D; &quot;Email Subject&quot;;</span><br><span class="line"></span><br><span class="line">        String BODY &#x3D;</span><br><span class="line">            &quot;&amp;lth1&amp;gtEmail Title&amp;lt&#x2F;h1&amp;gt&quot; +</span><br><span class="line">            &quot;&amp;ltp&amp;gtEmail Content&amp;lt&#x2F;p&amp;gt&quot;;</span><br><span class="line"></span><br><span class="line">        MailMessage message &#x3D; new MailMessage();</span><br><span class="line">        message.IsBodyHtml &#x3D; true;</span><br><span class="line">        message.From &#x3D; new MailAddress(FROM, FROMNAME);</span><br><span class="line">        message.To.Add(new MailAddress(TO));</span><br><span class="line">        message.Subject &#x3D; SUBJECT;</span><br><span class="line">        message.Body &#x3D; BODY;</span><br><span class="line"></span><br><span class="line">        using (var client &#x3D; new System.Net.Mail.SmtpClient(HOST, PORT))</span><br><span class="line">        &#123;</span><br><span class="line">            client.UseDefaultCredentials &#x3D; false;</span><br><span class="line">            client.Credentials &#x3D; new NetworkCredential(SMTP_USERNAME, SMTP_PASSWORD);</span><br><span class="line">            client.EnableSsl &#x3D; true;</span><br><span class="line"></span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;Attempting to send email...&quot;);</span><br><span class="line">                client.Send(message);</span><br><span class="line">                Console.WriteLine(&quot;Email sent!&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            catch (Exception ex)</span><br><span class="line">            &#123;</span><br><span class="line">                Console.WriteLine(&quot;The email was not sent.&quot;);</span><br><span class="line">                Console.WriteLine(&quot;Error message: &quot; + ex.Message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>执行这个function几次看看能不能收到邮件，如何可以的话就成功了</li>
+</ul>
+<p><img src="/../images/AWS-Overview/49.png" alt="Emails" /></p>
+<ul>
+<li>
+<p>AWS 还有统计邮件成功率的工具，也在SES tab里面</p>
+</li>
+<li>
+<p>另外就是Configuration set是一个optional的设置，可以在AWS里面添加</p>
+</li>
+<li>
+<p>除了用SMTP，我们还可以用AWS SDK发送邮件，这里就不介绍了，大致都是一样的，代码需要改一下</p>
+</li>
+</ul>
+<p><img src="/../images/AWS-Overview/48.png" alt="Configuration Sets" /></p>
+<ul>
+<li>当你新建一个AWS用户时，你的邮件功能可以会受到限制，也就是说在Sandbox里面，收发数量，频率都会受限，可以给Amazon发送请求移除Sandbox，具体做法可以参考下面链接</li>
+</ul>
+<h3 id="reference-4"><a class="markdownIt-Anchor" href="#reference-4"></a> Reference</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-an-email-from-console.html">Sending a test email</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-using-smtp-net.html">Send an email using SMTP</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/using-configuration-sets.html">Using AWS SES Configuration sets</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html">Moving out of sandbox</a></li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2019/08/05/AWS-Overview/" title="AWS Overview" target="_blank" rel="external">http://hellcy.github.io/2019/08/05/AWS-Overview/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2019/08/16/Swift-tips-and-tricks/" title="Swift tips and tricks"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2019/07/23/Payment-Gateway-API/" title="Payment Gateway API"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

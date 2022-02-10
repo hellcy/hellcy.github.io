@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>AWS SAA - Design Cost-Optimized Architectures | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Part One: Understanding Cost Effective Storage in AWS Part Two: Understanding Cost Effective Compute in AWS Part Three: Understanding Database Pricing and Cost Optimization Part Four: Understanding C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS SAA - Design Cost-Optimized Architectures">
+<meta property="og:url" content="http://hellcy.github.io/2021/02/28/AWS-SAA-Design-Cost-Optimized-Architectures/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Part One: Understanding Cost Effective Storage in AWS Part Two: Understanding Cost Effective Compute in AWS Part Three: Understanding Database Pricing and Cost Optimization Part Four: Understanding C">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Cost-Optimized-Architectures/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Cost-Optimized-Architectures/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Cost-Optimized-Architectures/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Cost-Optimized-Architectures/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Cost-Optimized-Architectures/5.png">
+<meta property="article:published_time" content="2021-02-27T23:10:25.000Z">
+<meta property="article:modified_time" content="2021-03-05T14:00:55.637Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="AWS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/AWS-SAA-Design-Cost-Optimized-Architectures/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/02/28/AWS-SAA-Design-Cost-Optimized-Architectures/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#part-one-understanding-cost-effective-storage-in-aws"><span class="toc-number">1.</span> <span class="toc-text"> Part One: Understanding Cost Effective Storage in AWS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#globomantics"><span class="toc-number">1.1.</span> <span class="toc-text"> Globomantics</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview"><span class="toc-number">1.2.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#s3-storage-classes"><span class="toc-number">1.3.</span> <span class="toc-text"> S3 Storage Classes</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lifecycle-rules"><span class="toc-number">1.3.1.</span> <span class="toc-text"> Lifecycle rules</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#caching"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Caching</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#globomantics-requirements"><span class="toc-number">1.3.3.</span> <span class="toc-text"> Globomantics Requirements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#s3-glacier-and-deep-archive"><span class="toc-number">1.4.</span> <span class="toc-text"> S3 Glacier and Deep Archive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#globomantics-requirements-2"><span class="toc-number">1.4.1.</span> <span class="toc-text"> Globomantics Requirements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#s3-glacier"><span class="toc-number">1.4.2.</span> <span class="toc-text"> S3 Glacier</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#comparing-storage-costs"><span class="toc-number">1.4.3.</span> <span class="toc-text"> Comparing Storage Costs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ebs-storage"><span class="toc-number">1.5.</span> <span class="toc-text"> EBS Storage</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#options"><span class="toc-number">1.5.1.</span> <span class="toc-text"> Options</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ebs-snapshots"><span class="toc-number">1.5.2.</span> <span class="toc-text"> EBS Snapshots</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary"><span class="toc-number">1.6.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-two-understanding-cost-effective-compute-in-aws"><span class="toc-number">2.</span> <span class="toc-text"> Part Two: Understanding Cost Effective Compute in AWS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-2"><span class="toc-number">2.1.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pricing-points"><span class="toc-number">2.2.</span> <span class="toc-text"> Pricing points</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instance-types"><span class="toc-number">2.3.</span> <span class="toc-text"> Instance types</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#on-demand-instances"><span class="toc-number">2.3.1.</span> <span class="toc-text"> On Demand instances</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#reserved-instances"><span class="toc-number">2.3.2.</span> <span class="toc-text"> Reserved Instances</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#spot-instances"><span class="toc-number">2.3.3.</span> <span class="toc-text"> Spot Instances</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#in-addition"><span class="toc-number">2.3.4.</span> <span class="toc-text"> In addition</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#globomantics-requirements-3"><span class="toc-number">2.4.</span> <span class="toc-text"> Globomantics Requirements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#right-sizing-ec2-to-optimize-costs"><span class="toc-number">2.5.</span> <span class="toc-text"> Right Sizing EC2 to Optimize Costs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#burstable-and-fixed-performance-instances"><span class="toc-number">2.5.1.</span> <span class="toc-text"> Burstable and Fixed performance instances</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tools-for-right-ec2-sizing"><span class="toc-number">2.5.2.</span> <span class="toc-text"> Tools for Right EC2 Sizing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aws-serverless-platform"><span class="toc-number">2.5.3.</span> <span class="toc-text"> AWS Serverless Platform</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#globomantics-requirements-4"><span class="toc-number">2.5.4.</span> <span class="toc-text"> Globomantics Requirements</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-2"><span class="toc-number">2.6.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-three-understanding-database-pricing-and-cost-optimization"><span class="toc-number">3.</span> <span class="toc-text"> Part Three: Understanding Database Pricing and Cost-optimization</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-3"><span class="toc-number">3.1.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rds-pricing-points"><span class="toc-number">3.2.</span> <span class="toc-text"> RDS Pricing Points</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#amazon-rds-instance-types"><span class="toc-number">3.2.1.</span> <span class="toc-text"> Amazon RDS Instance Types</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rds-payment-options"><span class="toc-number">3.2.2.</span> <span class="toc-text"> RDS Payment Options</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#rds-storage"><span class="toc-number">3.2.3.</span> <span class="toc-text"> RDS Storage</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#amazon-aurora"><span class="toc-number">3.3.</span> <span class="toc-text"> Amazon Aurora</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dynamodb-pricing-points"><span class="toc-number">3.4.</span> <span class="toc-text"> DynamoDB Pricing Points</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#dynamodb-capacity-units"><span class="toc-number">3.4.1.</span> <span class="toc-text"> DynamoDB Capacity Units</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#additional-dynamodb-costs"><span class="toc-number">3.4.2.</span> <span class="toc-text"> Additional DynamoDB Costs</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-3"><span class="toc-number">3.5.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-four-understanding-cost-optimized-network-architectures"><span class="toc-number">4.</span> <span class="toc-text"> Part Four: Understanding Cost-optimized Network Architectures</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#module-overview-4"><span class="toc-number">4.1.</span> <span class="toc-text"> Module Overview</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elb-and-auto-scaling"><span class="toc-number">4.2.</span> <span class="toc-text"> ELB and Auto Scaling</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#globomantics-requirements-5"><span class="toc-number">4.2.1.</span> <span class="toc-text"> Globomantics Requirements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto-scaling-saves-money"><span class="toc-number">4.2.2.</span> <span class="toc-text"> Auto Scaling Saves Money</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vpc-routing-and-hybrid-connectivity-decisions"><span class="toc-number">4.3.</span> <span class="toc-text"> VPC Routing and Hybrid Connectivity Decisions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#globalmantics-requirements"><span class="toc-number">4.3.1.</span> <span class="toc-text"> Globalmantics Requirements</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aws-connectivity"><span class="toc-number">4.3.2.</span> <span class="toc-text"> AWS Connectivity</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#offloading-with-cloudfront"><span class="toc-number">4.4.</span> <span class="toc-text"> Offloading with CloudFront</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#how-can-deploying-a-additional-technology-like-cloudfront-reduce-costs"><span class="toc-number">4.4.1.</span> <span class="toc-text"> How can deploying a additional technology like CloudFront reduce costs?</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#summary-4"><span class="toc-number">4.5.</span> <span class="toc-text"> Summary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#part-five-making-cost-optimized-decisions"><span class="toc-number">5.</span> <span class="toc-text"> Part Five: Making Cost-optimized Decisions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#overview"><span class="toc-number">5.1.</span> <span class="toc-text"> Overview</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#some-factors-that-can-affect-cost"><span class="toc-number">5.1.1.</span> <span class="toc-text"> Some factors that can affect cost</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tips-to-help-save-money-in-aws"><span class="toc-number">5.1.2.</span> <span class="toc-text"> Tips to Help Save Money in AWS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#course-summary"><span class="toc-number">6.</span> <span class="toc-text"> Course Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#storage-and-compute"><span class="toc-number">6.1.</span> <span class="toc-text"> Storage and Compute</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#databases-and-networks"><span class="toc-number">6.2.</span> <span class="toc-text"> Databases and networks</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-AWS-SAA-Design-Cost-Optimized-Architectures" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AWS SAA - Design Cost-Optimized Architectures
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/02/28/AWS-SAA-Design-Cost-Optimized-Architectures/" class="article-date">
+	  <time datetime="2021-02-27T23:10:25.000Z" itemprop="datePublished">28-02-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/AWS/" rel="tag">AWS</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/02/28/AWS-SAA-Design-Cost-Optimized-Architectures/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 2.2k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 13(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ol>
+<li><a href="#part-one-understanding-cost-effective-storage-in-aws">Part One: Understanding Cost Effective Storage in AWS</a></li>
+<li><a href="#part-two-understanding-cost-effective-compute-in-aws">Part Two: Understanding Cost Effective Compute in AWS</a></li>
+<li><a href="#part-three-understanding-database-pricing-and-cost-optimization">Part Three: Understanding Database Pricing and Cost Optimization</a></li>
+<li><a href="#part-Four-understanding-cost-optimized-network-architectures">Part Four: Understanding Cost Optimized Network Architectures</a></li>
+<li><a href="#part-five-making-cost-optimized-decisions">Part Five: Making Cost-optimized Decisions</a></li>
+</ol>
+<h2 id="part-one-understanding-cost-effective-storage-in-aws"><a class="markdownIt-Anchor" href="#part-one-understanding-cost-effective-storage-in-aws"></a> Part One: Understanding Cost Effective Storage in AWS</h2>
+<h3 id="globomantics"><a class="markdownIt-Anchor" href="#globomantics"></a> Globomantics</h3>
+<ul>
+<li>Global health care organization</li>
+<li>Been using AWS for some time</li>
+<li>Most core service such as EC2, RDS, S3 etc.</li>
+<li>We have been asked to
+<ul>
+<li>identify solutions that will help reduce costs</li>
+<li>maintain the same level of service and availability</li>
+</ul>
+</li>
+</ul>
+<h3 id="module-overview"><a class="markdownIt-Anchor" href="#module-overview"></a> Module Overview</h3>
+<ol>
+<li>S3
+<ul>
+<li>Using S3 storage classes to reduce costs</li>
+</ul>
+</li>
+<li>S3 glacier
+<ul>
+<li>When to use S3 glacier and S3 glacier heep archieve</li>
+</ul>
+</li>
+<li>EBS storage
+<ul>
+<li>EBS pricing points and storage options</li>
+</ul>
+</li>
+</ol>
+<h3 id="s3-storage-classes"><a class="markdownIt-Anchor" href="#s3-storage-classes"></a> S3 Storage Classes</h3>
+<ol>
+<li>Influences availability, durability and cost for objects stored in S3</li>
+<li>Applied at an object level, each S3 bucket can host objects with different classes</li>
+<li>An objects storage class can be changed throughout its lifetime</li>
+<li>Using the wrong storage class will lead to unnecessary spending</li>
+</ol>
+<ul>
+<li>Standard: Charged based on object size</li>
+<li>Standard - IA: Charged based on object size and retrieval</li>
+<li>One Zone - IA: Stores objects in a single AZ</li>
+<li>S3 Glacier: Used as an additional S3 storage class</li>
+<li>Intelligent - Tiering: Transitions objects between classes based on their access frequencies</li>
+</ul>
+<h4 id="lifecycle-rules"><a class="markdownIt-Anchor" href="#lifecycle-rules"></a> Lifecycle rules</h4>
+<ul>
+<li>Use lifecycle rules to transition objects between classes and expire objects</li>
+</ul>
+<h4 id="caching"><a class="markdownIt-Anchor" href="#caching"></a> Caching</h4>
+<ul>
+<li>Downloading objects cost money, use caching to avoid unnecessary downloads and reduce S3 costs</li>
+</ul>
+<h4 id="globomantics-requirements"><a class="markdownIt-Anchor" href="#globomantics-requirements"></a> Globomantics Requirements</h4>
+<ul>
+<li>Use an appropriate storage class for each object</li>
+<li>Avoid one zone -IA as it reduces availability (store data we can reproduce in OZ - IA)</li>
+<li>Use lifecycle rules
+<ul>
+<li>Transition to standard - IA</li>
+<li>Transition to S3 Glacier</li>
+<li>Expire objects(delete)</li>
+</ul>
+</li>
+</ul>
+<h3 id="s3-glacier-and-deep-archive"><a class="markdownIt-Anchor" href="#s3-glacier-and-deep-archive"></a> S3 Glacier and Deep Archive</h3>
+<h4 id="globomantics-requirements-2"><a class="markdownIt-Anchor" href="#globomantics-requirements-2"></a> Globomantics Requirements</h4>
+<ul>
+<li>Need to store some data long term for compliance</li>
+<li>Data must be stored for at least 10 years</li>
+<li>Meet the following requirements
+<ul>
+<li>Stored as cheaply as possible</li>
+<li>Still be highly durable and available</li>
+<li>Must be secure</li>
+<li>Data won’t be needed again except for compliance requests</li>
+</ul>
+</li>
+</ul>
+<h4 id="s3-glacier"><a class="markdownIt-Anchor" href="#s3-glacier"></a> S3 Glacier</h4>
+<ul>
+<li>Long term archival storage</li>
+<li>Two classes S3 Glacier and Deep Archive</li>
+<li>Using S3 glacier we can retrieve archives in minutes</li>
+<li>Using S3 glacier deep archive we can retrieve data within 12 hours</li>
+</ul>
+<ul>
+<li>Data in S3 glacier are not available to you. You need to request a retrival.</li>
+</ul>
+<h4 id="comparing-storage-costs"><a class="markdownIt-Anchor" href="#comparing-storage-costs"></a> Comparing Storage Costs</h4>
+<ul>
+<li>S3 Standard - 10TB - eu-west-1 $245.64</li>
+<li>S3 Glacier - 10TB - eu-west-1 $46.08</li>
+<li>S3 Glacier Deep Archive - 10TB - eu-west-1 $18.44</li>
+</ul>
+<h3 id="ebs-storage"><a class="markdownIt-Anchor" href="#ebs-storage"></a> EBS Storage</h3>
+<ul>
+<li>Block storage for EC2 virtual machines</li>
+<li>Persistent storage of up to 16TB per disk</li>
+<li>SSD backed and HDD backed volumes</li>
+<li>Provisioned storage priced at a GB per month rate</li>
+</ul>
+<ul>
+<li>You are charged for the entire volume as soon as you created it. You can create a smaller EBS than increase it when you need it in the future</li>
+</ul>
+<h4 id="options"><a class="markdownIt-Anchor" href="#options"></a> Options</h4>
+<ol>
+<li>Cold HDD volumes, $0.025 per GB per month</li>
+<li>Throughput optimized HDD volumes, $0.045 per GB per month</li>
+<li>General purpose SSD volumes, $0.10 per GB per month</li>
+<li>Provisioned IOPS SSD volumes, $0.125 per GB per month and $0.065 per provisioned IOPS per month</li>
+</ol>
+<h4 id="ebs-snapshots"><a class="markdownIt-Anchor" href="#ebs-snapshots"></a> EBS Snapshots</h4>
+<ul>
+<li>Snapshots consist of the used space in an EBS volume not the provisioned space</li>
+<li>Charged on a per GB per month basis</li>
+<li>Additional cost for EBS fast snapshot restore</li>
+</ul>
+<ul>
+<li>If you have a 1000 GB provisioned EBS and only used 100 GB space, when you create a snapshot of this EBS, you will only be charged of 100 GB.</li>
+</ul>
+<h3 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h3>
+<ol>
+<li>Use S3 storage classes to reduce costs</li>
+<li>Use S3 Glacier and its role in reducing costs</li>
+<li>EBS storage pricing</li>
+</ol>
+<h2 id="part-two-understanding-cost-effective-compute-in-aws"><a class="markdownIt-Anchor" href="#part-two-understanding-cost-effective-compute-in-aws"></a> Part Two: Understanding Cost Effective Compute in AWS</h2>
+<h3 id="module-overview-2"><a class="markdownIt-Anchor" href="#module-overview-2"></a> Module Overview</h3>
+<ol>
+<li>Discuss EC2 payment types</li>
+<li>Discuss right sizing EC2 to optimize costs</li>
+<li>Introduce cost benefits of serverless compute</li>
+</ol>
+<h3 id="pricing-points"><a class="markdownIt-Anchor" href="#pricing-points"></a> Pricing points</h3>
+<ol>
+<li>EC2 instance uptime</li>
+<li>EBS storage</li>
+<li>Data transfer out</li>
+</ol>
+<h3 id="instance-types"><a class="markdownIt-Anchor" href="#instance-types"></a> Instance types</h3>
+<h4 id="on-demand-instances"><a class="markdownIt-Anchor" href="#on-demand-instances"></a> On Demand instances</h4>
+<ul>
+<li>Charged by the hour or second (minimum 60 seconds)</li>
+<li>No upfront commitment, billed when instances are in a running state</li>
+<li>Great when you want uninterrupted compute</li>
+</ul>
+<h4 id="reserved-instances"><a class="markdownIt-Anchor" href="#reserved-instances"></a> Reserved Instances</h4>
+<ul>
+<li>1-year or 3-year commitment</li>
+<li>pay all, parital or no upront (the more you pay upfront, the bigger discount you will get)</li>
+<li>Convertible RIs available</li>
+<li>Capacity reservation with Zonal RIs</li>
+<li>Instance size flexibility</li>
+<li>Up to 72% saving</li>
+</ul>
+<h4 id="spot-instances"><a class="markdownIt-Anchor" href="#spot-instances"></a> Spot Instances</h4>
+<ul>
+<li>You are biding on unused capacity in an AZ</li>
+<li>If your bid is higher than the spot price you pay the lower amount</li>
+<li>Spot, Spot fleets (multiple machines, only launch when all of them can be launched at the same time), and spot blocks (multiple machines, only launch them when they can be running for a certain peroid of time) are available</li>
+<li>When you loose the spot bid
+<ul>
+<li>2-minute warning (to transfer your data)</li>
+<li>instance terminate/hibernate/stop depend on your choice</li>
+</ul>
+</li>
+</ul>
+<h4 id="in-addition"><a class="markdownIt-Anchor" href="#in-addition"></a> In addition</h4>
+<ul>
+<li>Scheduled reserved instance: Useful if you are only running your instance periodically</li>
+<li>Savings plans: Alternative to reserved instances, useful if you have mixed EC2 instance, AWS fargate and AWS lambda</li>
+</ul>
+<h3 id="globomantics-requirements-3"><a class="markdownIt-Anchor" href="#globomantics-requirements-3"></a> Globomantics Requirements</h3>
+<ul>
+<li>Use a minture of EC2 instances sizes and types</li>
+<li>Currently only on-demand instance type used</li>
+<li>EC2 instance characteristic
+<ul>
+<li>Some instances run 24/7 and are expected to do so for at least 1 year (reserved instances with 1-year commitment)</li>
+<li>Some instances are brought online for 48 hours every week to run weeekly batch jobs (scheduled reserved instances)</li>
+<li>Other instances are brought online as needed to run short processes that must be completed within 2 hours (on-demand or spot block)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Note using spot block you might need to wait for some time (when your bid is higher) before your instances can be launched</li>
+</ul>
+<h3 id="right-sizing-ec2-to-optimize-costs"><a class="markdownIt-Anchor" href="#right-sizing-ec2-to-optimize-costs"></a> Right Sizing EC2 to Optimize Costs</h3>
+<ul>
+<li>Eight instance familes: Groups of instances such as general purpose, compute optimized and memory optimized</li>
+<li>Instance sizes: Each family has a range of instance sizes that offer different combinations of resources</li>
+</ul>
+<h4 id="burstable-and-fixed-performance-instances"><a class="markdownIt-Anchor" href="#burstable-and-fixed-performance-instances"></a> Burstable and Fixed performance instances</h4>
+<ul>
+<li>Fixed performance (e.g. M5) offers fixed compute</li>
+<li>Burstable performance (e.g. T3) provide a baseline level of CPU (e.g. 20%) with the ability to burst above the baseline.</li>
+<li>Standard and unlimited: For burstable instances, if you are not using your CPU, you will get tokens(credit) which you can use later when you need extra CPU power. For Standard, your compute power will reduce to original when you use up your tokens. For unlimited, you will be charged the on-demand price for the compute power but can still use the extra CPU power for as long as you need.</li>
+</ul>
+<h4 id="tools-for-right-ec2-sizing"><a class="markdownIt-Anchor" href="#tools-for-right-ec2-sizing"></a> Tools for Right EC2 Sizing</h4>
+<ul>
+<li>Amazon CloudWatch: Monitor CPU, network throughput, disk I/O</li>
+<li>AWS Cost Explorer: Monitor your spending and view resource optimization recommendations</li>
+<li>AWS Trusted Advisor: Best practice advice including advice on reduing costs</li>
+</ul>
+<h4 id="aws-serverless-platform"><a class="markdownIt-Anchor" href="#aws-serverless-platform"></a> AWS Serverless Platform</h4>
+<ul>
+<li>Compute: AWS lambda, AWS fargate</li>
+<li>Storage: S3</li>
+<li>Data Stores: DynamoDB, Aurora</li>
+<li>API Proxy: Amazon API Gateway</li>
+<li>Integration: Amazon SNS, Amazon SQS</li>
+</ul>
+<p><strong>Benefits of Serverless Compute</strong></p>
+<ul>
+<li>No server management: No need to provision administer or maintain EC2 instance</li>
+<li>Flexible scaling: Scale automatically without downtime by adjusting capacity</li>
+<li>High availability: Built for automated high availability and fault tolerance</li>
+</ul>
+<h4 id="globomantics-requirements-4"><a class="markdownIt-Anchor" href="#globomantics-requirements-4"></a> Globomantics Requirements</h4>
+<ul>
+<li>Deployed a 2-tier customer facing web application to AWS</li>
+<li>Deployed using EC2 and RDS MySQL</li>
+<li>Interested to know how this application would be deployed using serverless services?</li>
+<li>Would there be cost benefits?</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Cost-Optimized-Architectures/1.png" alt="" /></p>
+<h3 id="summary-2"><a class="markdownIt-Anchor" href="#summary-2"></a> Summary</h3>
+<ol>
+<li>Discussed different ways to pay for EC2</li>
+<li>Demonstrated EC2 savings plans</li>
+<li>Discussed right sizing of EC2</li>
+<li>Discussed how serverless compute can help reduce costs</li>
+</ol>
+<h2 id="part-three-understanding-database-pricing-and-cost-optimization"><a class="markdownIt-Anchor" href="#part-three-understanding-database-pricing-and-cost-optimization"></a> Part Three: Understanding Database Pricing and Cost-optimization</h2>
+<h3 id="module-overview-3"><a class="markdownIt-Anchor" href="#module-overview-3"></a> Module Overview</h3>
+<ul>
+<li>Discuss RDS Pricing</li>
+<li>Discuss DynamoDB Pricing</li>
+</ul>
+<h3 id="rds-pricing-points"><a class="markdownIt-Anchor" href="#rds-pricing-points"></a> RDS Pricing Points</h3>
+<ol>
+<li>Instance type and size</li>
+<li>Database storage</li>
+<li>Data transfer out between AZs and between regions</li>
+<li>Backup storage</li>
+</ol>
+<h4 id="amazon-rds-instance-types"><a class="markdownIt-Anchor" href="#amazon-rds-instance-types"></a> Amazon RDS Instance Types</h4>
+<ol>
+<li>General purpose: Including M4 and M5, good balance between computer memory and network resources</li>
+<li>Memory optimized: Including R4 and R5, designed for memory-intensive database workloads</li>
+<li>Burstable performance: Offering a baseline level of CPU with the ability to burst above the baseline</li>
+</ol>
+<h4 id="rds-payment-options"><a class="markdownIt-Anchor" href="#rds-payment-options"></a> RDS Payment Options</h4>
+<ol>
+<li>On-Demand: Pay as you go, no upfront payments</li>
+<li>Reserved instances: 1-year or 3-year commitment for up to 69% saving</li>
+</ol>
+<h4 id="rds-storage"><a class="markdownIt-Anchor" href="#rds-storage"></a> RDS Storage</h4>
+<ol>
+<li>General purpose SSD: From 20GB to 64GB prices at a $ per GB per month</li>
+<li>Provisioned IOPS SSD: Priced on a $ per GB per month plus $ per IOPS per month</li>
+<li>Magnetic storage: Cheapest storage, not recommended for new deployments</li>
+</ol>
+<h3 id="amazon-aurora"><a class="markdownIt-Anchor" href="#amazon-aurora"></a> Amazon Aurora</h3>
+<ol>
+<li>Faster than MySQL and PostgreSQL</li>
+<li>Offers additional features like Aurora serverless</li>
+<li>Cheaper than both MySQL and PostgreSQL</li>
+</ol>
+<h3 id="dynamodb-pricing-points"><a class="markdownIt-Anchor" href="#dynamodb-pricing-points"></a> DynamoDB Pricing Points</h3>
+<ol>
+<li>On-demend: Charged foe the data reads and writes your application performs</li>
+<li>Provisioned capacity: You buy the read and write capacity units that you need for your application</li>
+</ol>
+<h4 id="dynamodb-capacity-units"><a class="markdownIt-Anchor" href="#dynamodb-capacity-units"></a> DynamoDB Capacity Units</h4>
+<ol>
+<li>WCU(Write Capacity Units)
+<ul>
+<li>Each WCU is equivalent to one 1KB write per second.</li>
+<li>e.g. If each of your record is 10KB, and you need to write 5 records per second, then you need 50 WCU</li>
+</ul>
+</li>
+<li>RCU(Read Capacity Units)
+<ul>
+<li>Eventual &lt; Strongly &lt; transactional consistency</li>
+<li>Each RCU is equivalent to one 4KB strongly consistent read per second.</li>
+<li>Each RCU is equivalent to two 4KB eventual consistent read per second</li>
+<li>Each RCU is equivalent to 0.5 transactional consistent read per second</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>DynamoDB auto scaling: Dynamically adjusts provisioned throughput in response to traffic patterns</li>
+<li>Reserved capacity: Purchase RCUs and WCUs with a 1-year or 3-year commitment at a reduced rate</li>
+</ul>
+<h4 id="additional-dynamodb-costs"><a class="markdownIt-Anchor" href="#additional-dynamodb-costs"></a> Additional DynamoDB Costs</h4>
+<ul>
+<li>Global secondary indexes need their own capacity units</li>
+<li>Global DynamoDB tables will need additional capacity units</li>
+<li>DynamoDB backups will increase costs</li>
+</ul>
+<h3 id="summary-3"><a class="markdownIt-Anchor" href="#summary-3"></a> Summary</h3>
+<ul>
+<li>Discussed RDS pricing options</li>
+<li>Discussed DynamoDB pricing options</li>
+</ul>
+<h2 id="part-four-understanding-cost-optimized-network-architectures"><a class="markdownIt-Anchor" href="#part-four-understanding-cost-optimized-network-architectures"></a> Part Four: Understanding Cost-optimized Network Architectures</h2>
+<h3 id="module-overview-4"><a class="markdownIt-Anchor" href="#module-overview-4"></a> Module Overview</h3>
+<ul>
+<li>Discuss using ELB and Auto Scale to reduce costs</li>
+<li>Discuss VPC routing and hybrid connectivity cost decisions</li>
+<li>Discuss using offloading to reduce costs</li>
+</ul>
+<h3 id="elb-and-auto-scaling"><a class="markdownIt-Anchor" href="#elb-and-auto-scaling"></a> ELB and Auto Scaling</h3>
+<h4 id="globomantics-requirements-5"><a class="markdownIt-Anchor" href="#globomantics-requirements-5"></a> Globomantics Requirements</h4>
+<ol>
+<li>Deployed a 3-tier customer facing web application to AWS</li>
+<li>Deployed using EC2 and RDS MySQL</li>
+<li>Peak time for the application is Friday and Saturday where up to two times the amount of compute is needed</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Cost-Optimized-Architectures/2.png" alt="" /></p>
+<ol>
+<li>Right size the EC2 instances and RDS instances</li>
+<li>Introduce EC2 auto scale for the web and app tier</li>
+<li>Introduce load balancing for the app tier</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Cost-Optimized-Architectures/3.png" alt="" /></p>
+<h4 id="auto-scaling-saves-money"><a class="markdownIt-Anchor" href="#auto-scaling-saves-money"></a> Auto Scaling Saves Money</h4>
+<ol>
+<li>With auto scaling we design for the normal</li>
+<li>Auto scaling leads to better cost management</li>
+<li>Integrate with load balancing to make use of launched instance</li>
+<li>Using min and max values allow us to better predict costs</li>
+</ol>
+<h3 id="vpc-routing-and-hybrid-connectivity-decisions"><a class="markdownIt-Anchor" href="#vpc-routing-and-hybrid-connectivity-decisions"></a> VPC Routing and Hybrid Connectivity Decisions</h3>
+<h4 id="globalmantics-requirements"><a class="markdownIt-Anchor" href="#globalmantics-requirements"></a> Globalmantics Requirements</h4>
+<ol>
+<li>Connect Globalmantics HQ and smaller regional offices to their AWS deployed VPC</li>
+<li>Connect resources in their AWS deployed VPC to S3</li>
+<li>Connect Globalmantics application VPC to a VPC that contains monitoring servers</li>
+<li>Cost is a major factor, all designs should balance performance, funcationality and cost</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Design-Cost-Optimized-Architectures/4.png" alt="" /></p>
+<ol>
+<li>For connecting HQ to AWS VPC, we can use Direct connect or site-to-site VPN, Direct connect will give us better performance but more expensive.</li>
+<li>For connecting Branch offices to AWS VPC, site-to-site VPN should be good enough considering offices are small.</li>
+<li>For connecting Application VPC to Monitoring VPC, we could use VPC peering, it will only charge us for data transfer. The others options are: Transit Gateway and site-to-site VPNs (more expensive).</li>
+<li>For connecting Application VPC to S3, we could use VPC endpoints. Other option is to use public gateway but that is less secure(need to go through public internet).</li>
+</ol>
+<h4 id="aws-connectivity"><a class="markdownIt-Anchor" href="#aws-connectivity"></a> AWS Connectivity</h4>
+<ul>
+<li>Keep as much traffic as possible on the AWS backbone</li>
+<li>Consider using Direct Connect hosted connections</li>
+<li>Use AWS services to reduce development and management costs</li>
+<li>Balance performance, functionality and cost</li>
+</ul>
+<h3 id="offloading-with-cloudfront"><a class="markdownIt-Anchor" href="#offloading-with-cloudfront"></a> Offloading with CloudFront</h3>
+<h4 id="how-can-deploying-a-additional-technology-like-cloudfront-reduce-costs"><a class="markdownIt-Anchor" href="#how-can-deploying-a-additional-technology-like-cloudfront-reduce-costs"></a> How can deploying a additional technology like CloudFront reduce costs?</h4>
+<ul>
+<li>S3 charges a retrieval fee per GB and fees based on the type of request</li>
+<li>CloudFront charges a retrieval fee and a fee for HTTP or HTTPS requests</li>
+<li>CloudFront fees are cheaper than S3 fees</li>
+<li>Serving content from CloudFront can be cheaper then serving content from S3</li>
+</ul>
+<p><img src="/../images/AWS-SAA-Design-Cost-Optimized-Architectures/5.png" alt="" /></p>
+<h3 id="summary-4"><a class="markdownIt-Anchor" href="#summary-4"></a> Summary</h3>
+<ul>
+<li>Learned how ELB and auto scale can help reduce costs</li>
+<li>Discussed VPC routing and hybrid connectivity options</li>
+<li>Learned how offloading can help reduce costs</li>
+</ul>
+<h2 id="part-five-making-cost-optimized-decisions"><a class="markdownIt-Anchor" href="#part-five-making-cost-optimized-decisions"></a> Part Five: Making Cost-optimized Decisions</h2>
+<h3 id="overview"><a class="markdownIt-Anchor" href="#overview"></a> Overview</h3>
+<ul>
+<li>Discuss factors that can affect costs</li>
+<li>Work with AWS tools to monitor and estimate costs</li>
+</ul>
+<h4 id="some-factors-that-can-affect-cost"><a class="markdownIt-Anchor" href="#some-factors-that-can-affect-cost"></a> Some factors that can affect cost</h4>
+<ul>
+<li>AWS region and zone: Resource are priced per-region and per-availability zone</li>
+<li>EC2 size and type: Instance type and size will have a big impact on the cost of your compute</li>
+<li>S3 storage class: Choose the correct class for the objects you are storing</li>
+</ul>
+<h4 id="tips-to-help-save-money-in-aws"><a class="markdownIt-Anchor" href="#tips-to-help-save-money-in-aws"></a> Tips to Help Save Money in AWS</h4>
+<ul>
+<li>EC2 Payment: Use the correct payment model</li>
+<li>Databases: Use reservation for RDS and DynamoDB</li>
+<li>Tag Everything: Introduce and effective tagging policy</li>
+<li>Intriduce SCPs(Service Control Policy): Use SCPs to restrict available features</li>
+<li>Monitor everything: Use all the monitoring tools available to you</li>
+<li>AutoScale: Implement AutoScale to avoid planning for peak</li>
+<li>Offloading: Use offloading in your architectures (CloudFront, ElasticCache, RDS Read Replicas)</li>
+<li>Turn things off: Shutdown and delete resources that you are not using</li>
+</ul>
+<h2 id="course-summary"><a class="markdownIt-Anchor" href="#course-summary"></a> Course Summary</h2>
+<h3 id="storage-and-compute"><a class="markdownIt-Anchor" href="#storage-and-compute"></a> Storage and Compute</h3>
+<ol>
+<li>S3 Storage classes</li>
+<li>S3 lifecycle rules</li>
+<li>EBS storage options</li>
+<li>EC2 pricing</li>
+<li>EC2 right sizing</li>
+<li>Serverless compute</li>
+</ol>
+<h3 id="databases-and-networks"><a class="markdownIt-Anchor" href="#databases-and-networks"></a> Databases and networks</h3>
+<ol>
+<li>RDS pricing and optimization</li>
+<li>DynamoDB pricing and optimization</li>
+<li>Cost optimized networks
+<ul>
+<li>ELB and autoscale</li>
+<li>Hybrid connectivity</li>
+<li>VPC connectivity</li>
+<li>Offloading with CloudFront</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/02/28/AWS-SAA-Design-Cost-Optimized-Architectures/" title="AWS SAA - Design Cost-Optimized Architectures" target="_blank" rel="external">http://hellcy.github.io/2021/02/28/AWS-SAA-Design-Cost-Optimized-Architectures/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/03/04/C-Fundamentals/" title="C# Fundamentals"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/02/21/Java-Learning-Path/" title="Java Learning Path"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Design Patterns - Decorator | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Decorator Pattern A structural design pattern used for dynamically adding behavior to a class without making changes to that class.  The Decorator Class will take an object implementing the same inte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Design Patterns - Decorator">
+<meta property="og:url" content="http://hellcy.github.io/2021/04/18/Design-Patterns-Decorator/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Decorator Pattern A structural design pattern used for dynamically adding behavior to a class without making changes to that class.  The Decorator Class will take an object implementing the same inte">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Decorator/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Decorator/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Decorator/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Decorator/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Decorator/5.png">
+<meta property="article:published_time" content="2021-04-18T11:26:18.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.658Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Design Patterns">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/Design-Patterns-Decorator/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/04/18/Design-Patterns-Decorator/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#decorator-pattern"><span class="toc-number">1.</span> <span class="toc-text"> Decorator Pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#using-decorator-objects"><span class="toc-number">2.</span> <span class="toc-text"> Using Decorator Objects</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#logging-decorator"><span class="toc-number">3.</span> <span class="toc-text"> Logging Decorator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#caching-decorator"><span class="toc-number">4.</span> <span class="toc-text"> Caching Decorator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#decorator-summary"><span class="toc-number">5.</span> <span class="toc-text"> Decorator Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#decorator-pattern-characteristics"><span class="toc-number">5.1.</span> <span class="toc-text"> Decorator Pattern Characteristics</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#using-decorators-with-dependency-injection-container"><span class="toc-number">6.</span> <span class="toc-text"> Using Decorators with Dependency Injection Container</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#when-to-use-decorator-pattern"><span class="toc-number">7.</span> <span class="toc-text"> When to use Decorator Pattern</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#question-what-if-your-component-does-not-have-an-interfaceextend-from-a-base-class"><span class="toc-number">7.1.</span> <span class="toc-text"> Question: What if your component does not have an interface&#x2F;extend from a base class?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#what-if-you-cant-modify-the-class"><span class="toc-number">7.2.</span> <span class="toc-text"> What if you can’t modify the class?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#summary"><span class="toc-number">8.</span> <span class="toc-text"> Summary</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Design-Patterns-Decorator" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Design Patterns - Decorator
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/18/Design-Patterns-Decorator/" class="article-date">
+	  <time datetime="2021-04-18T11:26:18.000Z" itemprop="datePublished">18-04-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/18/Design-Patterns-Decorator/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 993(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 6(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="decorator-pattern"><a class="markdownIt-Anchor" href="#decorator-pattern"></a> Decorator Pattern</h2>
+<p>A structural design pattern used for dynamically adding behavior to a class without making changes to that class.</p>
+<p><img src="/../images/Design-Patterns-Decorator/1.png" alt="" /></p>
+<p>The Decorator Class will take an object implementing the same interface. This allows us to pass the object being decorated into the decorator object and allows the decorator object to act as a wrapper<br />
+around this original object.</p>
+<p><img src="/../images/Design-Patterns-Decorator/2.png" alt="" /></p>
+<p>The Decorator object will keep a reference of the object being decorated(the component object). Because the decorator object implement the same interface as the original component object, it now has a chance to intercept any method calls on the interface and inject some additional behavior into those calls.</p>
+<p><img src="/../images/Design-Patterns-Decorator/3.png" alt="" /></p>
+<p>Decorator Class and be nested.</p>
+<p><img src="/../images/Design-Patterns-Decorator/4.png" alt="" /></p>
+<p>This is the Example we are going to use.</p>
+<h2 id="using-decorator-objects"><a class="markdownIt-Anchor" href="#using-decorator-objects"></a> Using Decorator Objects</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Standard component instantiation</span><br><span class="line">IWeatherService weatherService &#x3D; new WeatherService();</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Instantiation with decorator objects</span><br><span class="line">IWeatherService weatherService &#x3D; </span><br><span class="line">    new CachingDecorator(</span><br><span class="line">        new LogginDecorator(</span><br><span class="line">            new WeatherService()));</span><br></pre></td></tr></table></figure>
+<p>To achieve this, we need to make sure the original component class and all the decorator classes need to implement from the same interface. And all decortor classes need to take the object of type IWeatherService in their constructors.</p>
+<h2 id="logging-decorator"><a class="markdownIt-Anchor" href="#logging-decorator"></a> Logging Decorator</h2>
+<p>Log how often a method was called, how long it took, parameters and responses.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public interface IWeatherService</span><br><span class="line">&#123;</span><br><span class="line">    CurrentWeather GetCurrentWeather(String location);</span><br><span class="line"></span><br><span class="line">    LocationForecast GetForecast(String location);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is the interface for our original WeatherService Class and our new Decorator Class</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class WeatherServiceLoggingDecorator : IWeatherService</span><br><span class="line">&#123;</span><br><span class="line">    private IWeatherService _weatherService;</span><br><span class="line">    private ILogger&lt;WeatherServiceLoggingDecorator&gt; _logger;</span><br><span class="line"></span><br><span class="line">    public WeatherServiceLoggingDecorator(IWeatherService weatherService, ILogger&lt;WeatherServiceLoggingDecorator&gt; logger)</span><br><span class="line">    &#123;</span><br><span class="line">        _weatherService &#x3D; weatherService;</span><br><span class="line">        _logger &#x3D; logger;</span><br><span class="line">    &#125;</span><br><span class="line">    public CurrentWeather GetCurrentWeather(string location)</span><br><span class="line">    &#123;</span><br><span class="line">        Stopwatch sw &#x3D; Stopwatch.StartNew();</span><br><span class="line">        CurrentWeather currentWeather &#x3D; _weatherService.GetCurrentWeather(location);</span><br><span class="line">        sw.Stop();</span><br><span class="line">        long elapsedMillis &#x3D; sw.ElapsedMilliseconds;</span><br><span class="line"></span><br><span class="line">        _logger.LogWarning(&quot;Retrieved weather data for &#123;location&#125; - Elapsed ms: &#123;&#125; &#123;@currentWeather&#125;&quot;, location, elapsedMillis, currentWeather);</span><br><span class="line"></span><br><span class="line">        return currentWeather;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public LocationForecast GetForecast(string location)</span><br><span class="line">    &#123;</span><br><span class="line">        Stopwatch sw &#x3D; Stopwatch.StartNew();</span><br><span class="line">        LocationForecast locationForecast &#x3D; _weatherService.GetForecast(location);</span><br><span class="line">        sw.Stop();</span><br><span class="line">        long elapsedMillis &#x3D; sw.ElapsedMilliseconds;</span><br><span class="line"></span><br><span class="line">        _logger.LogWarning(&quot;Retrieved weather data for &#123;location&#125; - Elapsed ms: &#123;&#125; &#123;@locationForecast&#125;&quot;, location, elapsedMillis, locationForecast);</span><br><span class="line"></span><br><span class="line">        return locationForecast;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This is our new Decorator Class, we implement from the IWeatherService Interface, it is taking the interface as a parameter in the constructor, and implemented two methods. In the GetCurrentWeather() method, it logs the time it takes to run the method, then calling the original _weatherService.GetCurrentWeather() method.</p>
+<h2 id="caching-decorator"><a class="markdownIt-Anchor" href="#caching-decorator"></a> Caching Decorator</h2>
+<p>Cache weather conditions, forecasts for a city to reduce the number of external API calls.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class WeatherServiceCachingDecorator : IWeatherService</span><br><span class="line">&#123;</span><br><span class="line">    private IWeatherService _weatherService;</span><br><span class="line">    private IMemoryCache _cache;</span><br><span class="line"></span><br><span class="line">    public WeatherServiceCachingDecorator(IWeatherService weatherService, IMemoryCache cache)</span><br><span class="line">    &#123;</span><br><span class="line">        _weatherService &#x3D; weatherService;</span><br><span class="line">        _cache &#x3D; cache;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public CurrentWeather GetCurrentWeather(string location)</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; if we can found value in the cache, return it</span><br><span class="line">        &#x2F;&#x2F; otherwise get the current weather then add it to the cache for 30 mins</span><br><span class="line">        string cacheKey &#x3D; $&quot;WeatherConditions::&#123;location&#125;&quot;;</span><br><span class="line">        if (_cache.TryGetValue&lt;CurrentWeather&gt;(cacheKey, out var currentWeather))</span><br><span class="line">        &#123;</span><br><span class="line">            return currentWeather;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            var currentConditions &#x3D; _weatherService.GetCurrentWeather(location);</span><br><span class="line">            _cache.Set&lt;CurrentWeather&gt;(cacheKey, currentConditions, TimeSpan.FromMinutes(30));</span><br><span class="line">            return currentConditions;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public LocationForecast GetForecast(string location)</span><br><span class="line">    &#123;</span><br><span class="line">        string cacheKey &#x3D; $&quot;WeatherForecast::&#123;location&#125;&quot;;</span><br><span class="line">        if (_cache.TryGetValue&lt;LocationForecast&gt;(cacheKey, out var forecast))</span><br><span class="line">        &#123;</span><br><span class="line">            return forecast;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            var locationForecast &#x3D; _weatherService.GetForecast(location);</span><br><span class="line">            _cache.Set&lt;LocationForecast&gt;(cacheKey, locationForecast, TimeSpan.FromMinutes(30));</span><br><span class="line">            return locationForecast;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And meanwhile in the HomeController, we need to build this onion like structure from inside to outside.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">IWeatherService weatherService &#x3D; new WeatherService(apiKey);</span><br><span class="line">IWeatherService withLoggingDecorator &#x3D; new WeatherServiceLoggingDecorator(weatherService, _loggerFactory.CreateLogger&lt;WeatherServiceLoggingDecorator&gt;());</span><br><span class="line">IWeatherService withCachingDecorator &#x3D; new WeatherServiceCachingDecorator(withLoggingDecorator, memoryCache);</span><br><span class="line"></span><br><span class="line">_weatherService &#x3D; withCachingDecorator;</span><br></pre></td></tr></table></figure>
+<p>The call stack will be: CachingDecorator =&gt; LoggingDecorator =&gt; WeatherService</p>
+<h2 id="decorator-summary"><a class="markdownIt-Anchor" href="#decorator-summary"></a> Decorator Summary</h2>
+<ul>
+<li>Multiple decorators can be used in conjunction with one another</li>
+<li>Each decorator can focus on a single task, promoting separation of concerns</li>
+<li>Decorator classes allow functionality to be added dynamically</li>
+</ul>
+<h3 id="decorator-pattern-characteristics"><a class="markdownIt-Anchor" href="#decorator-pattern-characteristics"></a> Decorator Pattern Characteristics</h3>
+<ol>
+<li>Implement the same base interface as the original object</li>
+<li>Take a instance of the original object as part of their constructor</li>
+<li>Add new behaviors to the original object they are wrapping</li>
+</ol>
+<h2 id="using-decorators-with-dependency-injection-container"><a class="markdownIt-Anchor" href="#using-decorators-with-dependency-injection-container"></a> Using Decorators with Dependency Injection Container</h2>
+<p>.NET Core has built in IoC container which will help us to create WeatherService object when we need it and manage the lifetime of object.</p>
+<p>We could simplify the HomeController constructor to this</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">private readonly IWeatherService _weatherService;</span><br><span class="line"></span><br><span class="line">public HomeController(ILogger&lt;HomeController&gt; logger, IWeatherService weatherService)</span><br><span class="line">&#123;</span><br><span class="line">    _weatherService &#x3D; weatherService;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>And in the startUp.cs, we configure the IoC container to this</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public void ConfigureServices(IServiceCollection services)</span><br><span class="line">&#123;</span><br><span class="line">    services.AddControllersWithViews();</span><br><span class="line"></span><br><span class="line">    services.AddMemoryCache();</span><br><span class="line"></span><br><span class="line">    String apiKey &#x3D; Configuration.GetValue&lt;String&gt;(&quot;OpenWeatherMapApiKey&quot;);</span><br><span class="line">    services.AddScoped&lt;IWeatherService&gt;(serviceProvider &#x3D;&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        String apiKey &#x3D; Configuration.GetValue&lt;String&gt;(&quot;OpenWeatherMapApiKey&quot;);</span><br><span class="line"></span><br><span class="line">        var logger &#x3D; serviceProvider.GetService&lt;ILogger&lt;WeatherServiceLoggingDecorator&gt;&gt;();</span><br><span class="line"></span><br><span class="line">        var memoryCache &#x3D; serviceProvider.GetService&lt;IMemoryCache&gt;();</span><br><span class="line"></span><br><span class="line">        IWeatherService weatherService &#x3D; new WeatherService(apiKey);</span><br><span class="line">        IWeatherService withLoggingDecorator &#x3D; new WeatherServiceLoggingDecorator(weatherService, logger);</span><br><span class="line">        IWeatherService withCachingDecorator &#x3D; new WeatherServiceCachingDecorator(withLoggingDecorator, memoryCache);</span><br><span class="line"></span><br><span class="line">        return withCachingDecorator;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now whenever we need a IWeatherService object, it will be created and provided to us with this structure. (CachingDecorator =&gt; LoggingDecorator =&gt; WeatherService)</p>
+<h2 id="when-to-use-decorator-pattern"><a class="markdownIt-Anchor" href="#when-to-use-decorator-pattern"></a> When to use Decorator Pattern</h2>
+<ul>
+<li>Cross cutting concerns
+<ul>
+<li>Logging, Performance Tracking(Timer, StopWatch…), Caching, Authorization</li>
+</ul>
+</li>
+<li>Manipulate data going to/from component
+<ul>
+<li>object we need to encrypt and decrypt before being passed to a component</li>
+</ul>
+</li>
+</ul>
+<h3 id="question-what-if-your-component-does-not-have-an-interfaceextend-from-a-base-class"><a class="markdownIt-Anchor" href="#question-what-if-your-component-does-not-have-an-interfaceextend-from-a-base-class"></a> Question: What if your component does not have an interface/extend from a base class?</h3>
+<ul>
+<li>Extract an interface from the class</li>
+</ul>
+<h3 id="what-if-you-cant-modify-the-class"><a class="markdownIt-Anchor" href="#what-if-you-cant-modify-the-class"></a> What if you can’t modify the class?</h3>
+<ul>
+<li>Adapter Pattern</li>
+</ul>
+<p>To put a class in front of your component and extract an interface from the Adapter Class</p>
+<p><img src="/../images/Design-Patterns-Decorator/5.png" alt="" /></p>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h2>
+<ul>
+<li>Design Patterns are about ideas</li>
+<li>Interfaces allow us to create loosely coupled designs</li>
+<li>the decorator pattern adds the ability to dynamically add behavior</li>
+<li>This is accomplished by wrapping around the original object and intercepting methods</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/04/18/Design-Patterns-Decorator/" title="Design Patterns - Decorator" target="_blank" rel="external">http://hellcy.github.io/2021/04/18/Design-Patterns-Decorator/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/04/19/Design-Patterns-Adapter/" title="Design Patterns - Adapter"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/" title="Design Patterns - Factory and Abstract Factory"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

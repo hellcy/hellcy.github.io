@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Design Patterns - Factory and Abstract Factory | Hellcy&#39;s Blog</title>
+  <meta name="description" content="What is Factory Pattern A factory is an object for creating objects  Factory Pattern Variations  Simple Factory Factory Method Abstract Factory   Factory Pattern Characteristics  Client: Asks for a c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Design Patterns - Factory and Abstract Factory">
+<meta property="og:url" content="http://hellcy.github.io/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="What is Factory Pattern A factory is an object for creating objects  Factory Pattern Variations  Simple Factory Factory Method Abstract Factory   Factory Pattern Characteristics  Client: Asks for a c">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Factory-and-Abstract-Factory/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/Design-Patterns-Factory-and-Abstract-Factory/2.png">
+<meta property="article:published_time" content="2021-04-17T13:40:29.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.658Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Design Patterns">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/Design-Patterns-Factory-and-Abstract-Factory/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#what-is-factory-pattern"><span class="toc-number">1.</span> <span class="toc-text"> What is Factory Pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#factory-pattern-variations"><span class="toc-number">2.</span> <span class="toc-text"> Factory Pattern Variations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#factory-pattern-characteristics"><span class="toc-number">3.</span> <span class="toc-text"> Factory Pattern Characteristics</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#simple-factory-example"><span class="toc-number">4.</span> <span class="toc-text"> Simple Factory Example</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#factory-method"><span class="toc-number">5.</span> <span class="toc-text"> Factory Method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#abstract-factory-pattern"><span class="toc-number">6.</span> <span class="toc-text"> Abstract Factory Pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#factory-pattern-in-testing"><span class="toc-number">7.</span> <span class="toc-text"> Factory Pattern in Testing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#summary"><span class="toc-number">8.</span> <span class="toc-text"> Summary</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Design-Patterns-Factory-and-Abstract-Factory" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Design Patterns - Factory and Abstract Factory
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/" class="article-date">
+	  <time datetime="2021-04-17T13:40:29.000Z" itemprop="datePublished">17-04-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 6(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="what-is-factory-pattern"><a class="markdownIt-Anchor" href="#what-is-factory-pattern"></a> What is Factory Pattern</h2>
+<p>A factory is an object for creating objects</p>
+<h2 id="factory-pattern-variations"><a class="markdownIt-Anchor" href="#factory-pattern-variations"></a> Factory Pattern Variations</h2>
+<ul>
+<li>Simple Factory</li>
+<li>Factory Method</li>
+<li>Abstract Factory</li>
+</ul>
+<h2 id="factory-pattern-characteristics"><a class="markdownIt-Anchor" href="#factory-pattern-characteristics"></a> Factory Pattern Characteristics</h2>
+<ul>
+<li>Client: Asks for a created product
+<ul>
+<li>Shopping cart</li>
+</ul>
+</li>
+<li>Creator: Facilitates a creation
+<ul>
+<li>ShippingProviderFactory</li>
+</ul>
+</li>
+<li>Product: The product of the creation
+<ul>
+<li>ShippingProvider Instance</li>
+</ul>
+</li>
+</ul>
+<p>The Client no longer needs to know how to create an object or exactly what flavor of that class it will use</p>
+<h2 id="simple-factory-example"><a class="markdownIt-Anchor" href="#simple-factory-example"></a> Simple Factory Example</h2>
+<p>We have a ShoppingCart Class and inside this Class we create a shippingProvider object. It will create different shippingProvider based on order’s sender country</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (order.Sender.Country &#x3D;&#x3D; &quot;Australia&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;Australia Post Shipping Provider</span><br><span class="line">&#125;</span><br><span class="line">else if (order.Sender.Country &#x3D;&#x3D; &quot;Sweden&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F;Swedish Postal Service Shipping Provider</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    throw new NotSupportedException(&quot;No shipping provider found for origin country&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>But the shippingProvider object should not be created inside the ShoppingCart Class, ShoppingCart Class should just ask a ShippingProviderFactory Class for a shippingProvider object, and it will be provided one.</p>
+<p>So we should moved the code to a new ShippingProviderFactory Class and invoke this class’s Creation method.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var shippingProvider &#x3D; ShippingProviderFactory.CreateShippingProvider(order.Sender.Country);</span><br></pre></td></tr></table></figure>
+<p>One problem is not we are still hardcoding the Country inside our ShippingProviderFactory Class. We should add another layer of abstraction between the ShippingProviderFactory and the implementation of the ShippingProvider.</p>
+<h2 id="factory-method"><a class="markdownIt-Anchor" href="#factory-method"></a> Factory Method</h2>
+<p>The Factory Method Pattern is introduced to allow for a flexible and extensible application</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public abstract class ShippingProviderFactory &#123;</span><br><span class="line">    public abstract ShippingProvider CreateShippingProvider(string country);</span><br><span class="line"></span><br><span class="line">    public ShippingProvider GetShippingProvider(string country) &#123;</span><br><span class="line">        var provider &#x3D; CreateShippingProvider(country)</span><br><span class="line"></span><br><span class="line">        &#x2F;&#x2F; we may want to do some common changes on the shippingProvider created </span><br><span class="line">        &#x2F;&#x2F; before we return it back to the caller (ShoppingCart)</span><br><span class="line">        if (country &#x3D;&#x3D; &quot;Sweden&quot; &amp;&amp; provider.InsuranceOptions.ProviderHasInsurance)</span><br><span class="line">        &#123;</span><br><span class="line">            provider.RequireSignature &#x3D; false;</span><br><span class="line">        &#125;</span><br><span class="line">        return provider;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>It contains two methods.</p>
+<p>The CreateShippingProvider() method will be implemented by its subclasses with different implementations.</p>
+<p>The GetShippingProvider() method will allow user to decide what’s passed into the creation. And it allows user to do additional common interactions with the result of the creation before it’s being passed back to the caller(ShoppingCart).</p>
+<p><img src="/../images/Design-Patterns-Factory-and-Abstract-Factory/1.png" alt="" /></p>
+<p>Now we can create different implementations of the creation of a shippingProvider based on the input parameter(country).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class StandardShippingProviderFactory : ShippingProviderFactory</span><br><span class="line">&#123;</span><br><span class="line">    public override ShippingProvider CreateShippingProvider(string country)</span><br><span class="line">    &#123;</span><br><span class="line">        return new StandardShippingProviderFactory();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class GlobalExpressShippingProviderFactory : ShippingProviderFactory</span><br><span class="line">&#123;</span><br><span class="line">    public override ShippingProvider CreateShippingProvider(string country)</span><br><span class="line">    &#123;</span><br><span class="line">        return new GlobalExpressShippingProvider();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>In the caller Class (ShoppingCart) we can inject ShippingProviderFactory</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; inject ShippingProviderFactory into the ShoppingCart Constructor</span><br><span class="line">public ShoppingCart(Order order, ShippingProviderFactory shippingProviderFactory)</span><br><span class="line">&#123;</span><br><span class="line">    this.order &#x3D; order;</span><br><span class="line">    this.shippingProviderFactory &#x3D; shippingProviderFactory;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Also compose the ShippingProviderFactory object on app start</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var cart &#x3D; new ShoppingCart(order, new StandardShippingProviderFactory());</span><br></pre></td></tr></table></figure>
+<h2 id="abstract-factory-pattern"><a class="markdownIt-Anchor" href="#abstract-factory-pattern"></a> Abstract Factory Pattern</h2>
+<p>The abstract factory pattern provides a way to encapsulete a group of individual factories that have a common theme without specifying their concrete classes.</p>
+<p><img src="/../images/Design-Patterns-Factory-and-Abstract-Factory/2.png" alt="" /></p>
+<p>It adds another layer of abstraction which allow users to choose which factory to use on app start.</p>
+<p>Different factories have the same methods but with different implementations</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">public interface IPurchaseProviderFactory</span><br><span class="line">&#123;</span><br><span class="line">    ShippingProvider CreateShippingProvider(Order order);</span><br><span class="line">    IInvoice CreateInvoice(Order order);</span><br><span class="line">    ISummary CreateSummary(Order order);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class AustraliaPurchaseProviderFactory : IPurchaseProviderFactory</span><br><span class="line">&#123;</span><br><span class="line">    public IInvoice CreateInvoice(Order order)</span><br><span class="line">    &#123;</span><br><span class="line">        return new GSTInvoice();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ShippingProvider CreateShippingProvider(Order order)</span><br><span class="line">    &#123;</span><br><span class="line">        var shippingProviderFactory &#x3D; new StandardShippingProviderFactory();</span><br><span class="line"></span><br><span class="line">        return shippingProviderFactory.GetShippingProvider(order.Sender.Country);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ISummary CreateSummary(Order order)</span><br><span class="line">    &#123;</span><br><span class="line">        return new CSVSummary();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class SwedenPurchaseProviderFactory : IPurchaseProviderFactory</span><br><span class="line">&#123;</span><br><span class="line">    public IInvoice CreateInvoice(Order order)</span><br><span class="line">    &#123;</span><br><span class="line">        if (order.Recipient.Country !&#x3D; order.Sender.Country)</span><br><span class="line">        &#123;</span><br><span class="line">            return new NoVATInvoice();</span><br><span class="line">        &#125;</span><br><span class="line">        return new VATInvoice();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ShippingProvider CreateShippingProvider(Order order)</span><br><span class="line">    &#123;</span><br><span class="line">        ShippingProviderFactory shippingProviderFactory;</span><br><span class="line"></span><br><span class="line">        if (order.Sender.Country !&#x3D; order.Recipient.Country)</span><br><span class="line">        &#123;</span><br><span class="line">            shippingProviderFactory &#x3D; new GlobalExpressShippingProviderFactory();</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            shippingProviderFactory &#x3D; new StandardShippingProviderFactory();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return shippingProviderFactory.GetShippingProvider(order.Sender.Country);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public ISummary CreateSummary(Order order)</span><br><span class="line">    &#123;</span><br><span class="line">        return new EmailSummary();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Client (ShoppingCart) Class doesn’t need to know which factory to use, it just needs to know when to create a product using the factory.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public ShoppingCart(Order order, IPurchaseProviderFactory purchaseProviderFactory)  </span><br><span class="line">&#123;</span><br><span class="line">    this.order &#x3D; order;</span><br><span class="line">    this.purchaseProviderFactory &#x3D; purchaseProviderFactory;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public string Finalize()</span><br><span class="line">&#123;</span><br><span class="line">    var shippingProvider &#x3D; purchaseProviderFactory.CreateShippingProvider(order);</span><br><span class="line"></span><br><span class="line">    var invoice &#x3D; purchaseProviderFactory.CreateInvoice(order);</span><br><span class="line"></span><br><span class="line">    var summary &#x3D; purchaseProviderFactory.CreateSummary(order);</span><br><span class="line"></span><br><span class="line">    summary.Send();</span><br><span class="line"></span><br><span class="line">    order.ShippingStatus &#x3D; ShippingStatus.ReadyForShippment;</span><br><span class="line"></span><br><span class="line">    return shippingProvider.GenerateShippingLabelFor(order);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The concrete factory object will be instantiated on app starts(or based on user input).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">IPurchaseProviderFactory purchaseProviderFactory;</span><br><span class="line"></span><br><span class="line">if (order.Sender.Country &#x3D;&#x3D; &quot;Sweden&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    purchaseProviderFactory &#x3D; new SwedenPurchaseProviderFactory();</span><br><span class="line">&#125;</span><br><span class="line">else if (order.Sender.Country &#x3D;&#x3D; &quot;Australia&quot;)</span><br><span class="line">&#123;</span><br><span class="line">    purchaseProviderFactory &#x3D; new AustraliaPurchaseProviderFactory();</span><br><span class="line">&#125;</span><br><span class="line">else</span><br><span class="line">&#123;</span><br><span class="line">    throw new Exception(&quot;Country not supported.&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var cart &#x3D; new ShoppingCart(order, purchaseProviderFactory);</span><br></pre></td></tr></table></figure>
+<h2 id="factory-pattern-in-testing"><a class="markdownIt-Anchor" href="#factory-pattern-in-testing"></a> Factory Pattern in Testing</h2>
+<p>Extract creation of mocked, facked or commonly oused intances in tests.</p>
+<p>We could use the Factory Pattern in our Unit Tests. it will be easier to test the parts that use them as you can inhect faked or mocked implementations</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">public abstract class OrderFactory</span><br><span class="line">&#123;</span><br><span class="line">    protected abstract Order CreateOrder();</span><br><span class="line"></span><br><span class="line">    public Order GetOrder()</span><br><span class="line">    &#123;</span><br><span class="line">        var order &#x3D; CreateOrder();</span><br><span class="line"></span><br><span class="line">        order.LineItems.Add(</span><br><span class="line">            new Item(&quot;testA&quot;, &quot;testB&quot;, 100m), 1</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        order.LineItems.Add(</span><br><span class="line">            new Item(&quot;TestC&quot;, &quot;TestD&quot;, decimal.MaxValue), 1</span><br><span class="line">        );</span><br><span class="line"></span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class StandardOrderFactory : OrderFactory</span><br><span class="line">&#123;</span><br><span class="line">    protected override Order CreateOrder()</span><br><span class="line">    &#123;</span><br><span class="line">        var order &#x3D; new Order</span><br><span class="line">        &#123;</span><br><span class="line">            Recipient &#x3D; new Address</span><br><span class="line">            &#123;</span><br><span class="line">                To &#x3D; &quot;Yuan&quot;,</span><br><span class="line">                Country &#x3D; &quot;Australia&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            Sender &#x3D; new Address</span><br><span class="line">            &#123;</span><br><span class="line">                To &#x3D; &quot;Someone else&quot;,</span><br><span class="line">                Country &#x3D; &quot;Australia&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class InternationalOrderFactory : OrderFactory</span><br><span class="line">&#123;</span><br><span class="line">    protected override Order CreateOrder()</span><br><span class="line">    &#123;</span><br><span class="line">        var order &#x3D; new Order</span><br><span class="line">        &#123;</span><br><span class="line">            Recipient &#x3D; new Address</span><br><span class="line">            &#123;</span><br><span class="line">                To &#x3D; &quot;Yuan&quot;,</span><br><span class="line">                Country &#x3D; &quot;Australia&quot;</span><br><span class="line">            &#125;,</span><br><span class="line">            Sender &#x3D; new Address</span><br><span class="line">            &#123;</span><br><span class="line">                To &#x3D; &quot;Someone else&quot;,</span><br><span class="line">                Country &#x3D; &quot;Sweden&quot;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        return order;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h2>
+<ul>
+<li>
+<p>Separates the client(ShoppingCart) from the creation</p>
+</li>
+<li>
+<p>Introduce subclasses (StandardShippingProviderFactory, GlobalExpressShippingProviderFactory) and concrete implementations to add functionality.</p>
+</li>
+<li>
+<p>Factory Pattern is very common when writing tests</p>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/" title="Design Patterns - Factory and Abstract Factory" target="_blank" rel="external">http://hellcy.github.io/2021/04/17/Design-Patterns-Factory-and-Abstract-Factory/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/04/18/Design-Patterns-Decorator/" title="Design Patterns - Decorator"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/04/16/Design-Patterns-Command/" title="Design Patterns - Command"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

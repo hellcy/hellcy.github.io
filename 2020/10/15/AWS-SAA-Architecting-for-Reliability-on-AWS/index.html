@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>AWS SAA - Architecting for Reliability on AWS | Hellcy&#39;s Blog</title>
+  <meta name="description" content="AWS SAA C02 exam will include 4 topic  Resilience Performance Security Cost-Optimization   Chapter One: Resilience  Section One: Availability Resiliency: The ability of an application to avoid and rec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS SAA - Architecting for Reliability on AWS">
+<meta property="og:url" content="http://hellcy.github.io/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="AWS SAA C02 exam will include 4 topic  Resilience Performance Security Cost-Optimization   Chapter One: Resilience  Section One: Availability Resiliency: The ability of an application to avoid and rec">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/2.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/3.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/4.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/5.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/6.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/7.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/8.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/9.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/10.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/11.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/12.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/13.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/14.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/15.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/17.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/16.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/19.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/18.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/20.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/21.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/22.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/23.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/26.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/27.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/28.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/29.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/30.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/31.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/32.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/33.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/34.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/35.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/36.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/37.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/38.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/39.png">
+<meta property="og:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/40.png">
+<meta property="article:published_time" content="2020-10-15T03:30:54.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.657Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="AWS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/AWS-SAA-Architecting-for-Reliability-on-AWS/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#chapter-one-resilience"><span class="toc-number">1.</span> <span class="toc-text"> Chapter One: Resilience</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#section-one-availability"><span class="toc-number">1.1.</span> <span class="toc-text"> Section One: Availability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#loose-coupling"><span class="toc-number">1.2.</span> <span class="toc-text"> Loose Coupling</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#simple-queue-service"><span class="toc-number">1.3.</span> <span class="toc-text"> Simple Queue Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#elastic-container-service"><span class="toc-number">1.4.</span> <span class="toc-text"> Elastic Container Service</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cloud-native-applications"><span class="toc-number">1.5.</span> <span class="toc-text"> Cloud Native Applications</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#trusted-advisor"><span class="toc-number">1.6.</span> <span class="toc-text"> Trusted Advisor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-one-summary"><span class="toc-number">1.7.</span> <span class="toc-text"> Section One Summary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-two-setting-up-aws-environment"><span class="toc-number">1.8.</span> <span class="toc-text"> Section Two: Setting up AWS Environment</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aws-budget"><span class="toc-number">1.9.</span> <span class="toc-text"> AWS Budget</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aws-iam"><span class="toc-number">1.10.</span> <span class="toc-text"> AWS IAM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tls-certificate"><span class="toc-number">1.11.</span> <span class="toc-text"> TLS Certificate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-two-summary"><span class="toc-number">1.12.</span> <span class="toc-text"> Section Two Summary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-three-vpc-networks"><span class="toc-number">1.13.</span> <span class="toc-text"> Section Three: VPC networks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#elastic-ip-address"><span class="toc-number">1.14.</span> <span class="toc-text"> Elastic IP Address</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#global-accelerator"><span class="toc-number">1.15.</span> <span class="toc-text"> Global Accelerator</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vpc-architecture"><span class="toc-number">1.16.</span> <span class="toc-text"> VPC Architecture</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#aws-shield-standard"><span class="toc-number">1.17.</span> <span class="toc-text"> AWS Shield Standard</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#direct-connect"><span class="toc-number">1.18.</span> <span class="toc-text"> Direct Connect</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vpn-connection"><span class="toc-number">1.19.</span> <span class="toc-text"> VPN Connection</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-three-summary"><span class="toc-number">1.20.</span> <span class="toc-text"> Section Three Summary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-four-automated-deployments-with-cloudformation"><span class="toc-number">1.21.</span> <span class="toc-text"> Section Four: Automated Deployments with CloudFormation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#cloudformation"><span class="toc-number">1.22.</span> <span class="toc-text"> CloudFormation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#application-load-balancers"><span class="toc-number">1.23.</span> <span class="toc-text"> Application Load Balancers</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#auto-scaling-groups"><span class="toc-number">1.24.</span> <span class="toc-text"> Auto Scaling Groups</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-four-summary"><span class="toc-number">1.25.</span> <span class="toc-text"> Section Four Summary</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#section-five-multi-region-applications-with-route-53"><span class="toc-number">1.26.</span> <span class="toc-text"> Section Five: Multi-region Applications with Route 53</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#active-passive-redundancy-using-failover-resource-records"><span class="toc-number">1.27.</span> <span class="toc-text"> Active-passive Redundancy using Failover Resource Records</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#route-53-health-checks"><span class="toc-number">1.28.</span> <span class="toc-text"> Route 53 Health Checks</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#course-summary"><span class="toc-number">1.29.</span> <span class="toc-text"> Course Summary</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-AWS-SAA-Architecting-for-Reliability-on-AWS" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AWS SAA - Architecting for Reliability on AWS
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/" class="article-date">
+	  <time datetime="2020-10-15T03:30:54.000Z" itemprop="datePublished">15-10-2020</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/AWS/" rel="tag">AWS</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.6k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 22(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>AWS SAA C02 exam will include 4 topic</p>
+<ol>
+<li>Resilience</li>
+<li>Performance</li>
+<li>Security</li>
+<li>Cost-Optimization</li>
+</ol>
+<h3 id="chapter-one-resilience"><a class="markdownIt-Anchor" href="#chapter-one-resilience"></a> Chapter One: Resilience</h3>
+<h4 id="section-one-availability"><a class="markdownIt-Anchor" href="#section-one-availability"></a> Section One: Availability</h4>
+<p>Resiliency: The ability of an application to avoid and recover from failure.</p>
+<p>Availability: The percentage of time that an application is performing as expected.</p>
+<p>Poor performance implies low availablility. Uptime isn’t the same as availability.</p>
+<p>The service level agreement(SLA) for each service includes its annual availability.</p>
+<p>The availability of a single EC2 instance is 90%</p>
+<p>The availability of an ELB(Elastic Load Balancer) and EFS(Elastic File System) is 99.99%</p>
+<p>The availability of a RDS(Relational DataBase System) multi-AZ(multi-Availability Zone) is 99.95%</p>
+<p>The availability of a Lambda is 99.95%</p>
+<p>The availability of a S3 is 99.9%</p>
+<p>The availability of a DynamoDB with Global Tables (replicates our database across multiple regions) is 99.999%</p>
+<p>Traditional web application: can be convert to AWS web application without having to change the code. For example, a traditional video processing application can use Elastic File System(EFS) to store video data. But it cannot use S3 to store video data. Because that requires changes of code.</p>
+<p>EFS provides a network file system (NFS) volume, NFS is an established standard that most Linux distributions support.</p>
+<p>For DB: we can use (Relational Database Service)RDS. It offers managed database engines (MySQL, MariaDB, PostgreSQL, Microsoft SQL server, Oracle…). AWS manages database infrastructure and backups.</p>
+<h4 id="loose-coupling"><a class="markdownIt-Anchor" href="#loose-coupling"></a> Loose Coupling</h4>
+<p>One component doesn’t depend on a specific component (e.g. URL points to ELB, not a specific EC2), one-to-many relationship</p>
+<p>is EFS a single point of failure?</p>
+<p>No, Elastic services are always composed of redundant components, they just hide it. Elastic services are always loosely coupled with other services like EC2.</p>
+<p>Loose Coupling helps Performance: If our application’s performance is low and we want to upgrade our EC2 instances, because they are loose coupled, we can upgrade EC2 instances one by one and our application will still be available, ELB will just route traffic to other instances.</p>
+<p>Performance and Availability are linked.</p>
+<h4 id="simple-queue-service"><a class="markdownIt-Anchor" href="#simple-queue-service"></a> Simple Queue Service</h4>
+<p>The concept of Loose Coupling can be applied to the application level too. For example, we have a video processing application, we can create two components for this application, the web interface part and the video processing part. Users go to the webpage and submit a request of a video with differnt options, and video processing part gets the request and start processing.</p>
+<p>But because processing videos take much more time than sending requests. We need a Message Queue Service to save all the requests in order. Simple Queue Service(SQS) is one option with high availability.</p>
+<h4 id="elastic-container-service"><a class="markdownIt-Anchor" href="#elastic-container-service"></a> Elastic Container Service</h4>
+<p>Container helps you to deploy web serices easier. Build an image of your container, deploy the image to an instance, and launch the containser in the image. E.g. Docker</p>
+<p>You can have multiple containers in one instance, so it is like you are running multiple web services for the price of one instance. Also, if one container is down, the other containers on that instance will still be running. (Processes running inside the container are isolated from the host.)</p>
+<h4 id="cloud-native-applications"><a class="markdownIt-Anchor" href="#cloud-native-applications"></a> Cloud Native Applications</h4>
+<p>Depend on a cloud service that can’t be deployed on-premises</p>
+<p>Examples: SQS, S3, DynamoDB</p>
+<p>Lambda, S3 and DynamoDB are three main serverless components.</p>
+<p>Rather than running the video processing function on a service on a EC2 instance, we could write a Lambda function to do that. Lambda is a serverless service (they are running on a server of course, but the server is managed by AWS and we don’t need to worry about it, so we call it serverless.)</p>
+<p>Advantages of using Cloud Native Architecture: Scalability, Performance, Convenience</p>
+<p>Disadvantages: Could vendor lock-in (have to use AWS services), Slightly lower availability (Cloud services are hard dependencies).</p>
+<p>However, because of the scalability of Cloud Applications, if we deploy the application to two different regions, we could improve the availability. (introduce more redundence)</p>
+<h4 id="trusted-advisor"><a class="markdownIt-Anchor" href="#trusted-advisor"></a> Trusted Advisor</h4>
+<p>Where you can found the number of limits for all services on AWS.</p>
+<h4 id="section-one-summary"><a class="markdownIt-Anchor" href="#section-one-summary"></a> Section One Summary</h4>
+<p>Availability is not cheap, we need to found the balance between availability and cost. We can achieve high availability use Redundancy and Loose Coupling</p>
+<p>The Simple Queue Service can act as a go-between for loosely coupled services. 1. Sending service places message in a queue. 2. Receiving service polls the queue for new messages. E.g. Online voting service</p>
+<p>The Elastic Container Service deploys microservices using Docker containers, can improve availability by running multiple containers on a single instance.</p>
+<h4 id="section-two-setting-up-aws-environment"><a class="markdownIt-Anchor" href="#section-two-setting-up-aws-environment"></a> Section Two: Setting up AWS Environment</h4>
+<h4 id="aws-budget"><a class="markdownIt-Anchor" href="#aws-budget"></a> AWS Budget</h4>
+<p>In the Billing section, you can create an AWS Budget and setup an email alert, AWS will send you an email when the budget amount has been reached. There are more options.</p>
+<h4 id="aws-iam"><a class="markdownIt-Anchor" href="#aws-iam"></a> AWS IAM</h4>
+<p>AWS has two account types, Root User account and IAM account. We can setup a password policy for AWS accounts.</p>
+<p>AWS provides MFA for Root User account in case someone else knows your AWS account credentials.</p>
+<p>Delete root user access keys: if someone knows your root user access key, he can use CLI to do anything. MFA will not be required to use CLI if he knows root user access key. So it is recommanded to create an IAM user and create access key for IAM users.</p>
+<p>You can create IAM accounts and Groups and assign Policies to Users or Groups, IAM users will use Root account ID or Alias and their account details to login.</p>
+<p>CloudTrail: where AWS logs all events such as: user login, user create new resources, user attach policy to its account etc…</p>
+<p>Configure AWS account using AWS CLI. This command can also be used to change default AWS credentials in .aws folder.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws configure</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/1.png" alt="" /></p>
+<h4 id="tls-certificate"><a class="markdownIt-Anchor" href="#tls-certificate"></a> TLS Certificate</h4>
+<p>TLS(Transport Layer Security): Make sure messages being transferred between Load Balancer and Clients are secure.</p>
+<p>ACM(Amazon Certificate Manager): we ask ACM to issue us a TLS certificate</p>
+<p>Route 53: when you purchase a domain, you need to config the DNS records, you can do this in the service where you purchased the domain (e.g. GoDaddy) or in Route 53.</p>
+<p>Note: Once your TLS certificate has been issued, you still can’t visit your website via https, you have to link your TLS certificate to other AWS services like CloudFront or ELB</p>
+<h4 id="section-two-summary"><a class="markdownIt-Anchor" href="#section-two-summary"></a> Section Two Summary</h4>
+<ol>
+<li>Set up budget alert</li>
+<li>Create IAM policy</li>
+<li>Set up MFA for the root user</li>
+<li>Create IAM user</li>
+<li>View CloudTrail event history</li>
+<li>Configure AWS CLI</li>
+<li>Create a TLS certificate using ACM</li>
+</ol>
+<h4 id="section-three-vpc-networks"><a class="markdownIt-Anchor" href="#section-three-vpc-networks"></a> Section Three: VPC networks</h4>
+<p>AWS managers underlying VPC infrastructrue and is responsible for reliability of VPC network components. You don’t need to worry about VPC failures. There are many redundencies built in.</p>
+<p>VPC contains one or more subnets. A subnet exists in an availability zone. An instance exists in a subnet.</p>
+<p>Because one instance only exists in one subnet which exists in one availability zone, it lacks of redundency and availability is not high. If the zone fails, the instance will fail.</p>
+<p>Availability zones: they are basically the data centers in different locations. if you have your instances running in different availability zones, it is highly unlikely that all zones fail.</p>
+<p>Client(me) can access a VPC via three ways: 1. Internet Gateway, 2. VPN network, 3. Direct Connect link provided by AWS.</p>
+<p>Transit Gateway: high availability service that can connect two networks together (two VPCs)</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/2.png" alt="" /></p>
+<h4 id="elastic-ip-address"><a class="markdownIt-Anchor" href="#elastic-ip-address"></a> Elastic IP Address</h4>
+<p>EIP allows an instance to retain the same public IP address. EIP is bound to an ENI(Elastic Network Interface), which is attached to an instance. You can move an EIP to differnt ENI</p>
+<p>To check EC2 instances EIPs.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 describe-addresses</span><br></pre></td></tr></table></figure>
+<p>To allocate new EIP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 allocate-address</span><br></pre></td></tr></table></figure>
+<p>To release the EIP</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 release-address --allocation-id (your_allocation_id)</span><br></pre></td></tr></table></figure>
+<h4 id="global-accelerator"><a class="markdownIt-Anchor" href="#global-accelerator"></a> Global Accelerator</h4>
+<p>Provides two anycast IPv4 addresses. While ELP is bound to a AWS region, Global Accelerator IPs doesn’t, Users connects to a global accelerator static IP will be routed to a nearest POP(points-of-presence), which then will provide you with resources in any region.</p>
+<h4 id="vpc-architecture"><a class="markdownIt-Anchor" href="#vpc-architecture"></a> VPC Architecture</h4>
+<p>Public Subnet: has full access to the internet, can also be reached from the internet.</p>
+<p>Private Subnet: is isolated from the internet, cannot reach internet nor be reached from the internet.</p>
+<p>NAT Gateway: Provides outbound internet access for instance in Private Subnet</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/3.png" alt="" /></p>
+<p>Create VPC with Public Subnet and Private Subnet.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/4.png" alt="" /></p>
+<p>Public Subnet has a default Route Rule which route all requests(0.0.0.0/0) to a IGW(Internet Gateway), this allows instance in Public Subnet access public internet(inbound and outbound).</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/5.png" alt="" /></p>
+<p>Private Subnet has a default Route Rule which route all requests(0.0.0.0/0) to a NAT(NAT Gateway), this allows instance in Private Subnet outbound only access to internet.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/6.png" alt="" /></p>
+<p>NAT Gateway: Instance in private subnet send outbound traffic to NAT Gateway, NAT Gateway then sends traffic to Internet Gateway.</p>
+<p>Create multiple Public and Private subnets for redundency.</p>
+<p>To find a subnet by its CIDR block, we will be using the subnet ID to launch the instance.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 describe-subnets --filters Name&#x3D;cidr-block,Values&#x3D;&quot;10.0.11.0&#x2F;24&quot;</span><br></pre></td></tr></table></figure>
+<p>Launch an EC2 instance into a public subnet:</p>
+<p>Note: subnetId is the ID of your public subnet, which you can get by using the describe-subnets command above. ImageID is the ID of the EC2 instance, it specify some options about the instance you want to launch. key-name is the name of the SSH key pair you created, which you can use later to login to the instance.</p>
+<p>You can create or manage your SSH key pair under your EC2 panel, NETWORK &amp; SECURITY tab.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 run-instances --subnet-id subnet-0aa8c9baa867b88f0 --image-id ami-0e6449745600ac1da --instance-type t3.micro --key-name hellcyAWSkey</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/7.png" alt="" /></p>
+<p>Note: You could optionally associate a public IP address to the instance you are about to launch. By using the command</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--associate-public-ip-address</span><br></pre></td></tr></table></figure>
+<p>It will make EC2 to associate a temporary public IP address to this instance, and will close the ip address when the instance is stopped. I will not do that because I want to keep the IP and so I will associate an EIP to this instance.</p>
+<p>To allocate a new EIP</p>
+<p>Note before we have associated the EIP to the NAT gateway. Now we are going to associate the new EIP to the EC2 instacne</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 allocate-address</span><br></pre></td></tr></table></figure>
+<p>To associate the new EIP to the new EC2 instance</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 associate-address --instance-id Your_Instance_Id --allocation-id Your_EIP_Allocation_Id</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/8.png" alt="" /></p>
+<p>To terminate the EC2 instance</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 terminate-instances --instance-ids Your_Instance_Id</span><br></pre></td></tr></table></figure>
+<p>To release the EIP so AWS will not charge us</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 release-address --allocation-id Your_EIP_Allocation_Id</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/9.png" alt="" /></p>
+<p>Launch an EC2 instance into private subnet</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 run-instances --subnet-id [private_subnet_id] --image-id ami-0e6449745600ac1da --instance-type t3.micro --key-name hellcyAWSkey</span><br></pre></td></tr></table></figure>
+<p>To delete NAT gateway</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 delete-nat-gateway --nat-gateway-id Your_NAT_Gateway_Id</span><br></pre></td></tr></table></figure>
+<p>Don’t forget to release the EIP associated with the NAT gateway.(They will charge for un-associated EIP)</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/10.png" alt="" /></p>
+<h4 id="aws-shield-standard"><a class="markdownIt-Anchor" href="#aws-shield-standard"></a> AWS Shield Standard</h4>
+<p>Free service that detects against DDoS attacks, always ON</p>
+<h4 id="direct-connect"><a class="markdownIt-Anchor" href="#direct-connect"></a> Direct Connect</h4>
+<p>Low-latency connection to an AWS region. Bypasses the internet, Two types: Dedicated, Hosted</p>
+<p>Dedicated: Physical connection that terminates at a Direct Connection location, fast, 1 or 10 Gbps</p>
+<p>Hosted: Last-mile connection provided by a Direct Connect partner(Local ISP). 50 Mbps to 10 Gbps</p>
+<h4 id="vpn-connection"><a class="markdownIt-Anchor" href="#vpn-connection"></a> VPN Connection</h4>
+<p>Encrypted IPsec connection over the internet, Unpredicatable latency, Can be implemented in two ways: Virtual private gateway, Transit gateway.</p>
+<p>Virtual private gateway: Enables you to establish a VPN tunnel with only one VPC. Doesn’t scale well when you have multiple VPCs, then you need to create multiple Virtual private gateway for each VPC you want to connect.</p>
+<p>Transit Gateway: Connects VPCs and on-premises networks, 1. Terminates multiple VPN connections, 2. Supports Direct Connect. Connects multiple VPCs together.</p>
+<p>Transit Gateway Route Tables: Control how traffic is routed between subnets. Can block traffic.</p>
+<p>To create a Transit Gateway</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 create-transit-gateway</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/11.png" alt="" /></p>
+<p>To create a VPC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 create-vpc --cidr-block 127.27.0.0&#x2F;16</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/12.png" alt="" /></p>
+<p>To create a Subnet in the VPC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 create-subnet --vpc-id Your_VPC_Id --cidr-block 172.27.1.0&#x2F;24 --availability-zone ap-southeast-2a</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/13.png" alt="" /></p>
+<p>To attach Transit Gateway to the subnet of the VPC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 create-transit-gateway-vpc-attachment --transit-gateway-id Your_TGW_Id --vpc-id Your_VPC_Id --subnet-ids Your_Subnet_Ids</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/14.png" alt="" /></p>
+<h4 id="section-three-summary"><a class="markdownIt-Anchor" href="#section-three-summary"></a> Section Three Summary</h4>
+<ol>
+<li>Allocating and assigning EIP addresses</li>
+<li>Creating VPCs</li>
+<li>Creating public and private subnets</li>
+<li>Launching instances into subnets</li>
+<li>Transit gateways</li>
+</ol>
+<h4 id="section-four-automated-deployments-with-cloudformation"><a class="markdownIt-Anchor" href="#section-four-automated-deployments-with-cloudformation"></a> Section Four: Automated Deployments with CloudFormation</h4>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/15.png" alt="" /></p>
+<p>Overview of the architecture: The architecture has two tiers, the web tier and the application tier. The client connects to the internet facing application load balancer, it proxies the connection to one of the instances in the web tier, and all of the instances in the web tier are running a web server. The web tier instance then opens a back-end connection to the internal load balancer, which then proxies the connection to one of the instances in the application tier. The idea is that the web tier instance grabs some information from an instance in the app tier, and it displays that information to a webpage, which presents to the client.</p>
+<p>The instances in the web tier and the app tier are going to be part of two different Auto Scaling groups. Auto Scaling is going to launch these isntances and make sure we always have a minimum number of healthy instances. If an instance fail, Auto Scaling will terminate it and launch a new one.</p>
+<h4 id="cloudformation"><a class="markdownIt-Anchor" href="#cloudformation"></a> CloudFormation</h4>
+<p>JSON or YAML document that describes AWS resources. Infrastructrue as code. Used to create a stack.</p>
+<p>Stack: Created by a template, is a COLLECTION OF RESOURCES that you create, update, and delete as a single unit. You can manually manage individual resources in a stack.</p>
+<p>Multiple templates: Different teams manage different resources. Resources have different lifecycles. Distributing resources across different stacks makes them easier to manage.</p>
+<p>Template for this course can be downloaded from <a target="_blank" rel="noopener" href="https://github.com/benpiper/architecting-reliability-aws/">here</a>. Name: app-stack.json and network-stack.json.</p>
+<p>app-stack.json depends on network-stack.json, so it calls network-stack.json to create the nested stack first, then it will create the parent stack by using some of the outputs from network-stack.json.</p>
+<p>Stack output: key-value pairs that CloudFormation makes available to other stacks and via the aws cloudformation describe-stacks CLI command.</p>
+<h4 id="application-load-balancers"><a class="markdownIt-Anchor" href="#application-load-balancers"></a> Application Load Balancers</h4>
+<ol>
+<li>Supports HTTP and HTTPS traffic</li>
+<li>You can use any TCP port, default is 80 and 443</li>
+<li>ALB listener receives connection from a client and proxies it to an instance in the target group</li>
+<li>Uses round-robin load balancing by default</li>
+<li>Can monitor health of instances</li>
+</ol>
+<p>ALB Schemes</p>
+<p>internet-facing: reachable from the internet, public IP address, Public DNS name</p>
+<p>internel: Not reachable from the internet, private IP address, Private DNS name</p>
+<p>Health Checks</p>
+<p>Each instance must pass its health check before receiving traffic. ALB will send HTTP GET request and looks for a success code every 10 seconds.</p>
+<h4 id="auto-scaling-groups"><a class="markdownIt-Anchor" href="#auto-scaling-groups"></a> Auto Scaling Groups</h4>
+<ol>
+<li>Launch a certain number of instances into the Auto Scaling group</li>
+<li>Add the instacnes to the ALB target group</li>
+<li>Terminate and recreate unhealthy instances</li>
+<li>Scale in or out based on average group CPU utilization</li>
+</ol>
+<p>Follow the steps to deploy stack to AWS Cloudformation</p>
+<p>First validate the templates, you will see the output parameters if template format is correct.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation validate-template --template-body file:&#x2F;&#x2F;app-stack.json</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation validate-template --template-body file:&#x2F;&#x2F;network-stack.json</span><br></pre></td></tr></table></figure>
+<p>deploy the stack to AWS cloudformation</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation deploy --template-file &quot;app-stack.json&quot; --stack-name &quot;app-stack&quot;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Change the TLS certificate ARN</li>
+<li>Change the S3 URL to yours</li>
+<li>Change the SSH key pairs for logging into EC2 instance</li>
+<li>Change the EC2 instance image ID</li>
+</ol>
+<p>Note: the template will only work for us-east-1 region, tried using ap-southeast-2 but failed when waiting for the cfn-signal. Probably because the application doesn’t exist in ap-southeast-2 docker market.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/17.png" alt="" /></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation describe-stacks --stack-name &quot;app-stack&quot;</span><br></pre></td></tr></table></figure>
+<p>Using the command above we can find the URL of the Internet-facing application load balancer. We securely(HTTPS) connect to this load balancer. And it redirect us to one of the instance in web tier.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/16.png" alt="" /></p>
+<p>Note we do added a TLS certificate in the template. But the TLS certficate is for my website <a target="_blank" rel="noopener" href="http://theyuancheng.com">theyuancheng.com</a>, and the domain of the EC2 instance does not match. So we are connecting using HTTP protocol.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/19.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/18.png" alt="" /></p>
+<p>Also pay attention to the EC2 hostname, Web tier server information, ip-10-0-1-42 belongs to Public Subnet A, and one of the instance is running inside this subnet. App server information, ip-10-0-102-180 belongs to Private Subnet B, one of the instance is running inside this subnet too.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/20.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/21.png" alt="" /></p>
+<p>If you refresh the URL a couple of times, you can see that the hostname ip we are connecting to changes, which means the load balancer redirect us to a different instance.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/22.png" alt="" /></p>
+<p>Now, let us try to terminate both of the web tier instances and see if Auto Scaling will recreate the instances for us.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws autoscaling describe-auto-scaling-instances</span><br></pre></td></tr></table></figure>
+<p>This command will list all the instances, we can find the instance ids in the list.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/23.png" alt="" /></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 termin ate-instances --instance-ids</span><br></pre></td></tr></table></figure>
+<p>We can see Auto Scaling automatically recreate another two instances, the intance ids are different.</p>
+<p>Use this command to delete the stack.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation delete-stack --stack-name &quot;app-stack&quot;</span><br></pre></td></tr></table></figure>
+<p>After deleting the stack, use this command to check if the stack has been deleted.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation describe-stacks</span><br></pre></td></tr></table></figure>
+<h4 id="section-four-summary"><a class="markdownIt-Anchor" href="#section-four-summary"></a> Section Four Summary</h4>
+<ol>
+<li>Use Stack template to deploy Auto Scaling multi-tier web application with load balancer.</li>
+<li>Stack will automatically rollback everything if deploy failed.</li>
+<li>Elastic load balancing and Auto Scaling work together. ELB provides health checks, Auto Scaling adds instances to the ELB target group.</li>
+</ol>
+<h4 id="section-five-multi-region-applications-with-route-53"><a class="markdownIt-Anchor" href="#section-five-multi-region-applications-with-route-53"></a> Section Five: Multi-region Applications with Route 53</h4>
+<ol>
+<li>Deploying a multi-region application</li>
+<li>Active-active redundancy using weighted resource records</li>
+<li>Active-passive redundancy using failover resource records</li>
+<li>Route 53 health checks</li>
+</ol>
+<p>We are going to deploy two cloudFormation stacks into the same region to simulate the multi-region application deployment.</p>
+<p>But because we have two URLs for the two Internet facing ALB, we need Route 53 to send traffic to these two ALBs. This is called an active-active scanario, because they are both active. We are going to create two weighted resource record sets with equal weight, so Route 53 will distribute traffic evenly.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/26.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/27.png" alt="" /></p>
+<p>See the image above to create a new record.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/28.png" alt="" /></p>
+<p>Create another record and route traffic to the two load balancers evenly.</p>
+<p>Checklist for creating records</p>
+<ol>
+<li>Routing Policy: Weighted</li>
+<li>Record name: www</li>
+<li>Turn on Alias</li>
+<li>Record Type: A</li>
+<li>Route traffic to: Classic load balancer, region (us-east-1), webtier-app-stack-1</li>
+<li>Weight: 50</li>
+<li>Record ID: app-stack-1</li>
+</ol>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/29.png" alt="" /></p>
+<p>The connection to the instance is now secure. (Notice the lock icon at top left corner, in front of the URL)</p>
+<p>How to check if Route53 distribute the traffic evenly to two load balancers? Go to <a href="dnschecker.org">DNS checker</a> and type in <a target="_blank" rel="noopener" href="http://www.theyuancheng.com">www.theyuancheng.com</a>. And you will see that half of the traffic ending in one IP.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/30.png" alt="" /></p>
+<h4 id="active-passive-redundancy-using-failover-resource-records"><a class="markdownIt-Anchor" href="#active-passive-redundancy-using-failover-resource-records"></a> Active-passive Redundancy using Failover Resource Records</h4>
+<ul>
+<li>Primary region services all requests</li>
+<li>Secondary region does not service any requests unless the primary fails</li>
+<li>Also called active-standby architecture</li>
+</ul>
+<p>Two ways to run this architecture</p>
+<p>Pilot Light: Secondary region runs minimal amount of resources to keep costs down. (in our case, maybe only one instance in the web tier and one instance in the app tier (normally should be 2 and 2)). When we need the secondary region, Auto Scaling can increase the instance number when needed.</p>
+<p>Warm Standby: Secondary region has roughly the same capacity as the primary region. Quicker to start, doesn’t need Auto Scanling.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/31.png" alt="" /></p>
+<p>Similar to what we did before, this time we create two records, one pointing to app-stack-1 and the other is pointing to app-stack-2. As long as app-stack-1 is healthy, Route 53 will not send any traffic to app-stack-2.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/32.png" alt="" /></p>
+<p>For the Routing policy we choose Failover and Failover Record Type is Primary for the first record.(Secondary for the second record).</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/33.png" alt="" /></p>
+<p>Now both records are created. We can go the <a href="dnschecker.org">DNS checker</a> and check the differences.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/34.png" alt="" /></p>
+<p>Now they all resolve to the same set of IP addresses.</p>
+<p>Now let us try to shut down app-stack-1.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws cloudformation delete-stack --stack-name &quot;app-stack-1&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/35.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/36.png" alt="" /></p>
+<p>Now the DNS checker returns a different set of ip addresses over time. (from 236, 12 to 252, 207)</p>
+<h4 id="route-53-health-checks"><a class="markdownIt-Anchor" href="#route-53-health-checks"></a> Route 53 Health Checks</h4>
+<p>We are going to use the two instances in app-stack-2, use below command to get the IPs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aws ec2 describe-instances --query &quot;Reservations[*].Instances[*].PublicIpAddress&quot; --output&#x3D;text</span><br></pre></td></tr></table></figure>
+<p>Create Route 53 health checks. Type in the IPs of the instances.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/37.png" alt="" /></p>
+<p>Once both health checks have been created, we can try to shut down one of them.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/38.png" alt="" /></p>
+<p>Create another record with instance IP and health check.</p>
+<p><img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/39.png" alt="" /><br />
+<img src="/../images/AWS-SAA-Architecting-for-Reliability-on-AWS/40.png" alt="" /></p>
+<p>Route 53 will distribute traffic evenly to both instances, if one of the instances fail, the Route 53 health check will detect that and Route 53 will stop sending traffic to it. If you don’t need <strong>ELB</strong>, DNS based load balancing is a cost-effective option.</p>
+<h4 id="course-summary"><a class="markdownIt-Anchor" href="#course-summary"></a> Course Summary</h4>
+<ol>
+<li>Architecture for availability</li>
+<li>Setting up AWS environment</li>
+<li>VPC(Subnets, NAT Gateways, Direct Connect, VPN, Transit Gateways)</li>
+<li>CloudFormation, Elastic Load Balancing, Auto Scaling</li>
+<li>Multi-region Applications(Route 53, Active-active weighted records, Active-passive failover records)</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/" title="AWS SAA - Architecting for Reliability on AWS" target="_blank" rel="external">http://hellcy.github.io/2020/10/15/AWS-SAA-Architecting-for-Reliability-on-AWS/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/" title="AWS SAA - Design Secure Applications and Architectures"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/10/07/AWS-SAM-and-CloudFront/" title="AWS SAM and CloudFront"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

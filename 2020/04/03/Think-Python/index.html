@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Think Python | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Chapter 1: The First Program Chapter 2: Variables, expressions and statements Chapter 3: Functions Chapter 4: Conditionals and recursion Chapter 5: Fruitful functions Chapter 6: Iteration Chapter 7:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Think Python">
+<meta property="og:url" content="http://hellcy.github.io/2020/04/03/Think-Python/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Chapter 1: The First Program Chapter 2: Variables, expressions and statements Chapter 3: Functions Chapter 4: Conditionals and recursion Chapter 5: Fruitful functions Chapter 6: Iteration Chapter 7:">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-03T03:18:28.000Z">
+<meta property="article:modified_time" content="2021-05-24T07:27:02.660Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2020/04/03/Think-Python/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.25px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13px;">Wishlist</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">25</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/05/26/TCP-IP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/05/26/TCP-IP/" class="title">TCP/IP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-05-26T06:17:17.000Z" itemprop="datePublished">26-05-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/C-LINQ/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/C-LINQ/" class="title">C# LINQ</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T13:07:27.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Entity-Framework-Core-5/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Entity-Framework-Core-5/" class="title">Entity Framework Core 5</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:54:33.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/04/20/Building-GraphQL-APIs-with-ASP-NET-Core/" class="title">Building GraphQL APIs with ASP.NET Core</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-04-20T12:21:54.000Z" itemprop="datePublished">20-04-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-1-the-first-program"><span class="toc-number">1.</span> <span class="toc-text"> Chapter 1: The First Program</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#python-interpreter"><span class="toc-number">1.1.</span> <span class="toc-text"> Python interpreter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#basic-arthmetic"><span class="toc-number">1.2.</span> <span class="toc-text"> Basic Arthmetic</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#values-and-types"><span class="toc-number">1.3.</span> <span class="toc-text"> Values and Types</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-2-variables-expressions-and-statements"><span class="toc-number">2.</span> <span class="toc-text"> Chapter 2: Variables, Expressions and Statements</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#statement"><span class="toc-number">2.1.</span> <span class="toc-text"> Statement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expressions"><span class="toc-number">2.2.</span> <span class="toc-text"> Expressions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order-of-operations"><span class="toc-number">2.3.</span> <span class="toc-text"> Order of operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#comments"><span class="toc-number">2.4.</span> <span class="toc-text"> Comments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-3-functions"><span class="toc-number">3.</span> <span class="toc-text"> Chapter 3: Functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#adding-new-functions"><span class="toc-number">3.1.</span> <span class="toc-text"> Adding new functions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#parameters-and-arguments"><span class="toc-number">3.2.</span> <span class="toc-text"> Parameters and arguments</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#encapsulation"><span class="toc-number">3.3.</span> <span class="toc-text"> Encapsulation</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-4-conditionals-and-recursion"><span class="toc-number">4.</span> <span class="toc-text"> Chapter 4: Conditionals and recursion</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#floor-divisions-and-modulus"><span class="toc-number">4.1.</span> <span class="toc-text"> Floor divisions and modulus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#boolean-expressions"><span class="toc-number">4.2.</span> <span class="toc-text"> Boolean expressions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#logical-operators"><span class="toc-number">4.3.</span> <span class="toc-text"> Logical operators</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#conditional-execution"><span class="toc-number">4.4.</span> <span class="toc-text"> Conditional execution</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chained-conditions"><span class="toc-number">4.5.</span> <span class="toc-text"> Chained conditions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#recursion"><span class="toc-number">4.6.</span> <span class="toc-text"> Recursion</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyboard-input"><span class="toc-number">4.7.</span> <span class="toc-text"> Keyboard input</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-5-fruitful-functions"><span class="toc-number">5.</span> <span class="toc-text"> Chapter 5: Fruitful functions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#incremental-development"><span class="toc-number">5.1.</span> <span class="toc-text"> Incremental development</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-6-iteration"><span class="toc-number">6.</span> <span class="toc-text"> Chapter 6: Iteration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#the-while-statement"><span class="toc-number">6.1.</span> <span class="toc-text"> The while statement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#break"><span class="toc-number">6.2.</span> <span class="toc-text"> Break</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-7-strings"><span class="toc-number">7.</span> <span class="toc-text"> Chapter 7: Strings</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#traversal-with-a-for-loop"><span class="toc-number">7.1.</span> <span class="toc-text"> Traversal with a for loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strings-slices"><span class="toc-number">7.2.</span> <span class="toc-text"> Strings slices</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strings-are-immutable"><span class="toc-number">7.3.</span> <span class="toc-text"> Strings are immutable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#the-in-operator"><span class="toc-number">7.4.</span> <span class="toc-text"> The in operator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string-comparison"><span class="toc-number">7.5.</span> <span class="toc-text"> String comparison</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-8-lists"><span class="toc-number">8.</span> <span class="toc-text"> Chapter 8: Lists</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-is-a-sequence"><span class="toc-number">8.1.</span> <span class="toc-text"> List is a sequence</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lists-are-mutable"><span class="toc-number">8.2.</span> <span class="toc-text"> Lists are mutable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#traversing-a-list"><span class="toc-number">8.3.</span> <span class="toc-text"> Traversing a list</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-operations"><span class="toc-number">8.4.</span> <span class="toc-text"> List operations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-slices"><span class="toc-number">8.5.</span> <span class="toc-text"> List slices</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-methods"><span class="toc-number">8.6.</span> <span class="toc-text"> List methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deleting-elements"><span class="toc-number">8.7.</span> <span class="toc-text"> Deleting elements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#objects-and-values"><span class="toc-number">8.8.</span> <span class="toc-text"> Objects and values</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#aliasing"><span class="toc-number">8.9.</span> <span class="toc-text"> Aliasing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list-arguments"><span class="toc-number">8.10.</span> <span class="toc-text"> List arguments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-9-dictionaries"><span class="toc-number">9.</span> <span class="toc-text"> Chapter 9: Dictionaries</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dictionary-as-a-collection-of-counters"><span class="toc-number">9.1.</span> <span class="toc-text"> Dictionary as a collection of counters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#looping-and-dictionaries"><span class="toc-number">9.2.</span> <span class="toc-text"> Looping and dictionaries</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#chapter-10-tuples"><span class="toc-number">10.</span> <span class="toc-text"> Chapter 10: Tuples</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tuples-are-immutable"><span class="toc-number">10.1.</span> <span class="toc-text"> Tuples are immutable</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tuples-and-return-values"><span class="toc-number">10.2.</span> <span class="toc-text"> Tuples and return values</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Think-Python" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Think Python
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2020/04/03/Think-Python/" class="article-date">
+	  <time datetime="2020-04-03T03:18:28.000Z" itemprop="datePublished">03-04-2020</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Python/" rel="tag">Python</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2020/04/03/Think-Python/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.6k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 22(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <ol>
+<li><a href="#chapter-1-the-first-program">Chapter 1: The First Program</a></li>
+<li><a href="#chapter-2-variables-expressions-and-statements">Chapter 2: Variables, expressions and statements</a></li>
+<li><a href="#chapter-3-functions">Chapter 3: Functions</a></li>
+<li><a href="#chapter-4-conditionals-and-recursion">Chapter 4: Conditionals and recursion</a></li>
+<li><a href="#chapter-5-fruitful-functions">Chapter 5: Fruitful functions</a></li>
+<li><a href="#chapter-6-iteration">Chapter 6: Iteration</a></li>
+<li><a href="#chapter-7-strings">Chapter 7: Strings</a></li>
+<li><a href="#chapter-8-lists">Chapter 8: Lists</a></li>
+<li><a href="#chapter-9-dictionaries">Chapter 9: Dictionaries</a></li>
+<li><a href="#chapter-10-tuples">Chapter 10: Tuples</a></li>
+</ol>
+<h2 id="chapter-1-the-first-program"><a class="markdownIt-Anchor" href="#chapter-1-the-first-program"></a> Chapter 1: The First Program</h2>
+<h3 id="python-interpreter"><a class="markdownIt-Anchor" href="#python-interpreter"></a> Python interpreter</h3>
+<ul>
+<li>Type python in the command line to start interpreter</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python 3.4.0 (default, Jun 19 2015, 14:20:21)</span><br><span class="line">[GCC 4.8.2] on linux</span><br><span class="line">Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The first three lines contain information about the interpreter and the operating system it’s<br />
+running on, so it might be different for you. But you should check that the version number,<br />
+which is 3.4.0 in this example, begins with 3, which indicates that you are running Python 3. If it begins with 2, you are running (you guessed it) Python 2.<br />
+The last line is a prompt that indicates that the interpreter is ready for you to enter pre. If<br />
+you type a line of pre and hit Enter, the interpreter displays the result:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 1 + 1</span><br><span class="line">2</span><br></pre></td></tr></table></figure>
+<h3 id="basic-arthmetic"><a class="markdownIt-Anchor" href="#basic-arthmetic"></a> Basic Arthmetic</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 40 + 2</span><br><span class="line">42</span><br><span class="line">&gt;&gt;&gt; 43 - 1</span><br><span class="line">42</span><br><span class="line">&gt;&gt;&gt; 6 * 7</span><br><span class="line">42</span><br></pre></td></tr></table></figure>
+<ul>
+<li>The operator / performs division:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 84 &#x2F; 2</span><br><span class="line">42.0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>You might wonder why the result is 42.0 instead of 42. I’ll explain in the next section. Finally, the operator ** performs exponentiation; that is, it raises a number to a power:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 6**2 + 6</span><br><span class="line">42</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In some other languages, ^ is used for exponentiation, but in Python it is a bitwise operator called XOR. If you are not familiar with bitwise operators, the result will surprise you:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 6 ^ 2</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<h3 id="values-and-types"><a class="markdownIt-Anchor" href="#values-and-types"></a> Values and Types</h3>
+<ul>
+<li>If you are not sure what type a value has, the interpreter can tell you:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; type(2)</span><br><span class="line">&lt; class &#39;int&#39;&gt;</span><br><span class="line">&gt;&gt;&gt; type(42.0)</span><br><span class="line">&lt; class &#39;float&#39;&gt;</span><br><span class="line">&gt;&gt;&gt; type(&#39;Hello, World!&#39;)</span><br><span class="line">&lt; class &#39;str&#39;&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="chapter-2-variables-expressions-and-statements"><a class="markdownIt-Anchor" href="#chapter-2-variables-expressions-and-statements"></a> Chapter 2: Variables, Expressions and Statements</h2>
+<h3 id="statement"><a class="markdownIt-Anchor" href="#statement"></a> Statement</h3>
+<ul>
+<li>An assignment statement creates a new variable and gives it a value:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; message &#x3D; &#39;And now for something completely different&#39;</span><br><span class="line">&gt;&gt;&gt; n &#x3D; 17</span><br><span class="line">&gt;&gt;&gt; pi &#x3D; 3.1415926535897932</span><br></pre></td></tr></table></figure>
+<h3 id="expressions"><a class="markdownIt-Anchor" href="#expressions"></a> Expressions</h3>
+<ul>
+<li>An expression is a combination of values, variables, and operators. A value all by itself is considered an expression, and so is a variable, so the following are all legal expressions:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 42</span><br><span class="line">42</span><br><span class="line">&gt;&gt;&gt; n</span><br><span class="line">17</span><br><span class="line">&gt;&gt;&gt; n + 25</span><br><span class="line">42</span><br></pre></td></tr></table></figure>
+<ul>
+<li>When you type an expression at the prompt, the interpreter evaluates it, which means that it finds the value of the expression. In this example, n has the value 17 and n + 25 has the value 42. A statement is a unit of pre that has an effect, like creating a variable or displaying a value.</li>
+</ul>
+<h3 id="order-of-operations"><a class="markdownIt-Anchor" href="#order-of-operations"></a> Order of operations</h3>
+<ul>
+<li>
+<p>Parentheses have the highest precedence and can be used to force an expression to evaluate in the order you want. Since expressions in parentheses are evaluated first, 2 * (3-1) is 4, and (1+1)**(5-2) is 8. You can also use parentheses to make an expression easier to read, as in (minute * 100) / 60, even if it doesn’t change the result.</p>
+</li>
+<li>
+<p>Exponentiation has the next highest precedence, so <code>1 + 2**3</code> is 9, not 27, and <code>2 * 3**2</code> is 18, not 36.</p>
+</li>
+<li>
+<p>Multiplication and Division have higher precedence than Addition and Subtraction. So 2*3-1 is 5, not 4, and 6+4/2 is 8, not 5.</p>
+</li>
+<li>
+<p>Operators with the same precedence are evaluated from left to right (except exponentiation). So in the expression degrees / 2 * pi, the division happens first and the result is multiplied by pi. To divide by 2π, you can use parentheses or write degrees / 2 / pi.</p>
+</li>
+</ul>
+<h3 id="comments"><a class="markdownIt-Anchor" href="#comments"></a> Comments</h3>
+<ul>
+<li>comments, and they start with the # symbol. “”“fdsfsdfsd”&quot;&quot; for multiple lines of comments</li>
+</ul>
+<h2 id="chapter-3-functions"><a class="markdownIt-Anchor" href="#chapter-3-functions"></a> Chapter 3: Functions</h2>
+<ul>
+<li>
+<p>In the context of programming, a function is a named sequence of statements that performs a computation. When you define a function, you specify the name and the sequence of statements. Later, you can “call” the function by name.</p>
+</li>
+<li>
+<p>It is common to say that a function “takes” an argument and “returns” a result. The result is also called the return value.</p>
+</li>
+<li>
+<p>Python has a math module that provides most of the familiar mathematical functions. A module is a file that contains a collection of related functions. Before we can use the functions in a module, we have to import it with an import statement:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;&gt; import math</span><br></pre></td></tr></table></figure>
+<h3 id="adding-new-functions"><a class="markdownIt-Anchor" href="#adding-new-functions"></a> Adding new functions</h3>
+<ul>
+<li>So far, we have only been using the functions that come with Python, but it is also possible to add new functions. A function definition specifies the name of a new function and the sequence of statements that run when the function is called.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def print_lyrics():</span><br><span class="line">    print(&quot;I&#39;m a lumberjack, and I&#39;m okay.&quot;)</span><br><span class="line">    print(&quot;I sleep all night and I work all day.&quot;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>The first line of the function definition is called the header; the rest is called the body. The header has to end with a colon and the body has to be indented. By convention, indentation is always four spaces. The body can contain any number of statements.</p>
+</li>
+<li>
+<p>A function can be inside another function</p>
+</li>
+</ul>
+<h3 id="parameters-and-arguments"><a class="markdownIt-Anchor" href="#parameters-and-arguments"></a> Parameters and arguments</h3>
+<ul>
+<li>
+<p>Some of the functions we have seen require arguments. For example, when you call math.sin you pass a number as an argument. Some functions take more than one argument: math.pow takes two, the base and the exponent</p>
+</li>
+<li>
+<p>When you create a variable inside a function, it is local, which means that it only exists inside the function</p>
+</li>
+</ul>
+<h3 id="encapsulation"><a class="markdownIt-Anchor" href="#encapsulation"></a> Encapsulation</h3>
+<ul>
+<li>Wrapping a piece of pre up in a function is called encapsulation. One of the benefits of encapsulation is that it attaches a name to the pre, which serves as a kind of documentation. Another advantage is that if you re-use the pre, it is more concise to call a function twice than to copy and paste the body!</li>
+</ul>
+<h2 id="chapter-4-conditionals-and-recursion"><a class="markdownIt-Anchor" href="#chapter-4-conditionals-and-recursion"></a> Chapter 4: Conditionals and recursion</h2>
+<h3 id="floor-divisions-and-modulus"><a class="markdownIt-Anchor" href="#floor-divisions-and-modulus"></a> Floor divisions and modulus</h3>
+<ul>
+<li>The floor division operator, //, divides two numbers and rounds down to an integer</li>
+<li>e the modulus operator, %, which divides two numbers and returns the remainder</li>
+</ul>
+<h3 id="boolean-expressions"><a class="markdownIt-Anchor" href="#boolean-expressions"></a> Boolean expressions</h3>
+<ul>
+<li>A boolean expression is an expression that is either true or false. The following examples use the operator ==, which compares two operands and produces True if they are equal and False otherwise:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; 5 &#x3D;&#x3D; 5</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; 5 &#x3D;&#x3D; 6</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h3 id="logical-operators"><a class="markdownIt-Anchor" href="#logical-operators"></a> Logical operators</h3>
+<ul>
+<li>AND</li>
+<li>OR</li>
+<li>NOT</li>
+</ul>
+<h3 id="conditional-execution"><a class="markdownIt-Anchor" href="#conditional-execution"></a> Conditional execution</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if x % 2 &#x3D;&#x3D; 0:</span><br><span class="line">    print(&#39;x is even&#39;)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;x is odd&#39;)</span><br></pre></td></tr></table></figure>
+<h3 id="chained-conditions"><a class="markdownIt-Anchor" href="#chained-conditions"></a> Chained conditions</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">if x &lt; y:</span><br><span class="line">    print(&#39;x is less than y&#39;)</span><br><span class="line">elif x &gt; y:</span><br><span class="line">    print(&#39;x is greater than y&#39;)</span><br><span class="line">else:</span><br><span class="line">    print(&#39;x and y are equal&#39;)</span><br></pre></td></tr></table></figure>
+<h3 id="recursion"><a class="markdownIt-Anchor" href="#recursion"></a> Recursion</h3>
+<ul>
+<li>It is legal for one function to call another; it is also legal for a function to call itself.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">def countdown(n):</span><br><span class="line">    if n &lt;&#x3D; 0:</span><br><span class="line">        print(&#39;Blastoff!&#39;)</span><br><span class="line">    else:</span><br><span class="line">        print(n)</span><br><span class="line">        countdown(n-1)</span><br></pre></td></tr></table></figure>
+<h3 id="keyboard-input"><a class="markdownIt-Anchor" href="#keyboard-input"></a> Keyboard input</h3>
+<ul>
+<li>Python provides a built-in function called input that stops the program and waits for the user to type something. When the user presses Return or Enter, the program resumes and input returns what the user typed as a string</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; text &#x3D; input()</span><br><span class="line">What are you waiting for?</span><br><span class="line">&gt;&gt;&gt; text</span><br><span class="line">&#39;What are you waiting for?&#39;</span><br></pre></td></tr></table></figure>
+<h2 id="chapter-5-fruitful-functions"><a class="markdownIt-Anchor" href="#chapter-5-fruitful-functions"></a> Chapter 5: Fruitful functions</h2>
+<ul>
+<li>Functions that return a value</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def absolute_value(x):</span><br><span class="line">    if x &lt; 0:</span><br><span class="line">        return -x</span><br><span class="line">    else:</span><br><span class="line">        return x</span><br></pre></td></tr></table></figure>
+<h3 id="incremental-development"><a class="markdownIt-Anchor" href="#incremental-development"></a> Incremental development</h3>
+<ul>
+<li>Start with a working program and make small incremental changes. At any point, if there is an error, you should have a good idea where it is.</li>
+</ul>
+<h2 id="chapter-6-iteration"><a class="markdownIt-Anchor" href="#chapter-6-iteration"></a> Chapter 6: Iteration</h2>
+<ul>
+<li>The ability to run a block of statements repeatedly</li>
+</ul>
+<h3 id="the-while-statement"><a class="markdownIt-Anchor" href="#the-while-statement"></a> The while statement</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def countdown(n):</span><br><span class="line">    while n &gt; 0:</span><br><span class="line">        print(n)</span><br><span class="line">        n &#x3D; n - 1</span><br><span class="line">    print(&#39;Blastoff!&#39;)</span><br></pre></td></tr></table></figure>
+<ol>
+<li>Determine whether the condition is true or false.</li>
+<li>If false, exit the while statement and continue execution at the next statement.</li>
+<li>If the condition is true, run the body and then go back to step 1.</li>
+</ol>
+<h3 id="break"><a class="markdownIt-Anchor" href="#break"></a> Break</h3>
+<ul>
+<li>Sometimes you don’t know it’s time to end a loop until you get half way through the body. In that case you can use the break statement to jump out of the loop</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">while True:</span><br><span class="line">    line &#x3D; input(&#39;&gt; &#39;)</span><br><span class="line">    if line &#x3D;&#x3D; &#39;done&#39;:</span><br><span class="line">        break</span><br><span class="line">    print(line)</span><br><span class="line">print(&#39;Done!&#39;)</span><br></pre></td></tr></table></figure>
+<h2 id="chapter-7-strings"><a class="markdownIt-Anchor" href="#chapter-7-strings"></a> Chapter 7: Strings</h2>
+<ul>
+<li>Strings are not like integers, floats, and booleans. A string is a sequence of characters, which means it is an ordered collection of other values. In this chapter you’ll see how to access the characters that make up a string, and you’ll learn about some of the methods strings provide</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; fruit &#x3D; &#39;banana&#39;</span><br><span class="line">&gt;&gt;&gt; letter &#x3D; fruit[1]</span><br><span class="line">&gt;&gt;&gt; letter</span><br><span class="line">&#39;a&#39;</span><br><span class="line">&gt;&gt;&gt; len(fruit)</span><br><span class="line">6</span><br></pre></td></tr></table></figure>
+<h3 id="traversal-with-a-for-loop"><a class="markdownIt-Anchor" href="#traversal-with-a-for-loop"></a> Traversal with a for loop</h3>
+<ul>
+<li>A lot of computations involve processing a string one character at a time. Often they start at the beginning, select each character in turn, do something to it, and continue until the end. This pattern of processing is called a traversal. One way to write a traversal is with a while loop:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index &#x3D; 0</span><br><span class="line">while index &lt; len(fruit):</span><br><span class="line">    letter &#x3D; fruit[index]</span><br><span class="line">    print(letter)</span><br><span class="line">    index &#x3D; index + 1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>another way to traverse is to use a for loop</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for letter in fruit:</span><br><span class="line">    print(letter)</span><br></pre></td></tr></table></figure>
+<h3 id="strings-slices"><a class="markdownIt-Anchor" href="#strings-slices"></a> Strings slices</h3>
+<ul>
+<li>A segment of a string is called a slice. Selecting a slice is similar to selecting a character:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; s &#x3D; &#39;Monty Python&#39;</span><br><span class="line">&gt;&gt;&gt; s[0:5]</span><br><span class="line">&#39;Monty&#39;</span><br><span class="line">&gt;&gt;&gt; s[6:12]</span><br><span class="line">&#39;Python&#39;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>The operator [n:m] returns the part of the string from the “n-eth” character to the “m-eth” character, including the first but excluding the last</p>
+</li>
+<li>
+<p>If you omit the first index (before the colon), the slice starts at the beginning of the string. If you omit the second index, the slice goes to the end of the string:</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; fruit &#x3D; &#39;banana&#39;</span><br><span class="line">&gt;&gt;&gt; fruit[:3]</span><br><span class="line">&#39;ban&#39;</span><br><span class="line">&gt;&gt;&gt; fruit[3:]</span><br><span class="line">&#39;ana&#39;</span><br><span class="line">&gt;&gt;&gt; fruit &#x3D; &#39;banana&#39;</span><br><span class="line">&gt;&gt;&gt; fruit[3:3]</span><br><span class="line">&#39;&#39;</span><br></pre></td></tr></table></figure>
+<h3 id="strings-are-immutable"><a class="markdownIt-Anchor" href="#strings-are-immutable"></a> Strings are immutable</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; greeting &#x3D; &#39;Hello, world!&#39;</span><br><span class="line">&gt;&gt;&gt; greeting[0] &#x3D; &#39;J&#39;</span><br><span class="line">TypeError: &#39;str&#39; object does not support item assignment</span><br></pre></td></tr></table></figure>
+<h3 id="the-in-operator"><a class="markdownIt-Anchor" href="#the-in-operator"></a> The in operator</h3>
+<ul>
+<li>The word in is a boolean operator that takes two strings and returns True if the first appears as a substring in the second:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#39;a&#39; in &#39;banana&#39;</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; &#39;seed&#39; in &#39;banana&#39;</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<h3 id="string-comparison"><a class="markdownIt-Anchor" href="#string-comparison"></a> String comparison</h3>
+<ul>
+<li>Upper case letters come before lower case letters, we can use &gt; or &lt; or == to compare strings</li>
+</ul>
+<h2 id="chapter-8-lists"><a class="markdownIt-Anchor" href="#chapter-8-lists"></a> Chapter 8: Lists</h2>
+<h3 id="list-is-a-sequence"><a class="markdownIt-Anchor" href="#list-is-a-sequence"></a> List is a sequence</h3>
+<ul>
+<li>
+<p>Like a string, a list is a sequence of values. In a string, the values are characters; in a list, they can be any type. The values in a list are called elements or sometimes items.</p>
+</li>
+<li>
+<p>There are several ways to create a new list; the simplest is to enclose the elements in square brackets ([ and ]):</p>
+</li>
+<li>
+<p>The elements of a list don’t have to be the same type.</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; cheeses &#x3D; [&#39;Cheddar&#39;, &#39;Edam&#39;, &#39;Gouda&#39;]</span><br><span class="line">&gt;&gt;&gt; numbers &#x3D; [42, 123]</span><br><span class="line">&gt;&gt;&gt; empty &#x3D; []</span><br><span class="line">&gt;&gt;&gt; print(cheeses, numbers, empty)</span><br><span class="line">[&#39;Cheddar&#39;, &#39;Edam&#39;, &#39;Gouda&#39;] [42, 123] []</span><br></pre></td></tr></table></figure>
+<h3 id="lists-are-mutable"><a class="markdownIt-Anchor" href="#lists-are-mutable"></a> Lists are mutable</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; numbers &#x3D; [42, 123]</span><br><span class="line">&gt;&gt;&gt; numbers[1] &#x3D; 5</span><br><span class="line">&gt;&gt;&gt; numbers</span><br><span class="line">[42, 5]</span><br></pre></td></tr></table></figure>
+<h3 id="traversing-a-list"><a class="markdownIt-Anchor" href="#traversing-a-list"></a> Traversing a list</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for i in range(len(numbers)):</span><br><span class="line">    numbers[i] &#x3D; numbers[i] * 2</span><br></pre></td></tr></table></figure>
+<h3 id="list-operations"><a class="markdownIt-Anchor" href="#list-operations"></a> List operations</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a &#x3D; [1, 2, 3]</span><br><span class="line">&gt;&gt;&gt; b &#x3D; [4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; c &#x3D; a + b</span><br><span class="line">&gt;&gt;&gt; c</span><br><span class="line">[1, 2, 3, 4, 5, 6]</span><br><span class="line">&gt;&gt;&gt; [0] * 4</span><br><span class="line">[0, 0, 0, 0]</span><br><span class="line">&gt;&gt;&gt; [1, 2, 3] * 3</span><br><span class="line">[1, 2, 3, 1, 2, 3, 1, 2, 3]</span><br></pre></td></tr></table></figure>
+<h3 id="list-slices"><a class="markdownIt-Anchor" href="#list-slices"></a> List slices</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;]</span><br><span class="line">&gt;&gt;&gt; t[1:3]</span><br><span class="line">[&#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; t[:4]</span><br><span class="line">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span><br><span class="line">&gt;&gt;&gt; t[3:]</span><br><span class="line">[&#39;d&#39;, &#39;e&#39;, &#39;f&#39;]</span><br></pre></td></tr></table></figure>
+<h3 id="list-methods"><a class="markdownIt-Anchor" href="#list-methods"></a> List methods</h3>
+<ul>
+<li>append adds a new element to the end of a list:</li>
+<li>extend takes a list as an argument and appends all of the elements:</li>
+<li>sort arranges the elements of the list from low to high:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; t.append(&#39;d&#39;)</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;]</span><br><span class="line">&gt;&gt;&gt; t1 &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; t2 &#x3D; [&#39;d&#39;, &#39;e&#39;]</span><br><span class="line">&gt;&gt;&gt; t1.extend(t2)</span><br><span class="line">&gt;&gt;&gt; t1</span><br><span class="line">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]</span><br><span class="line">&gt;&gt;&gt; t &#x3D; [&#39;d&#39;, &#39;c&#39;, &#39;e&#39;, &#39;b&#39;, &#39;a&#39;]</span><br><span class="line">&gt;&gt;&gt; t.sort()</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">[&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;]</span><br></pre></td></tr></table></figure>
+<h3 id="deleting-elements"><a class="markdownIt-Anchor" href="#deleting-elements"></a> Deleting elements</h3>
+<ul>
+<li>If you know the index of the element you want, you can use pop:</li>
+<li>pop modifies the list and returns the element that was removed. If you don’t provide an index, it deletes and returns the last element.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; x &#x3D; t.pop(1)</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">[&#39;a&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; x</span><br><span class="line">&#39;b&#39;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>If you don’t need the removed value, you can use the del operator:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; del t[1]</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">[&#39;a&#39;, &#39;c&#39;]</span><br></pre></td></tr></table></figure>
+<ul>
+<li>If you know the element you want to remove (but not the index), you can use remove:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; t.remove(&#39;b&#39;)</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">[&#39;a&#39;, &#39;c&#39;]</span><br></pre></td></tr></table></figure>
+<h3 id="objects-and-values"><a class="markdownIt-Anchor" href="#objects-and-values"></a> Objects and values</h3>
+<ul>
+<li>In one case, a and b refer to two different objects that have the same value. In the second case, they refer to the same object.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a &#x3D; &quot;word1&quot;</span><br><span class="line">&gt;&gt;&gt; b &#x3D; &quot;word1&quot;</span><br><span class="line">&gt;&gt;&gt; a is b</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; a &#x3D; [1,2,3]</span><br><span class="line">&gt;&gt;&gt; b &#x3D; [1,2,3]</span><br><span class="line">&gt;&gt;&gt; a is b</span><br><span class="line">False</span><br><span class="line">&gt;&gt;&gt; a &#x3D;&#x3D; b</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<h3 id="aliasing"><a class="markdownIt-Anchor" href="#aliasing"></a> Aliasing</h3>
+<ul>
+<li>If a refers to an object and you assign b = a, then both variables refer to the same object, even for a list</li>
+<li>Its also called shallow copy</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; a &#x3D; [1, 2, 3]</span><br><span class="line">&gt;&gt;&gt; b &#x3D; a</span><br><span class="line">&gt;&gt;&gt; b is a</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<ul>
+<li>For objects that may take lots of memory space, the program will prefer to only make a reference to its original object when you create another variable to points to it.</li>
+</ul>
+<h3 id="list-arguments"><a class="markdownIt-Anchor" href="#list-arguments"></a> List arguments</h3>
+<ul>
+<li>When you pass a list to a function, the function gets a reference to the list. If the function modifies the list, the caller sees the change.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def delete_head(t):</span><br><span class="line">    del t[0]</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; letters &#x3D; [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]</span><br><span class="line">&gt;&gt;&gt; delete_head(letters)</span><br><span class="line">&gt;&gt;&gt; letters</span><br><span class="line">[&#39;b&#39;, &#39;c&#39;]</span><br></pre></td></tr></table></figure>
+<h2 id="chapter-9-dictionaries"><a class="markdownIt-Anchor" href="#chapter-9-dictionaries"></a> Chapter 9: Dictionaries</h2>
+<ul>
+<li>
+<p>A dictionary contains a collection of indices, which are called keys, and a collection of values. Each key is associated with a single value. The association of a key and a value is called a key-value pair or sometimes an item</p>
+</li>
+<li>
+<p>The function dict creates a new dictionary with no items. Because dict is the name of a built-in function, you should avoid using it as a variable name</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; eng2sp &#x3D; dict()</span><br><span class="line">&gt;&gt;&gt; eng2sp</span><br><span class="line">&#123;&#125;</span><br><span class="line">&gt;&gt;&gt; eng2sp[&#39;one&#39;] &#x3D; &#39;uno&#39; # add an item with key &#x3D; &#39;one&#39; and value &#x3D; &#39;uno&#39;</span><br><span class="line">&gt;&gt;&gt; eng2sp</span><br><span class="line">&#123;&#39;one&#39;: &#39;uno&#39;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>The order of the key-value pairs might not be the same. If you type the same example on your computer, you might get a different result. In general, the order of items in a dictionary is unpredictable. This is because when we insert items into the dictionary, it randomly put items into buckets, so it could be different everytime. (Hash)</p>
+</li>
+<li>
+<p>check whether a dictionary contains some key</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; &#39;one&#39; in eng2sp</span><br><span class="line">True</span><br><span class="line">&gt;&gt;&gt; &#39;uno&#39; in eng2sp</span><br><span class="line">False</span><br></pre></td></tr></table></figure>
+<ul>
+<li>check whether a dictionary contains some value</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; vals &#x3D; eng2sp.values()</span><br><span class="line">&gt;&gt;&gt; &#39;uno&#39; in vals</span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Python dictionaries use a data structure called a hashtable that has a remarkable property: the in operator takes about the same amount of time no matter how many items are in the dictionary. Instant lookup time!</li>
+</ul>
+<h3 id="dictionary-as-a-collection-of-counters"><a class="markdownIt-Anchor" href="#dictionary-as-a-collection-of-counters"></a> Dictionary as a collection of counters</h3>
+<ul>
+<li>Suppose you are given a string and you want to count how many times each letter appears. There are several ways you could do it</li>
+</ul>
+<ol>
+<li>You could create 26 variables, one for each letter of the alphabet. Then you could traverse the string and, for each character, increment the corresponding counter, probably using a chained conditional.</li>
+<li>You could create a list with 26 elements. Then you could convert each character to a number (using the built-in function ord), use the number as an index into the list, and increment the appropriate counter.</li>
+<li>You could create a dictionary with characters as keys and counters as the corresponding values. The first time you see a character, you would add an item to the dictionary. After that you would increment the value of an existing item.</li>
+</ol>
+<ul>
+<li>An implementation is a way of performing a computation; some implementations are better than others. For example, an advantage of the dictionary implementation is that we don’t have to know ahead of time which letters appear in the string and we only have to make room for the letters that do appear.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def histogram(s):</span><br><span class="line">    d &#x3D; dict()</span><br><span class="line">    for c in s:</span><br><span class="line">    if c not in d:</span><br><span class="line">        d[c] &#x3D; 1</span><br><span class="line">    else:</span><br><span class="line">        d[c] +&#x3D; 1</span><br><span class="line">    return d</span><br></pre></td></tr></table></figure>
+<h3 id="looping-and-dictionaries"><a class="markdownIt-Anchor" href="#looping-and-dictionaries"></a> Looping and dictionaries</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def print_hist(h):</span><br><span class="line">    for c in h:</span><br><span class="line">        print(c, h[c])</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Given a dictionary d and a key k, it is easy to find the corresponding value v = d[k]. This operation is called a lookup. But what if you have v and you want to find k? You have two problems: first, there might be more than one key that maps to the value v. Depending on the application, you might be able to pick one, or you might have to make a list that contains all of them. Second, there is no simple syntax to do a reverse lookup; you have to search</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">def reverse_lookup(d, v):</span><br><span class="line">    for k in d:</span><br><span class="line">        if d[k] &#x3D;&#x3D; v:</span><br><span class="line">            return k</span><br><span class="line">    raise LookupError()</span><br></pre></td></tr></table></figure>
+<h2 id="chapter-10-tuples"><a class="markdownIt-Anchor" href="#chapter-10-tuples"></a> Chapter 10: Tuples</h2>
+<h3 id="tuples-are-immutable"><a class="markdownIt-Anchor" href="#tuples-are-immutable"></a> Tuples are immutable</h3>
+<ul>
+<li>A tuple is a sequence of values. The values can be any type, and they are indexed by integers, so in that respect tuples are a lot like lists. The important difference is that tuples are immutable.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; tuple()</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Most list operators also work on tuples. The bracket operator indexes an element:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; (&#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;)</span><br><span class="line">&gt;&gt;&gt; t[0]</span><br><span class="line">&#39;a&#39;</span><br><span class="line">&gt;&gt;&gt; t[1:3]</span><br><span class="line">(&#39;b&#39;, &#39;c&#39;)</span><br><span class="line">&gt;&gt;&gt; t[0] &#x3D; &#39;A&#39;</span><br><span class="line">TypeError: object doesn&#39;t support item assignment</span><br></pre></td></tr></table></figure>
+<h3 id="tuples-and-return-values"><a class="markdownIt-Anchor" href="#tuples-and-return-values"></a> Tuples and return values</h3>
+<ul>
+<li>Strictly speaking, a function can only return one value, but if the value is a tuple, the effect is the same as returning multiple values. For example, if you want to divide two integers and compute the quotient and remainder, it is inefficient to compute x//y and then x%y. It is better to compute them both at the same time</li>
+<li>The built-in function divmod takes two arguments and returns a tuple of two values, the quotient and remainder. You can store the result as a tuple:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; t &#x3D; divmod(7, 3)</span><br><span class="line">&gt;&gt;&gt; t</span><br><span class="line">(2, 1)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2020/04/03/Think-Python/" title="Think Python" target="_blank" rel="external">http://hellcy.github.io/2020/04/03/Think-Python/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2020/05/10/Data-Structures-Advanced/" title="Data Structures Advanced"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2020/03/02/Data-Structures/" title="Data Structures"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>
