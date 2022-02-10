@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Denodo Data Virtualization | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Data Virtualization Data Virtualization is a logical layer which  Delivers business data in real time to consuming applications or business users Integrates data from disparate sources, locations, an">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Denodo Data Virtualization">
+<meta property="og:url" content="http://hellcy.github.io/2021/08/02/Denodo-Data-Virtualization/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Data Virtualization Data Virtualization is a logical layer which  Delivers business data in real time to consuming applications or business users Integrates data from disparate sources, locations, an">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-02T00:28:08.000Z">
+<meta property="article:modified_time" content="2022-02-10T14:39:24.300Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Data Virtualization">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/08/02/Denodo-Data-Virtualization/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data/" rel="tag">Data</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elastic-Search/" rel="tag">Elastic Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/" rel="tag">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13.25px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/Azure/" style="font-size: 13px;">Azure</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data/" style="font-size: 13.25px;">Data</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Data-Virtualization/" style="font-size: 13.25px;">Data Virtualization</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Elastic-Search/" style="font-size: 13px;">Elastic Search</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.5px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13.25px;">React</a> <a href="/tags/SQL/" style="font-size: 13.25px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13.25px;">Wishlist</a> <a href="/tags/git/" style="font-size: 13.25px;">git</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="title">Design Pattern - Singleton in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-09T06:26:19.000Z" itemprop="datePublished">09-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/01/02/Elastic-Search/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/02/Elastic-Search/" class="title">Elastic Search</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-02T06:41:13.000Z" itemprop="datePublished">02-01-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/12/09/Dot-net-React/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/09/Dot-net-React/" class="title">Dot net + React</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-09T12:17:52.000Z" itemprop="datePublished">09-12-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/11/05/Spring-Framework/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/11/05/Spring-Framework/" class="title">Spring Framework</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-11-04T13:06:37.000Z" itemprop="datePublished">05-11-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#data-virtualization"><span class="toc-number">1.</span> <span class="toc-text"> Data Virtualization</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pillars-of-data-virtualization"><span class="toc-number">1.1.</span> <span class="toc-text"> Pillars of Data Virtualization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-integration-strategies"><span class="toc-number">1.2.</span> <span class="toc-text"> Data Integration Strategies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#etl"><span class="toc-number">1.2.1.</span> <span class="toc-text"> ETL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#esb"><span class="toc-number">1.2.2.</span> <span class="toc-text"> ESB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-virtualization-2"><span class="toc-number">1.2.3.</span> <span class="toc-text"> Data Virtualization</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#donodo-platform-architecture"><span class="toc-number">2.</span> <span class="toc-text"> Donodo Platform Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#virtual-dataport"><span class="toc-number">2.1.</span> <span class="toc-text"> Virtual Dataport</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-catalog"><span class="toc-number">2.2.</span> <span class="toc-text"> Data Catalog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#denodo-scheduler"><span class="toc-number">2.3.</span> <span class="toc-text"> Denodo Scheduler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#denode-solution-manager"><span class="toc-number">2.4.</span> <span class="toc-text"> Denode Solution Manager</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#denodo-platform-tools-and-applications"><span class="toc-number">3.</span> <span class="toc-text"> Denodo platform tools and applications</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#denode-platform-control-center"><span class="toc-number">3.1.</span> <span class="toc-text"> Denode platform control center</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-design-studio"><span class="toc-number">3.2.</span> <span class="toc-text"> Web design studio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-catalog-2"><span class="toc-number">3.3.</span> <span class="toc-text"> Data Catalog</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scheduler-aministration-tool"><span class="toc-number">3.4.</span> <span class="toc-text"> Scheduler Aministration Tool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#solution-manager-administration-tool"><span class="toc-number">3.5.</span> <span class="toc-text"> Solution Manager Administration Tool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#diagnostics-and-monitoring-tool"><span class="toc-number">3.6.</span> <span class="toc-text"> Diagnostics and Monitoring tool</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#southbound-connectors"><span class="toc-number">3.7.</span> <span class="toc-text"> Southbound Connectors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-model"><span class="toc-number">3.8.</span> <span class="toc-text"> Data Model</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#northbound-connectors"><span class="toc-number">3.9.</span> <span class="toc-text"> Northbound Connectors</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#denodo-platform-security"><span class="toc-number">4.</span> <span class="toc-text"> Denodo Platform Security</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#data-in-transit"><span class="toc-number">4.1.</span> <span class="toc-text"> Data in Transit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-in-rest"><span class="toc-number">4.2.</span> <span class="toc-text"> Data in Rest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#authentication-protocols"><span class="toc-number">4.3.</span> <span class="toc-text"> Authentication Protocols</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#performance"><span class="toc-number">5.</span> <span class="toc-text"> Performance</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#static-optimization"><span class="toc-number">5.1.</span> <span class="toc-text"> Static Optimization</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#connecting-and-combining-data-with-denodo"><span class="toc-number">6.</span> <span class="toc-text"> Connecting and combining Data with Denodo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#import-a-sql-query"><span class="toc-number">6.1.</span> <span class="toc-text"> Import a SQL Query</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#import-stored-procedures"><span class="toc-number">6.2.</span> <span class="toc-text"> Import Stored Procedures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#querying-views-from-execution-panel"><span class="toc-number">6.3.</span> <span class="toc-text"> Querying views from Execution Panel</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#basic-derived-views"><span class="toc-number">6.4.</span> <span class="toc-text"> Basic Derived Views</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functions"><span class="toc-number">6.5.</span> <span class="toc-text"> Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#union-views"><span class="toc-number">6.6.</span> <span class="toc-text"> Union Views</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jsonxml-data-source"><span class="toc-number">6.7.</span> <span class="toc-text"> JSON&#x2F;XML data source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-service-data-source"><span class="toc-number">6.8.</span> <span class="toc-text"> Web service data source</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#join-types"><span class="toc-number">6.9.</span> <span class="toc-text"> Join Types</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#join-execution-methods"><span class="toc-number">6.9.1.</span> <span class="toc-text"> Join Execution Methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#merge"><span class="toc-number">6.9.2.</span> <span class="toc-text"> Merge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash"><span class="toc-number">6.9.3.</span> <span class="toc-text"> Hash</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nested"><span class="toc-number">6.9.4.</span> <span class="toc-text"> Nested</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nested-parallel"><span class="toc-number">6.9.5.</span> <span class="toc-text"> Nested Parallel</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#compound-types-and-flatten-operation"><span class="toc-number">7.</span> <span class="toc-text"> Compound Types and Flatten Operation</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Denodo-Data-Virtualization" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Denodo Data Virtualization
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/08/02/Denodo-Data-Virtualization/" class="article-date">
+	  <time datetime="2021-08-02T00:28:08.000Z" itemprop="datePublished">02-08-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/08/02/Denodo-Data-Virtualization/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 3.6k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 22(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="data-virtualization"><a class="markdownIt-Anchor" href="#data-virtualization"></a> Data Virtualization</h1>
+<p>Data Virtualization is a logical layer which</p>
+<ul>
+<li>Delivers business data in real time to consuming applications or business users</li>
+<li>Integrates data from disparate sources, locations, and formats, without replicating the data</li>
+<li>Enables faster access to all data, less replication and cost, and more agility to change</li>
+</ul>
+<ol>
+<li>Connects: to disparate data sources</li>
+<li>Combines: related data into views</li>
+<li>Consume: in business applications</li>
+</ol>
+<h2 id="pillars-of-data-virtualization"><a class="markdownIt-Anchor" href="#pillars-of-data-virtualization"></a> Pillars of Data Virtualization</h2>
+<ol>
+<li>Universal Data Access: hides the complexity of underlying data sources</li>
+<li>Unified Virtual Data Layer: Common virtual canonical business model</li>
+<li>Universal Data Publishing: multiple publishing interfaces and access patterns</li>
+<li>Unified Data Governance: Central point for data governance</li>
+<li>Agile High Performance: Multiple delivery process to meet different SLA(Service Level Agreement)'s</li>
+</ol>
+<h2 id="data-integration-strategies"><a class="markdownIt-Anchor" href="#data-integration-strategies"></a> Data Integration Strategies</h2>
+<p>Data silos make it challenging for business users to access and analyze all of the available data within an organization. To bring the data together, companies typically use</p>
+<ol>
+<li>Extract, Transform, and Load processes (ETL)</li>
+</ol>
+<ul>
+<li>copy the data from different silos and move it to a central location (e.g. Data Warehouse)</li>
+</ul>
+<ol start="2">
+<li>Enterprise Service Buses (ESB)</li>
+</ol>
+<ul>
+<li>establish a communication system for applications, enabling them to share information</li>
+</ul>
+<ol start="3">
+<li>Data Virtualization (DV)</li>
+</ol>
+<ul>
+<li>reate real time, integrated views of data in data silos, and makes them available to applications, analysts and business users</li>
+</ul>
+<h3 id="etl"><a class="markdownIt-Anchor" href="#etl"></a> ETL</h3>
+<ul>
+<li>In an ETL process the data is extracted from a source, transformed and loaded into another data system</li>
+<li>Pros and Cons
+<ul>
+<li>(Pro) ETL processes are efficient and effective at moving data in bulk</li>
+<li>(Con) Moving data to another system means that a new repository must be maintained</li>
+<li>(Con) ETL processes are not collaborative, the end-users must wait until the data is ready</li>
+</ul>
+</li>
+</ul>
+<h3 id="esb"><a class="markdownIt-Anchor" href="#esb"></a> ESB</h3>
+<ul>
+<li>Pros
+<ul>
+<li>Applications are decoupled</li>
+<li>They can be used for orchestrate business logic using message flows</li>
+</ul>
+</li>
+<li>Cons
+<ul>
+<li>ESBs are sutable only for operational use cases that involve small result sets</li>
+<li>Queries are static, can only be scheduled and restricted to one source at a time.</li>
+</ul>
+</li>
+</ul>
+<h3 id="data-virtualization-2"><a class="markdownIt-Anchor" href="#data-virtualization-2"></a> Data Virtualization</h3>
+<p>Data virtualization supports a wide variety of sources and targets, which makes it an ideal data integration strategy to complement ETL processes and ESBs</p>
+<ul>
+<li>for ETL
+<ul>
+<li>Seamlessly connecting on-premises and cloud components</li>
+<li>real-time integration of disparate data sources</li>
+</ul>
+</li>
+<li>for ESB
+<ul>
+<li>The ESB can connect to the data virtualization layer to access external sources that cannot be easily added to the ESB</li>
+</ul>
+</li>
+</ul>
+<h1 id="donodo-platform-architecture"><a class="markdownIt-Anchor" href="#donodo-platform-architecture"></a> Donodo Platform Architecture</h1>
+<p>Denodo platform comes with the various in-built components as follows</p>
+<ul>
+<li>Virtual Dataport: it is the core component, the data virtualization server</li>
+<li>Data catalog: a self-service data discovery tool</li>
+<li>Scheduler: it is used for scheduling and executing batch jobs</li>
+<li>Solution Manager: it provides cantralized management of all the servers</li>
+</ul>
+<h2 id="virtual-dataport"><a class="markdownIt-Anchor" href="#virtual-dataport"></a> Virtual Dataport</h2>
+<p>Virtual Dataport enables business applications to process a series of distributed and heterogeneous data sources, as if the data were contained in a large virtual database</p>
+<ul>
+<li>it acts as a mediator that provides a structured and unified view of the data contained in all the data sources included in the system</li>
+</ul>
+<h2 id="data-catalog"><a class="markdownIt-Anchor" href="#data-catalog"></a> Data Catalog</h2>
+<p>help business users, data scientists to discover the data assets that are available through the Denodo platform</p>
+<ul>
+<li>it promotes self-service and discovery capabilities for business users, enabling them to explore both data and metadata in a single web fronend tool</li>
+<li>with this tool, the end user will be able to access a graphical representation of the business entities and associations, as well as the data linage and tree view information</li>
+<li>it includes reporting capabilities and export options (CSV, excel, Tableau etc…)</li>
+</ul>
+<p>Data catalog is designed to provide organizations with three core benefits</p>
+<ul>
+<li>Enterprise-wide directory of datasets available for consumption from a business friendly web interface
+<ul>
+<li>fast business decisions by enabling a much more rapid and comprehensive understanding and access to all enterprise data and metadata</li>
+</ul>
+</li>
+<li>Governed self service BI/Analytics and data consumption that is still owned and maintained by IT</li>
+<li>Significant IT time, resource and cost reduction</li>
+</ul>
+<h2 id="denodo-scheduler"><a class="markdownIt-Anchor" href="#denodo-scheduler"></a> Denodo Scheduler</h2>
+<ul>
+<li>exporting data to a database or files such as Tableau Data Export, delimited files, CSVs, flat files, MS Excel</li>
+<li>Indexing data to enable google-like keyword searches on content</li>
+<li>Cache loading</li>
+<li>Periodical management tasks such as data statistic gathering, looking for changes in sources, etc…</li>
+</ul>
+<p>Denodo Scheduler enables a hybrid, DV to ETL pattern</p>
+<ul>
+<li>Jobs can be scheduled for a specific time and can have dependencies of other jobs</li>
+<li>Detailed execution reports that can be sent by email</li>
+<li>Support for data extraction from sources with limited query capabilities</li>
+<li>Persistent jobs and Transparent retries in the event of failure</li>
+<li>Possiblity of parallel execution of the different queries involved in the same job</li>
+</ul>
+<h2 id="denode-solution-manager"><a class="markdownIt-Anchor" href="#denode-solution-manager"></a> Denode Solution Manager</h2>
+<ul>
+<li>easy promotion of new metadata to different environments in multi-location architectures with different clusters from a centralized web UI</li>
+<li>it provides automated lifecycle management capabilities, DevOps tasks are greatly simplified and gaining the agility</li>
+<li>it’s centralized web UI allows a simpler and more efficient management of deployments, streamlining continuous delivery strategies.</li>
+</ul>
+<h1 id="denodo-platform-tools-and-applications"><a class="markdownIt-Anchor" href="#denodo-platform-tools-and-applications"></a> Denodo platform tools and applications</h1>
+<h2 id="denode-platform-control-center"><a class="markdownIt-Anchor" href="#denode-platform-control-center"></a> Denode platform control center</h2>
+<p>Allow to start and stop all the Denodo platform servers and its tools</p>
+<ul>
+<li>it allows configuring some additional functions</li>
+<li>it can be launched either by
+<ul>
+<li>selecting the shortcuts created during the installatioin</li>
+<li>Or by executing the denodo_platform.sh script from the bin folder of the Denodo platform installation</li>
+</ul>
+</li>
+</ul>
+<h2 id="web-design-studio"><a class="markdownIt-Anchor" href="#web-design-studio"></a> Web design studio</h2>
+<p>A web based tool, aimed for developers to develop the Virtual DataPort elements</p>
+<ul>
+<li>Web design studio can be started
+<ul>
+<li>from the Denodo platform control center</li>
+<li>by executing the designstudio_startup.sh script from the bin folder</li>
+</ul>
+</li>
+<li>it can be accessed using the URL: <a target="_blank" rel="noopener" href="http://localhost:9090/denodo-design-studio">http://localhost:9090/denodo-design-studio</a></li>
+<li>currently, it does not support configuring the administration options</li>
+</ul>
+<h2 id="data-catalog-2"><a class="markdownIt-Anchor" href="#data-catalog-2"></a> Data Catalog</h2>
+<p>A web based self service tool, aimed for business users to query and serach the organization data</p>
+<ul>
+<li>they can generate new knowledge and can take better decisions</li>
+<li>data catalog can be started, either from
+<ul>
+<li>the Denodo platform control center</li>
+<li>by executing the datacatalog_startup.sh script from the bin folder of the Denodo platform installation</li>
+</ul>
+</li>
+<li>the default URL is: <a target="_blank" rel="noopener" href="http://localhost:9090/denodo-data-catalog">http://localhost:9090/denodo-data-catalog</a></li>
+<li>this tool is not included in Denodo Standard 8.0 version</li>
+</ul>
+<h2 id="scheduler-aministration-tool"><a class="markdownIt-Anchor" href="#scheduler-aministration-tool"></a> Scheduler Aministration Tool</h2>
+<p>A web tool, used to connect to the scheduler server for creating and managing the scheduler jobs</p>
+<ul>
+<li>scheduler administartion tool can be started, either using
+<ul>
+<li>the Denodo platform control center</li>
+<li>executing the scheduler_webadmin_startup.sh script from the bin folder of the Denodo platform installation</li>
+</ul>
+</li>
+<li>the default URL to launch the tool is: <a target="_blank" rel="noopener" href="http://localhost:9090/webadmin/denodo-scheduler-admin">http://localhost:9090/webadmin/denodo-scheduler-admin</a></li>
+</ul>
+<h2 id="solution-manager-administration-tool"><a class="markdownIt-Anchor" href="#solution-manager-administration-tool"></a> Solution Manager Administration Tool</h2>
+<p>A web tool, used to connect to the Solution Manager and License Manager Servers</p>
+<ul>
+<li>it provides an unified access to all the web applications of the Denodo platform
+<ul>
+<li>Data Catalog</li>
+<li>Web Design Studio</li>
+<li>Diagnostics and Monitoring tool</li>
+<li>Scheduler web administration tool</li>
+</ul>
+</li>
+<li>The Solution Manager Administration Tool can be started, either by
+<ul>
+<li>Using the Denodo Solution Manager Control center</li>
+<li>Using the solutionmanagerwebtool_startup.sh script from the bin folder of the Solution Manager installation</li>
+</ul>
+</li>
+<li>the default URL to launch the Solution Manager Administration tool
+<ul>
+<li><a target="_blank" rel="noopener" href="http://localhost:9090/solution-manager-web-tool">http://localhost:9090/solution-manager-web-tool</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="diagnostics-and-monitoring-tool"><a class="markdownIt-Anchor" href="#diagnostics-and-monitoring-tool"></a> Diagnostics and Monitoring tool</h2>
+<p>A web tool, aimed for both developers and administrators who wants to</p>
+<ul>
+<li>monitor the current state of a server, a cluster or an environment</li>
+<li>diagnose the past state of a server to identify the cause of a problem</li>
+<li>diagnostics and monitoring tool can be started, either using
+<ul>
+<li>The Denodo platform control center</li>
+<li>by executing the diagnosticmonitoringtool_startup.sh script</li>
+</ul>
+</li>
+<li>default URL: <a target="_blank" rel="noopener" href="http://localhost:9090/diagnostic-monitoring-tool">http://localhost:9090/diagnostic-monitoring-tool</a></li>
+</ul>
+<h2 id="southbound-connectors"><a class="markdownIt-Anchor" href="#southbound-connectors"></a> Southbound Connectors</h2>
+<p>Specialized connectors to access specific data repositories or applications to retrieve their schema and data</p>
+<ul>
+<li>these connectors are configurable by using a virtual editor or SQL like commands that are part of the Denodo platform</li>
+<li>it helps in creating data sources to retrieve data from a repository of data in the Denodo platform
+<ul>
+<li>E.g. a relational database, a REST or SOAP web service, a MS Excel file, etc…</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-model"><a class="markdownIt-Anchor" href="#data-model"></a> Data Model</h2>
+<p>The Derived views are created over base views to combine the data from different sources or to apply any kind of transformations</p>
+<ul>
+<li>Denodo platform offers graphical drag and drop tool for modeling the derived views</li>
+<li>it used extended relational algebra for data combination and transformation.</li>
+</ul>
+<h2 id="northbound-connectors"><a class="markdownIt-Anchor" href="#northbound-connectors"></a> Northbound Connectors</h2>
+<p>One of the essential capabilities of Data Virtualization is about the different access mechanisms provided to the consumers, these access mechanisms are called Northbound Connectors</p>
+<ul>
+<li>Denodo platform offers flexible delivery options to suit all type of users and application at almost no cost</li>
+<li>if facilitates the creation of a single point of access and interaction with the underlying data source and abstracted views in a standard way</li>
+</ul>
+<h1 id="denodo-platform-security"><a class="markdownIt-Anchor" href="#denodo-platform-security"></a> Denodo Platform Security</h1>
+<h2 id="data-in-transit"><a class="markdownIt-Anchor" href="#data-in-transit"></a> Data in Transit</h2>
+<p>When users access data from Denodo Platform the data is moving</p>
+<ul>
+<li>Data moves through the network
+<ul>
+<li>From the data sources to Denodo</li>
+<li>From Denodo to the final users and consuming applications</li>
+</ul>
+</li>
+<li>This is referred as Security in Transit</li>
+<li>To ensure that the data is well protected and secure, it is possible to encrypt the connection</li>
+</ul>
+<p>Data in transit refers to all communications between the Denodo Platform and Data sources, between data consumers and Denodo Platform</p>
+<ul>
+<li>it can be secured through TLS at the connection level
+<ul>
+<li>Denodo supports TLS 1.2 or 1.3</li>
+<li>TLS configuration is automatized via a Denodo TLS configurator script</li>
+</ul>
+</li>
+</ul>
+<p>Any encrpytion algorithm supported by the default Java Cryptography Providers of the Denodo Platform JRE (Java 11) can be used</p>
+<ul>
+<li>Strongest ciphers can be enabled installing Java Cryptography Extension (JCE), unlimited strength jurisdiction policy files</li>
+<li>when full encryption at the transport level is not required
+<ul>
+<li>Denodo’s build-in functions for encryption/decryption can be selectively applied to sensitive fields to prevent unauthorized access.</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-in-rest"><a class="markdownIt-Anchor" href="#data-in-rest"></a> Data in Rest</h2>
+<p>Denodo Platform stores some opeartional data in a relational database and hard drive, these data are called as Data at Rest</p>
+<ul>
+<li>Metadata of the various Denodo Platform components and elements
+<ul>
+<li>Data sources, views, stored procedures, web serviees</li>
+<li>sensitive information on the configuration of the server</li>
+</ul>
+</li>
+<li>Data cached in a relational database</li>
+<li>data swapped to disk during query execution</li>
+</ul>
+<p>The Data at Rest can be secured by Denodo as follows</p>
+<ul>
+<li>Metadata: sensitive information are stored encrypted/hashed in the metadata repository
+<ul>
+<li>Additiionally, you can enable Transparent Data Encryption to encrypt the database</li>
+</ul>
+</li>
+<li>Cached Data: Denodo will transparently leverage any encryption mechanism available in the selected cache system
+<ul>
+<li>For example, Orable Transparent Data Encryption</li>
+</ul>
+</li>
+<li>Swapped Data: encrypt the swap folder by using OS file system encryption</li>
+</ul>
+<h2 id="authentication-protocols"><a class="markdownIt-Anchor" href="#authentication-protocols"></a> Authentication Protocols</h2>
+<p>Used to publish data to consuming application</p>
+<ul>
+<li>standard username/password security mechanism</li>
+<li>Kerberos support</li>
+<li>HTTP-based authentication pass-through for the OData interface</li>
+<li>Web service security with HTTPS, HTTP basic/Digest, SAML 2.0, OAuth 2.0, HTTP SPNEGO and WS-Security protocols</li>
+<li>OAuth 2.0 in JDBC, ODBC connections is also available</li>
+</ul>
+<p>Denodo also offers different alternatives to integrate with identity, authentication and authorization services</p>
+<ul>
+<li>Denodo built-in security</li>
+<li>Integration with external entitlement services (LDAP/AD)</li>
+<li>Single sign on using OAuth, and SAML</li>
+<li>Integration with external custom entitlement service with specific security policies</li>
+</ul>
+<h1 id="performance"><a class="markdownIt-Anchor" href="#performance"></a> Performance</h1>
+<h2 id="static-optimization"><a class="markdownIt-Anchor" href="#static-optimization"></a> Static Optimization</h2>
+<p>The Denodo Optimizer analyzes the query and simplify it by rewriting it to improve the performance</p>
+<ul>
+<li>it focuses on maximize query delegation to the data sources</li>
+<li>it applies by default for all the queries</li>
+<li>it minimizes the network traffic</li>
+<li>it reduces the data volume that needs to be processed in the virtual layer</li>
+<li>it applies one or more simplifications to the same query</li>
+</ul>
+<h1 id="connecting-and-combining-data-with-denodo"><a class="markdownIt-Anchor" href="#connecting-and-combining-data-with-denodo"></a> Connecting and combining Data with Denodo</h1>
+<p>Denodo platform allows to add remote databases as sources</p>
+<ul>
+<li>the recommended way to connect to databases is always using the JDBC data source
+<ul>
+<li>JDBC is an acronym referred to Java Database Connectivity</li>
+<li>JDBC defines an API for the Java Programming language to access to any database using a suitable driver</li>
+</ul>
+</li>
+</ul>
+<p>Denodo platform supports out-the-box a wide variety of databases</p>
+<ul>
+<li>relational databases
+<ul>
+<li>oracle, MS server, PostgreSQL, MySQL, Amazon Aurora, Azure SQL, Apache Derby</li>
+</ul>
+</li>
+<li>Data Warehouses
+<ul>
+<li>Snowflake, Amazon Redshift, Azure SQL Data Warehouse, Google BigQuery, SAP HANA, Teradata, Yellowbrick</li>
+</ul>
+</li>
+<li>Interactive Query Services
+<ul>
+<li>Hive, Impala, Amazon Athena, Presto, Spark SQL</li>
+</ul>
+</li>
+</ul>
+<p>By default, Denodo platform does not include some supported JDBC drivers, although it includes the adapter</p>
+<ul>
+<li>When a driver is not provided by Denodo, the .jar files of the driver must be uploaded to Virtual Dataport server using the Administration tool</li>
+<li>Import option in the File &gt; Extensioin Management &gt; Libraries</li>
+</ul>
+<p>When Denodo does not include an specific adapter for a data source</p>
+<ul>
+<li>if possible, select a similar adapter
+<ul>
+<li>for example, to connect to MySQL 6.0, the adapter MySQL 5 can be selected</li>
+</ul>
+</li>
+<li>if there are not similar adapters, the generic adapter can be used</li>
+<li>in both cases the driver must be provided and uploaded to the server</li>
+</ul>
+<h2 id="import-a-sql-query"><a class="markdownIt-Anchor" href="#import-a-sql-query"></a> Import a SQL Query</h2>
+<p>Instead of using a table as the source for a base view, it is possible to generate a view from a SQL query</p>
+<ul>
+<li>the query will be sent to the database without modifications
+<ul>
+<li>but Denodo platform may delegate to the source a bigger query over the given sentence, for example, when delegating conditions</li>
+</ul>
+</li>
+<li>this new view will inherit its internal schema from the meta information associated to the query results</li>
+</ul>
+<p>This is useful in several scenarios</p>
+<ul>
+<li>using specific syntax to the accessed database that cannot be replicated in virtual dataport
+<ul>
+<li>for example, using a function that is not available in virutal dataport</li>
+</ul>
+</li>
+<li>situations when an exact query is needed
+<ul>
+<li>for example, complex queries already created instead of duplicting them in Denodo</li>
+<li>using queries that have been optimized for the specific database being accessed.</li>
+</ul>
+</li>
+</ul>
+<h2 id="import-stored-procedures"><a class="markdownIt-Anchor" href="#import-stored-procedures"></a> Import Stored Procedures</h2>
+<p>Base views can be created graphically over stored procedure of the following databases</p>
+<ul>
+<li>IBM DB2, MS SQL Server and Oracle</li>
+</ul>
+<p>If the procedure has one or more cursors, one of the following options can be selected</p>
+<ul>
+<li>Stream output at the specified cursor
+<ul>
+<li>the data that is returned by the cursor is flattened</li>
+</ul>
+</li>
+<li>do not stream cursor parameters
+<ul>
+<li>the data returned by the cursor will be in an array</li>
+</ul>
+</li>
+</ul>
+<h2 id="querying-views-from-execution-panel"><a class="markdownIt-Anchor" href="#querying-views-from-execution-panel"></a> Querying views from Execution Panel</h2>
+<p>Virtual Dataport is able to import data coming from different systems and with different structure and format</p>
+<ul>
+<li>to retrieve data form a source, some elements are created in Denodo
+<ul>
+<li>A data source representing a repository of data</li>
+<li>base views repreesnting entities in the source</li>
+<li>these base views can be executed in virtual dataport</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-derived-views"><a class="markdownIt-Anchor" href="#basic-derived-views"></a> Basic Derived Views</h2>
+<p>Derived Views are new views created over other Denodo Views</p>
+<ul>
+<li>A derived view is another element in the virtual dataport catalog
+<ul>
+<li>it may then appear in the FROM clause of any VQL query and may be used as a base for constructing new views or queries</li>
+</ul>
+</li>
+<li>THe cache may be used on a derived view, and user privileges can be defined</li>
+</ul>
+<h2 id="functions"><a class="markdownIt-Anchor" href="#functions"></a> Functions</h2>
+<p>Functions are used to generate new attributes in the schema of a view</p>
+<ul>
+<li>a function is defined as an identifier and a list of arguments that can be constants, fields or other functions
+<ul>
+<li>e.g. len(‘this function gets the length of this text’)</li>
+</ul>
+</li>
+</ul>
+<p>All virtual dataport functions can be browsed by using CTRL + SPACE in the</p>
+<ul>
+<li>Specify WHERE expression tab of the execution panel</li>
+<li>in the field expression dialog available while defining new fields for views</li>
+</ul>
+<p>Custom functions allow users to extend the set of functions available in Virtual dataport</p>
+<ul>
+<li>they are used in the same way as every other function</li>
+</ul>
+<p>Implemented as JAVA classes included in a JAR file that is added to the Virtual Dataport</p>
+<ul>
+<li>functions have to be stateless</li>
+<li>each function has to have a unique name and a different JAVA class</li>
+<li>different functions can be grouped in a single JAR file</li>
+</ul>
+<h2 id="union-views"><a class="markdownIt-Anchor" href="#union-views"></a> Union Views</h2>
+<p>A union view allows the tuples from various input views to be output as a single view</p>
+<ul>
+<li>in standard relational algebra, union operation implies
+<ul>
+<li>all the relations must have the same schema</li>
+</ul>
+</li>
+<li>extended union all is also used
+<ul>
+<li>whenever any of the input relations has an attribute that is not present in the others, it is added to the resulting view.</li>
+</ul>
+</li>
+</ul>
+<p>When creating a view, more than just a UNION operation is performed</p>
+<ul>
+<li>some of the operations are performed through intermediate projection operations automatically added by virtual dataport
+<ul>
+<li>e.g. changing the name of the view, deleting fields</li>
+</ul>
+</li>
+<li>other intermediate opeartions can be added manually
+<ul>
+<li>where conditions tab</li>
+<li>group by tab</li>
+</ul>
+</li>
+<li>all the operations performed are shown in the tree view screen</li>
+</ul>
+<h2 id="jsonxml-data-source"><a class="markdownIt-Anchor" href="#jsonxml-data-source"></a> JSON/XML data source</h2>
+<p>Virtual Dataport allows to import data from XML or JSON</p>
+<ul>
+<li>these formats are often used for transmitting structured data over a network connection</li>
+<li>these data sources allows Denodo platform to connect to RESTful web services
+<ul>
+<li>connecting to a resource URI which returns a response with a payload formatted in XML or JSON (google APIs, Twitter etc…)</li>
+</ul>
+</li>
+</ul>
+<p>For JSON data source</p>
+<ul>
+<li>a tuple root can be selected
+<ul>
+<li>/JSONFile is the default option</li>
+<li>modify it when it is needed to access only a part of the document rather than the entirety of it.</li>
+</ul>
+</li>
+</ul>
+<p>For XML date sources</p>
+<ul>
+<li>there are two options to create base views
+<ul>
+<li>do not stream output, the base view will return a single compound value aggregating all the document information</li>
+<li>stream output at the specified level: it does not require the entire document to be realized in memory before processing it
+<ul>
+<li>the contents will be split into different tuples</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="web-service-data-source"><a class="markdownIt-Anchor" href="#web-service-data-source"></a> Web service data source</h2>
+<p>A web service is a software system designed to support interoperable machine-to-machine interaction over a network</p>
+<ul>
+<li>virtual dataport can use a SOAP web service as a data source and performs queries over it by invoking its operations
+<ul>
+<li>in a web service source, the fields of the query are the input parameters of the web service operation</li>
+</ul>
+</li>
+</ul>
+<h2 id="join-types"><a class="markdownIt-Anchor" href="#join-types"></a> Join Types</h2>
+<p>A join view allows the relational algebra operation with the same name to be executed on a series of input views</p>
+<ul>
+<li>it combines records from two or more views by using values common to each</li>
+<li>INNER JOIN (default)</li>
+<li>LEFT OUTER JOIN</li>
+<li>RIGHT OUTER JOIN</li>
+<li>FULL OUTER JOIN</li>
+<li>CROSS JOIN
+<ul>
+<li>each row from the first relation is combined with each row from the second one, this join returns the Cartesian product of the sets of rows from the joined tables</li>
+</ul>
+</li>
+</ul>
+<h3 id="join-execution-methods"><a class="markdownIt-Anchor" href="#join-execution-methods"></a> Join Execution Methods</h3>
+<p>Depending on the join type and the selected order, the user can define different join execution methods</p>
+<ul>
+<li>Merge</li>
+<li>Hash</li>
+<li>Nested</li>
+<li>Nested Parallel<br />
+If the join execution method is not set, design studio will try to calculate the best query plan and all the queries against the join view will follow this plan</li>
+</ul>
+<h3 id="merge"><a class="markdownIt-Anchor" href="#merge"></a> Merge</h3>
+<p>This join method requires the input data to be ordered by the join attributes, this can be achieved as follows</p>
+<ul>
+<li>when the data source allows opeartions, virtual dataport will automatically request the data ordered
+<ul>
+<li>if it does not allow sorting operations, the ORDERBY clause can be used in the underlying views to sort the data in the required order</li>
+</ul>
+</li>
+<li>the collation of both sources must be the same</li>
+<li>if the data source returns directly the data in the appropriate order
+<ul>
+<li>the base view options allow administrators to specify it using the ‘Fields by which the data is sorted in the source’ field</li>
+</ul>
+</li>
+<li>data sources are queried in parallel, ordered by the join conditiion and the non-matching data are discarded</li>
+<li>when valid, this strategy is usually the most efficient one and uses less memory than the others</li>
+</ul>
+<h3 id="hash"><a class="markdownIt-Anchor" href="#hash"></a> Hash</h3>
+<p>Creates an in-memory hash table:</p>
+<ul>
+<li>for each different join attribute values on the right side, it will insert a key-value pair into the hash table</li>
+<li>the left side tuples that match these values will be in the final join view output</li>
+</ul>
+<p>This is the most efficient join method when</p>
+<ul>
+<li>the input views that cannot be ordered or are large or the query latency times for the data sources are high
+<ul>
+<li>minimizes the sub-queries to the sources</li>
+</ul>
+</li>
+</ul>
+<h3 id="nested"><a class="markdownIt-Anchor" href="#nested"></a> Nested</h3>
+<p>Obtains data from one input view, then for each record obtained a subquery is executed in the other view using the join conditions</p>
+<ul>
+<li>if the second view comes from a relational data source, virtual dataport will optimize the process by running a single subquery that retrieves all the matching data from the second source
+<ul>
+<li>if the amount of values obtained from the left side view of the join exceed a certain value (200 default), the server will group the queries to obtain the data from the rigih-side</li>
+</ul>
+</li>
+<li>A nested join is a good option when the right side returns a lot of tuples and the left side only returns a few</li>
+</ul>
+<h3 id="nested-parallel"><a class="markdownIt-Anchor" href="#nested-parallel"></a> Nested Parallel</h3>
+<p>Same as Nested but this method executes the sub queries in parallel</p>
+<ul>
+<li>an additional parameter allows to specify the maximum number of subqueries launched in parallel</li>
+<li>if the second data source is of JDBC/ODBC type, the use of NESTED PARALLEL is usually unnecessary and less efficient, NESTED option must be used</li>
+</ul>
+<h1 id="compound-types-and-flatten-operation"><a class="markdownIt-Anchor" href="#compound-types-and-flatten-operation"></a> Compound Types and Flatten Operation</h1>
+<p>Denodo virtual dataport supports modeling data types with a complex structure using the types register and array</p>
+<ul>
+<li>an element of the type array can be considered a subview and an array type always has an associated register type that acts like the schema of the subview it is modeling</li>
+</ul>
+<p>Sometimes it is desirable to flatten a compound field that contains an array of registers</p>
+<ul>
+<li>typical in XML and web service data sources</li>
+</ul>
+<p>Flattening a register</p>
+<ul>
+<li>every register element will be a new field on the derived view output</li>
+<li>every array elemenet will be a new row</li>
+</ul>
+<p>it is possible to perform the inverse operation of faltten to create array or register elements from several fields</p>
+<ul>
+<li>this can be done using the NEST or REGISTER functions</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/08/02/Denodo-Data-Virtualization/" title="Denodo Data Virtualization" target="_blank" rel="external">http://hellcy.github.io/2021/08/02/Denodo-Data-Virtualization/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/08/09/AWS-SAA-Review/" title="AWS SAA Review"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/07/28/TIBCO-Data-Virtualization/" title="TIBCO Data Virtualization"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Spring Framework | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Spring Framework Stereotypes  Stereotype - a fixed general image or ser of characteristics which represent a particular type of person or thing Spring Stereotypes are class level annotations used to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Framework">
+<meta property="og:url" content="http://hellcy.github.io/2021/11/05/Spring-Framework/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Spring Framework Stereotypes  Stereotype - a fixed general image or ser of characteristics which represent a particular type of person or thing Spring Stereotypes are class level annotations used to">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-04T13:06:37.000Z">
+<meta property="article:modified_time" content="2022-02-10T14:39:24.301Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Spring">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/11/05/Spring-Framework/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data/" rel="tag">Data</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elastic-Search/" rel="tag">Elastic Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/" rel="tag">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13.25px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/Azure/" style="font-size: 13px;">Azure</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data/" style="font-size: 13.25px;">Data</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Data-Virtualization/" style="font-size: 13.25px;">Data Virtualization</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Elastic-Search/" style="font-size: 13px;">Elastic Search</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.5px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13.25px;">React</a> <a href="/tags/SQL/" style="font-size: 13.25px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13.25px;">Wishlist</a> <a href="/tags/git/" style="font-size: 13.25px;">git</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="title">Design Pattern - Singleton in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-09T06:26:19.000Z" itemprop="datePublished">09-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/01/02/Elastic-Search/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/02/Elastic-Search/" class="title">Elastic Search</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-02T06:41:13.000Z" itemprop="datePublished">02-01-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/12/09/Dot-net-React/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/09/Dot-net-React/" class="title">Dot net + React</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-09T12:17:52.000Z" itemprop="datePublished">09-12-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/11/05/Spring-Framework/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/11/05/Spring-Framework/" class="title">Spring Framework</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-11-04T13:06:37.000Z" itemprop="datePublished">05-11-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#spring-framework-stereotypes"><span class="toc-number">1.</span> <span class="toc-text"> Spring Framework Stereotypes</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#spring-component-scan"><span class="toc-number">2.</span> <span class="toc-text"> Spring Component Scan</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#spring-bean-scopes"><span class="toc-number">3.</span> <span class="toc-text"> Spring Bean Scopes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#declaring-bean-scope"><span class="toc-number">3.1.</span> <span class="toc-text"> Declaring Bean Scope</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#external-properties"><span class="toc-number">4.</span> <span class="toc-text"> External Properties</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#which-property-files-to-use"><span class="toc-number">4.1.</span> <span class="toc-text"> which property files to use</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#properties-setting-hierarchy-from-low-to-high"><span class="toc-number">4.2.</span> <span class="toc-text"> Properties Setting Hierarchy (from low to high)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#thymeleaf"><span class="toc-number">5.</span> <span class="toc-text"> Thymeleaf</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#request-methods"><span class="toc-number">6.</span> <span class="toc-text"> Request Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#safe-methods"><span class="toc-number">6.1.</span> <span class="toc-text"> Safe methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#idempotent-methods"><span class="toc-number">6.2.</span> <span class="toc-text"> Idempotent methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#non-idempotent-methods"><span class="toc-number">6.3.</span> <span class="toc-text"> Non-Idempotent methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http-status-codes"><span class="toc-number">6.4.</span> <span class="toc-text"> HTTP Status Codes</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#developer-tools"><span class="toc-number">7.</span> <span class="toc-text"> Developer Tools</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#features"><span class="toc-number">7.1.</span> <span class="toc-text"> Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#template-caching"><span class="toc-number">7.2.</span> <span class="toc-text"> Template caching</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#livereload"><span class="toc-number">7.3.</span> <span class="toc-text"> LiveReload</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#entity-relationships"><span class="toc-number">8.</span> <span class="toc-text"> Entity Relationships</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unidirectional-vs-bidirectional"><span class="toc-number">8.1.</span> <span class="toc-text"> Unidirectional vs Bidirectional</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#owning-side"><span class="toc-number">8.2.</span> <span class="toc-text"> Owning side</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fetch-type"><span class="toc-number">8.3.</span> <span class="toc-text"> Fetch type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jpa-cascade-types"><span class="toc-number">8.4.</span> <span class="toc-text"> JPA Cascade Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#embeddable-types"><span class="toc-number">8.5.</span> <span class="toc-text"> Embeddable Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#inheritance"><span class="toc-number">8.6.</span> <span class="toc-text"> Inheritance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#create-and-update-timestamps"><span class="toc-number">8.7.</span> <span class="toc-text"> Create and Update Timestamps</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#hibernate-ddl-auto"><span class="toc-number">9.</span> <span class="toc-text"> Hibernate DDL Auto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ddl-vs-dml"><span class="toc-number">9.1.</span> <span class="toc-text"> DDL vs DML</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#initialize-with-hibernate"><span class="toc-number">9.2.</span> <span class="toc-text"> Initialize with Hibernate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-jdbc"><span class="toc-number">9.3.</span> <span class="toc-text"> Spring JDBC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-data-jpa-query-method"><span class="toc-number">9.4.</span> <span class="toc-text"> Spring Data JPA Query Method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#repository-layer-and-service-layer"><span class="toc-number">9.5.</span> <span class="toc-text"> Repository layer and Service layer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#lombok"><span class="toc-number">10.</span> <span class="toc-text"> Lombok</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ides"><span class="toc-number">10.1.</span> <span class="toc-text"> IDEs</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#features-2"><span class="toc-number">10.2.</span> <span class="toc-text"> features</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#testing-terminology"><span class="toc-number">11.</span> <span class="toc-text"> Testing Terminology</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#unit-tests"><span class="toc-number">11.1.</span> <span class="toc-text"> Unit Tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#integration-tests"><span class="toc-number">11.2.</span> <span class="toc-text"> Integration tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#functional-tests"><span class="toc-number">11.3.</span> <span class="toc-text"> Functional tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tdd"><span class="toc-number">11.4.</span> <span class="toc-text"> TDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bdd"><span class="toc-number">11.5.</span> <span class="toc-text"> BDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mock"><span class="toc-number">11.6.</span> <span class="toc-text"> Mock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spy"><span class="toc-number">11.7.</span> <span class="toc-text"> Spy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testing-goals"><span class="toc-number">11.8.</span> <span class="toc-text"> Testing goals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#test-scope-dependencies"><span class="toc-number">11.9.</span> <span class="toc-text"> Test scope dependencies</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#junit-annotations"><span class="toc-number">11.10.</span> <span class="toc-text"> JUnit Annotations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-boot-annotations"><span class="toc-number">11.11.</span> <span class="toc-text"> Spring Boot Annotations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#argumentcaptor"><span class="toc-number">11.12.</span> <span class="toc-text"> ArgumentCaptor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set-up-the-unit-test"><span class="toc-number">11.12.1.</span> <span class="toc-text"> Set up the unit test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#add-an-argumentcaptor-field"><span class="toc-number">11.12.2.</span> <span class="toc-text"> Add an ArgumentCaptor field</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#capture-the-argument"><span class="toc-number">11.12.3.</span> <span class="toc-text"> Capture the argument</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#inspect-the-captured-value"><span class="toc-number">11.12.4.</span> <span class="toc-text"> Inspect the captured value</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#exception-handling-in-spring-mvc"><span class="toc-number">12.</span> <span class="toc-text"> Exception Handling in Spring MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#http-status-code"><span class="toc-number">12.1.</span> <span class="toc-text"> HTTP status code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#responsestatus"><span class="toc-number">12.2.</span> <span class="toc-text"> @ResponseStatus</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exceptionhandler"><span class="toc-number">12.3.</span> <span class="toc-text"> @ExceptionHandler</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#handlerexceptionresolver"><span class="toc-number">12.4.</span> <span class="toc-text"> @HandlerExceptionResolver</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#docker"><span class="toc-number">13.</span> <span class="toc-text"> Docker</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#what-is-docker"><span class="toc-number">13.1.</span> <span class="toc-text"> What is Docker?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#containers-can"><span class="toc-number">13.2.</span> <span class="toc-text"> Containers can</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-terminology"><span class="toc-number">13.3.</span> <span class="toc-text"> Docker Terminology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#notes-about-docker-images-and-containers"><span class="toc-number">13.4.</span> <span class="toc-text"> Notes about Docker Images and Containers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker-housekeeping"><span class="toc-number">13.5.</span> <span class="toc-text"> Docker housekeeping</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cleaning-up-after-docker"><span class="toc-number">13.5.1.</span> <span class="toc-text"> Cleaning up after Docker</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql"><span class="toc-number">14.</span> <span class="toc-text"> MySQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-features"><span class="toc-number">14.1.</span> <span class="toc-text"> MySQL features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#acid-compliance"><span class="toc-number">14.2.</span> <span class="toc-text"> ACID compliance</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdbms-deployment-architectures"><span class="toc-number">14.3.</span> <span class="toc-text"> RDBMS deployment architectures</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-data-types"><span class="toc-number">14.4.</span> <span class="toc-text"> MySQL data types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mysql-installation-options"><span class="toc-number">14.5.</span> <span class="toc-text"> MySQL installation options</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#native-installation"><span class="toc-number">14.5.1.</span> <span class="toc-text"> Native installation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#running-mysql-in-a-container"><span class="toc-number">14.5.2.</span> <span class="toc-text"> Running MySQL in a Container</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#connecting-to-mysql"><span class="toc-number">14.6.</span> <span class="toc-text"> Connecting to MySQL</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mongo-db"><span class="toc-number">15.</span> <span class="toc-text"> Mongo DB</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#about-mongo-db"><span class="toc-number">15.1.</span> <span class="toc-text"> About Mongo DB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#why-use-mongo-db"><span class="toc-number">15.2.</span> <span class="toc-text"> Why use Mongo DB?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#why-avoid-mongodb"><span class="toc-number">15.3.</span> <span class="toc-text"> Why avoid MongoDB?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reactive-manifesto"><span class="toc-number">16.</span> <span class="toc-text"> Reactive Manifesto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#responsive"><span class="toc-number">16.1.</span> <span class="toc-text"> Responsive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#resilient"><span class="toc-number">16.2.</span> <span class="toc-text"> Resilient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#elastic"><span class="toc-number">16.3.</span> <span class="toc-text"> Elastic</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#message-driven"><span class="toc-number">16.4.</span> <span class="toc-text"> Message Driven</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reactive-programming-with-reactive-systems"><span class="toc-number">16.5.</span> <span class="toc-text"> reactive programming with reactive systems</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reactive-programming"><span class="toc-number">17.</span> <span class="toc-text"> Reactive Programming</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#common-use-cases"><span class="toc-number">17.1.</span> <span class="toc-text"> Common use cases</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#features-opf-reactive-programming"><span class="toc-number">17.2.</span> <span class="toc-text"> features opf reactive programming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-streams"><span class="toc-number">17.3.</span> <span class="toc-text"> data streams</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#asynchronous"><span class="toc-number">17.4.</span> <span class="toc-text"> Asynchronous</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#observer-pattern"><span class="toc-number">17.5.</span> <span class="toc-text"> Observer pattern</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#non-blocking"><span class="toc-number">17.6.</span> <span class="toc-text"> Non-blocking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#back-pressure"><span class="toc-number">17.7.</span> <span class="toc-text"> back pressure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#failures-as-messages"><span class="toc-number">17.8.</span> <span class="toc-text"> failures as messages</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#reactive-streams"><span class="toc-number">18.</span> <span class="toc-text"> Reactive Streams</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#spring-reactive-types"><span class="toc-number">18.1.</span> <span class="toc-text"> Spring Reactive Types</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#webflux"><span class="toc-number">19.</span> <span class="toc-text"> WebFlux</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#restful-web-services"><span class="toc-number">20.</span> <span class="toc-text"> RESTful web services</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#terminology"><span class="toc-number">20.1.</span> <span class="toc-text"> terminology</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#get"><span class="toc-number">20.2.</span> <span class="toc-text"> GET</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#put"><span class="toc-number">20.3.</span> <span class="toc-text"> PUT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#post"><span class="toc-number">20.4.</span> <span class="toc-text"> POST</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete"><span class="toc-number">20.5.</span> <span class="toc-text"> DELETE</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mapstruct"><span class="toc-number">21.</span> <span class="toc-text"> MapStruct</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#content-negotiation"><span class="toc-number">22.</span> <span class="toc-text"> Content Negotiation</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#content-negotiating-view-resolver"><span class="toc-number">22.1.</span> <span class="toc-text"> Content Negotiating view resolver</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#content-type"><span class="toc-number">22.2.</span> <span class="toc-text"> Content type</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#helper-library-and-classes"><span class="toc-number">23.</span> <span class="toc-text"> Helper Library and Classes</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#structure"><span class="toc-number">23.1.</span> <span class="toc-text"> Structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jpa"><span class="toc-number">23.2.</span> <span class="toc-text"> JPA</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thymeleaf-2"><span class="toc-number">23.3.</span> <span class="toc-text"> Thymeleaf</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dependency-injection"><span class="toc-number">23.4.</span> <span class="toc-text"> Dependency Injection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#configuration"><span class="toc-number">23.5.</span> <span class="toc-text"> Configuration</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jpa-entity-relationships"><span class="toc-number">23.6.</span> <span class="toc-text"> JPA entity relationships</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jpa-query-methods"><span class="toc-number">23.7.</span> <span class="toc-text"> JPA Query methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#project-lombok"><span class="toc-number">23.8.</span> <span class="toc-text"> Project Lombok</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#junit"><span class="toc-number">23.9.</span> <span class="toc-text"> JUnit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mockito"><span class="toc-number">23.10.</span> <span class="toc-text"> Mockito</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webjars"><span class="toc-number">23.11.</span> <span class="toc-text"> WebJars</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#web-data-binder"><span class="toc-number">23.12.</span> <span class="toc-text"> Web Data Binder</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#validations"><span class="toc-number">23.13.</span> <span class="toc-text"> Validations</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#exceptions"><span class="toc-number">23.14.</span> <span class="toc-text"> Exceptions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reactive-programming-2"><span class="toc-number">23.15.</span> <span class="toc-text"> Reactive Programming</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#resttemplate"><span class="toc-number">23.16.</span> <span class="toc-text"> RestTemplate</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#webclient"><span class="toc-number">23.17.</span> <span class="toc-text"> WebClient</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapstruct-2"><span class="toc-number">23.18.</span> <span class="toc-text"> MapStruct</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Spring-Framework" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring Framework
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/11/05/Spring-Framework/" class="article-date">
+	  <time datetime="2021-11-04T13:06:37.000Z" itemprop="datePublished">05-11-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Spring/" rel="tag">Spring</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/11/05/Spring-Framework/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 5.4k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 33(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="spring-framework-stereotypes"><a class="markdownIt-Anchor" href="#spring-framework-stereotypes"></a> Spring Framework Stereotypes</h1>
+<ul>
+<li>Stereotype - a fixed general image or ser of characteristics which represent a particular type of person or thing</li>
+<li>Spring Stereotypes are <code>class</code> level annotations used to define Spring Beans
+<ul>
+<li><strong>when classes annotated with Spring Stereotypes are detected via the component scan, an instance of the class will be added to the Spring context</strong></li>
+</ul>
+</li>
+<li>Available Spring Stereotypes
+<ul>
+<li><code>@Component</code></li>
+<li><code>@Controller</code></li>
+<li><code>@RestController</code></li>
+<li><code>@Repository</code></li>
+<li><code>@Service</code></li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Component</td>
+<td>Indicates that an annotated class is a component and it will be created as a bean</td>
+</tr>
+<tr>
+<td>@Controller</td>
+<td>indicates that an annotated class has the role of a Spring MVC controller</td>
+</tr>
+<tr>
+<td>@RestController</td>
+<td>convenience annotation which extends @Controller and @ResponseBody</td>
+</tr>
+<tr>
+<td>@Repository</td>
+<td>indicates class is a Repository, a mechanism for encapsulating storage, retrieval, and search behavior which emulates a collection of objects</td>
+</tr>
+<tr>
+<td>@Service</td>
+<td>indicates that an annotated class is a Service, an operation offered as an interface that stands alone in the model, with no encapsulated state</td>
+</tr>
+</tbody>
+</table>
+<h1 id="spring-component-scan"><a class="markdownIt-Anchor" href="#spring-component-scan"></a> Spring Component Scan</h1>
+<ul>
+<li>Spring Beans defined with Spring Stereotypes are detected with Spring component scan</li>
+<li>On startup, Spring is told to scan packages for classes with Spring Stereotype annotations</li>
+<li>This configuration is Spring Framework specific, not Spring Boot</li>
+<li>Spring Boot’s auto configuration will tell Spring to perform a component scan of the package of the main class
+<ul>
+<li>this includes all sub packages of the main class package</li>
+</ul>
+</li>
+<li>when using Spring Boot, if class is outside of the main class package tree, you must declare the package scan manually</li>
+</ul>
+<h1 id="spring-bean-scopes"><a class="markdownIt-Anchor" href="#spring-bean-scopes"></a> Spring Bean Scopes</h1>
+<ul>
+<li><code>Singleton</code> - (default) only one instance of the bean is created in the IoC container</li>
+<li><code>Prototype</code> - A new instance is created each time the bean is requested</li>
+<li><code>Request</code> - For web app, a single instance per http request, only valid in the context of a web aware Spring applicationContext</li>
+<li><code>Session</code> - for web app, a single instance per http session, only valid in the context of a web aware Spring applicationContext</li>
+<li><code>Global-session</code> - a single instance per global session, typically only used in a Portlet context, only valid in the context of a web aware Spring applicationContext</li>
+<li><code>Application</code> - bean is scoped to the lifecycle of a ServletContext, only valid in the context of web aware</li>
+<li><code>WebSocket</code> - scopes a single bean definition to the lifecycle of a WebSocket, only valid in the context of a web aware Spring applicationContext</li>
+<li><code>Custom Scope</code> - Spring Scopes are extensible, and you can define your own scope by implementing Spring’s scope interface</li>
+</ul>
+<h2 id="declaring-bean-scope"><a class="markdownIt-Anchor" href="#declaring-bean-scope"></a> Declaring Bean Scope</h2>
+<ul>
+<li>No declaration needed for singleton scope</li>
+<li>in Java configuration use <code>@Scope</code> annotation</li>
+<li>in XML configuration file scope is an XML attribute of the bean tag</li>
+<li>99% of the time singleton scope is fine</li>
+</ul>
+<h1 id="external-properties"><a class="markdownIt-Anchor" href="#external-properties"></a> External Properties</h1>
+<ul>
+<li>Why use External Properties?
+<ul>
+<li>hard coding values which can change is considered a bad practice</li>
+<li>makes your application rigid and hard to change</li>
+<li>you want your application to be portable
+<ul>
+<li>deployment artifact (jar, war) should be deployable to different environments</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>what can change?
+<ul>
+<li>usernames, passwords, urls, API keys, paths, queue names etc…</li>
+</ul>
+</li>
+</ul>
+<h2 id="which-property-files-to-use"><a class="markdownIt-Anchor" href="#which-property-files-to-use"></a> which property files to use</h2>
+<ul>
+<li>using application.properties or application.yml in packaged JAR or WAR</li>
+<li>using profile specific properties or YAML files for profile specific properties</li>
+<li>for deployments, override properties that change with environment variables
+<ul>
+<li>typically 70 - 80% of values do not change, only override what is needed</li>
+<li>environment variables offer a secure way of seeing sensitive values such as passwords</li>
+</ul>
+</li>
+</ul>
+<h2 id="properties-setting-hierarchy-from-low-to-high"><a class="markdownIt-Anchor" href="#properties-setting-hierarchy-from-low-to-high"></a> Properties Setting Hierarchy (from low to high)</h2>
+<ol>
+<li>application.properties</li>
+<li>environment variables</li>
+<li>command line variables</li>
+</ol>
+<h1 id="thymeleaf"><a class="markdownIt-Anchor" href="#thymeleaf"></a> Thymeleaf</h1>
+<ul>
+<li>Thymeleaf is a Java template engine producing XML, XHTML and HTML5</li>
+<li>Thymeleaf is a replacement of JSPs</li>
+<li>Thymeleaf is a natural template engine (the templates are viewable in a web browser)</li>
+<li>is not tied to web environment (can be used for producing HTML for emails)</li>
+<li>Thymeleaf is not a web framework</li>
+</ul>
+<h1 id="request-methods"><a class="markdownIt-Anchor" href="#request-methods"></a> Request Methods</h1>
+<ul>
+<li>GET
+<ul>
+<li>is a request for a resource (html file, javascript file, image, etc…)</li>
+<li>is used when you visit a website</li>
+</ul>
+</li>
+<li>HEAD
+<ul>
+<li>is like GET, but only asks for meta information without the body</li>
+</ul>
+</li>
+<li>POST
+<ul>
+<li>is used to post data to the server</li>
+<li>typical use case for POST is to post form data to the server (like a checkout form)</li>
+<li>POST is a create request</li>
+</ul>
+</li>
+<li>PUT
+<ul>
+<li>is a request for the enclosed entity be stored at the supplied URI, if the entity exists, it is expected to be updated</li>
+<li>PUT is a create OR update request</li>
+</ul>
+</li>
+<li>DELETE
+<ul>
+<li>is a request to delete the specified resource</li>
+</ul>
+</li>
+<li>TRACE
+<ul>
+<li>will echo the received request, can be used to see if request was altered by intermediate servers</li>
+</ul>
+</li>
+<li>OPTIONS
+<ul>
+<li>returns the HTTP methods supported by the server for the specified URL</li>
+</ul>
+</li>
+</ul>
+<h2 id="safe-methods"><a class="markdownIt-Anchor" href="#safe-methods"></a> Safe methods</h2>
+<ul>
+<li>safe methods are considered safe to use because they only fetch information and do not cause changes on the server</li>
+<li>the safe methods are: GET, HEAD, OPTIONS, and TRACE</li>
+</ul>
+<h2 id="idempotent-methods"><a class="markdownIt-Anchor" href="#idempotent-methods"></a> Idempotent methods</h2>
+<ul>
+<li>a quality of an action such that repetitions of the action have no further effect on the outcome</li>
+<li>PUT and DELETE are Idempotent methods</li>
+<li>safe methods (GET, HEAD, OPTIONS and TRACE) are also Idempotent</li>
+<li>being truly idempotent is not enforced by the protocol</li>
+</ul>
+<h2 id="non-idempotent-methods"><a class="markdownIt-Anchor" href="#non-idempotent-methods"></a> Non-Idempotent methods</h2>
+<ul>
+<li>POST is NOT idempotent</li>
+<li>multiple POSTs are likely to create multiple resources</li>
+<li>Ever seen websites asking you to click submit only once?</li>
+</ul>
+<h2 id="http-status-codes"><a class="markdownIt-Anchor" href="#http-status-codes"></a> HTTP Status Codes</h2>
+<ul>
+<li>100 series are information in nature</li>
+<li>200 series indicate successful request
+<ul>
+<li>200 Okay, 201 Created, 204 Accepted</li>
+</ul>
+</li>
+<li>300 series are redirections
+<ul>
+<li>301 Moved Permanently</li>
+</ul>
+</li>
+<li>400 series are client errors
+<ul>
+<li>400 Bad Request, 401 Not Authorized, 404 Not Found</li>
+</ul>
+</li>
+<li>500 series are server side errors
+<ul>
+<li>500 Internel Server Error, 503 Service Unavailable</li>
+</ul>
+</li>
+</ul>
+<h1 id="developer-tools"><a class="markdownIt-Anchor" href="#developer-tools"></a> Developer Tools</h1>
+<ul>
+<li>added to project via artifact ‘spring-boot-devtools’</li>
+<li>developer tools are automatically disabled when running a packaged application</li>
+<li>by default, not included in repackaged archives</li>
+</ul>
+<h2 id="features"><a class="markdownIt-Anchor" href="#features"></a> Features</h2>
+<ul>
+<li>by default you need to select Build -&gt; Make project</li>
+<li>there is an advanced setting you can change to make this more seamless</li>
+</ul>
+<h2 id="template-caching"><a class="markdownIt-Anchor" href="#template-caching"></a> Template caching</h2>
+<ul>
+<li>by default templates are cached for performance</li>
+<li>but caching will require a container restart to refresh the cache</li>
+<li>developer tools will disable template caching so the restart is not required to see changes</li>
+</ul>
+<h2 id="livereload"><a class="markdownIt-Anchor" href="#livereload"></a> LiveReload</h2>
+<ul>
+<li>LiveReload is a technology to automatically trigger a browser refresh when resources are changed</li>
+<li>Spring boot developer tools includes a LiveReload server</li>
+</ul>
+<h1 id="entity-relationships"><a class="markdownIt-Anchor" href="#entity-relationships"></a> Entity Relationships</h1>
+<ul>
+<li>One to One
+<ul>
+<li>One entity is related to one other entity</li>
+</ul>
+</li>
+<li>One to Many
+<ul>
+<li>One entity is related to many entities (List, Set, Map, SortedSet, SortedMap)</li>
+</ul>
+</li>
+<li>Many to One
+<ul>
+<li>the inverse relationship of one to many</li>
+</ul>
+</li>
+<li>Many to Many
+<ul>
+<li>many entities are related to many entities</li>
+<li>each has a list or set reference to the other</li>
+<li>a join table us used to define the relationships (mapping table)</li>
+</ul>
+</li>
+</ul>
+<h2 id="unidirectional-vs-bidirectional"><a class="markdownIt-Anchor" href="#unidirectional-vs-bidirectional"></a> Unidirectional vs Bidirectional</h2>
+<ul>
+<li>Unidirectional is one way
+<ul>
+<li>mapping is only done one way, one side of the relationship will not know about the other</li>
+</ul>
+</li>
+<li>Bidirectional is two way
+<ul>
+<li>both sides know about each other</li>
+<li>generally recommended to use bidirectional, since you can navigate the object graph in either direction</li>
+</ul>
+</li>
+</ul>
+<h2 id="owning-side"><a class="markdownIt-Anchor" href="#owning-side"></a> Owning side</h2>
+<ul>
+<li>the Owning side in the relationship will hold the foreign key in the database</li>
+<li>one to one is the side where the foreign key is specified</li>
+<li>one to many and many to one is the <code>Many</code> side</li>
+<li>mappedBy is used to define the field with <code>owns</code> the reference of the relationship</li>
+</ul>
+<h2 id="fetch-type"><a class="markdownIt-Anchor" href="#fetch-type"></a> Fetch type</h2>
+<ul>
+<li>Lazy - data is not required until referenced</li>
+<li>Eager - data is queried up front</li>
+</ul>
+<h2 id="jpa-cascade-types"><a class="markdownIt-Anchor" href="#jpa-cascade-types"></a> JPA Cascade Types</h2>
+<ul>
+<li>JPA Cascade types control how state changes are cascaded from parent objects to child objects</li>
+<li>Types
+<ul>
+<li>PERSIS</li>
+<li>MERGE</li>
+<li>REFRESH</li>
+<li>REMOVE</li>
+<li>DETACH</li>
+<li>ALL</li>
+</ul>
+</li>
+<li>by default, no operations are cascaded</li>
+</ul>
+<h2 id="embeddable-types"><a class="markdownIt-Anchor" href="#embeddable-types"></a> Embeddable Types</h2>
+<ul>
+<li>JPA / Hibernate support embeddable types</li>
+<li>these are used to define a common set of properties</li>
+<li>for example, an order might have a billing address and a shipping address</li>
+<li>an embeddable type could be used for the address properties for reuse</li>
+</ul>
+<h2 id="inheritance"><a class="markdownIt-Anchor" href="#inheritance"></a> Inheritance</h2>
+<ul>
+<li>mappedSuperclass - entities inherit from a super class, a database table IS NOT created for the super class</li>
+<li>Single Table - default - one table is used for all subclasses</li>
+<li>Joined Table - base class and subclasses have their own tables, fetching subclass entities require a join to the parent table (subclasses will not have the common properties from the parent class)</li>
+<li>Table Per Class - each subclass has its own table (no table for parent class. common properties will exist in all subclasses)</li>
+</ul>
+<h2 id="create-and-update-timestamps"><a class="markdownIt-Anchor" href="#create-and-update-timestamps"></a> Create and Update Timestamps</h2>
+<ul>
+<li>often a best practice to use create and update timestamps on your entities for audit purposes</li>
+<li>JPA supports <code>@PrePersist</code> and <code>@PreUpdate</code> which can be used for support audit timestamps via JPA lifecycle callbacks</li>
+<li>hibernate provides <code>@CreationTimestamp</code> and <code>@UpdateTimestamp</code></li>
+</ul>
+<h1 id="hibernate-ddl-auto"><a class="markdownIt-Anchor" href="#hibernate-ddl-auto"></a> Hibernate DDL Auto</h1>
+<ul>
+<li>DDL - Data Definition Language</li>
+<li>DML - Data Manipulation Language</li>
+<li>Hibernate property is set by the Spring property</li>
+<li>options are
+<ul>
+<li>none</li>
+<li>validate - check if there is any table or columns that are missing</li>
+<li>update - find missing table and columns and update the existing DB, not good for PROD environment</li>
+<li>create - create the DB</li>
+<li>create-drop - create the DB and drop the DB when application instance stops running.</li>
+</ul>
+</li>
+<li>Spring boot will use create-drop for embedded databases (HSQL, H2, Derby) or none</li>
+</ul>
+<h2 id="ddl-vs-dml"><a class="markdownIt-Anchor" href="#ddl-vs-dml"></a> DDL vs DML</h2>
+<ul>
+<li>DDL is used to define database structures such as tables and indexes, while DML is used with data operations such as inserts and updates</li>
+</ul>
+<h2 id="initialize-with-hibernate"><a class="markdownIt-Anchor" href="#initialize-with-hibernate"></a> Initialize with Hibernate</h2>
+<ul>
+<li>data can be loaded from <code>import.sql</code>, this is a file that can be created in the root path</li>
+<li>Hibernate feature, not Spring specific</li>
+<li>must be on root of class path</li>
+<li>only executed if Hinernate’s DDL auto property is set to <code>create</code> or <code>create-drop</code></li>
+</ul>
+<h2 id="spring-jdbc"><a class="markdownIt-Anchor" href="#spring-jdbc"></a> Spring JDBC</h2>
+<ul>
+<li>Spring’s datasource initializer via Spring Boot will by default load <code>schema.sql</code> and <code>data.sql</code> from the root of the class path</li>
+<li>Spring Boot will also load from <code>schema-$&#123;platform&#125;.sql</code> and <code>data-$&#123;platform&#125;.sql</code></li>
+<li>must set <code>spring.datasource.platform</code> property</li>
+<li>may conflict with Hinernate DDL auto property
+<ul>
+<li>if using Spring datasource initializer, should set DDL auto property to <code>none</code> or <code>validate</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="spring-data-jpa-query-method"><a class="markdownIt-Anchor" href="#spring-data-jpa-query-method"></a> Spring Data JPA Query Method</h2>
+<ul>
+<li>define method in interface</li>
+<li>method name rules: findBy + <code>&lt;PROPERTY_NAME&gt;</code></li>
+<li>it will create the query based on method name and query the database to find the data and return to us.</li>
+<li>no manual implementation needed.</li>
+</ul>
+<h2 id="repository-layer-and-service-layer"><a class="markdownIt-Anchor" href="#repository-layer-and-service-layer"></a> Repository layer and Service layer</h2>
+<ul>
+<li>All your business logic should be in the Service Layer.</li>
+<li>Any access to the Database (any storage) should go to the Repository Layer.</li>
+<li>Lets take an Example. You have to save an entity(Person). But before saving the Person you want to make sure that the Person’s FirstName does not exist already.<br />
+So the validation part should go to the business layer.<br />
+In the service Layer</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">PersonRepository repository; </span><br><span class="line">public Person save(Person p)&#123;</span><br><span class="line">   Person p &#x3D; findByName(p.getName();</span><br><span class="line">   if (p !&#x3D; null)&#123;</span><br><span class="line">          return some customException();</span><br><span class="line">   &#125;</span><br><span class="line">   return repository.save(p); </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Person findByName(String name)&#123;</span><br><span class="line">     return repository.findByName(name);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>And in your Repository Layer just concentrate on DB Operation.</p>
+</li>
+<li>
+<p><code>View&lt;--&gt;Controller( create instance of Model class)&lt;--&gt;Service&lt;---&gt;Repository</code></p>
+</li>
+</ul>
+<h1 id="lombok"><a class="markdownIt-Anchor" href="#lombok"></a> Lombok</h1>
+<ul>
+<li>hooks in via the annotation processor API</li>
+<li>the raw source code is passed to Lombok for code generation before the Java complier continues</li>
+<li>thus, produces properly compiled Java code in conjunction with the Java compiler</li>
+<li>under the classes you can view the compiled class files</li>
+<li>IntelliJ will decompile to show you the source code</li>
+</ul>
+<h2 id="ides"><a class="markdownIt-Anchor" href="#ides"></a> IDEs</h2>
+<ul>
+<li>since compiled code is change, and source files are not, IDE’s can get confused by this</li>
+<li>more of an issue for IDEs several years old</li>
+<li>modern IDEs such as IntelliJ, Eclipse support Project Lombok</li>
+<li>Plug in Installation may be necessary</li>
+<li>IntelliJ
+<ul>
+<li>verify you have enabled annotation processing under compiler settings</li>
+</ul>
+</li>
+</ul>
+<h2 id="features-2"><a class="markdownIt-Anchor" href="#features-2"></a> features</h2>
+<ul>
+<li><code>val</code> - local variables declared final</li>
+<li><code>var</code> - mutable local variables</li>
+<li><code>@NonNull</code> - Null check, will throw NPE if parameter is null</li>
+<li><code>@Cleanup</code> - will call close() on resource/connection in finally block</li>
+<li><code>@Getter</code> - creates getter methods for all properties</li>
+<li><code>@Setter</code> - creates setter for all non-final properties</li>
+<li><code>@ToString</code>
+<ul>
+<li>generates String of classname, and each field separated by commas</li>
+<li>optional parameter to include field names</li>
+<li>optional parameter to include call to the super toString method</li>
+</ul>
+</li>
+<li><code>@EqualsAndHashCode</code>
+<ul>
+<li>generates implementations of <code>equals(Object other)</code> and <code>hashCode()</code></li>
+<li>by default will use all non-static, non-transient properties</li>
+<li>can optionally exclude specific properties</li>
+</ul>
+</li>
+<li><code>@NoArgsConstructor</code>
+<ul>
+<li>generates no args constructor</li>
+<li>will cause compiler error if there are final fields</li>
+<li>can optionally force, which will initialize final fields with 0 / false / null</li>
+</ul>
+</li>
+<li><code>@RequiredArgsConstructor</code>
+<ul>
+<li>generates a constructor for all fields that are final or marked @NonNull</li>
+<li>constructor will throw a NullPointerException if any <code>@NonNull</code> fields are null</li>
+</ul>
+</li>
+<li><code>@AllArgsConstructor</code>
+<ul>
+<li>generates a constructor for all properties of class</li>
+<li>any @NotNull properties will have null check</li>
+</ul>
+</li>
+<li><code>@Data</code>
+<ul>
+<li>generates typical boilerplate code for POJOs</li>
+<li>combines - <code>@Getter</code>, <code>@Setter</code>, <code>@ToString</code>, <code>@EqualsAndHashCode</code>, <code>@RequiredArgsConstructor</code></li>
+<li>no constructor is generated if constructors have been explicitly declared</li>
+</ul>
+</li>
+<li><code>@Value</code>
+<ul>
+<li>the immutable variant of <code>@Data</code></li>
+<li>all fields are made private and final by default</li>
+</ul>
+</li>
+<li><code>@NonNull</code>
+<ul>
+<li>set on parameter of method or constructor and a NullPointerException will be thrown if parameter is null</li>
+</ul>
+</li>
+<li><code>@Builder</code>
+<ul>
+<li>implements the builder pattern for object creation</li>
+</ul>
+</li>
+<li><code>@SneakyThrows</code>
+<ul>
+<li>throw checked exceptions without declaring in calling method’s throws clause</li>
+</ul>
+</li>
+<li><code>@Synchronized</code>
+<ul>
+<li>a safer implementation of Java’s synchronized</li>
+</ul>
+</li>
+<li><code>@Getter(lazy = true)</code>
+<ul>
+<li>for expensive getters</li>
+<li>will calculate value first time and cache</li>
+<li>additional gets will read from cache</li>
+</ul>
+</li>
+<li><code>@Log</code>
+<ul>
+<li>creates a Java util logger</li>
+</ul>
+</li>
+<li><code>@Slf4j</code>
+<ul>
+<li>creates a SLF4J logger</li>
+<li>recommended - SLF4J is a generic logging facade</li>
+<li>spring boot’s default logger is LogBack</li>
+</ul>
+</li>
+</ul>
+<h1 id="testing-terminology"><a class="markdownIt-Anchor" href="#testing-terminology"></a> Testing Terminology</h1>
+<ul>
+<li>Code under test
+<ul>
+<li>this is the code you are testing</li>
+</ul>
+</li>
+<li>Test fixture
+<ul>
+<li>a test fixture is a fixed state of a set of objects used as a baseline for running tests. The purpose of a test fixture is to ensure that there is a well known and fixed environment in which tests are run so that results are repeatable</li>
+<li>includes: input data, mock objects, loading database with known data etc…</li>
+</ul>
+</li>
+</ul>
+<h2 id="unit-tests"><a class="markdownIt-Anchor" href="#unit-tests"></a> Unit Tests</h2>
+<ul>
+<li>code written to test code under test</li>
+<li>designed to test specific sections of code</li>
+<li>percentage of lines of code tested is code coverage
+<ul>
+<li>ideal coverage is in the 70-80% range</li>
+</ul>
+</li>
+<li>should be unity and execute very fast</li>
+<li>should have no external dependencies
+<ul>
+<li>no databases, no Spring Context etc…</li>
+</ul>
+</li>
+</ul>
+<h2 id="integration-tests"><a class="markdownIt-Anchor" href="#integration-tests"></a> Integration tests</h2>
+<ul>
+<li>designed to test behaviors between objects and parts of the overall system</li>
+<li>much larger scope</li>
+<li>can include Spring Context, database, and message brokers</li>
+<li>will run much slower than unit tests</li>
+</ul>
+<h2 id="functional-tests"><a class="markdownIt-Anchor" href="#functional-tests"></a> Functional tests</h2>
+<ul>
+<li>typically means you are testing the running application</li>
+<li>application is live, likely deployed in a known environment</li>
+<li>functional touch points are tested</li>
+<li>i.e. using a web driver, calling web services, sending / receiving messages etc…(Selenium)</li>
+</ul>
+<h2 id="tdd"><a class="markdownIt-Anchor" href="#tdd"></a> TDD</h2>
+<ul>
+<li>test driven development</li>
+<li>write tests first, which will fail, then code to fix the tests</li>
+</ul>
+<h2 id="bdd"><a class="markdownIt-Anchor" href="#bdd"></a> BDD</h2>
+<ul>
+<li>behavior driven development</li>
+<li>builds on TDD and specifies that tests of any unit of software should be specified in terms of desired behavior of the unit
+<ul>
+<li>often implemented with DSLs to create natural language tests</li>
+<li>JBehave, Cucumber, Spock</li>
+</ul>
+</li>
+</ul>
+<h2 id="mock"><a class="markdownIt-Anchor" href="#mock"></a> Mock</h2>
+<ul>
+<li>a fake implementation of a class used for testing, like a test double</li>
+</ul>
+<h2 id="spy"><a class="markdownIt-Anchor" href="#spy"></a> Spy</h2>
+<ul>
+<li>a partial mock, allowing you to override select methods of a real class</li>
+</ul>
+<h2 id="testing-goals"><a class="markdownIt-Anchor" href="#testing-goals"></a> Testing goals</h2>
+<ul>
+<li>generally, you will want the majority of your tests to be unit tests</li>
+<li>bringing up the Spring Context makes your tests exponentially slower</li>
+<li>try to test specific business logic in unit tests</li>
+<li>use Integration tests to test interactions</li>
+<li>think of a pyramid, base is unit tests, middle is integration tests, top is functional tests</li>
+</ul>
+<h2 id="test-scope-dependencies"><a class="markdownIt-Anchor" href="#test-scope-dependencies"></a> Test scope dependencies</h2>
+<ul>
+<li>using spring-boot-starter-test
+<ul>
+<li>JUnit - the default standard for unit testing Java applications</li>
+<li>Spring test and Spring boot Test - utilities and integration test support for Spring Boot applications</li>
+<li>AssertJ - a fluent assertion library</li>
+<li>Hamcrest - a library of matcher objects</li>
+<li>Mockito - a Java mocking framework</li>
+<li>JSONassert - an assertion library for JSON</li>
+<li>JSONPath - XPath for JSON</li>
+</ul>
+</li>
+</ul>
+<h2 id="junit-annotations"><a class="markdownIt-Anchor" href="#junit-annotations"></a> JUnit Annotations</h2>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Test</td>
+<td>identifies a method as a test method</td>
+</tr>
+<tr>
+<td>@Before</td>
+<td>executed before each test, it is used to prepare the test environment (e.g. read input data, initialize the class)</td>
+</tr>
+<tr>
+<td>@After</td>
+<td>executed after each test, it is used to cleanup the test environment, it can also save memory by cleaning up expensive memory structures</td>
+</tr>
+<tr>
+<td>@BeforeClass</td>
+<td>executed once, before the start of all tests, methods marked with this annotation need to be defined as static to work with JUnit</td>
+</tr>
+<tr>
+<td>@AfterClass</td>
+<td>executed once, after all tests have been finished, methods annotated with this annotation need to be defined as static to work with JUnit</td>
+</tr>
+<tr>
+<td>@Ignore</td>
+<td>marks that the test should be ignored</td>
+</tr>
+<tr>
+<td>@Test(expected = Exception.class)</td>
+<td>fails if the method does not throw the named exception</td>
+</tr>
+<tr>
+<td>@Test(timeout = 10)</td>
+<td>fails if the method takes longer than 100 milliseconds</td>
+</tr>
+</tbody>
+</table>
+<h2 id="spring-boot-annotations"><a class="markdownIt-Anchor" href="#spring-boot-annotations"></a> Spring Boot Annotations</h2>
+<table>
+<thead>
+<tr>
+<th>Annotation</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@RunWith(SpringRunner.class)</td>
+<td>run test with Spring Context</td>
+</tr>
+<tr>
+<td>@SpringBootTest</td>
+<td>search for Spring boot application for configuration</td>
+</tr>
+<tr>
+<td>@TestConfiguration</td>
+<td>specify a Spring configuration for you test</td>
+</tr>
+<tr>
+<td>@MockBean</td>
+<td>injects Mockito mock</td>
+</tr>
+<tr>
+<td>@SpyBean</td>
+<td>injects Mockito Spy</td>
+</tr>
+<tr>
+<td>@JsonTest</td>
+<td>creates a Jackson or Gson object mapper via Spring boot</td>
+</tr>
+<tr>
+<td>@WebMvcTest</td>
+<td>used to test web context without a full http server</td>
+</tr>
+<tr>
+<td>@DataJpaTest</td>
+<td>used to test data layer with embedded database</td>
+</tr>
+</tbody>
+</table>
+<p>…</p>
+<h2 id="argumentcaptor"><a class="markdownIt-Anchor" href="#argumentcaptor"></a> ArgumentCaptor</h2>
+<ul>
+<li>ArgumentCaptor allows us to capture an argument passed to a method in order to inspect it. This is especially useful when we can’t access the argument outside of the method we’d like to test.</li>
+<li>For example, consider an EmailService class with a send method that we’d like to test:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public class EmailService &#123;</span><br><span class="line"></span><br><span class="line">    private DeliveryPlatform platform;</span><br><span class="line"></span><br><span class="line">    public EmailService(DeliveryPlatform platform) &#123;</span><br><span class="line">        this.platform &#x3D; platform;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void send(String to, String subject, String body, boolean html) &#123;</span><br><span class="line">        Format format &#x3D; Format.TEXT_ONLY;</span><br><span class="line">        if (html) &#123;</span><br><span class="line">            format &#x3D; Format.HTML;</span><br><span class="line">        &#125;</span><br><span class="line">        Email email &#x3D; new Email(to, subject, body);</span><br><span class="line">        email.setFormat(format);</span><br><span class="line">        platform.deliver(email);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>In EmailService.send, notice how platform.deliver takes a new Email as an argument. As part of our test, we’d like to check that the format field of the new Email is set to Format.HTML. In order to do this, we need to capture and inspect the argument that is passed to platform.deliver.</li>
+</ul>
+<h3 id="set-up-the-unit-test"><a class="markdownIt-Anchor" href="#set-up-the-unit-test"></a> Set up the unit test</h3>
+<ul>
+<li>First, let’s create our unit test class:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">RunWith(MockitoJUnitRunner.class)</span><br><span class="line">public class EmailServiceUnitTest &#123;</span><br><span class="line"></span><br><span class="line">    @Mock</span><br><span class="line">    DeliveryPlatform platform;</span><br><span class="line"></span><br><span class="line">    @InjectMocks</span><br><span class="line">    EmailService emailService;</span><br><span class="line">  </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>We’re using the @Mock annotation to mock DeliveryPlatform, which is automatically injected into our EmailService with the @InjectMocks annotation.</li>
+</ul>
+<h3 id="add-an-argumentcaptor-field"><a class="markdownIt-Anchor" href="#add-an-argumentcaptor-field"></a> Add an ArgumentCaptor field</h3>
+<ul>
+<li>Second, let’s add a new ArgumentCaptor field of type Email to store our captured argument:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Captor</span><br><span class="line">ArgumentCaptor&lt;Email&gt; emailCaptor;</span><br></pre></td></tr></table></figure>
+<h3 id="capture-the-argument"><a class="markdownIt-Anchor" href="#capture-the-argument"></a> Capture the argument</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Mockito.verify(platform).deliver(emailCaptor.capture());</span><br></pre></td></tr></table></figure>
+<ul>
+<li>We can then get the captured value and store it as a new Email object:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Email emailCaptorValue &#x3D; emailCaptor.getValue();</span><br></pre></td></tr></table></figure>
+<h3 id="inspect-the-captured-value"><a class="markdownIt-Anchor" href="#inspect-the-captured-value"></a> Inspect the captured value</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void whenDoesSupportHtml_expectHTMLEmailFormat() &#123;</span><br><span class="line">    String to &#x3D; &quot;info@baeldung.com&quot;;</span><br><span class="line">    String subject &#x3D; &quot;Using ArgumentCaptor&quot;;</span><br><span class="line">    String body &#x3D; &quot;Hey, let&#39;use ArgumentCaptor&quot;;</span><br><span class="line"></span><br><span class="line">    emailService.send(to, subject, body, true);</span><br><span class="line"></span><br><span class="line">    Mockito.verify(platform).deliver(emailCaptor.capture());</span><br><span class="line">    Email value &#x3D; emailCaptor.getValue();</span><br><span class="line">    assertEquals(Format.HTML, value.getFormat());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="exception-handling-in-spring-mvc"><a class="markdownIt-Anchor" href="#exception-handling-in-spring-mvc"></a> Exception Handling in Spring MVC</h1>
+<h2 id="http-status-code"><a class="markdownIt-Anchor" href="#http-status-code"></a> HTTP status code</h2>
+<ul>
+<li>HTTP 5XX server error
+<ul>
+<li>HTTP 500 - internal server error</li>
+<li>generally, any unhandled exception</li>
+<li>other 500 errors are generally not used with Spring MVC</li>
+</ul>
+</li>
+<li>HTTP 4XX client errors - generally checked exceptions
+<ul>
+<li>400 bad request - cannot process due to client error</li>
+<li>401 unauthorized - authentication required</li>
+<li>404 not found - resource not found</li>
+<li>405 method not allowed, HTTP method not allowed</li>
+</ul>
+</li>
+</ul>
+<h2 id="responsestatus"><a class="markdownIt-Anchor" href="#responsestatus"></a> @ResponseStatus</h2>
+<ul>
+<li>allows you to annotate custom exception classes to indicate to the framework the HTTP status you want returned when that exception is thrown</li>
+<li>global to the application</li>
+</ul>
+<h2 id="exceptionhandler"><a class="markdownIt-Anchor" href="#exceptionhandler"></a> @ExceptionHandler</h2>
+<ul>
+<li>works at the controller level</li>
+<li>allows you to define custom exception handling</li>
+<li>can be used with <code>@ResponseStatus</code> for just printing a http status</li>
+<li>can be used to return a specific view</li>
+<li>also can take total control and work with the Model and View</li>
+<li>Model cannot be a parameter of an ExceptionHandler method</li>
+</ul>
+<h2 id="handlerexceptionresolver"><a class="markdownIt-Anchor" href="#handlerexceptionresolver"></a> @HandlerExceptionResolver</h2>
+<ul>
+<li>is an interface you can implement for custom exception handling</li>
+<li>used internally by Spring MVC</li>
+<li>note Model is not passed</li>
+</ul>
+<h1 id="docker"><a class="markdownIt-Anchor" href="#docker"></a> Docker</h1>
+<h2 id="what-is-docker"><a class="markdownIt-Anchor" href="#what-is-docker"></a> What is Docker?</h2>
+<ul>
+<li>Docker is a standard for Linux containers</li>
+<li>a Container is an isolated runtime inside of Linux</li>
+<li>a Container provides a private machine like space under Linux</li>
+<li>Containers will run under any modern Linux Kernel</li>
+</ul>
+<h2 id="containers-can"><a class="markdownIt-Anchor" href="#containers-can"></a> Containers can</h2>
+<ul>
+<li>Have their own process space</li>
+<li>their own network interface</li>
+<li>run processes as Root (inside the container)</li>
+<li>have their own disk space
+<ul>
+<li>can share with host too</li>
+</ul>
+</li>
+<li>Container is not a VM</li>
+</ul>
+<h2 id="docker-terminology"><a class="markdownIt-Anchor" href="#docker-terminology"></a> Docker Terminology</h2>
+<ul>
+<li>Docker Image - the representation of a Docker container, kind of like a JAR or WAR file in Java</li>
+<li>Docker Container - the standard runtime of Docker, effectively a deployed and running Docker image, like a Spring Boot Executable JAR</li>
+<li>Docker Engine - the code which manages Docker stuff, creates and runs Docker containers</li>
+</ul>
+<h2 id="notes-about-docker-images-and-containers"><a class="markdownIt-Anchor" href="#notes-about-docker-images-and-containers"></a> Notes about Docker Images and Containers</h2>
+<ul>
+<li>Containers are like snapshots of Docker images</li>
+<li>Docker images are built by Docker files which contains multiple layers, each layer is a Command and will generate a file for the image. The layers will be re-created everytime when we run a new container for an image.</li>
+<li>e.g. when you <code>docker run -d mongo</code>, a new container for the image <code>mongo</code> will be created, and there is a layer for this container where you can store data in it. But when you <code>docker stop &lt;Container_ID&gt;</code> and re-start using <code>docker run -d mongo</code>, a new container with different Container ID will be created, so your old data in the previous container will not show in your new container. You can map a storage path to the container, so the current container and all future containers will save data into the directory you setup. Which will make the data persistence.</li>
+</ul>
+<h2 id="docker-housekeeping"><a class="markdownIt-Anchor" href="#docker-housekeeping"></a> Docker housekeeping</h2>
+<h3 id="cleaning-up-after-docker"><a class="markdownIt-Anchor" href="#cleaning-up-after-docker"></a> Cleaning up after Docker</h3>
+<ul>
+<li>with development use docker can leave behind a lot of files</li>
+<li>these files will grow and consume a lot of disk space</li>
+<li>this is less of an issue on production systems where containers aren’t being built and restarted all the time</li>
+<li>there are 3 key areas of house keeping
+<ul>
+<li>containers</li>
+<li>images</li>
+<li>volumes</li>
+</ul>
+</li>
+</ul>
+<h1 id="mysql"><a class="markdownIt-Anchor" href="#mysql"></a> MySQL</h1>
+<h2 id="mysql-features"><a class="markdownIt-Anchor" href="#mysql-features"></a> MySQL features</h2>
+<ul>
+<li>Stored procedures
+<ul>
+<li>a piece of code inside of the database that execute against the database, runs locally on the database</li>
+</ul>
+</li>
+<li>Triggers
+<ul>
+<li>when something happens in the database e.g. insert a record, the trigger will run before or after that transaction</li>
+</ul>
+</li>
+<li>Cursors
+<ul>
+<li>point a place in a large set of data so you can scroll through it and look into the next record or previous record.</li>
+</ul>
+</li>
+<li>Updated views
+<ul>
+<li>a virtual table, stored inside the database</li>
+</ul>
+</li>
+<li>Query cache
+<ul>
+<li>database is going to remember in memory the result of your query, when you ask for that data again, it doesn’t have to go back to the file system to get the data.</li>
+</ul>
+</li>
+<li>Subselects
+<ul>
+<li>nested queries.</li>
+</ul>
+</li>
+</ul>
+<h2 id="acid-compliance"><a class="markdownIt-Anchor" href="#acid-compliance"></a> ACID compliance</h2>
+<ul>
+<li>atomicity - all or nothing</li>
+<li>consistency - transactions are valid to rules of the DB</li>
+<li>isolation - results of transactions are as if they are done end to end</li>
+<li>durability - once a transaction is committed, it remains so (DB will not losing data)</li>
+</ul>
+<h2 id="rdbms-deployment-architectures"><a class="markdownIt-Anchor" href="#rdbms-deployment-architectures"></a> RDBMS deployment architectures</h2>
+<ul>
+<li>typically is driven by needs of scalability and availability</li>
+<li>can be done on a single non-dedicated server or many dedicated servers</li>
+<li>communication is typically over a network socket (MySQL: 3306)</li>
+<li>the client will need software called a <code>driver</code> to talk to the database over the network socket.</li>
+</ul>
+<h2 id="mysql-data-types"><a class="markdownIt-Anchor" href="#mysql-data-types"></a> MySQL data types</h2>
+<ul>
+<li>a data type defines the data type of a column</li>
+<li>MySQL does support the standard ANSI SQL data types</li>
+<li>data types are broken down into the following categories
+<ul>
+<li>numeric</li>
+<li>date and time</li>
+<li>string</li>
+<li>spatial (location, places)</li>
+<li>JSON</li>
+</ul>
+</li>
+</ul>
+<h2 id="mysql-installation-options"><a class="markdownIt-Anchor" href="#mysql-installation-options"></a> MySQL installation options</h2>
+<h3 id="native-installation"><a class="markdownIt-Anchor" href="#native-installation"></a> Native installation</h3>
+<ul>
+<li>meaning install on your opearting system</li>
+</ul>
+<h3 id="running-mysql-in-a-container"><a class="markdownIt-Anchor" href="#running-mysql-in-a-container"></a> Running MySQL in a Container</h3>
+<ul>
+<li>MySQL can also be run inside a technology called containers</li>
+<li>Docker is a highly popular container technology</li>
+<li>through Docker, you can run MySQL locally using pre built image from Docker hub</li>
+</ul>
+<h2 id="connecting-to-mysql"><a class="markdownIt-Anchor" href="#connecting-to-mysql"></a> Connecting to MySQL</h2>
+<ul>
+<li>Local connection
+<ul>
+<li>connecting to MySQL from the command line on the machine running MySQL</li>
+<li>to login to docker: <code>docker exec -it yuan-mysql bash</code></li>
+<li>to connect to mysql server in Docker: <code>mysql --user=root -p</code></li>
+</ul>
+</li>
+<li>remote / client connection
+<ul>
+<li>using some type of client software on the same machine running MySQL</li>
+<li>or connecting to the MySQL server from a different machine over the network</li>
+</ul>
+</li>
+</ul>
+<h1 id="mongo-db"><a class="markdownIt-Anchor" href="#mongo-db"></a> Mongo DB</h1>
+<h2 id="about-mongo-db"><a class="markdownIt-Anchor" href="#about-mongo-db"></a> About Mongo DB</h2>
+<ul>
+<li>Mongo DB is a document oriented database</li>
+<li>developed in C++</li>
+<li>MongoDB is a NoSQL database</li>
+<li>MongoDB documents are stored in BSON
+<ul>
+<li>binary JSON</li>
+</ul>
+</li>
+</ul>
+<h2 id="why-use-mongo-db"><a class="markdownIt-Anchor" href="#why-use-mongo-db"></a> Why use Mongo DB?</h2>
+<ul>
+<li>MongoDB is great for high insert systems
+<ul>
+<li>such as sensor readings, social media systems, advertising systems</li>
+</ul>
+</li>
+<li>good when you need schema flexibility</li>
+<li>can also support a high number of reads per second</li>
+</ul>
+<h2 id="why-avoid-mongodb"><a class="markdownIt-Anchor" href="#why-avoid-mongodb"></a> Why avoid MongoDB?</h2>
+<ul>
+<li>MongoDB has no concept of transactions
+<ul>
+<li>No ACID</li>
+<li>no locking for transactional support, hence faster inserts</li>
+</ul>
+</li>
+<li>not good for concurrent updates</li>
+</ul>
+<h1 id="reactive-manifesto"><a class="markdownIt-Anchor" href="#reactive-manifesto"></a> Reactive Manifesto</h1>
+<h2 id="responsive"><a class="markdownIt-Anchor" href="#responsive"></a> Responsive</h2>
+<ul>
+<li>the system responds in a timely manner</li>
+<li>responsiveness is the cornerstone of useability and utility</li>
+<li>responsiveness also means problems may be detected quickly and dealt with effectively</li>
+<li>responsive systems provide rapid and consistent response times</li>
+<li>consistent behavior simplifies error handling, builds end user confidence, and encourages further interaction</li>
+</ul>
+<h2 id="resilient"><a class="markdownIt-Anchor" href="#resilient"></a> Resilient</h2>
+<ul>
+<li>system stays responsive in the face of failure</li>
+<li>resilience is achieved by replication, containment, isolation and delegation</li>
+<li>failures are contained within each component</li>
+<li>parts of the system can fail, without compromising the system as a whole</li>
+<li>recovery of each component is delegated to another</li>
+<li>high availability is ensured by replication where necessary</li>
+</ul>
+<h2 id="elastic"><a class="markdownIt-Anchor" href="#elastic"></a> Elastic</h2>
+<ul>
+<li>the system stays responsive under varying workload</li>
+<li>reactive systems can react to changes in the input rate by increasing or decreasing resources allocated to service inputs</li>
+<li>reactive systems achieve elasticity ina cost effective way on commodity hardware and software platforms</li>
+</ul>
+<h2 id="message-driven"><a class="markdownIt-Anchor" href="#message-driven"></a> Message Driven</h2>
+<ul>
+<li>reactive systems rely on asynchronous message passing to establish a boundary between components
+<ul>
+<li>this ensures loose coupling, isolation, and location transparency</li>
+</ul>
+</li>
+<li>message passing enables load management, elasticity, and flow control</li>
+<li>location transparent messaging makes management of failure possible</li>
+<li>non blocking communication allows recipients to only consume resources while active, leading to less system overhead.</li>
+</ul>
+<h2 id="reactive-programming-with-reactive-systems"><a class="markdownIt-Anchor" href="#reactive-programming-with-reactive-systems"></a> reactive programming with reactive systems</h2>
+<ul>
+<li>reactive programming is a useful implementation technique</li>
+<li>reactive programming focuses on non-blocking, asynchronous execution - a key characteristic of reactive systems</li>
+<li>reactive programming is just one tool in building reactive systems</li>
+</ul>
+<h1 id="reactive-programming"><a class="markdownIt-Anchor" href="#reactive-programming"></a> Reactive Programming</h1>
+<ul>
+<li>reactive programming is an asynchronous programming paradigm focused on streams of data</li>
+<li>reactive programs also maintain a continuous interaction with their environment, but at a speed which is determined by the environment, not the program itself. Interactive programs work at their own pace and mostly deal with communication, while reactive programs only work in response to external demands and mostly deal with accurate interrupt handling, real time programs are usually reactive.</li>
+</ul>
+<h2 id="common-use-cases"><a class="markdownIt-Anchor" href="#common-use-cases"></a> Common use cases</h2>
+<ul>
+<li>external service calls</li>
+<li>highly concurrent message consumers</li>
+<li>spreadsheets</li>
+<li>abstraction over asynchronous processing
+<ul>
+<li>abstract whether or not your program is synchronous or asynchronous</li>
+</ul>
+</li>
+</ul>
+<h2 id="features-opf-reactive-programming"><a class="markdownIt-Anchor" href="#features-opf-reactive-programming"></a> features opf reactive programming</h2>
+<ul>
+<li>data streams</li>
+<li>asynchronous</li>
+<li>non-blocking</li>
+<li>backpressure</li>
+<li>failures as messages</li>
+</ul>
+<h2 id="data-streams"><a class="markdownIt-Anchor" href="#data-streams"></a> data streams</h2>
+<ul>
+<li>data streams can be just about anything</li>
+<li>mouse clicks, or other user interactions</li>
+<li>JMS messages, RESTful service calls, Twitter feed, Stock trades, list of data from a database</li>
+<li>a stream is a sequence of events ordered in time</li>
+<li>events you want to listen to</li>
+</ul>
+<h2 id="asynchronous"><a class="markdownIt-Anchor" href="#asynchronous"></a> Asynchronous</h2>
+<ul>
+<li>events are captured asynchronously</li>
+<li>a function is defined to execute when an event is emitted</li>
+<li>another function is defined if an error is emitted</li>
+<li>another function is defined when complete is emitted</li>
+</ul>
+<h2 id="observer-pattern"><a class="markdownIt-Anchor" href="#observer-pattern"></a> Observer pattern</h2>
+<ul>
+<li>you have a subject and an observer</li>
+<li>when the subject is going to change, it will notify the observer</li>
+</ul>
+<h2 id="non-blocking"><a class="markdownIt-Anchor" href="#non-blocking"></a> Non-blocking</h2>
+<ul>
+<li>the concept of using non blocking is important</li>
+<li>in blocking, the code will stop and wait for more dta (reading from disk, network etc…)</li>
+<li>non blocking in contrast, will process available data, ask to be notified when more is available, then continue</li>
+</ul>
+<h2 id="back-pressure"><a class="markdownIt-Anchor" href="#back-pressure"></a> back pressure</h2>
+<ul>
+<li>the ability of the subscriber to throttle data</li>
+</ul>
+<h2 id="failures-as-messages"><a class="markdownIt-Anchor" href="#failures-as-messages"></a> failures as messages</h2>
+<ul>
+<li>exceptions are not thrown in a traditional sense
+<ul>
+<li>would break processing of stream</li>
+</ul>
+</li>
+<li>exceptions are processed by a handler function</li>
+</ul>
+<h1 id="reactive-streams"><a class="markdownIt-Anchor" href="#reactive-streams"></a> Reactive Streams</h1>
+<h2 id="spring-reactive-types"><a class="markdownIt-Anchor" href="#spring-reactive-types"></a> Spring Reactive Types</h2>
+<ul>
+<li>two new reactive types are introduced with Spring framework 5</li>
+<li><code>Mono</code> is a publisher with zero or one elements in data stream</li>
+<li><code>Flux</code> is a publisher with zero or MANY elements in the data stream</li>
+<li>both types implement the reactive streams publisher interface</li>
+</ul>
+<h1 id="webflux"><a class="markdownIt-Anchor" href="#webflux"></a> WebFlux</h1>
+<table>
+<thead>
+<tr>
+<th>web MVC</th>
+<th>webFlux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>@Controller, @RequestMapping</td>
+<td>Router functions</td>
+</tr>
+<tr>
+<td>spring-webmvc</td>
+<td>spring-webflux</td>
+</tr>
+<tr>
+<td>Servlet API</td>
+<td>HTTP / Reactive Streams</td>
+</tr>
+<tr>
+<td>Servlet Container</td>
+<td>Tomcat, Jetty, Netty, Undertow</td>
+</tr>
+</tbody>
+</table>
+<h1 id="restful-web-services"><a class="markdownIt-Anchor" href="#restful-web-services"></a> RESTful web services</h1>
+<ul>
+<li>because of their simplicity and versatility, RESTful web services have become the de facto standard for web services</li>
+<li>REST - representational state transfer
+<ul>
+<li>representational - typically JSON or XML</li>
+<li>state transfer - typically via HTTP</li>
+</ul>
+</li>
+</ul>
+<h2 id="terminology"><a class="markdownIt-Anchor" href="#terminology"></a> terminology</h2>
+<ul>
+<li>verbs - HTTP methods: GET, PUT, POST, DELETE</li>
+<li>messages - the payload of the action(JSON / XML)</li>
+<li>URI - uniform resource identifier
+<ul>
+<li>a unique string identifying a resource</li>
+</ul>
+</li>
+<li>URL - uniform resource locator
+<ul>
+<li>a URI with network information</li>
+</ul>
+</li>
+<li>Idempotence
+<ul>
+<li>the property of certain operations in mathematics and computer science that they can be applied multiple times without changing the result beyond the initial application</li>
+<li>in other words, you can exercise the operation multiple times, without changing the result</li>
+<li>example: refreshing a web page (HTTP GET operation)</li>
+</ul>
+</li>
+<li>Stateless - service does not maintain any client state</li>
+<li>HATEOAS - hypermedia as the engine of application state
+<ul>
+<li>a REST client should then be able to use server-provided links dynamically to discover all the available actions and resources it needs, as access proceeds, the server responds with text that includes hyperlinks to other actions that are currently available</li>
+</ul>
+</li>
+</ul>
+<h2 id="get"><a class="markdownIt-Anchor" href="#get"></a> GET</h2>
+<ul>
+<li>use: to read data from resource</li>
+<li>read only</li>
+<li>idempotent</li>
+<li>safe operation - does not change state of resource</li>
+</ul>
+<h2 id="put"><a class="markdownIt-Anchor" href="#put"></a> PUT</h2>
+<ul>
+<li>use: to insert or update</li>
+<li>idempotent - multiple PUT will not change result</li>
+<li>like saving a file multiple times</li>
+<li>not safe operation - does change state of resource</li>
+</ul>
+<h2 id="post"><a class="markdownIt-Anchor" href="#post"></a> POST</h2>
+<ul>
+<li>use: to create new object</li>
+<li>non-idempotent - multiple POSTs is expected to create multiple objects</li>
+<li>not safe operation - does change state of resource</li>
+<li>only non-idempotent, non-safe HTTP verb</li>
+</ul>
+<h2 id="delete"><a class="markdownIt-Anchor" href="#delete"></a> DELETE</h2>
+<ul>
+<li>use: to delete an object</li>
+<li>idempotent - multiple DELETEs will have same effect / behavior</li>
+<li>not safe operation, does change the state of resource</li>
+</ul>
+<h1 id="mapstruct"><a class="markdownIt-Anchor" href="#mapstruct"></a> MapStruct</h1>
+<ul>
+<li>MapStruct is a code generator for Java bean mapping
+<ul>
+<li>helps reduce coding for type conversions</li>
+<li>when dealing with Rest services, a common use case is to expose API data using DTOs (Data Transfer Object)</li>
+<li>as project grows bigger, it is not good to expose POJO directly to Rest services. MapStruct is helping us to convert POJO to DTOs, then export DTOs to Rest service to be consumed by public</li>
+</ul>
+</li>
+</ul>
+<h1 id="content-negotiation"><a class="markdownIt-Anchor" href="#content-negotiation"></a> Content Negotiation</h1>
+<h2 id="content-negotiating-view-resolver"><a class="markdownIt-Anchor" href="#content-negotiating-view-resolver"></a> Content Negotiating view resolver</h2>
+<ul>
+<li>used by Spring MVC to determine view handler to use</li>
+<li>auto configured by Spring boot</li>
+<li>the content negotiating view resolver will determine the view to use to render the data of the model to the client</li>
+</ul>
+<h2 id="content-type"><a class="markdownIt-Anchor" href="#content-type"></a> Content type</h2>
+<ul>
+<li>view to use is determined by Content Type in HTTP header
+<ul>
+<li>application/json, application/xml, text/html</li>
+</ul>
+</li>
+<li>if view for requested Content type is not found, HTTP status 406 not acceptable is returned.</li>
+</ul>
+<h1 id="helper-library-and-classes"><a class="markdownIt-Anchor" href="#helper-library-and-classes"></a> Helper Library and Classes</h1>
+<h2 id="structure"><a class="markdownIt-Anchor" href="#structure"></a> Structure</h2>
+<ul>
+<li>the project should follow a structure from database to frontend: Database -&gt; Repository -&gt; Service -&gt; Controller -&gt; View</li>
+</ul>
+<h2 id="jpa"><a class="markdownIt-Anchor" href="#jpa"></a> JPA</h2>
+<ul>
+<li>H2 in memory database</li>
+</ul>
+<h2 id="thymeleaf-2"><a class="markdownIt-Anchor" href="#thymeleaf-2"></a> Thymeleaf</h2>
+<ul>
+<li>frontend template engine, model can be added to view dynamically</li>
+</ul>
+<h2 id="dependency-injection"><a class="markdownIt-Anchor" href="#dependency-injection"></a> Dependency Injection</h2>
+<ul>
+<li>Repositories and Services can be injected when needed, use Annotations @Service, @Component</li>
+<li>classes marked as @Component, @Service and @Controller will be managed by Spring Application Context, it will inject necessary class to the right place when needed. (Beans)</li>
+</ul>
+<h2 id="configuration"><a class="markdownIt-Anchor" href="#configuration"></a> Configuration</h2>
+<ul>
+<li>config files can be Java, YAML, or XML</li>
+<li>application.properties can define project profiles</li>
+</ul>
+<h2 id="jpa-entity-relationships"><a class="markdownIt-Anchor" href="#jpa-entity-relationships"></a> JPA entity relationships</h2>
+<ul>
+<li>One to Many</li>
+<li>Many to One</li>
+<li>Many to Many (needs mapping table)</li>
+</ul>
+<h2 id="jpa-query-methods"><a class="markdownIt-Anchor" href="#jpa-query-methods"></a> JPA Query methods</h2>
+<ul>
+<li>e.g. findByDescription</li>
+<li>this is done by the library, findBy + property name</li>
+<li>library will do the implementations for you</li>
+</ul>
+<h2 id="project-lombok"><a class="markdownIt-Anchor" href="#project-lombok"></a> Project Lombok</h2>
+<ul>
+<li>will do the constructors, getters, setters and even builder patterns for you</li>
+</ul>
+<h2 id="junit"><a class="markdownIt-Anchor" href="#junit"></a> JUnit</h2>
+<ul>
+<li>Unit Test framework</li>
+</ul>
+<h2 id="mockito"><a class="markdownIt-Anchor" href="#mockito"></a> Mockito</h2>
+<ul>
+<li>for unit tests, we do not want to bring in Spring Application Context</li>
+<li>so to manage Repositories and Services, we need Mockito to create some Mock component for us</li>
+<li>when(), thenReturn(), verify(), ArgumentCaptor, MockMvc…</li>
+</ul>
+<h2 id="webjars"><a class="markdownIt-Anchor" href="#webjars"></a> WebJars</h2>
+<ul>
+<li>bring in bootstrap library</li>
+</ul>
+<h2 id="web-data-binder"><a class="markdownIt-Anchor" href="#web-data-binder"></a> Web Data Binder</h2>
+<ul>
+<li>binds HTTP variables to Java object</li>
+<li>specifically handling form posts and binding form variables to Java data objects</li>
+<li>whereas Rest service we could use RestTemplate</li>
+</ul>
+<h2 id="validations"><a class="markdownIt-Anchor" href="#validations"></a> Validations</h2>
+<ul>
+<li>@NotBlank, @NotNull, @Max, @Min…</li>
+<li>annotations to data models, for form validations</li>
+</ul>
+<h2 id="exceptions"><a class="markdownIt-Anchor" href="#exceptions"></a> Exceptions</h2>
+<ul>
+<li>@ResponseStatus</li>
+<li>@ControllerAdvice</li>
+<li>dealing with exceptions and custom error messages</li>
+</ul>
+<h2 id="reactive-programming-2"><a class="markdownIt-Anchor" href="#reactive-programming-2"></a> Reactive Programming</h2>
+<ul>
+<li>Mono, Flux</li>
+<li>WebFlux</li>
+<li>Reactive vs Servlet</li>
+</ul>
+<h2 id="resttemplate"><a class="markdownIt-Anchor" href="#resttemplate"></a> RestTemplate</h2>
+<ul>
+<li>bind Rest Response to Java objects</li>
+</ul>
+<h2 id="webclient"><a class="markdownIt-Anchor" href="#webclient"></a> WebClient</h2>
+<ul>
+<li>performing web request</li>
+</ul>
+<h2 id="mapstruct-2"><a class="markdownIt-Anchor" href="#mapstruct-2"></a> MapStruct</h2>
+<ul>
+<li>auto mapper</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/11/05/Spring-Framework/" title="Spring Framework" target="_blank" rel="external">http://hellcy.github.io/2021/11/05/Spring-Framework/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/12/09/Dot-net-React/" title="Dot net + React"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/10/14/git-advanced/" title="git advanced"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

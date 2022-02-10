@@ -1,6 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hellcy.github.io/2020/10/06/Wishlist-2021/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/06/03/Introduction-to-Azure/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/07/23/MySQL-and-Database-Design/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2022/01/02/Elastic-Search/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/11/05/Spring-Framework/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/10/14/git-advanced/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/07/28/TIBCO-Data-Virtualization/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/06/02/git-cheatsheet/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/10/14/Wishlist-2022/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/06/03/Scrum-Master-Notes/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2022/02/09/Design-Pattern-Singleton-in-Java/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/07/20/Data-Modeling-Fundamentals/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/08/02/Denodo-Data-Virtualization/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/12/09/Dot-net-React/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/07/20/Data-Warehouse/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/08/09/AWS-SAA-Review/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2021/09/12/AWS-DVA-review/</loc>
+    <lastmod>2022-02-10</lastmod>
+  </url>
+  <url>
     <loc>http://hellcy.github.io/2022/02/10/Polymorphism-in-Java/</loc>
     <lastmod>2022-02-10</lastmod>
   </url>
@@ -18,10 +86,6 @@
   </url>
   <url>
     <loc>http://hellcy.github.io/2021/03/16/React-Overview/</loc>
-    <lastmod>2021-05-24</lastmod>
-  </url>
-  <url>
-    <loc>http://hellcy.github.io/2020/10/06/Wishlist-2021/</loc>
     <lastmod>2021-05-24</lastmod>
   </url>
   <url>

@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>TIBCO Data Virtualization | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Virtual Views  Virtual Data Table Defined by SQL and TDV Metadata Contains SQL SELECT and any ANSI-Standard SQL Often federate data from multiple physical sources Encapsulate business meaning Hide co">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TIBCO Data Virtualization">
+<meta property="og:url" content="http://hellcy.github.io/2021/07/28/TIBCO-Data-Virtualization/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Virtual Views  Virtual Data Table Defined by SQL and TDV Metadata Contains SQL SELECT and any ANSI-Standard SQL Often federate data from multiple physical sources Encapsulate business meaning Hide co">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-07-28T00:20:39.000Z">
+<meta property="article:modified_time" content="2022-02-10T14:39:24.301Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Data Virtualization">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2021/07/28/TIBCO-Data-Virtualization/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data/" rel="tag">Data</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elastic-Search/" rel="tag">Elastic Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/" rel="tag">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13.25px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/Azure/" style="font-size: 13px;">Azure</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data/" style="font-size: 13.25px;">Data</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Data-Virtualization/" style="font-size: 13.25px;">Data Virtualization</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Elastic-Search/" style="font-size: 13px;">Elastic Search</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.5px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13.25px;">React</a> <a href="/tags/SQL/" style="font-size: 13.25px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13.25px;">Wishlist</a> <a href="/tags/git/" style="font-size: 13.25px;">git</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="title">Design Pattern - Singleton in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-09T06:26:19.000Z" itemprop="datePublished">09-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/01/02/Elastic-Search/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/02/Elastic-Search/" class="title">Elastic Search</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-02T06:41:13.000Z" itemprop="datePublished">02-01-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/12/09/Dot-net-React/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/09/Dot-net-React/" class="title">Dot net + React</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-09T12:17:52.000Z" itemprop="datePublished">09-12-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/11/05/Spring-Framework/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/11/05/Spring-Framework/" class="title">Spring Framework</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-11-04T13:06:37.000Z" itemprop="datePublished">05-11-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#virtual-views"><span class="toc-number">1.</span> <span class="toc-text"> Virtual Views</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#views"><span class="toc-number">1.1.</span> <span class="toc-text"> Views</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#custom-functions"><span class="toc-number">2.</span> <span class="toc-text"> Custom Functions</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#layered-development"><span class="toc-number">3.</span> <span class="toc-text"> Layered Development</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#physical-layer"><span class="toc-number">3.1.</span> <span class="toc-text"> Physical Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#business-layer"><span class="toc-number">3.2.</span> <span class="toc-text"> Business Layer</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#application-layer"><span class="toc-number">3.3.</span> <span class="toc-text"> Application Layer</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#publishing-virtual-databases"><span class="toc-number">4.</span> <span class="toc-text"> Publishing Virtual Databases</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#publishing-web-services"><span class="toc-number">5.</span> <span class="toc-text"> Publishing Web Services</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#relational-data-source-connections"><span class="toc-number">6.</span> <span class="toc-text"> Relational Data Source Connections</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#rest-clients"><span class="toc-number">7.</span> <span class="toc-text"> REST Clients</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#automate-authentication-process"><span class="toc-number">7.1.</span> <span class="toc-text"> Automate Authentication Process</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql-script"><span class="toc-number">8.</span> <span class="toc-text"> SQL Script</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#xslt-and-streaming-transformations"><span class="toc-number">9.</span> <span class="toc-text"> XSLT and Streaming Transformations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#procedure-joins"><span class="toc-number">10.</span> <span class="toc-text"> Procedure Joins</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#triggers"><span class="toc-number">11.</span> <span class="toc-text"> Triggers</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tdv-rights"><span class="toc-number">12.</span> <span class="toc-text"> TDV Rights</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#soap-data-sources"><span class="toc-number">13.</span> <span class="toc-text"> SOAP Data Sources</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cache-index-management"><span class="toc-number">14.</span> <span class="toc-text"> Cache Index Management</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#caching-multi-table"><span class="toc-number">15.</span> <span class="toc-text"> Caching Multi Table</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#caching-single-table"><span class="toc-number">16.</span> <span class="toc-text"> Caching Single Table</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#caching-policies"><span class="toc-number">17.</span> <span class="toc-text"> Caching Policies</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#caching-incremental-pull-based"><span class="toc-number">18.</span> <span class="toc-text"> Caching Incremental Pull Based</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#caching-stored-procedures"><span class="toc-number">19.</span> <span class="toc-text"> Caching Stored Procedures</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cors-operations"><span class="toc-number">20.</span> <span class="toc-text"> CORS operations</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#custom-datasource-adapters"><span class="toc-number">21.</span> <span class="toc-text"> Custom Datasource Adapters</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#custom-java-procedure-cjp"><span class="toc-number">22.</span> <span class="toc-text"> Custom Java Procedure (CJP)</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-TIBCO-Data-Virtualization" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TIBCO Data Virtualization
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/07/28/TIBCO-Data-Virtualization/" class="article-date">
+	  <time datetime="2021-07-28T00:20:39.000Z" itemprop="datePublished">28-07-2021</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/07/28/TIBCO-Data-Virtualization/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.4k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 8(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="virtual-views"><a class="markdownIt-Anchor" href="#virtual-views"></a> Virtual Views</h1>
+<ul>
+<li>Virtual Data Table</li>
+<li>Defined by SQL and TDV Metadata</li>
+<li>Contains SQL SELECT and any ANSI-Standard SQL</li>
+<li>Often federate data from multiple physical sources</li>
+<li>Encapsulate business meaning</li>
+<li>Hide complexity</li>
+<li>Enable re-use</li>
+</ul>
+<h2 id="views"><a class="markdownIt-Anchor" href="#views"></a> Views</h2>
+<ul>
+<li>Created graphically on Model and Grid tabs</li>
+<li>Created Manually on SQL tab
+<ul>
+<li>Graphical tabs will be removed</li>
+<li>Graphical tabs can be re-created in most cases</li>
+<li>Graphical tabs are not requried</li>
+</ul>
+</li>
+<li>Move freely between graphical and manual modes</li>
+</ul>
+<h1 id="custom-functions"><a class="markdownIt-Anchor" href="#custom-functions"></a> Custom Functions</h1>
+<ul>
+<li>
+<p>User-defined SQL construct</p>
+</li>
+<li>
+<p>Accept parameters, return a single scalar output</p>
+</li>
+<li>
+<p>May be used in SELECT or WHERE clause</p>
+</li>
+<li>
+<p>Example: SELECT UPPER(column_name) AS column_name_upper</p>
+</li>
+<li>
+<p>TDV custom functions created by promoting SQL scripts or custom Java procedures</p>
+</li>
+<li>
+<p>Encapsulate business functionality specific to your enterprice</p>
+</li>
+<li>
+<p>Enable re-use across many projects and many data sources</p>
+</li>
+<li>
+<p>Any script or procedure that outputs a single scalar can be promoted to a Custom Function</p>
+</li>
+</ul>
+<h1 id="layered-development"><a class="markdownIt-Anchor" href="#layered-development"></a> Layered Development</h1>
+<ul>
+<li>Enhance the development process but does not reduce performance at run time</li>
+<li>Enables reuse of virtual resources within and across projects</li>
+<li>Layers are flexible</li>
+</ul>
+<h2 id="physical-layer"><a class="markdownIt-Anchor" href="#physical-layer"></a> Physical Layer</h2>
+<ul>
+<li>Abstract away the physical characteristics of the data on individual data sources</li>
+<li>We generally build virtual views that are almost identical to the underlying physical data structures</li>
+</ul>
+<h2 id="business-layer"><a class="markdownIt-Anchor" href="#business-layer"></a> Business Layer</h2>
+<ul>
+<li>Building coarse-grained data resources that have some important enterprise wide meaning and might be used by many different projects</li>
+</ul>
+<h2 id="application-layer"><a class="markdownIt-Anchor" href="#application-layer"></a> Application Layer</h2>
+<ul>
+<li>Tailor the business layer resources to meet the needs of individual projects</li>
+</ul>
+<h1 id="publishing-virtual-databases"><a class="markdownIt-Anchor" href="#publishing-virtual-databases"></a> Publishing Virtual Databases</h1>
+<ul>
+<li>
+<p>Makes TDV resources accessible to authorized consumers</p>
+</li>
+<li>
+<p>Accessible as a Database via JDBC, ODBC, <a target="_blank" rel="noopener" href="http://ADO.NET">ADO.NET</a>, OData</p>
+</li>
+<li>
+<p>Accessible as Web Services via REST, SOAP</p>
+</li>
+<li>
+<p>Many resource types may be published</p>
+</li>
+<li>
+<p>You can create as many Virtual Databases as you like</p>
+</li>
+<li>
+<p>Catelogs and Schemas are optional, However, Catelogs are required for ODBC clients</p>
+</li>
+<li>
+<p>Changes are automatically propagated to published resources</p>
+</li>
+</ul>
+<h1 id="publishing-web-services"><a class="markdownIt-Anchor" href="#publishing-web-services"></a> Publishing Web Services</h1>
+<ul>
+<li>
+<p>we could publish procedures as Web Services</p>
+</li>
+<li>
+<p>In most cases, it is not good practice to publish entire database tables as Web Services, because there might be hundreds of millions of rows, and web services over HTTP are generally not aimed at such use cases</p>
+</li>
+<li>
+<p>Stored procedures however, can accept input parameters which can be used to filter results, therefore, a common practice is to wrap a view within a stored procedure using one or more input parameters that force the data consumer to filter data requests</p>
+</li>
+<li>
+<p>Changes are automatically propagated to published resources</p>
+</li>
+</ul>
+<h1 id="relational-data-source-connections"><a class="markdownIt-Anchor" href="#relational-data-source-connections"></a> Relational Data Source Connections</h1>
+<ul>
+<li>
+<p>Specify connection details</p>
+<ul>
+<li>Host, port, database name, user ID, password</li>
+</ul>
+</li>
+<li>
+<p>Introspect the data source and gather matadata</p>
+<ul>
+<li>Catalogs, schemas, tables, columns, etc…</li>
+</ul>
+</li>
+<li>
+<p>Accept and respond to queries</p>
+</li>
+<li>
+<p>Handle insert, update, and delete transactions</p>
+</li>
+<li>
+<p>Execute stored procedures</p>
+</li>
+<li>
+<p>Expose database artifacts for use in virtual views</p>
+</li>
+<li>
+<p>Understand capabilities of physical databases</p>
+</li>
+<li>
+<p>A JDBC Driveer .jar is required</p>
+<ul>
+<li>TDV is permitted to bundle some drivers</li>
+<li>other drivers must be downloaded and installed
+<ul>
+<li>This is a one-time process</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Copy the driver into the appropriate TDV driver</p>
+<ul>
+<li>TDV restart is required</li>
+</ul>
+</li>
+</ul>
+<h1 id="rest-clients"><a class="markdownIt-Anchor" href="#rest-clients"></a> REST Clients</h1>
+<ul>
+<li>Uniform interface to web resources
+<ul>
+<li>Based on URIs</li>
+<li>Manipulate textual represntations of web resources</li>
+<li>Based on HTTP verbs (GET, POST, DELETE, UPDATE)</li>
+<li>Human-readable and self-describing</li>
+</ul>
+</li>
+<li>Stateless</li>
+<li>Contract-free</li>
+</ul>
+<h2 id="automate-authentication-process"><a class="markdownIt-Anchor" href="#automate-authentication-process"></a> Automate Authentication Process</h2>
+<ul>
+<li>Soap UI</li>
+<li>cURL</li>
+<li>Chrome Advanced REST Client</li>
+</ul>
+<h1 id="sql-script"><a class="markdownIt-Anchor" href="#sql-script"></a> SQL Script</h1>
+<ul>
+<li>
+<p>ANSI-SQL-compliant Scripting language</p>
+</li>
+<li>
+<p>Enables procedural logic, including</p>
+<ul>
+<li>Conditional execution</li>
+<li>Looping</li>
+<li>Pipelining</li>
+<li>Exception handling</li>
+<li>Etc…</li>
+</ul>
+</li>
+<li>
+<p>Procedural logic</p>
+</li>
+<li>
+<p>Parameter-driven processing</p>
+</li>
+<li>
+<p>Calls to system procedures and custom procedures</p>
+</li>
+<li>
+<p>Exception handling and logging</p>
+</li>
+<li>
+<p>Scripts can call other resources, including</p>
+<ul>
+<li>Other scripts</li>
+<li>Java procedures</li>
+<li>Packaged queries</li>
+<li>TDV procedure library</li>
+</ul>
+</li>
+</ul>
+<h1 id="xslt-and-streaming-transformations"><a class="markdownIt-Anchor" href="#xslt-and-streaming-transformations"></a> XSLT and Streaming Transformations</h1>
+<ul>
+<li>
+<p>XSLT Transformations</p>
+<ul>
+<li>Extensible Stylesheet Language Transformations</li>
+<li>Industry-standard transformation language</li>
+<li>In DV, most commonly used for flattening XML</li>
+</ul>
+</li>
+<li>
+<p>Streaming Transformations</p>
+<ul>
+<li>Similar to XSLT Editor</li>
+<li>Useful for large data sets</li>
+</ul>
+</li>
+<li>
+<p>Relational data structures provide a common format for data federation</p>
+</li>
+<li>
+<p>Hierarchical XML structures must be flattened in order to participate in data federation projects</p>
+</li>
+</ul>
+<h1 id="procedure-joins"><a class="markdownIt-Anchor" href="#procedure-joins"></a> Procedure Joins</h1>
+<ul>
+<li>
+<p>A special type of join between a View and a Stored Procedure</p>
+</li>
+<li>
+<p>Stored Procedure is executed once per View row - for unique values only</p>
+</li>
+<li>
+<p>Data from the View row provides input parameters to the Procedure</p>
+</li>
+<li>
+<p>Results from all executions are aggregated and then used for the join</p>
+</li>
+<li>
+<p>Augment View data</p>
+<ul>
+<li>Complex calculations</li>
+<li>Procedural logic</li>
+<li>External data in non-standard format</li>
+</ul>
+</li>
+</ul>
+<h1 id="triggers"><a class="markdownIt-Anchor" href="#triggers"></a> Triggers</h1>
+<ul>
+<li>
+<p>Execute based on</p>
+<ul>
+<li>Time parameters</li>
+<li>System events</li>
+<li>User-defined events</li>
+<li>JMS messages</li>
+</ul>
+</li>
+<li>
+<p>Actions include</p>
+<ul>
+<li>Send email</li>
+<li>Execute a procedure</li>
+<li>Gather statistics</li>
+<li>Re-introspect</li>
+</ul>
+</li>
+<li>
+<p>Notify adminstrators of important TDV conditions</p>
+</li>
+<li>
+<p>Provide automated response to important TDV conditions</p>
+</li>
+<li>
+<p>Automate common maintenance tasks</p>
+</li>
+<li>
+<p>Enable developers to execute multiple asynchronous actions</p>
+</li>
+</ul>
+<h1 id="tdv-rights"><a class="markdownIt-Anchor" href="#tdv-rights"></a> TDV Rights</h1>
+<ul>
+<li>
+<p>System-wide capabilities, including</p>
+<ul>
+<li>Tools, such as Studio</li>
+<li>Administration, such as config, status, and users</li>
+<li>Access to resources, such as Views and Procedures</li>
+</ul>
+</li>
+<li>
+<p>Rights may be assigned to</p>
+<ul>
+<li>Groups</li>
+<li>Users</li>
+</ul>
+</li>
+<li>
+<p>During development</p>
+<ul>
+<li>Prevent unauthorized users from accessing developer tools and resources</li>
+<li>Enable developers to access needed resources</li>
+</ul>
+</li>
+<li>
+<p>During ongoing operation</p>
+<ul>
+<li>Enable System Administrators to limit access to operational controls</li>
+</ul>
+</li>
+</ul>
+<h1 id="soap-data-sources"><a class="markdownIt-Anchor" href="#soap-data-sources"></a> SOAP Data Sources</h1>
+<ul>
+<li>Enable TDV to introspect SOAP based web services</li>
+<li>Responses can be transformed, federated and published</li>
+<li>Access to data on internet or intranet</li>
+<li>Commonly-used API for enterprise applications</li>
+</ul>
+<h1 id="cache-index-management"><a class="markdownIt-Anchor" href="#cache-index-management"></a> Cache Index Management</h1>
+<ul>
+<li>
+<p>Indexes can improve Cache read times for</p>
+<ul>
+<li>Views and Procedures</li>
+<li>Single-Table, Multi-Table</li>
+<li>Full and inCremental Refreshes</li>
+</ul>
+</li>
+<li>
+<p>Index Management helps</p>
+<ul>
+<li>Reduce cache refresh time</li>
+<li>reduce index create/update time</li>
+</ul>
+</li>
+<li>
+<p>Manually-Indexes Cache</p>
+</li>
+<li>
+<p>Single-Table Cache</p>
+</li>
+<li>
+<p>Multi-Table Cache</p>
+</li>
+</ul>
+<h1 id="caching-multi-table"><a class="markdownIt-Anchor" href="#caching-multi-table"></a> Caching Multi Table</h1>
+<ul>
+<li>
+<p>Materialized Views or Procedures</p>
+</li>
+<li>
+<p>Wide range of relational database targets</p>
+</li>
+<li>
+<p>Simple or highly abstract</p>
+</li>
+<li>
+<p>Automatic refresh on configurable schedule</p>
+</li>
+<li>
+<p>Cache data held:</p>
+<ul>
+<li>In a relational database - contrasts with file cache</li>
+<li>On multiple tables - contrasts with single-table cache</li>
+</ul>
+</li>
+<li>
+<p>Useful when</p>
+<ul>
+<li>Response time trumps latency</li>
+<li>A physical data source has restricted access</li>
+<li>Efficient use of indexes is desirable (*)</li>
+</ul>
+</li>
+</ul>
+<p>A specific benefit of multi table caching is that it provides physical separation of cache versions which means indexes on a cache are more efficient.</p>
+<p>Single table caches use a cache key column to maintain logical separation of current and previous cache versions, data rows representing the previous expired version are not deleted until all transactions using the old version have completed, this means the old and new cache data may exist simultaneously in a cache for a period of time. TDV will use the appropriate cache key to ensure that correct data is always returned. However, database indexes built on cache columns may be inefficient because they will contain extraneous rows.</p>
+<p>Multi-table cache avoids this issue and enables indexes to be as efficient as possible, but it takes more space.</p>
+<h1 id="caching-single-table"><a class="markdownIt-Anchor" href="#caching-single-table"></a> Caching Single Table</h1>
+<ul>
+<li>
+<p>Materialized Views or Procedures</p>
+</li>
+<li>
+<p>Wide range of relational database targets</p>
+</li>
+<li>
+<p>Simple or highly abstract</p>
+</li>
+<li>
+<p>Automatic refresh on configurable schedule</p>
+</li>
+<li>
+<p>Cache data held:</p>
+<ul>
+<li>In a relational database - contrasts with file cache</li>
+<li>On multiple tables - contrasts with single-table cache</li>
+</ul>
+</li>
+<li>
+<p>Useful when</p>
+<ul>
+<li>Response time trumps latency</li>
+<li>A physical data source has restricted access</li>
+</ul>
+</li>
+</ul>
+<h1 id="caching-policies"><a class="markdownIt-Anchor" href="#caching-policies"></a> Caching Policies</h1>
+<p>All or nothing</p>
+<ul>
+<li>
+<p>Define cache refresh/expiration schedules for groups of resources</p>
+</li>
+<li>
+<p>Maintain consistency across multiple cached resources</p>
+</li>
+<li>
+<p>Enhance cache performance when dependencies are present</p>
+</li>
+<li>
+<p>Not supported for incremental caching</p>
+</li>
+<li>
+<p>Enhance data consistency across multiple caches</p>
+</li>
+<li>
+<p>Ensure accuracy and efficiency with dependent caches</p>
+</li>
+<li>
+<p>Cache policy can mix single-table and multi-table caching</p>
+</li>
+</ul>
+<h1 id="caching-incremental-pull-based"><a class="markdownIt-Anchor" href="#caching-incremental-pull-based"></a> Caching Incremental Pull Based</h1>
+<ul>
+<li>
+<p>Initial - full load</p>
+</li>
+<li>
+<p>Subsequent refreshes - changes only</p>
+</li>
+<li>
+<p>useful when</p>
+<ul>
+<li>Cached data set is large</li>
+<li>full refresh is time-consuming</li>
+</ul>
+</li>
+</ul>
+<h1 id="caching-stored-procedures"><a class="markdownIt-Anchor" href="#caching-stored-procedures"></a> Caching Stored Procedures</h1>
+<ul>
+<li>
+<p>Cache resutls for stored procedure ‘Variants’</p>
+<ul>
+<li>Each variant cached upon first use</li>
+<li>Number of cached variants is configurable
+<ul>
+<li>Default is 32, max is 99999999</li>
+<li>when limit is reached, LRU variant is purged</li>
+</ul>
+</li>
+<li>All input parameters must be scalars</li>
+</ul>
+</li>
+<li>
+<p>Performance improvements for</p>
+<ul>
+<li>Long-running procedures, external web services</li>
+<li>highly repetitive, high-concurrency procedures</li>
+<li>Unreliable data source connections</li>
+</ul>
+</li>
+</ul>
+<h1 id="cors-operations"><a class="markdownIt-Anchor" href="#cors-operations"></a> CORS operations</h1>
+<ul>
+<li>Cross-Origin Resource Sharing</li>
+<li>HTTP security standard for scripts and other operations</li>
+<li>Applies to script operations like XMLHttpRequest</li>
+<li>Servers may permit or deny CORS requests</li>
+<li>Does not apply to simple request like <code>&lt;img&gt;</code> src</li>
+<li>Requests(GET HEAD POST) execute in one step</li>
+<li>other requests must be pre-flighted using OPTIONS</li>
+<li>Customers serve HTML template pages from a web server in one domain and then populate these pages with REST resources from served from a TDV instance</li>
+</ul>
+<h1 id="custom-datasource-adapters"><a class="markdownIt-Anchor" href="#custom-datasource-adapters"></a> Custom Datasource Adapters</h1>
+<ul>
+<li>New datasource adapters created by reconfiguring a template based on an existing adapter</li>
+<li>No coding required</li>
+<li>The template may be a product-specific datasource, or a generic JDBC datasource</li>
+</ul>
+<p>Three Common use cases</p>
+<ul>
+<li>Settings changes on a supported datasource</li>
+<li>custom functionality in a supported datasource</li>
+<li>connectivity to a datasource not supported by TDV out of the box</li>
+</ul>
+<h1 id="custom-java-procedure-cjp"><a class="markdownIt-Anchor" href="#custom-java-procedure-cjp"></a> Custom Java Procedure (CJP)</h1>
+<ul>
+<li>An API that enables Java code to interact with TDV</li>
+<li>TDV provides a set of interfaces to be implemented</li>
+<li>The CJP is installed as a data source in TDV</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2021/07/28/TIBCO-Data-Virtualization/" title="TIBCO Data Virtualization" target="_blank" rel="external">http://hellcy.github.io/2021/07/28/TIBCO-Data-Virtualization/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/08/02/Denodo-Data-Virtualization/" title="Denodo Data Virtualization"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/07/23/MySQL-and-Database-Design/" title="MySQL and Database Design"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>

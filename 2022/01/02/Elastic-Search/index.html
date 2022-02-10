@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Elastic Search | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Basics  Nodes store the data that we add to ElasticSearch A cluster is a collection of nodes Data is stored as document which are JSON objects Documents are grouped together with indices   The purpos">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elastic Search">
+<meta property="og:url" content="http://hellcy.github.io/2022/01/02/Elastic-Search/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Basics  Nodes store the data that we add to ElasticSearch A cluster is a collection of nodes Data is stored as document which are JSON objects Documents are grouped together with indices   The purpos">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-01-02T06:41:13.000Z">
+<meta property="article:modified_time" content="2022-02-10T14:39:24.301Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="Elastic Search">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2022/01/02/Elastic-Search/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data/" rel="tag">Data</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elastic-Search/" rel="tag">Elastic Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/" rel="tag">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13.25px;">.NET</a> <a href="/tags/API/" style="font-size: 13.5px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.25px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.75px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/Azure/" style="font-size: 13px;">Azure</a> <a href="/tags/C/" style="font-size: 13.25px;">C#</a> <a href="/tags/Data/" style="font-size: 13.25px;">Data</a> <a href="/tags/Data-Structures/" style="font-size: 13.25px;">Data Structures</a> <a href="/tags/Data-Virtualization/" style="font-size: 13.25px;">Data Virtualization</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Elastic-Search/" style="font-size: 13px;">Elastic Search</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.5px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13.25px;">React</a> <a href="/tags/SQL/" style="font-size: 13.25px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/Swift/" style="font-size: 13.25px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13.25px;">Wishlist</a> <a href="/tags/git/" style="font-size: 13.25px;">git</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/10/Polymorphism-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/10/Polymorphism-in-Java/" class="title">Polymorphism in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-10T05:16:18.000Z" itemprop="datePublished">10-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="title">Design Pattern - Singleton in Java</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-09T06:26:19.000Z" itemprop="datePublished">09-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/01/02/Elastic-Search/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/02/Elastic-Search/" class="title">Elastic Search</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-02T06:41:13.000Z" itemprop="datePublished">02-01-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/12/09/Dot-net-React/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/09/Dot-net-React/" class="title">Dot net + React</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-09T12:17:52.000Z" itemprop="datePublished">09-12-2021</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2021/11/05/Spring-Framework/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/11/05/Spring-Framework/" class="title">Spring Framework</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-11-04T13:06:37.000Z" itemprop="datePublished">05-11-2021</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#basics"><span class="toc-number">1.</span> <span class="toc-text"> Basics</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#the-purpose-of-sharding"><span class="toc-number">1.1.</span> <span class="toc-text"> The purpose of sharding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#configuring-the-number-of-shards"><span class="toc-number">1.2.</span> <span class="toc-text"> Configuring the number of shards</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#replication"><span class="toc-number">1.3.</span> <span class="toc-text"> Replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#snapshots"><span class="toc-number">1.4.</span> <span class="toc-text"> snapshots</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#increasing-query-throughput-with-replication"><span class="toc-number">1.5.</span> <span class="toc-text"> increasing query throughput with replication</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#master-eligible-node"><span class="toc-number">1.6.</span> <span class="toc-text"> Master-eligible node</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#data-node"><span class="toc-number">1.7.</span> <span class="toc-text"> Data node</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#managing-documents"><span class="toc-number">2.</span> <span class="toc-text"> Managing Documents</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#indexing-documents"><span class="toc-number">2.1.</span> <span class="toc-text"> indexing documents</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#retrieving-document-by-id"><span class="toc-number">2.2.</span> <span class="toc-text"> Retrieving document by ID</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#updating-document"><span class="toc-number">2.3.</span> <span class="toc-text"> Updating document</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#upserts"><span class="toc-number">2.4.</span> <span class="toc-text"> Upserts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete-document"><span class="toc-number">2.5.</span> <span class="toc-text"> Delete document</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#routing"><span class="toc-number">2.6.</span> <span class="toc-text"> Routing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimistic-concurrency-control"><span class="toc-number">2.7.</span> <span class="toc-text"> Optimistic concurrency control</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#updating-multiple-document"><span class="toc-number">2.8.</span> <span class="toc-text"> Updating multiple document</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mapping-and-analysis"><span class="toc-number">3.</span> <span class="toc-text"> Mapping and Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#inverted-indices"><span class="toc-number">3.1.</span> <span class="toc-text"> Inverted indices</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#keyword-data-type"><span class="toc-number">3.2.</span> <span class="toc-text"> keyword data type</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arrays"><span class="toc-number">3.3.</span> <span class="toc-text"> Arrays</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dates"><span class="toc-number">3.4.</span> <span class="toc-text"> Dates</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#how-date-fields-are-stored"><span class="toc-number">3.4.1.</span> <span class="toc-text"> How date fields are stored</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#missing-fields"><span class="toc-number">3.5.</span> <span class="toc-text"> Missing fields</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#stemming-and-stop-words"><span class="toc-number">3.6.</span> <span class="toc-text"> Stemming and stop words</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stemming"><span class="toc-number">3.6.1.</span> <span class="toc-text"> Stemming</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stop-words"><span class="toc-number">3.6.2.</span> <span class="toc-text"> stop words</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#analyzer"><span class="toc-number">3.7.</span> <span class="toc-text"> Analyzer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#standard-analyzer"><span class="toc-number">3.7.1.</span> <span class="toc-text"> Standard analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#simple-analyzer"><span class="toc-number">3.7.2.</span> <span class="toc-text"> Simple analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#whitespace-analyzer"><span class="toc-number">3.7.3.</span> <span class="toc-text"> whitespace analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyword-analyzer"><span class="toc-number">3.7.4.</span> <span class="toc-text"> keyword analyzer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pattern-analyzer"><span class="toc-number">3.7.5.</span> <span class="toc-text"> pattern analyzer</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction-to-searching"><span class="toc-number">4.</span> <span class="toc-text"> Introduction to Searching</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#term-level-queries"><span class="toc-number">4.1.</span> <span class="toc-text"> term level queries</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Elastic-Search" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Elastic Search
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/01/02/Elastic-Search/" class="article-date">
+	  <time datetime="2022-01-02T06:41:13.000Z" itemprop="datePublished">02-01-2022</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Elastic-Search/" rel="tag">Elastic Search</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/01/02/Elastic-Search/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.5k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 9(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="basics"><a class="markdownIt-Anchor" href="#basics"></a> Basics</h1>
+<ul>
+<li>Nodes store the data that we add to ElasticSearch</li>
+<li>A cluster is a collection of nodes</li>
+<li>Data is stored as document which are JSON objects</li>
+<li>Documents are grouped together with indices</li>
+</ul>
+<h2 id="the-purpose-of-sharding"><a class="markdownIt-Anchor" href="#the-purpose-of-sharding"></a> The purpose of sharding</h2>
+<ul>
+<li>mainly to be able to store more documents</li>
+<li>to easier fit large indices onto nodes</li>
+<li>improved performance
+<ul>
+<li>parallelization of queries increases the throughput of an index</li>
+</ul>
+</li>
+</ul>
+<h2 id="configuring-the-number-of-shards"><a class="markdownIt-Anchor" href="#configuring-the-number-of-shards"></a> Configuring the number of shards</h2>
+<ul>
+<li>an index contains a single shard by default</li>
+<li>increase the number of shards with the Split API</li>
+<li>reduce the number of shards with the Shrink API</li>
+<li>when changing the number of shards, new index will be created and documents in the old index will be migrated to the new index</li>
+</ul>
+<h2 id="replication"><a class="markdownIt-Anchor" href="#replication"></a> Replication</h2>
+<ul>
+<li>
+<p>replication is configured at the index level</p>
+</li>
+<li>
+<p>replication works by creating copies of shards, referred to as replica shards</p>
+</li>
+<li>
+<p>a shard that has been replicated is called a primary shard</p>
+</li>
+<li>
+<p>a primary shard and its replica shards are referred as a replication group</p>
+</li>
+<li>
+<p>replica shards are a complete copy of a shard</p>
+</li>
+<li>
+<p>a replica shard can serve search requests, exactly like its primary shard</p>
+</li>
+<li>
+<p>the number of replicas can be configured at index creation</p>
+</li>
+<li>
+<p>node can store multiple shards, and primary shard and replica shards will never be stored in the same node. So the data will NOT be lost if the node fails</p>
+</li>
+</ul>
+<h2 id="snapshots"><a class="markdownIt-Anchor" href="#snapshots"></a> snapshots</h2>
+<ul>
+<li>ElasticSearch supports taking snapshots as backups</li>
+<li>snapshots can be used to restore to a given point in time</li>
+<li>snapshots can be taken at the index level, or for the entire cluster</li>
+<li>use snapshots for backups, and replication for high availability and performance</li>
+</ul>
+<h2 id="increasing-query-throughput-with-replication"><a class="markdownIt-Anchor" href="#increasing-query-throughput-with-replication"></a> increasing query throughput with replication</h2>
+<ul>
+<li>replica shards of a replication group can serve different search requests simultaneously
+<ul>
+<li>this increases the number of requests that can be handled at the same time</li>
+</ul>
+</li>
+<li>ElasticSearch intelligently routes requests to the best shard</li>
+<li>CPU parallelization (CPU has multiple cores now and can run queries on different threads at the same time) improves performance if multiple replica shards are stored on the same node</li>
+</ul>
+<h2 id="master-eligible-node"><a class="markdownIt-Anchor" href="#master-eligible-node"></a> Master-eligible node</h2>
+<ul>
+<li>the node may be elected as the cluster’s master node</li>
+<li>a master node is responsible for creating and deleting indices, among others</li>
+<li>may be used for having dedicated master nodes
+<ul>
+<li>useful for large clusters</li>
+<li>meaning that this master node will not be serving requests, only focusing on its own tasks</li>
+</ul>
+</li>
+</ul>
+<h2 id="data-node"><a class="markdownIt-Anchor" href="#data-node"></a> Data node</h2>
+<ul>
+<li>enables a node to store data</li>
+<li>storing data includes performing queries related to that data, such as search queries</li>
+<li>for relatively small clusters, this role is almost always enabled</li>
+</ul>
+<h1 id="managing-documents"><a class="markdownIt-Anchor" href="#managing-documents"></a> Managing Documents</h1>
+<ul>
+<li>Delete index</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE &#x2F;index_name</span><br></pre></td></tr></table></figure>
+<ul>
+<li>create index</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">PUT &#x2F;index_name</span><br><span class="line">&#123;</span><br><span class="line">  &quot;settings&quot;: &#123;</span><br><span class="line">    &quot;number_of_shards&quot;: 2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="indexing-documents"><a class="markdownIt-Anchor" href="#indexing-documents"></a> indexing documents</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;products&#x2F;_doc</span><br><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;Coffee Maker&quot;,</span><br><span class="line">  &quot;price&quot;: 53,</span><br><span class="line">  &quot;in_stack&quot;: 10</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="retrieving-document-by-id"><a class="markdownIt-Anchor" href="#retrieving-document-by-id"></a> Retrieving document by ID</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;products&#x2F;_doc&#x2F;document_ID</span><br></pre></td></tr></table></figure>
+<h2 id="updating-document"><a class="markdownIt-Anchor" href="#updating-document"></a> Updating document</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;products&#x2F;_update&#x2F;document_ID</span><br><span class="line">&#123;</span><br><span class="line">  &quot;doc&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &quot;new name&quot;,</span><br><span class="line">    &quot;new field&quot;: &quot;this is a new field&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="upserts"><a class="markdownIt-Anchor" href="#upserts"></a> Upserts</h2>
+<ul>
+<li>insert the new document if not exists, and run the script if the document exists</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">POST &#x2F;products&#x2F;_update&#x2F;101</span><br><span class="line">&#123;</span><br><span class="line">  &quot;script&quot;: &#123;</span><br><span class="line">    &quot;source&quot;: &quot;ctx._source.in_stock++</span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;upsert&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &quot;name&quot;,</span><br><span class="line">    &quot;price&quot;: 399,</span><br><span class="line">    &quot;in_stock&quot;: 5</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="delete-document"><a class="markdownIt-Anchor" href="#delete-document"></a> Delete document</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DELETE &#x2F;products&#x2F;_doc&#x2F;101</span><br></pre></td></tr></table></figure>
+<h2 id="routing"><a class="markdownIt-Anchor" href="#routing"></a> Routing</h2>
+<ul>
+<li>routing is the process of resolving a shard for a document</li>
+<li>the default routing strategy ensures that documents are distributed evenly</li>
+</ul>
+<h2 id="optimistic-concurrency-control"><a class="markdownIt-Anchor" href="#optimistic-concurrency-control"></a> Optimistic concurrency control</h2>
+<ul>
+<li>prevent overwriting documents inadvertently dur to concurrent operations</li>
+<li>primary terms
+<ul>
+<li>a way to distinguish between old and new primary shards</li>
+<li>essentially a counter for how many times the primary shard has changed</li>
+<li>the primary term is appended to write operations</li>
+</ul>
+</li>
+<li>sequence numbers
+<ul>
+<li>appended to write operations together with the primary term</li>
+<li>essentially a counter that is incremented for each write operation</li>
+<li>the primary shard increases the sequence number</li>
+<li>enables ElasticSearch to order write operations</li>
+</ul>
+</li>
+<li>sending write requests to ElasticSearch concurrently may overwrite changes made by other concurrent processes</li>
+<li>we use the primary terms and sequence number fields</li>
+<li>ElasticSearch will reject a write operation if it contains the wrong primary term or sequence number</li>
+</ul>
+<h2 id="updating-multiple-document"><a class="markdownIt-Anchor" href="#updating-multiple-document"></a> Updating multiple document</h2>
+<ul>
+<li>the query creates a snapshot to do optimistic concurrency control</li>
+<li>search queries and bulk requests are sent to replication groups sequentially
+<ul>
+<li>ElasticSearch retries these queries up to ten times</li>
+<li>if the queries still fail, the whole query is aborted</li>
+<li>any changes already made to documents, are NOT rolled back</li>
+</ul>
+</li>
+<li>the API returns information about failures</li>
+</ul>
+<h1 id="mapping-and-analysis"><a class="markdownIt-Anchor" href="#mapping-and-analysis"></a> Mapping and Analysis</h1>
+<ul>
+<li>a field’s values are stored in one of several data structures
+<ul>
+<li>the data structure depends on the field’s data type</li>
+</ul>
+</li>
+<li>ensures efficient data access</li>
+</ul>
+<h2 id="inverted-indices"><a class="markdownIt-Anchor" href="#inverted-indices"></a> Inverted indices</h2>
+<ul>
+<li>
+<p>mapping between terms (tags) and which documents contain them</p>
+</li>
+<li>
+<p>outside the context of analyzers, we use the terminology ‘terms’</p>
+</li>
+<li>
+<p>an inverted index is created for EACH text field</p>
+</li>
+<li>
+<p>values for a text field are analyzed and the results are stored within an inverted index</p>
+</li>
+<li>
+<p>each field has a dedicated inverted index</p>
+</li>
+<li>
+<p>an inverted index is a mapping between terms and which documents contain them</p>
+</li>
+<li>
+<p>terms are sorted alphabetically for performance reasons</p>
+</li>
+<li>
+<p>created and maintained by Apache Lucene</p>
+</li>
+<li>
+<p>inverted indices enable fast searches</p>
+</li>
+</ul>
+<p>Note: for array of strings</p>
+<ul>
+<li>In ElasticSearch, there is no dedicated array data type, any field can contain zero or more values by default, however, all values in the array must be of the same data type</li>
+<li>when adding a field dynamically, the first value in the array determines the field type</li>
+<li>meaning for array of strings, ElasticSearch would have created a inverted index mapping table for it</li>
+</ul>
+<h2 id="keyword-data-type"><a class="markdownIt-Anchor" href="#keyword-data-type"></a> keyword data type</h2>
+<ul>
+<li>
+<p>keyword fields are analyzed with the keyword analyzer</p>
+</li>
+<li>
+<p>the keyword analyzer is an no-op analyzer</p>
+<ul>
+<li>it outputs the unmodified string as a single token</li>
+<li>this token is then placed into the inverted index</li>
+</ul>
+</li>
+<li>
+<p>used for exact matching of values</p>
+</li>
+<li>
+<p>typically used for filtering, aggregations, and sorting</p>
+</li>
+<li>
+<p>for full-text searches, use the text data type instead</p>
+</li>
+</ul>
+<h2 id="arrays"><a class="markdownIt-Anchor" href="#arrays"></a> Arrays</h2>
+<ul>
+<li>there is no such thing as an array data type</li>
+<li>any field may contain zero or more values
+<ul>
+<li>no configuration or mapping needed</li>
+<li>simply supply an array when indexing a document</li>
+</ul>
+</li>
+<li>how is the array stored in the ElasticSearch internally?
+<ul>
+<li>e.g. if it is an array of strings</li>
+<li>the strings are simply concatenated before being analyzed</li>
+<li>and the resulting tokens are stored within an inverted index as normal String data type</li>
+</ul>
+</li>
+</ul>
+<h2 id="dates"><a class="markdownIt-Anchor" href="#dates"></a> Dates</h2>
+<ul>
+<li>specified in one of the three ways
+<ul>
+<li>specially formatted strings</li>
+<li>milliseconds since the epoch</li>
+<li>seconds since the epoch</li>
+</ul>
+</li>
+<li>epoch refers to the 1st of Jan 1970</li>
+<li>custom formats are supported</li>
+</ul>
+<h3 id="how-date-fields-are-stored"><a class="markdownIt-Anchor" href="#how-date-fields-are-stored"></a> How date fields are stored</h3>
+<ul>
+<li>stored internally as milliseconds since the epoch</li>
+<li>any valid value that you supply at index time is converted to a long value internally</li>
+<li>dates are converted to the UTC timezone</li>
+<li>the same date conversion happens for search queries too</li>
+</ul>
+<h2 id="missing-fields"><a class="markdownIt-Anchor" href="#missing-fields"></a> Missing fields</h2>
+<ul>
+<li>all fields are ElasticSearch are optional</li>
+<li>you can leave out a field when indexing documents</li>
+<li>unlike relational databases when you need to allow NULL values</li>
+<li>some integrity checks need to be done at the application level
+<ul>
+<li>e.g. having required fields</li>
+</ul>
+</li>
+<li>adding a field mapping does not make a field required</li>
+<li>searches automatically handle missing fields</li>
+</ul>
+<h2 id="stemming-and-stop-words"><a class="markdownIt-Anchor" href="#stemming-and-stop-words"></a> Stemming and stop words</h2>
+<h3 id="stemming"><a class="markdownIt-Anchor" href="#stemming"></a> Stemming</h3>
+<ul>
+<li>reduces words to their root form
+<ul>
+<li>e.g. loved -&gt; love</li>
+<li>drinking -&gt; drink</li>
+</ul>
+</li>
+</ul>
+<h3 id="stop-words"><a class="markdownIt-Anchor" href="#stop-words"></a> stop words</h3>
+<ul>
+<li>words that are filtered out during the text analysis
+<ul>
+<li>common words such as ‘a’, ‘the’, ‘at’, ‘of’, ‘on’ etc…</li>
+</ul>
+</li>
+<li>they provide little to no value to the relevance scoring</li>
+<li>fairly common to remove such words
+<ul>
+<li>less common in ElasticSearch today than in the past</li>
+<li>the relevance algorithm has been improved significantly</li>
+</ul>
+</li>
+<li>not removed by default</li>
+</ul>
+<h2 id="analyzer"><a class="markdownIt-Anchor" href="#analyzer"></a> Analyzer</h2>
+<h3 id="standard-analyzer"><a class="markdownIt-Anchor" href="#standard-analyzer"></a> Standard analyzer</h3>
+<ul>
+<li>splits text at word boundaries and removes punctuation
+<ul>
+<li>done by the standard tokenizer</li>
+</ul>
+</li>
+<li>lowercase letter with the lowercase token filter</li>
+<li>contains the stop token filter (for removing stop words, disabled by default)</li>
+</ul>
+<h3 id="simple-analyzer"><a class="markdownIt-Anchor" href="#simple-analyzer"></a> Simple analyzer</h3>
+<h3 id="whitespace-analyzer"><a class="markdownIt-Anchor" href="#whitespace-analyzer"></a> whitespace analyzer</h3>
+<h3 id="keyword-analyzer"><a class="markdownIt-Anchor" href="#keyword-analyzer"></a> keyword analyzer</h3>
+<h3 id="pattern-analyzer"><a class="markdownIt-Anchor" href="#pattern-analyzer"></a> pattern analyzer</h3>
+<ul>
+<li>a regular expression is used to match token separators
+<ul>
+<li>it should match whatever should split the text into tokens</li>
+</ul>
+</li>
+<li>this analyzer is very flexible</li>
+<li>the default pattern matches all non-word characters</li>
+<li>lowercase letters by default</li>
+</ul>
+<h1 id="introduction-to-searching"><a class="markdownIt-Anchor" href="#introduction-to-searching"></a> Introduction to Searching</h1>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;product&#x2F;default&#x2F;_search</span><br><span class="line">&#123;</span><br><span class="line">  &quot;query&quot;: &#123;</span><br><span class="line">    &quot;match_all&quot;: &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>search queries will hit the coordinating node first, and this node will broadcast the query to all the other nodes, they will fetch the result and combine them together and return it.</li>
+</ul>
+<h2 id="term-level-queries"><a class="markdownIt-Anchor" href="#term-level-queries"></a> term level queries</h2>
+<ul>
+<li>search for exact matches, case sensitive, searching the inverted index, not the original document</li>
+<li>term level queries are more suited for searching static values, like enums</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2022/01/02/Elastic-Search/" title="Elastic Search" target="_blank" rel="external">http://hellcy.github.io/2022/01/02/Elastic-Search/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" title="Design Pattern - Singleton in Java"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/12/09/Dot-net-React/" title="Dot net + React"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>
