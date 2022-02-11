@@ -17,22 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Design Pattern - Singleton in Java | Hellcy&#39;s Blog</title>
-  <meta name="description" content="目的  使得类的一个对象成为该类系统中唯一的实例   定义  一个类有且仅有一个实例，并且自行实例化向整个系统提供   要点  某个类只能有一个实例 必须自行创建实例 必须自行向这个系统提供这个实例   实现  只提供私有的构造方法 含有一个该类的静态私有对象 提供一个静态的公有方法用于创建，获取静态私有对象   Create class instance when class is loade">
+  <title>Exceptions in Java | Hellcy&#39;s Blog</title>
+  <meta name="description" content="什么是异常  错误在我们编写程序的过程中会经常发生，包括编译期间和运行期间的错误 在程序运行过程中，意外发生的情况，背离我们程序本身意图的表现，都可以理解为异常   异常分类  Throwable  Error  OutOfMemoryError ThreadDeath …   Exception  程序本身可以处理的异常 unchecked exception （runtime excepti">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Design Pattern - Singleton in Java">
-<meta property="og:url" content="http://hellcy.github.io/2022/02/09/Design-Pattern-Singleton-in-Java/index.html">
+<meta property="og:title" content="Exceptions in Java">
+<meta property="og:url" content="http://hellcy.github.io/2022/02/11/Exceptions-in-Java/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="目的  使得类的一个对象成为该类系统中唯一的实例   定义  一个类有且仅有一个实例，并且自行实例化向整个系统提供   要点  某个类只能有一个实例 必须自行创建实例 必须自行向这个系统提供这个实例   实现  只提供私有的构造方法 含有一个该类的静态私有对象 提供一个静态的公有方法用于创建，获取静态私有对象   Create class instance when class is loade">
+<meta property="og:description" content="什么是异常  错误在我们编写程序的过程中会经常发生，包括编译期间和运行期间的错误 在程序运行过程中，意外发生的情况，背离我们程序本身意图的表现，都可以理解为异常   异常分类  Throwable  Error  OutOfMemoryError ThreadDeath …   Exception  程序本身可以处理的异常 unchecked exception （runtime excepti">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-02-09T06:26:19.000Z">
-<meta property="article:modified_time" content="2022-02-10T14:39:24.300Z">
+<meta property="article:published_time" content="2022-02-10T23:51:36.000Z">
+<meta property="article:modified_time" content="2022-02-11T13:20:48.137Z">
 <meta property="article:author" content="Yuan Cheng">
 <meta property="article:tag" content="Java">
-<meta property="article:tag" content="Design Patterns">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://hellcy.github.io/2022/02/09/Design-Pattern-Singleton-in-Java/index.html">
+  <link rel="canonical" href="http://hellcy.github.io/2022/02/11/Exceptions-in-Java/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -372,21 +371,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-number">1.</span> <span class="toc-text"> 目的</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text"> 定义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A6%81%E7%82%B9"><span class="toc-number">3.</span> <span class="toc-text"> 要点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">4.</span> <span class="toc-text"> 实现</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F"><span class="toc-number">5.</span> <span class="toc-text"> 注意</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%98%E7%82%B9"><span class="toc-number">6.</span> <span class="toc-text"> 优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BC%BA%E7%82%B9"><span class="toc-number">7.</span> <span class="toc-text"> 缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF"><span class="toc-number">8.</span> <span class="toc-text"> 场景</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%BC%82%E5%B8%B8"><span class="toc-number">1.</span> <span class="toc-text"> 什么是异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%88%86%E7%B1%BB"><span class="toc-number">2.</span> <span class="toc-text"> 异常分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8"><span class="toc-number">3.</span> <span class="toc-text"> 捕获异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">4.</span> <span class="toc-text"> 异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8-2"><span class="toc-number">4.1.</span> <span class="toc-text"> 捕获异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%82%E5%B8%B8"><span class="toc-number">4.2.</span> <span class="toc-text"> 声明异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%9B%E5%87%BA%E5%BC%82%E5%B8%B8"><span class="toc-number">4.3.</span> <span class="toc-text"> 抛出异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-catch-finally"><span class="toc-number">4.4.</span> <span class="toc-text"> try catch finally</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#throw-throws"><span class="toc-number">4.5.</span> <span class="toc-text"> throw throws</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#throws"><span class="toc-number">5.</span> <span class="toc-text"> throws</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#throw"><span class="toc-number">6.</span> <span class="toc-text"> throw</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%82%E5%B8%B8"><span class="toc-number">7.</span> <span class="toc-text"> 自定义异常</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E9%93%BE"><span class="toc-number">8.</span> <span class="toc-text"> 异常链</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Design-Pattern-Singleton-in-Java" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Exceptions-in-Java" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Design Pattern - Singleton in Java
+      Exceptions in Java
     </h1>
   
 
@@ -394,90 +393,141 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2022/02/09/Design-Pattern-Singleton-in-Java/" class="article-date">
-	  <time datetime="2022-02-09T06:26:19.000Z" itemprop="datePublished">09-02-2022</time>
+	<a href="/2022/02/11/Exceptions-in-Java/" class="article-date">
+	  <time datetime="2022-02-10T23:51:36.000Z" itemprop="datePublished">11-02-2022</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a>, <a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>
+	<a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/09/Design-Pattern-Singleton-in-Java/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/11/Exceptions-in-Java/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 407(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 807(words)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 1(minutes)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 3(minutes)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="目的"><a class="markdownIt-Anchor" href="#目的"></a> 目的</h1>
+        <h1 id="什么是异常"><a class="markdownIt-Anchor" href="#什么是异常"></a> 什么是异常</h1>
 <ul>
-<li>使得类的一个对象成为该类系统中唯一的实例</li>
+<li>错误在我们编写程序的过程中会经常发生，包括编译期间和运行期间的错误</li>
+<li>在程序运行过程中，意外发生的情况，背离我们程序本身意图的表现，都可以理解为异常</li>
 </ul>
-<h1 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h1>
+<h1 id="异常分类"><a class="markdownIt-Anchor" href="#异常分类"></a> 异常分类</h1>
 <ul>
-<li>一个类有且仅有一个实例，并且自行实例化向整个系统提供</li>
+<li>Throwable
+<ul>
+<li>Error
+<ul>
+<li>OutOfMemoryError</li>
+<li>ThreadDeath</li>
+<li>…</li>
 </ul>
-<h1 id="要点"><a class="markdownIt-Anchor" href="#要点"></a> 要点</h1>
-<ol>
-<li>某个类只能有一个实例</li>
-<li>必须自行创建实例</li>
-<li>必须自行向这个系统提供这个实例</li>
-</ol>
-<h1 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h1>
-<ol>
-<li>只提供私有的构造方法</li>
-<li>含有一个该类的静态私有对象</li>
-<li>提供一个静态的公有方法用于创建，获取静态私有对象</li>
-</ol>
+</li>
+<li>Exception
 <ul>
-<li>Create class instance when class is loaded</li>
+<li>程序本身可以处理的异常</li>
+<li>unchecked exception （runtime exception）
+<ul>
+<li>NullPointerException</li>
+<li>ArrayIndexOutOfBoundsException</li>
+<li>…</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public class SingletonOne &#123;</span><br><span class="line">  &#x2F;&#x2F; private class constructor</span><br><span class="line">  private SingletonOne () &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; private static instance</span><br><span class="line">  private static SingletonOne INSTANCE &#x3D; new SingletonOne();</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; return instance in public method</span><br><span class="line">  public static SingletonOne getInstance() &#123;</span><br><span class="line">    return INSTANCE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; SingletonOne instance &#x3D; SingletonOne.getInstance();</span><br></pre></td></tr></table></figure>
+</li>
+<li>checked exception
 <ul>
-<li>Only create instance when the method is being called</li>
+<li>IOException</li>
+<li>SQLException</li>
+<li>…</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public class SingletonTwo &#123;</span><br><span class="line">  private SingletonTwo () &#123;</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  private static SingletonTwo INSTANCE &#x3D; null;</span><br><span class="line"></span><br><span class="line">  public static SingletonTwo getInstance() &#123;</span><br><span class="line">    if (INSTANCE &#x3D;&#x3D; null) INSTANCE &#x3D; new SingletonTwo();</span><br><span class="line">    return INSTANCE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="注意"><a class="markdownIt-Anchor" href="#注意"></a> 注意</h1>
-<ul>
-<li>lazy loading 存在线程风险 1
-<ol>
-<li>同步锁</li>
-<li>双重校验锁</li>
-<li>静态内部类</li>
-<li>枚举</li>
-</ol>
 </li>
 </ul>
-<h1 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点</h1>
-<ol>
-<li>在内存中只有一个对象，节省内存空间</li>
-<li>避免频繁地创建对象，提高性能</li>
-<li>避免对共享资源的多重占用</li>
-</ol>
-<h1 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h1>
-<ol>
-<li>扩展比较困难</li>
-<li>如果实例化后的对象长期不利用，系统将默认为垃圾进行回收，造成对象状态丢失</li>
-</ol>
-<h1 id="场景"><a class="markdownIt-Anchor" href="#场景"></a> 场景</h1>
-<ol>
-<li>创建对象时占用资源过多，但同时有需要用到该类对象</li>
-<li>对系统内资源要求统一读写，如读写配置信息</li>
-<li>当多个实例存在可能引起程序逻辑错误，如号码生成器 （ID）</li>
-</ol>
-
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="捕获异常"><a class="markdownIt-Anchor" href="#捕获异常"></a> 捕获异常</h1>
+<ul>
+<li>对于运行时异常，错误或可查异常，Java技术所要求的异常处理方式有所不同</li>
+<li>对于可查异常必须捕捉，或者声明抛出</li>
+<li>允许忽略不可查的RuntimeException 和 Error</li>
+</ul>
+<h1 id="异常处理"><a class="markdownIt-Anchor" href="#异常处理"></a> 异常处理</h1>
+<ul>
+<li>通过5个关键字来实现： try, catch, finally, throw, throws</li>
+</ul>
+<h2 id="捕获异常-2"><a class="markdownIt-Anchor" href="#捕获异常-2"></a> 捕获异常</h2>
+<ul>
+<li>try: 执行可能产生异常的代码</li>
+<li>catch: 捕获异常</li>
+<li>finally: 无论是否发生异常，总是执行的代码</li>
+</ul>
+<h2 id="声明异常"><a class="markdownIt-Anchor" href="#声明异常"></a> 声明异常</h2>
+<ul>
+<li>throws: 声明可能要抛出的异常</li>
+</ul>
+<h2 id="抛出异常"><a class="markdownIt-Anchor" href="#抛出异常"></a> 抛出异常</h2>
+<ul>
+<li>手动抛出异常</li>
+</ul>
+<h2 id="try-catch-finally"><a class="markdownIt-Anchor" href="#try-catch-finally"></a> try catch finally</h2>
+<ul>
+<li>try之后可以接零个或多个catch， 如果没有catch，则必须接一个finally</li>
+</ul>
+<h2 id="throw-throws"><a class="markdownIt-Anchor" href="#throw-throws"></a> throw throws</h2>
+<ul>
+<li>可以通过throws声明将要抛出何种类型的异常， 通过throw将产生的异常抛出</li>
+</ul>
+<h1 id="throws"><a class="markdownIt-Anchor" href="#throws"></a> throws</h1>
+<ul>
+<li>如果一个方法可能会出现异常，但没有能力处理这种异常，可以在方法声明处用throws子句来声明抛出异常</li>
+<li>throws语句用在方法定义时，生命该方法要抛出的异常类型</li>
+<li>当方法抛出异常列表中的异常时，方法将不对这些类型及其子类类型的异常做处理，而抛向方法的调用者，由它去处理</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public int divideIntegers(int a, int b) throws Exception &#123;</span><br><span class="line">    return a &#x2F; b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        int answer &#x3D; divideIntegers(5, 10);</span><br><span class="line">    &#125; catch(ArithmeticException e) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125; catch(InputMismatchException e) &#123;</span><br><span class="line"></span><br><span class="line">    &#125; catch(Exception e) &#123;</span><br><span class="line"></span><br><span class="line">    &#125; finally &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="throw"><a class="markdownIt-Anchor" href="#throw"></a> throw</h1>
+<ul>
+<li>throw用来抛出一个异常</li>
+<li>抛出的只能够是可抛出类throwable或者其子类的实例对象</li>
+<li>自己抛出的异常，自己处理</li>
+<li>抛出异常使用throws由调用者处理</li>
+</ul>
+<h1 id="自定义异常"><a class="markdownIt-Anchor" href="#自定义异常"></a> 自定义异常</h1>
+<ul>
+<li>使用Java内置的异常类可以描述在编程时出现的大部分异常情况</li>
+<li>也可以通过自定义异常描述特定业务产生的异常类型</li>
+<li>自定义异常就是定义一个类，去继承Throwable类或者它的子类</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class CustomException extends Exception &#123;</span><br><span class="line">    public CustomExpcetion () &#123;</span><br><span class="line">        super(&quot;Custom exception message&quot;)；</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="异常链"><a class="markdownIt-Anchor" href="#异常链"></a> 异常链</h1>
+<ul>
+<li>
+<p>有时候我们会捕获一个异常后再抛出另一个异常</p>
+</li>
+<li>
+<p>顾名思义就是：将异常发生的原因一个穿一个穿起来，把底层的异常信息传给上层，这样逐层抛出</p>
+</li>
+<li>
+<p>新的异常可以保留原有异常的信息</p>
+</li>
+<li>
+<p>构造方法的定义如下</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Exception(String mesasge, Throwable cause)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public void methodOne() throws FirstException &#123;</span><br><span class="line">    throw new FirstException(&quot;first exception&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void methodTwo() throws SecondException &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        methodOne();</span><br><span class="line">    &#125; catch (FirstException e) &#123;</span><br><span class="line">        throw new SecondException(&quot;Second Exception&quot;, e);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void methodThree() throws ThirdException &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        methodTwo();</span><br><span class="line">    &#125; catch (SecondException e) &#123;</span><br><span class="line">        ThridException exception &#x3D; new ThirdException(&quot;third exception&quot;);</span><br><span class="line">        exception.initCause(e); &#x2F;&#x2F; initCause是Exception中的另外一个成员方法，用于添加cause，原有异常的信息</span><br><span class="line">        throw exception;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -486,7 +536,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>Link：</strong>
-      <a href="http://hellcy.github.io/2022/02/09/Design-Pattern-Singleton-in-Java/" title="Design Pattern - Singleton in Java" target="_blank" rel="external">http://hellcy.github.io/2022/02/09/Design-Pattern-Singleton-in-Java/</a>
+      <a href="http://hellcy.github.io/2022/02/11/Exceptions-in-Java/" title="Exceptions in Java" target="_blank" rel="external">http://hellcy.github.io/2022/02/11/Exceptions-in-Java/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -532,13 +582,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2022/02/10/Polymorphism-in-Java/" title="Polymorphism in Java"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2022/01/02/Elastic-Search/" title="Elastic Search"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/02/10/Polymorphism-in-Java/" title="Polymorphism in Java"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
