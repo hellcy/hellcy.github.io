@@ -6,7 +6,7 @@
   <link href="http://hellcy.github.io/atom.xml" rel="self"/>
   
   <link href="http://hellcy.github.io/"/>
-  <updated>2022-02-12T09:22:52.944Z</updated>
+  <updated>2022-02-12T12:11:41.304Z</updated>
   <id>http://hellcy.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java Concurrency</title>
+    <link href="http://hellcy.github.io/2022/02/12/Java-Concurrency/"/>
+    <id>http://hellcy.github.io/2022/02/12/Java-Concurrency/</id>
+    <published>2022-02-12T10:23:56.000Z</published>
+    <updated>2022-02-12T12:11:41.304Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="什么是进程"><a class="markdownIt-Anchor" href="#什么是进程"></a> 什么是进程</h1><ul><li>进程是指可执行程序并存放在计算机存储器的一个指令序列，他是一个动态执行的过程</li></ul><h1 id="什么是线程"><a class="markdownIt-Anchor" href="#什么是线程"></a> 什么是线程</h1><ul><li>线程是比进程还要小的运行单位，一个进程包含多个线程</li><li>线程可以看做一个子程序</li></ul><h1 id="线程的创建"><a class="markdownIt-Anchor" href="#线程的创建"></a> 线程的创建</h1><ul><li>创建一个Thread类，或者一个Thread子类的对象</li><li>创建一个实现了Runnable接口的类的对象</li><li>创建一个实现了Callable接口的类的对象</li></ul><h2 id="继承thread类"><a class="markdownIt-Anchor" href="#继承thread类"></a> 继承Thread类</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread extends Thread &#123;</span><br><span class="line">  public void run() &#123;</span><br><span class="line">    System.out.println(getName() + &quot; thread is running&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="runnable-接口"><a class="markdownIt-Anchor" href="#runnable-接口"></a> Runnable 接口</h2><ul><li>只有一个方法run()</li><li>Runnable是Java中用已实现线程的接口</li><li>任何实现线程功能的类都必须实现该接口</li><li>为什么要实现runnable接口？<ul><li>Java不支持多重继承，如果一个类已经继承了一个父类，那么他只能通过实现runnable接口变成线程</li><li>可以不重写Thread类的其他方法，只需要重写Run()方法</li></ul></li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class PrintRunnable implements Runnable&#123;</span><br><span class="line">  int i &#x3D; 1;</span><br><span class="line"></span><br><span class="line">  @Override</span><br><span class="line">  public void run() &#123;</span><br><span class="line">    while (i &lt;&#x3D; 10) &#123;</span><br><span class="line">      System.out.println(Thread.currentThread().getName() + &quot; is running &quot; + (i++));</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class PrintRunnableTest &#123;</span><br><span class="line">  @Test</span><br><span class="line">  public void testRunnableThread() &#123;</span><br><span class="line">    PrintRunnable runnable1 &#x3D; new PrintRunnable();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; use runnable object to create thread</span><br><span class="line">    &#x2F;&#x2F; 2 threads are sharing the same variable</span><br><span class="line">    Thread t1 &#x3D; new Thread(runnable1);</span><br><span class="line">    t1.start();</span><br><span class="line"></span><br><span class="line">    Thread t2 &#x3D; new Thread(runnable1);</span><br><span class="line">    t2.start();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="实现callable接口"><a class="markdownIt-Anchor" href="#实现callable接口"></a> 实现callable接口</h2><ul><li>重写call()方法，作为线程的主体，具有返回值，并且可以对异常进行声明和抛出， 使用start()方法来启动线程</li></ul><ol><li>创建callable接口的实现类，并实现call()方法</li><li>创建callable实现类的实例，使用FutureTask类来包装callable对象，该FutureTask对象封装了callable对象的call()方法的返回值</li><li>使用FutureTask对象作为Thread对象的target，创建并启动线程</li><li>调用FutureTask对象的get()方法来获得子线程执行结束后的返回值</li></ol><ul><li>实现callable接口，创建线程</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class CustomThread implements Callable&lt;String&gt; &#123;</span><br><span class="line">    @Override</span><br><span class="line">    public String call() throws Exception &#123;</span><br><span class="line">        String str &#x3D; &quot;thread message&quot;;</span><br><span class="line">        return str;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>test thread</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">public void testCustomThread() &#123;</span><br><span class="line">    Callable&lt;String&gt; callObj &#x3D; new CustomThread();</span><br><span class="line">    FutureTask&lt;String&gt; ft &#x3D; new FutureTask&lt;&gt;(callObj);</span><br><span class="line">    Thread thread &#x3D; new Thread(ft);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; start thread</span><br><span class="line">    thread.start();</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F; the return value can only be got after thread has been started</span><br><span class="line">    try &#123;</span><br><span class="line">      System.out.println(ft.get());</span><br><span class="line">    &#125; catch (InterruptedException | ExecutionException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h1 id="线程的状态"><a class="markdownIt-Anchor" href="#线程的状态"></a> 线程的状态</h1><ol><li>new</li><li>runnable</li><li>running</li><li>blocked</li><li>dead</li></ol><p><img src="/../images/Java-Concurrency/1.png" alt="" /></p><h2 id="sleep方法的使用"><a class="markdownIt-Anchor" href="#sleep方法的使用"></a> sleep方法的使用</h2><ul><li><code>public static void sleep(long millis)</code></li><li>作用：在指定的毫秒数内让正在执行的线程休眠（暂停执行）</li><li>参数为休眠的时间，单位是毫秒</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">while (i &lt;&#x3D; 30) &#123;</span><br><span class="line">    System.out.println(Thread.currentThread().getName() + &quot; is running &quot; + (i++));</span><br><span class="line">    try &#123;</span><br><span class="line">    Thread.sleep(1000);</span><br><span class="line">    &#125; catch (InterruptedException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="join方法应用"><a class="markdownIt-Anchor" href="#join方法应用"></a> join方法应用</h2><ul><li><code>public final void join()</code></li><li>等待调用该方法的线程结束后才能执行 （调用者抢占CPU使用权）</li><li><code>public final void join(long millis)</code></li><li>等待该线程终止的最长时间为millis毫秒</li></ul><h2 id="线程优先级"><a class="markdownIt-Anchor" href="#线程优先级"></a> 线程优先级</h2><ul><li>Java为线程类提供了10个优先级</li><li>优先级可以用整数1-10表示，超过范围会抛出异常</li><li>主线程默认优先级为5</li><li><code>getPriority()</code></li><li><code>setPriority()</code></li></ul><h3 id="优先级常量"><a class="markdownIt-Anchor" href="#优先级常量"></a> 优先级常量</h3><ul><li>MAX_PRIORITY 10</li><li>MIN_PRIORITY 1</li><li>NORM_PRIORITY 5 (默认)</li></ul><h1 id="多线程运行问题"><a class="markdownIt-Anchor" href="#多线程运行问题"></a> 多线程运行问题</h1><ul><li>各个线程是通过竞争CPU时间获得运行机会的</li><li>各线程什么时候得到CPU时间，占用多久，是不可预测的</li><li>一个正在运行的线程在什么地方被暂停是不确定的</li></ul><h2 id="同步"><a class="markdownIt-Anchor" href="#同步"></a> 同步</h2><ul><li>synchronized 可以被用在<ul><li>成员方法</li><li>静态方法</li><li>语句块</li></ul></li></ul><h2 id="线程间通信"><a class="markdownIt-Anchor" href="#线程间通信"></a> 线程间通信</h2><ul><li>生产者 - 消费者 模型</li><li>wait()方法，终端方法的执行，是线程等待</li><li>notify()方法，唤醒处于等待的某一个线程，使其结束等待</li><li>notifyAll()方法，唤醒处于等待的所有线程，使它们结束等待</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;什么是进程&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#什么是进程&quot;&gt;&lt;/a&gt; 什么是进程&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;进程是指可执行程序并存放在计算机存储器的一个指令序列，他是一个动态执行的过程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=</summary>
+      
+    
+    
+    
+    
+    <category term="Java" scheme="http://hellcy.github.io/tags/Java/"/>
+    
+  </entry>
   
   <entry>
     <title>Java Collections</title>
@@ -463,21 +489,6 @@
     
     
     <category term="git" scheme="http://hellcy.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>TCP/IP</title>
-    <link href="http://hellcy.github.io/2021/05/26/TCP-IP/"/>
-    <id>http://hellcy.github.io/2021/05/26/TCP-IP/</id>
-    <published>2021-05-26T06:17:17.000Z</published>
-    <updated>2021-05-26T08:00:46.307Z</updated>
-    
-    
-    
-    
-    
-    <category term="TCP/IP" scheme="http://hellcy.github.io/tags/TCP-IP/"/>
     
   </entry>
   
