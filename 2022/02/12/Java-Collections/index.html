@@ -26,7 +26,7 @@
 <meta property="og:description" content="应用场景  无法预测存储数据的数量 同时存储具有一对一关系的数据 需要进行数据的增删 数据重复的问题   集合框架的体系结构  Collection - 类的对象  List  ArrayList   Queue  LinkedList   Set  HashSet     Map - key value pairs  HashMap   List  List是元素有序并且可以重复的集合，成为序">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-02-11T15:17:40.000Z">
-<meta property="article:modified_time" content="2022-02-12T04:41:15.054Z">
+<meta property="article:modified_time" content="2022-02-12T09:22:52.944Z">
 <meta property="article:author" content="Yuan Cheng">
 <meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
@@ -371,7 +371,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text"> 应用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text"> 集合框架的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#collection-%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text"> Collection - 类的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-key-value-pairs"><span class="toc-number">2.2.</span> <span class="toc-text"> Map - key value pairs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-number">3.</span> <span class="toc-text"> List</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#arraylist"><span class="toc-number">3.1.</span> <span class="toc-text"> ArrayList</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#set"><span class="toc-number">4.</span> <span class="toc-text"> Set</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashset"><span class="toc-number">4.1.</span> <span class="toc-text"> HashSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-iterator"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代器 Iterator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-number">5.</span> <span class="toc-text"> Map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap"><span class="toc-number">5.1.</span> <span class="toc-text"> HashMap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text"> 集合排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#comparator%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.</span> <span class="toc-text"> Comparator接口</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text"> 应用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text"> 集合框架的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#collection-%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text"> Collection - 类的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-key-value-pairs"><span class="toc-number">2.2.</span> <span class="toc-text"> Map - key value pairs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-number">3.</span> <span class="toc-text"> List</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#arraylist"><span class="toc-number">3.1.</span> <span class="toc-text"> ArrayList</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#set"><span class="toc-number">4.</span> <span class="toc-text"> Set</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashset"><span class="toc-number">4.1.</span> <span class="toc-text"> HashSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-iterator"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代器 Iterator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-number">5.</span> <span class="toc-text"> Map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap"><span class="toc-number">5.1.</span> <span class="toc-text"> HashMap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text"> 集合排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#comparator%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.</span> <span class="toc-text"> Comparator接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#comparable%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.2.</span> <span class="toc-text"> Comparable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#comparator-%E5%92%8C-comparable-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">6.3.</span> <span class="toc-text"> Comparator 和 Comparable 的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF-2"><span class="toc-number">6.4.</span> <span class="toc-text"> 应用场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#treeset"><span class="toc-number">6.5.</span> <span class="toc-text"> TreeSet</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B3%9B%E5%9E%8B"><span class="toc-number">7.</span> <span class="toc-text"> 泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81%E4%B8%8E%E6%B3%9B%E5%9E%8B"><span class="toc-number">7.1.</span> <span class="toc-text"> 多态与泛型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%9B%E5%9E%8B%E7%B1%BB"><span class="toc-number">7.2.</span> <span class="toc-text"> 自定义泛型类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%9B%E5%9E%8B%E6%96%B9%E6%B3%95"><span class="toc-number">7.3.</span> <span class="toc-text"> 自定义泛型方法</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
@@ -410,10 +410,10 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/12/Java-Collections/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 520(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.2k(words)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 1(minutes)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4(minutes)</span>
 	
 
       </div>
@@ -512,9 +512,84 @@
 <li>if o1 &gt; o2, return positive integer</li>
 </ul>
 </li>
-<li></li>
 </ul>
-
+<h2 id="comparable接口"><a class="markdownIt-Anchor" href="#comparable接口"></a> Comparable接口</h2>
+<ul>
+<li>此接口强行对实现他的每个类的对象进行整体排序</li>
+<li>这种排序被称为类的自然排序，类的compareTo方法被称为他的自然比较方法</li>
+<li>对于集合，通过调用Collections.sort方法进行排序</li>
+<li>对于数组，通过调用Arrays.sort方法进行排序</li>
+<li>int compareTo(T o)
+<ul>
+<li>该对象小于，等于或大于指定对象，则分别返回负整数，零或者正整数 （与之前的<code>int compare(T o1, T o2)</code>相同）</li>
+</ul>
+</li>
+</ul>
+<h2 id="comparator-和-comparable-的区别"><a class="markdownIt-Anchor" href="#comparator-和-comparable-的区别"></a> Comparator 和 Comparable 的区别</h2>
+<table>
+<thead>
+<tr>
+<th>Comparator</th>
+<th>Comparable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>位于java.util包</td>
+<td>位于java.lang包</td>
+</tr>
+<tr>
+<td>在要比较的类的外部实现该接口，并且可以实现多个不同的Comparator</td>
+<td>在要比较的类上实现该接口</td>
+</tr>
+<tr>
+<td>调用sort方法时，要指定comparator的实现类</td>
+<td>调用sort方法时，只需指定集合名即可</td>
+</tr>
+</tbody>
+</table>
+<h2 id="应用场景-2"><a class="markdownIt-Anchor" href="#应用场景-2"></a> 应用场景</h2>
+<ul>
+<li>如果一个类实现了comparable接口，还希望通过不同的方式进行排序，我们还可以定义额外的Comparator</li>
+<li>Comparable会作为默认的排序方式，Comparator接口则作为一个扩展的排序方式</li>
+</ul>
+<h2 id="treeset"><a class="markdownIt-Anchor" href="#treeset"></a> TreeSet</h2>
+<ul>
+<li>TreeSet 是一个有序的集合，它支持自然排序个根据实现Comparable和Comparator接口进行排序</li>
+<li>当TreeSet用来储存String或者Integer对象时，会按照他们的升序排列</li>
+<li>TreeSet无法排列自定义类，元素需要实现Comparator或者Comparable来排序</li>
+</ul>
+<h1 id="泛型"><a class="markdownIt-Anchor" href="#泛型"></a> 泛型</h1>
+<ul>
+<li>
+<p>在Java中增加泛型之前，泛型程序设计使用继承来实现</p>
+<ul>
+<li>坏处
+<ul>
+<li>需要强制转换</li>
+<li>可向集合中添加任意类型的元素，存在风险</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>泛型的使用</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list &#x3D; new ArrayList&lt;String&gt;();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Java SE7及以后的版本中，构造方法中的泛型可以省略</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list &#x3D; new ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="多态与泛型"><a class="markdownIt-Anchor" href="#多态与泛型"></a> 多态与泛型</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">class Cat extends Animal &#123;&#125;</span><br><span class="line"></span><br><span class="line">List&lt;Animal&gt; list &#x3D; new ArrayList&lt;Cat&gt;(); &#x2F;&#x2F; not allowed</span><br><span class="line"></span><br><span class="line">List&lt;Number&gt; numbers &#x3D; new ArrayList&lt;Integer&gt;(); &#x2F;&#x2F; not allowed</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以上代码是不允许的， 变量声明的类型必须匹配传递给实际对象的类型</li>
+</ul>
+<h2 id="自定义泛型类"><a class="markdownIt-Anchor" href="#自定义泛型类"></a> 自定义泛型类</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class NumGeneric&lt;T&gt; &#123;</span><br><span class="line">  private T num;</span><br><span class="line"></span><br><span class="line">  public T getNum() &#123;</span><br><span class="line">    return num;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void setNum(T num) &#123;</span><br><span class="line">    this.num &#x3D; num;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; generic class with two generic types</span><br><span class="line">public class TwoNumGeneric&lt;A, B&gt; &#123;</span><br><span class="line">  private A num1;</span><br><span class="line">  private B num2;</span><br><span class="line"></span><br><span class="line">  public TwoNumGeneric(A num1, B num2) &#123;</span><br><span class="line">    this.num1 &#x3D; num1;</span><br><span class="line">    this.num2 &#x3D; num2;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public A getNum1() &#123;</span><br><span class="line">    return num1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void setNum1(A num1) &#123;</span><br><span class="line">    this.num1 &#x3D; num1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public B getNum2() &#123;</span><br><span class="line">    return num2;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  public void setNum2(B num2) &#123;</span><br><span class="line">    this.num2 &#x3D; num2;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="自定义泛型方法"><a class="markdownIt-Anchor" href="#自定义泛型方法"></a> 自定义泛型方法</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public class GenericMethod &#123;</span><br><span class="line"></span><br><span class="line">  &#x2F;&#x2F; &lt;T&gt; between public and void declare that this is a generic method</span><br><span class="line">  public &lt;T&gt; void printValue(T t) &#123;</span><br><span class="line">    System.out.println(t);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
