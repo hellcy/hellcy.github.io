@@ -17,21 +17,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>Design Patterns - Singleton | Hellcy&#39;s Blog</title>
-  <meta name="description" content="A singleton is a class designed to only ever have one instance.  Singleton Features  At any time, only 0 or 1 instance of the Singleton class exists in the application Singleton classes are created wi">
+  <title>Java Collections | Hellcy&#39;s Blog</title>
+  <meta name="description" content="应用场景  无法预测存储数据的数量 同时存储具有一对一关系的数据 需要进行数据的增删 数据重复的问题   集合框架的体系结构  Collection - 类的对象  List  ArrayList   Queue  LinkedList   Set  HashSet     Map - key value pairs  HashMap   List  List是元素有序并且可以重复的集合，成为序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Design Patterns - Singleton">
-<meta property="og:url" content="http://hellcy.github.io/2021/04/15/Design-Patterns-Singleton/index.html">
+<meta property="og:title" content="Java Collections">
+<meta property="og:url" content="http://hellcy.github.io/2022/02/12/Java-Collections/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="A singleton is a class designed to only ever have one instance.  Singleton Features  At any time, only 0 or 1 instance of the Singleton class exists in the application Singleton classes are created wi">
+<meta property="og:description" content="应用场景  无法预测存储数据的数量 同时存储具有一对一关系的数据 需要进行数据的增删 数据重复的问题   集合框架的体系结构  Collection - 类的对象  List  ArrayList   Queue  LinkedList   Set  HashSet     Map - key value pairs  HashMap   List  List是元素有序并且可以重复的集合，成为序">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-04-15T12:03:02.000Z">
-<meta property="article:modified_time" content="2021-05-24T07:27:02.659Z">
+<meta property="article:published_time" content="2022-02-11T15:17:40.000Z">
+<meta property="article:modified_time" content="2022-02-12T04:41:15.054Z">
 <meta property="article:author" content="Yuan Cheng">
-<meta property="article:tag" content="Design Patterns">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://hellcy.github.io/2021/04/15/Design-Patterns-Singleton/index.html">
+  <link rel="canonical" href="http://hellcy.github.io/2022/02/12/Java-Collections/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -371,21 +371,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#singleton-features"><span class="toc-number">1.</span> <span class="toc-text"> Singleton Features</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#naive-implementation-of-singleton"><span class="toc-number">2.</span> <span class="toc-text"> Naive implementation of Singleton</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#thread-safe-singleton"><span class="toc-number">3.</span> <span class="toc-text"> Thread Safe Singleton</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#static-constructors"><span class="toc-number">4.</span> <span class="toc-text"> Static Constructors</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lazyt"><span class="toc-number">5.</span> <span class="toc-text"> Lazy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#singletons-vs-static-classes"><span class="toc-number">6.</span> <span class="toc-text"> Singletons vs Static Classes</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#singleton-behavior-using-containersioc"><span class="toc-number">7.</span> <span class="toc-text"> Singleton Behavior Using Containers(IoC)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#summary"><span class="toc-number">8.</span> <span class="toc-text"> Summary</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">1.</span> <span class="toc-text"> 应用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">2.</span> <span class="toc-text"> 集合框架的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#collection-%E7%B1%BB%E7%9A%84%E5%AF%B9%E8%B1%A1"><span class="toc-number">2.1.</span> <span class="toc-text"> Collection - 类的对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map-key-value-pairs"><span class="toc-number">2.2.</span> <span class="toc-text"> Map - key value pairs</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#list"><span class="toc-number">3.</span> <span class="toc-text"> List</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#arraylist"><span class="toc-number">3.1.</span> <span class="toc-text"> ArrayList</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#set"><span class="toc-number">4.</span> <span class="toc-text"> Set</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashset"><span class="toc-number">4.1.</span> <span class="toc-text"> HashSet</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-iterator"><span class="toc-number">4.2.</span> <span class="toc-text"> 迭代器 Iterator</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#map"><span class="toc-number">5.</span> <span class="toc-text"> Map</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hashmap"><span class="toc-number">5.1.</span> <span class="toc-text"> HashMap</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%8E%92%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text"> 集合排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#comparator%E6%8E%A5%E5%8F%A3"><span class="toc-number">6.1.</span> <span class="toc-text"> Comparator接口</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-Design-Patterns-Singleton" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Java-Collections" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      Design Patterns - Singleton
+      Java Collections
     </h1>
   
 
@@ -393,131 +393,126 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/04/15/Design-Patterns-Singleton/" class="article-date">
-	  <time datetime="2021-04-15T12:03:02.000Z" itemprop="datePublished">15-04-2021</time>
+	<a href="/2022/02/12/Java-Collections/" class="article-date">
+	  <time datetime="2022-02-11T15:17:40.000Z" itemprop="datePublished">12-02-2022</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a>
+	<a class="article-tag-link-link" href="/tags/Java/" rel="tag">Java</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/04/15/Design-Patterns-Singleton/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/12/Java-Collections/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1k(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 520(words)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 6(minutes)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 1(minutes)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>A singleton is a class designed to only ever have one instance.</p>
-<h2 id="singleton-features"><a class="markdownIt-Anchor" href="#singleton-features"></a> Singleton Features</h2>
+        <h1 id="应用场景"><a class="markdownIt-Anchor" href="#应用场景"></a> 应用场景</h1>
 <ul>
-<li>At any time, only 0 or 1 instance of the Singleton class exists in the application</li>
-<li>Singleton classes are created without parameters</li>
-<li>Assume lazy instantiation as the default</li>
-<li>A single, private, parameterless constructor</li>
-<li>Sealed class</li>
-<li>A private, static field holds the only reference to the instance</li>
-<li>A public static method provides access to the field</li>
+<li>无法预测存储数据的数量</li>
+<li>同时存储具有一对一关系的数据</li>
+<li>需要进行数据的增删</li>
+<li>数据重复的问题</li>
 </ul>
-<h2 id="naive-implementation-of-singleton"><a class="markdownIt-Anchor" href="#naive-implementation-of-singleton"></a> Naive implementation of Singleton</h2>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">namespace Singleton</span><br><span class="line">&#123;</span><br><span class="line">#nullable enable</span><br><span class="line">    public sealed class Singleton</span><br><span class="line">    &#123;</span><br><span class="line">        private static Singleton? _instance;</span><br><span class="line">        public static Singleton Instance</span><br><span class="line">        &#123;</span><br><span class="line">            get</span><br><span class="line">            &#123;</span><br><span class="line">                &#x2F;&#x2F; lazy instantiate</span><br><span class="line">                Logger.Log(&quot;Instance called&quot;);</span><br><span class="line">                return _instance ??&#x3D; new Singleton();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        private Singleton()</span><br><span class="line">        &#123;</span><br><span class="line">            &#x2F;&#x2F; cannot be created except within this class</span><br><span class="line">            Logger.Log(&quot;Constructor invoked&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>The problem of this native implementation is Thread safety. In multi-thread environment, the If block can be reached by multiple threads concurrently, resulting in multiple instantiations of Singleton.</p>
-<h2 id="thread-safe-singleton"><a class="markdownIt-Anchor" href="#thread-safe-singleton"></a> Thread Safe Singleton</h2>
-<p>One way to make sure the Singleton Instance will not be created in a multiple thread environment is to use a lock</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static readonly object padlock &#x3D; new object();</span><br></pre></td></tr></table></figure>
-<p>This lock is a private static readonly object that will be shared by all references to the Singleton instance</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; this lock is used on every reference to Singleton</span><br><span class="line">lock (padlock)</span><br><span class="line">&#123;</span><br><span class="line">    Logger.Log(&quot;Instance called.&quot;);</span><br><span class="line">    &#x2F;&#x2F; lazy instantiation</span><br><span class="line">    return _instance ??&#x3D; new Singleton();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>A slight better way to add lock is to use the double check locking pattern, this gives us a better performance because we don’t need to check lock very often</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">if (_instance &#x3D;&#x3D; null)</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; this lock is used on every reference to Singleton</span><br><span class="line">    lock (padlock)</span><br><span class="line">    &#123;</span><br><span class="line">        Logger.Log(&quot;Instance called.&quot;);</span><br><span class="line">        &#x2F;&#x2F; lazy instantiation</span><br><span class="line">        _instance &#x3D; new Singleton();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">return _instance;</span><br></pre></td></tr></table></figure>
+<h1 id="集合框架的体系结构"><a class="markdownIt-Anchor" href="#集合框架的体系结构"></a> 集合框架的体系结构</h1>
+<h2 id="collection-类的对象"><a class="markdownIt-Anchor" href="#collection-类的对象"></a> Collection - 类的对象</h2>
 <ul>
-<li>Locking adds thread safety</li>
-<li>First version imposes lock on every access, not just first time</li>
-<li>Second version is better, but has some issues with the ECMA CLI spec that may be a concern</li>
-<li>Neither approach works as well as the next ones</li>
+<li>List
+<ul>
+<li>ArrayList</li>
 </ul>
-<h2 id="static-constructors"><a class="markdownIt-Anchor" href="#static-constructors"></a> Static Constructors</h2>
+</li>
+<li>Queue
 <ul>
-<li>C# static constructors only run once per app domain</li>
-<li>static constructors are called when any static member of a type is referenced</li>
-<li>Make sure you use an explicit static constructor to avoid issue with C# compiler and beforefieldinit (beforefieldinit is a hint the compiler uses to let it know static initializers can be called sooner, and this is the default if the type does not have an explicit static constructor. Adding an explicit static constructor avoids having beforefieldinit applied, which helps make our singleton behavior <strong>lazier</strong>)</li>
+<li>LinkedList</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public sealed class StaticConstructorSingleton : ISingleton</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; reading this will initialize the instance</span><br><span class="line">    public static readonly string GREETING &#x3D; &quot;Hi!&quot;;</span><br><span class="line"></span><br><span class="line">    public static StaticConstructorSingleton Instance</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            Logger.Log(&quot;Instance called&quot;);</span><br><span class="line">            return Nested._instance;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private class Nested</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F;Tell C# compiler not to mark type as beforefieldinit</span><br><span class="line">        static Nested()</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        internal static readonly StaticConstructorSingleton _instance &#x3D; new StaticConstructorSingleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private StaticConstructorSingleton()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; cannot be created except within this class</span><br><span class="line">        Logger.Log(&quot;Constructor invoked.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This approach is Thread-safe, no locks (good performance), but is complex and non-intuitive.</p>
-<h2 id="lazyt"><a class="markdownIt-Anchor" href="#lazyt"></a> Lazy<T></h2>
-<p>One difference between this approach and the naive approach is that the private static readonly field is type of <code>Lazy&lt;Singleton&gt;</code> rather than just Singleton, this field is initilized at construction to create a new <code>Lazy&lt;T&gt;</code> instance, and a lambda function is passed into the <code>Lazy&lt;T&gt;</code> constructor with the logic needed to create the singleton instance.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">public sealed class LazyTSingleton</span><br><span class="line">&#123;</span><br><span class="line">    &#x2F;&#x2F; reading this will initilize the instance</span><br><span class="line">    private static readonly Lazy&lt;LazyTSingleton&gt; _lazy &#x3D; new Lazy&lt;LazyTSingleton&gt;(() &#x3D;&gt; new LazyTSingleton());</span><br><span class="line"></span><br><span class="line">    public static LazyTSingleton Instance</span><br><span class="line">    &#123;</span><br><span class="line">        get</span><br><span class="line">        &#123;</span><br><span class="line">            Logger.Log(&quot;Instance called.&quot;);</span><br><span class="line">            return _lazy.Value;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private LazyTSingleton()</span><br><span class="line">    &#123;</span><br><span class="line">        &#x2F;&#x2F; cannot be created except within this class</span><br><span class="line">        Logger.Log(&quot;Constructor invoked.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>This approach is very easy to understand and has the performance and thread safe feature.</p>
-<h2 id="singletons-vs-static-classes"><a class="markdownIt-Anchor" href="#singletons-vs-static-classes"></a> Singletons vs Static Classes</h2>
-<table>
-<thead>
-<tr>
-<th>Singletons</th>
-<th style="text-align:center">Static Classes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Can implement interfaces</td>
-<td style="text-align:center">No interfaces</td>
-</tr>
-<tr>
-<td>Can be passed as an argument</td>
-<td style="text-align:center">Cannot be passed as arguments</td>
-</tr>
-<tr>
-<td>Can be assigned to variables</td>
-<td style="text-align:center">Cannot be assigned</td>
-</tr>
-<tr>
-<td>Support polymorphism</td>
-<td style="text-align:center">Purely procedural</td>
-</tr>
-<tr>
-<td>Can have state</td>
-<td style="text-align:center">Can only access global state</td>
-</tr>
-<tr>
-<td>Can be serialized</td>
-<td style="text-align:center">No support for serialization</td>
-</tr>
-</tbody>
-</table>
-<h2 id="singleton-behavior-using-containersioc"><a class="markdownIt-Anchor" href="#singleton-behavior-using-containersioc"></a> Singleton Behavior Using Containers(IoC)</h2>
+</li>
+<li>Set
 <ul>
-<li>.NET Core has built-in support for IoC Containers</li>
-<li>Classes request dependencies via constructor</li>
-<li>Classes should follow Explicit Dependencies Principle</li>
-<li>Container manages abstraction-implementation mapping</li>
-<li>Container manages instnace lifetime</li>
+<li>HashSet</li>
 </ul>
-<p>Manage Lifetime Using Container, not Class Design</p>
-<p>Easily manage and modify individual class lifetimes using an IoC container</p>
-<p>Can also be used by any service, console application, etc…</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public void ConfigureService(ServiceCollection services) </span><br><span class="line">&#123;</span><br><span class="line">    services.AddTransient&lt;IOrderService, OrderService&gt;();</span><br><span class="line">    services.AddScoped&lt;IOrderRepository, OrderRepository&gt;();</span><br><span class="line">    services.AddSingleton&lt;IConnectionManager, ConnectionManager&gt;();</span><br><span class="line">    services.AddSingleton&lt;SomeInstance&gt;(new SomeInstance);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Transient: A new instance of the type is provided any time a class requests that type as a dependency.</p>
-<p>Scope: Define a scope and any instance requested within that scope will be shared if it’s requested again within that socpe. The first request will get a new instance and all subsequent requests in that scope will get that same instance.</p>
-<p>Singleton: only one instance will be created and shared by all references. Just like the Singleton pattern.</p>
-<p>IoC containers are probably the best approach in systems that already use them. Otherwise, <code>Laszy&lt;T&gt;</code> provides an elegant, easily understood approach.</p>
-<h2 id="summary"><a class="markdownIt-Anchor" href="#summary"></a> Summary</h2>
+</li>
+</ul>
+<h2 id="map-key-value-pairs"><a class="markdownIt-Anchor" href="#map-key-value-pairs"></a> Map - key value pairs</h2>
 <ul>
-<li>A Singleton class is designed to only ever have one instance created.</li>
-<li>The Singleton pattern makes the class itself responsible for enforcing Singleton behavior</li>
-<li>It’s easy to get the pattern wrong when implementing by hand</li>
-<li><code>Lazy&lt;T&gt;</code> is one of the better ways to apply the pattern</li>
-<li>Singletons are different from Static Classes</li>
-<li>IoC/DI containers are usually a better place to manage instance lifetime in .NET applications.</li>
+<li>HashMap</li>
+</ul>
+<h1 id="list"><a class="markdownIt-Anchor" href="#list"></a> List</h1>
+<ul>
+<li>List是元素有序并且可以重复的集合，成为序列</li>
+<li>List可以精确的控制每个元素的插入位置，或删除某个位置的元素</li>
+<li>List的两个主要实现是ArrayList和LinkedList</li>
+</ul>
+<h2 id="arraylist"><a class="markdownIt-Anchor" href="#arraylist"></a> ArrayList</h2>
+<ul>
+<li>ArrayList底层是由数组实现的</li>
+<li>动态增长（倍增)，以满足应用程序的需求</li>
+<li>在列表尾部插入或删除数据非常有效，增删中间部分的元素则不是非常高效</li>
+<li>更适合查找和更新元素</li>
+<li>ArrayList中的元素可以为null</li>
+</ul>
+<h1 id="set"><a class="markdownIt-Anchor" href="#set"></a> Set</h1>
+<ul>
+<li>Set是元素无序并且不可以重复的集合</li>
+</ul>
+<h2 id="hashset"><a class="markdownIt-Anchor" href="#hashset"></a> HashSet</h2>
+<ul>
+<li>HashSet是Set的一个重要的实现类，</li>
+<li>HashSet中的元素无序并且不可以重复</li>
+<li>HashSet中只允许一个null元素</li>
+<li>具有良好的存取和查找性能</li>
+</ul>
+<h2 id="迭代器-iterator"><a class="markdownIt-Anchor" href="#迭代器-iterator"></a> 迭代器 Iterator</h2>
+<ul>
+<li>Iterator接口可以以统一的方法对各种集合元素进行遍历</li>
+<li>hasNext()方法检测集合中是否还有下一个元素</li>
+<li>next()方法返回集合中的下一个元素</li>
+</ul>
+<h1 id="map"><a class="markdownIt-Anchor" href="#map"></a> Map</h1>
+<ul>
+<li>Map中的数据是以key value的形式存储的</li>
+<li>key value是以Entry类型的对象实例存在</li>
+<li>可以通过key值快速得查找value</li>
+<li>一个映射不能包含重复的key， value可以重复</li>
+<li>每个key最多映射到一个value</li>
+</ul>
+<h2 id="hashmap"><a class="markdownIt-Anchor" href="#hashmap"></a> HashMap</h2>
+<ul>
+<li>给予哈希表得Map实现</li>
+<li>允许使用null值和null key</li>
+<li>key值不允许重复</li>
+<li>HashMap中的entry对象是无序排列得</li>
+</ul>
+<h1 id="集合排序"><a class="markdownIt-Anchor" href="#集合排序"></a> 集合排序</h1>
+<ul>
+<li>使用Collections类的sort()方法</li>
+<li>使用Comparator和Comparable接口进行排序</li>
+</ul>
+<h2 id="comparator接口"><a class="markdownIt-Anchor" href="#comparator接口"></a> Comparator接口</h2>
+<ul>
+<li>强行对某个对象进行整体排序的比较函数</li>
+<li>可以将comparator传递给sort方法 （如Collections.sort或者Arrays.sort）</li>
+<li>int compare(T o1, T o2) 比较用来排序的两个参数
+<ul>
+<li>if o1 &lt; o2, return negative integer</li>
+<li>if o1 == o2, return 0</li>
+<li>if o1 &gt; o2, return positive integer</li>
+</ul>
+</li>
+<li></li>
 </ul>
 
       
@@ -528,7 +523,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>Link：</strong>
-      <a href="http://hellcy.github.io/2021/04/15/Design-Patterns-Singleton/" title="Design Patterns - Singleton" target="_blank" rel="external">http://hellcy.github.io/2021/04/15/Design-Patterns-Singleton/</a>
+      <a href="http://hellcy.github.io/2022/02/12/Java-Collections/" title="Java Collections" target="_blank" rel="external">http://hellcy.github.io/2022/02/12/Java-Collections/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -574,13 +569,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/04/16/Design-Patterns-Strategy/" title="Design Patterns - Strategy"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/04/14/Creating-Automated-Browser-Tests-with-Selenium-in-C/" title="Creating Automated Browser Tests with Selenium in C#"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/02/11/Exceptions-in-Java/" title="Exceptions in Java"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
