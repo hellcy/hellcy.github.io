@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>Servlet and JSP</title>
+      <link href="2022/02/15/Servlet-and-JSP/"/>
+      <url>2022/02/15/Servlet-and-JSP/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>XML Basics</title>
+      <link href="2022/02/14/XML-Basics/"/>
+      <url>2022/02/14/XML-Basics/</url>
+      
+        <content type="html"><![CDATA[<h1 id="xml是什么"><a class="markdownIt-Anchor" href="#xml是什么"></a> XML是什么</h1><ul><li>XML的全称是Exensible Markup Language，可扩展标记语言</li><li>编写XML就是编写标签，与HTML非常相似</li><li>良好的人机可读性</li></ul><h2 id="xml与html的比较"><a class="markdownIt-Anchor" href="#xml与html的比较"></a> XML与HTML的比较</h2><ul><li>XML与HTML非常相似，都是编写标签</li><li>XML没有预定义的标签，HTML存在大量预定义的标签</li><li>XML重在保存与传输数据，HTML用于显示信息</li></ul><h1 id="xml的用途"><a class="markdownIt-Anchor" href="#xml的用途"></a> XML的用途</h1><ul><li>作为应用配置文件</li><li>用于保存程序产生的数据</li><li>网络间的数据传输，利用soap协议</li></ul><h1 id="xml文档结构"><a class="markdownIt-Anchor" href="#xml文档结构"></a> XML文档结构</h1><ul><li>第一行必须是XML声明</li><li>有且只有一个根节点</li><li>XML标签的书写规则与HTML相同</li></ul><h2 id="xml声明"><a class="markdownIt-Anchor" href="#xml声明"></a> XML声明</h2><ul><li>XML声明说明XML文档的基本信息，包括版本号与字符集，写在XML第一行</li><li><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</code></li></ul><h1 id="xml标签书写规则"><a class="markdownIt-Anchor" href="#xml标签书写规则"></a> XML标签书写规则</h1><h2 id="合法的标签名"><a class="markdownIt-Anchor" href="#合法的标签名"></a> 合法的标签名</h2><ul><li>标签名要有意义</li><li>建议使用英文小写字母，单词之间使用<code>-</code>分割</li><li>建议多级标签之间不要存在重名的情况</li></ul><h2 id="适当的注释与缩进"><a class="markdownIt-Anchor" href="#适当的注释与缩进"></a> 适当的注释与缩进</h2><ul><li>更容易阅读</li></ul><h2 id="合理使用属性"><a class="markdownIt-Anchor" href="#合理使用属性"></a> 合理使用属性</h2><ul><li>具有唯一性的值可以作为属性</li></ul><h2 id="处理特殊字符"><a class="markdownIt-Anchor" href="#处理特殊字符"></a> 处理特殊字符</h2><ul><li><code>&lt;</code>和<code>&gt;</code></li><li><code>&amp;lt;</code>和<code>&amp;gt;</code></li></ul><h2 id="cdata标签"><a class="markdownIt-Anchor" href="#cdata标签"></a> CDATA标签</h2><ul><li>CDATA指的是不应由XML解析器进行解析的文本数据</li><li><code>&lt;![CDATA[&quot;content&quot;]]&gt;</code></li></ul><h2 id="有序的子元素"><a class="markdownIt-Anchor" href="#有序的子元素"></a> 有序的子元素</h2><ul><li>在XML多层嵌套的子元素中，标签前后顺序应保持一致</li></ul><h1 id="xml语义约束"><a class="markdownIt-Anchor" href="#xml语义约束"></a> XML语义约束</h1><ul><li>XML文档结构正确，但可能不是有效的</li><li>XML语义约束有两种定义方式，DTD和XML Schema</li></ul><h2 id="document-type-definition"><a class="markdownIt-Anchor" href="#document-type-definition"></a> Document Type Definition</h2><ul><li>文件扩展名为 .dtd</li><li>在XML中使用<code>&lt;!DOCTYPE&gt;</code>标签来引用DTD文件</li></ul><h2 id="xml-schema"><a class="markdownIt-Anchor" href="#xml-schema"></a> XML Schema</h2><ul><li>文件扩展名为 .xsd</li><li>比DTD更为复杂，提供了更多功能</li><li>提供了数据类型，格式限定，数据范围等特性</li><li>是W3C标准</li></ul><h1 id="dom文档对象模型"><a class="markdownIt-Anchor" href="#dom文档对象模型"></a> DOM文档对象模型</h1><ul><li>Document Object Model 定义了访问和操作XML文档的标准方法，DOM把XML文档作为树结构来查看，能够通过DOM树来读写所有元素</li></ul><h2 id="dom4j"><a class="markdownIt-Anchor" href="#dom4j"></a> Dom4j</h2><ul><li>一个易用的，开源的库，用于解析XML，它应用于Java平台，具有性能优异，功能强大和及其易用的特点</li><li>Dom4j将XML视为document对象</li><li>XML标签被Dom4j定义为element对象</li></ul><h1 id="xpath路径表达式"><a class="markdownIt-Anchor" href="#xpath路径表达式"></a> XPath路径表达式</h1><ul><li>XML文档中查找数据的语言</li><li>掌握XPath可以极大地提高在提取数据时的开发效率</li><li>学习XPath本质就是掌握各种形式表达式的使用技巧</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> XML </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Java Concurrency</title>
       <link href="2022/02/12/Java-Concurrency/"/>
       <url>2022/02/12/Java-Concurrency/</url>

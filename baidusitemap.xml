@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hellcy.github.io/2022/02/15/Servlet-and-JSP/</loc>
+    <lastmod>2022-02-15</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2022/02/14/XML-Basics/</loc>
+    <lastmod>2022-02-15</lastmod>
+  </url>
+  <url>
     <loc>http://hellcy.github.io/2022/02/11/Java-Exceptions/</loc>
     <lastmod>2022-02-12</lastmod>
   </url>
