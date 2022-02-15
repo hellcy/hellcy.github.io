@@ -6,7 +6,7 @@
   <link href="http://hellcy.github.io/atom.xml" rel="self"/>
   
   <link href="http://hellcy.github.io/"/>
-  <updated>2022-02-15T04:51:13.719Z</updated>
+  <updated>2022-02-15T06:44:14.670Z</updated>
   <id>http://hellcy.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Frontend Basics</title>
+    <link href="http://hellcy.github.io/2022/02/15/Frontend-Basics/"/>
+    <id>http://hellcy.github.io/2022/02/15/Frontend-Basics/</id>
+    <published>2022-02-15T06:42:21.000Z</published>
+    <updated>2022-02-15T06:44:14.670Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="jquery"><a class="markdownIt-Anchor" href="#jquery"></a> jQuery</h1><ul><li>为了简化JS开发的第三方库 （jQuery，Vue，AngularJS，React）</li><li>jQuery的核心是选择器，用于获取页面元素</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;jquery&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#jquery&quot;&gt;&lt;/a&gt; jQuery&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;为了简化JS开发的第三方库 （jQuery，Vue，AngularJS，React）&lt;/li&gt;
+&lt;li&gt;jQ</summary>
+      
+    
+    
+    
+    
+    <category term="Frontend" scheme="http://hellcy.github.io/tags/Frontend/"/>
+    
+  </entry>
   
   <entry>
     <title>Servlet and JSP</title>
@@ -467,30 +492,6 @@
     
     
     <category term="Data" scheme="http://hellcy.github.io/tags/Data/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Introduction to Azure</title>
-    <link href="http://hellcy.github.io/2021/06/03/Introduction-to-Azure/"/>
-    <id>http://hellcy.github.io/2021/06/03/Introduction-to-Azure/</id>
-    <published>2021-06-03T04:01:51.000Z</published>
-    <updated>2022-02-10T14:39:24.301Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="documentation"><a class="markdownIt-Anchor" href="#documentation"></a> Documentation</h2><ul><li>Best documentation in the world</li></ul><h2 id="azure-interaction-experiences"><a class="markdownIt-Anchor" href="#azure-interaction-experiences"></a> Azure Interaction Experiences</h2><ul><li>Portal</li><li>CLI</li><li>VS Code</li><li>Visual Studio</li></ul><h2 id="enablement"><a class="markdownIt-Anchor" href="#enablement"></a> Enablement</h2><ul><li>Getting certified</li></ul>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h2 id=&quot;documentation&quot;&gt;&lt;a class=&quot;markdownIt-Anchor&quot; href=&quot;#documentation&quot;&gt;&lt;/a&gt; Documentation&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Best documentation in the world&lt;/</summary>
-      
-    
-    
-    
-    
-    <category term="Azure" scheme="http://hellcy.github.io/tags/Azure/"/>
     
   </entry>
   
