@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://hellcy.github.io/2022/02/16/MySQL-Basics/</loc>
+    
+    <lastmod>2022-02-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://hellcy.github.io/2021/07/23/MySQL-and-Database-Design/</loc>
+    
+    <lastmod>2022-02-16</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://hellcy.github.io/2022/02/15/Frontend-Basics/</loc>
     
     <lastmod>2022-02-16</lastmod>
@@ -66,13 +80,6 @@
   
   <url>
     <loc>http://hellcy.github.io/2021/06/03/Introduction-to-Azure/</loc>
-    
-    <lastmod>2022-02-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://hellcy.github.io/2021/07/23/MySQL-and-Database-Design/</loc>
     
     <lastmod>2022-02-10</lastmod>
     
@@ -515,7 +522,7 @@
 
   <url>
     <loc>http://hellcy.github.io/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -523,280 +530,294 @@
   
   <url>
     <loc>http://hellcy.github.io/tags/AWS/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/C/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/API/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/IIS/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Load-Testing/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Java/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Kotlin/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Android-Studio/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/iOS/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Swift/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Mifare/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/ASP-NET-Core/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/GraphQL/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/LINQ/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Data-Structures/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Selenium/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Functional-Tests/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Dependency-Injection/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Design-Patterns/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Entity-Framework/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/JavaScript/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Unit-Tests/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/NET/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Dynamic-Programming/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/SQL/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/SSO/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/React/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/TCP-IP/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Wishlist/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Python/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Web-Development/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Data/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Data-Virtualization/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Azure/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Elastic-Search/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Spring/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/git/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Scrum/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/XML/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://hellcy.github.io/tags/Frontend/</loc>
-    <lastmod>2022-02-16</lastmod>
+    <lastmod>2022-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://hellcy.github.io/tags/MySQL/</loc>
+    <lastmod>2022-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://hellcy.github.io/tags/Database/</loc>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

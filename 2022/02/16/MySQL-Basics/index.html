@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>MySQL Basics | Hellcy&#39;s Blog</title>
+  <meta name="description" content="什么是数据库系统  DBMS是指一个能为用户提供信息服务的系统，它实现了有组织的，动态的储存大量相关数据的功能，提供了数据处理和信息资源共享的便利手段   关系型数据库 （RDBMS）  使用了关系模型的数据库系统 关系模型中，数据是分类存放的，数据之间可以有联系   什么是NoSQL数据库  NoSQL数据库指的是数据分类存放，但是数据之间没有关联关系的数据库系统   MySQL配置文件  M">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL Basics">
+<meta property="og:url" content="http://hellcy.github.io/2022/02/16/MySQL-Basics/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="什么是数据库系统  DBMS是指一个能为用户提供信息服务的系统，它实现了有组织的，动态的储存大量相关数据的功能，提供了数据处理和信息资源共享的便利手段   关系型数据库 （RDBMS）  使用了关系模型的数据库系统 关系模型中，数据是分类存放的，数据之间可以有联系   什么是NoSQL数据库  NoSQL数据库指的是数据分类存放，但是数据之间没有关联关系的数据库系统   MySQL配置文件  M">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/MySQL-Basics/1.png">
+<meta property="og:image" content="http://hellcy.github.io/images/MySQL-Basics/2.png">
+<meta property="article:published_time" content="2022-02-16T04:37:40.000Z">
+<meta property="article:modified_time" content="2022-02-17T10:10:17.339Z">
+<meta property="article:author" content="Yuan Cheng">
+<meta property="article:tag" content="MySQL">
+<meta property="article:tag" content="Database">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/MySQL-Basics/1.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://hellcy.github.io/2022/02/16/MySQL-Basics/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+    <link href="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.css" rel="stylesheet">
+  
+  
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.css">
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body class="main-center theme-black" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/hellcy" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Yuan Cheng</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Software Engineer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Sydney, Australia</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav menu-highlight">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>Welcome to my blog!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/NET/" rel="tag">.NET</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/API/" rel="tag">API</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AWS/" rel="tag">AWS</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Android-Studio/" rel="tag">Android Studio</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Azure/" rel="tag">Azure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C#</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data/" rel="tag">Data</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structures/" rel="tag">Data Structures</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Virtualization/" rel="tag">Data Virtualization</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/" rel="tag">Database</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dependency-Injection/" rel="tag">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Patterns/" rel="tag">Design Patterns</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Dynamic-Programming/" rel="tag">Dynamic Programming</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Elastic-Search/" rel="tag">Elastic Search</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Entity-Framework/" rel="tag">Entity Framework</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Frontend/" rel="tag">Frontend</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Functional-Tests/" rel="tag">Functional Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/GraphQL/" rel="tag">GraphQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/IIS/" rel="tag">IIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JavaScript/" rel="tag">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Kotlin/" rel="tag">Kotlin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LINQ/" rel="tag">LINQ</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Load-Testing/" rel="tag">Load Testing</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mifare/" rel="tag">Mifare</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/" rel="tag">MySQL</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/" rel="tag">SQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SSO/" rel="tag">SSO</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Scrum/" rel="tag">Scrum</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Selenium/" rel="tag">Selenium</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring/" rel="tag">Spring</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unit-Tests/" rel="tag">Unit Tests</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web-Development/" rel="tag">Web Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Wishlist/" rel="tag">Wishlist</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XML/" rel="tag">XML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/" rel="tag">iOS</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/NET/" style="font-size: 13.2px;">.NET</a> <a href="/tags/API/" style="font-size: 13.4px;">API</a> <a href="/tags/ASP-NET-Core/" style="font-size: 13.2px;">ASP.NET Core</a> <a href="/tags/AWS/" style="font-size: 13.8px;">AWS</a> <a href="/tags/Android-Studio/" style="font-size: 13px;">Android Studio</a> <a href="/tags/Azure/" style="font-size: 13px;">Azure</a> <a href="/tags/C/" style="font-size: 13.2px;">C#</a> <a href="/tags/Data/" style="font-size: 13.2px;">Data</a> <a href="/tags/Data-Structures/" style="font-size: 13.2px;">Data Structures</a> <a href="/tags/Data-Virtualization/" style="font-size: 13.2px;">Data Virtualization</a> <a href="/tags/Database/" style="font-size: 13.2px;">Database</a> <a href="/tags/Dependency-Injection/" style="font-size: 13px;">Dependency Injection</a> <a href="/tags/Design-Patterns/" style="font-size: 14px;">Design Patterns</a> <a href="/tags/Dynamic-Programming/" style="font-size: 13px;">Dynamic Programming</a> <a href="/tags/Elastic-Search/" style="font-size: 13px;">Elastic Search</a> <a href="/tags/Entity-Framework/" style="font-size: 13px;">Entity Framework</a> <a href="/tags/Frontend/" style="font-size: 13px;">Frontend</a> <a href="/tags/Functional-Tests/" style="font-size: 13px;">Functional Tests</a> <a href="/tags/GraphQL/" style="font-size: 13px;">GraphQL</a> <a href="/tags/IIS/" style="font-size: 13px;">IIS</a> <a href="/tags/Java/" style="font-size: 13.6px;">Java</a> <a href="/tags/JavaScript/" style="font-size: 13px;">JavaScript</a> <a href="/tags/Kotlin/" style="font-size: 13px;">Kotlin</a> <a href="/tags/LINQ/" style="font-size: 13px;">LINQ</a> <a href="/tags/Load-Testing/" style="font-size: 13px;">Load Testing</a> <a href="/tags/Mifare/" style="font-size: 13px;">Mifare</a> <a href="/tags/MySQL/" style="font-size: 13.2px;">MySQL</a> <a href="/tags/Python/" style="font-size: 13px;">Python</a> <a href="/tags/React/" style="font-size: 13.2px;">React</a> <a href="/tags/SQL/" style="font-size: 13px;">SQL</a> <a href="/tags/SSO/" style="font-size: 13px;">SSO</a> <a href="/tags/Scrum/" style="font-size: 13px;">Scrum</a> <a href="/tags/Selenium/" style="font-size: 13px;">Selenium</a> <a href="/tags/Spring/" style="font-size: 13px;">Spring</a> <a href="/tags/Swift/" style="font-size: 13.2px;">Swift</a> <a href="/tags/TCP-IP/" style="font-size: 13px;">TCP/IP</a> <a href="/tags/Unit-Tests/" style="font-size: 13px;">Unit Tests</a> <a href="/tags/Web-Development/" style="font-size: 13px;">Web Development</a> <a href="/tags/Wishlist/" style="font-size: 13.2px;">Wishlist</a> <a href="/tags/XML/" style="font-size: 13px;">XML</a> <a href="/tags/git/" style="font-size: 13.2px;">git</a> <a href="/tags/iOS/" style="font-size: 13px;">iOS</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">39</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">10</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled ">
+        
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/16/MySQL-Basics/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/16/MySQL-Basics/" class="title">MySQL Basics</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-16T04:37:40.000Z" itemprop="datePublished">16-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/15/Frontend-Basics/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/15/Frontend-Basics/" class="title">Frontend Basics</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-15T06:42:21.000Z" itemprop="datePublished">15-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/15/Servlet-and-JSP/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/15/Servlet-and-JSP/" class="title">Servlet and JSP</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-15T03:46:18.000Z" itemprop="datePublished">15-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/14/XML-Basics/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/14/XML-Basics/" class="title">XML Basics</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-14T06:47:24.000Z" itemprop="datePublished">14-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-thumb">
+              <a href="/2022/02/12/Java-Concurrency/" class="thumb">
+    
+    
+        <span class="thumb-image thumb-none"></span>
+    
+</a>
+
+            </div>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/12/Java-Concurrency/" class="title">Java Concurrency</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-12T10:23:56.000Z" itemprop="datePublished">12-02-2022</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">Catalogue</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text"> 什么是数据库系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93-rdbms"><span class="toc-number">2.</span> <span class="toc-text"> 关系型数据库 （RDBMS）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFnosql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text"> 什么是NoSQL数据库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mysql%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text"> MySQL配置文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sql%E8%AF%AD%E8%A8%80%E5%88%86%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text"> SQL语言分类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E8%AF%AD%E5%8F%A5%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">5.1.</span> <span class="toc-text"> SQL语句注意事项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E9%87%8A"><span class="toc-number">5.2.</span> <span class="toc-text"> 注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E9%80%BB%E8%BE%91%E5%BA%93"><span class="toc-number">5.3.</span> <span class="toc-text"> 创建逻辑库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="toc-number">5.4.</span> <span class="toc-text"> 创建数据表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E8%A1%A8%E7%9A%84%E5%85%B6%E4%BB%96%E6%93%8D%E4%BD%9C"><span class="toc-number">5.5.</span> <span class="toc-text"> 数据表的其他操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E7%B2%BE%E7%A1%AE%E7%9A%84%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">5.6.</span> <span class="toc-text"> 不精确的浮点数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">5.7.</span> <span class="toc-text"> 修改表结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.8.</span> <span class="toc-text"> 字段约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E8%8C%83%E5%BC%8F"><span class="toc-number">5.8.1.</span> <span class="toc-text"> 数据库的范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E8%8C%83%E5%BC%8F%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">5.8.2.</span> <span class="toc-text"> 第一范式：原子性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E8%8C%83%E5%BC%8F%E5%94%AF%E4%B8%80%E6%80%A7"><span class="toc-number">5.8.3.</span> <span class="toc-text"> 第二范式：唯一性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E8%8C%83%E5%BC%8F%E5%85%B3%E8%81%94%E6%80%A7"><span class="toc-number">5.8.4.</span> <span class="toc-text"> 第三范式：关联性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql%E4%B8%AD%E7%9A%84%E5%AD%97%E6%AE%B5%E7%BA%A6%E6%9D%9F"><span class="toc-number">5.8.5.</span> <span class="toc-text"> MySQL中的字段约束</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%96%E9%94%AE%E7%BA%A6%E6%9D%9F%E7%9A%84%E9%97%AD%E7%8E%AF%E9%97%AE%E9%A2%98"><span class="toc-number">5.9.</span> <span class="toc-text"> 外键约束的闭环问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">6.</span> <span class="toc-text"> 索引</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%8E%92%E5%BA%8F%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="toc-number">6.1.</span> <span class="toc-text"> 数据排序的好处</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BA%E7%B4%A2%E5%BC%95"><span class="toc-number">6.2.</span> <span class="toc-text"> 如何创建索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B7%BB%E5%8A%A0%E4%B8%8E%E5%88%A0%E9%99%A4%E7%B4%A2%E5%BC%95"><span class="toc-number">6.3.</span> <span class="toc-text"> 如何添加与删除索引</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%88%99"><span class="toc-number">6.4.</span> <span class="toc-text"> 索引的使用原则</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80"><span class="toc-number">7.</span> <span class="toc-text"> 数据操作语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%B0%E5%BD%95%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.1.</span> <span class="toc-text"> 记录查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%88%97%E5%88%AB%E5%90%8D"><span class="toc-number">7.2.</span> <span class="toc-text"> 使用列别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E9%A1%B5"><span class="toc-number">7.3.</span> <span class="toc-text"> 数据分页</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">7.4.</span> <span class="toc-text"> 排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8E%BB%E9%99%A4%E9%87%8D%E5%A4%8D%E8%AE%B0%E5%BD%95"><span class="toc-number">7.5.</span> <span class="toc-text"> 去除重复记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.6.</span> <span class="toc-text"> 条件查询</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0"><span class="toc-number">7.7.</span> <span class="toc-text"> 聚合函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%88%86%E7%BB%84"><span class="toc-number">7.8.</span> <span class="toc-text"> 数据分组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#group_concat%E5%87%BD%E6%95%B0"><span class="toc-number">7.8.1.</span> <span class="toc-text"> GROUP_CONCAT函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#having%E5%AD%90%E5%8F%A5"><span class="toc-number">7.8.2.</span> <span class="toc-text"> HAVING子句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="toc-number">7.9.</span> <span class="toc-text"> 表连接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E8%BF%9E%E6%8E%A5%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">7.9.1.</span> <span class="toc-text"> 表连接的分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E8%BF%9E%E6%8E%A5"><span class="toc-number">7.9.2.</span> <span class="toc-text"> 内连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E8%BF%9E%E6%8E%A5"><span class="toc-number">7.9.3.</span> <span class="toc-text"> 外连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.10.</span> <span class="toc-text"> 子查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#where%E5%AD%90%E5%8F%A5%E4%B8%AD%E7%9A%84%E5%A4%9A%E8%A1%8C%E5%AD%90%E6%9F%A5%E8%AF%A2"><span class="toc-number">7.10.1.</span> <span class="toc-text"> WHERE子句中的多行子查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exists-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">7.10.2.</span> <span class="toc-text"> EXISTS 关键字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E8%A8%80-2"><span class="toc-number">8.</span> <span class="toc-text"> 数据操作语言</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#insert%E8%AF%AD%E5%8F%A5"><span class="toc-number">8.1.</span> <span class="toc-text"> INSERT语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ignore%E5%85%B3%E9%94%AE%E5%AD%97"><span class="toc-number">8.2.</span> <span class="toc-text"> IGNORE关键字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#update%E8%AF%AD%E5%8F%A5"><span class="toc-number">8.3.</span> <span class="toc-text"> UPDATE语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#update%E8%AF%AD%E5%8F%A5%E7%9A%84%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="toc-number">8.3.1.</span> <span class="toc-text"> UPDATE语句的表连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#delete-%E8%AF%AD%E5%8F%A5"><span class="toc-number">8.4.</span> <span class="toc-text"> DELETE 语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#delete%E8%AF%AD%E5%8F%A5%E7%9A%84%E8%A1%A8%E8%BF%9E%E6%8E%A5"><span class="toc-number">8.4.1.</span> <span class="toc-text"> DELETE语句的表连接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%9C%BA%E5%88%B6"><span class="toc-number">9.</span> <span class="toc-text"> 事务机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%86%99%E5%85%A5%E7%9B%B4%E6%8E%A5%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6"><span class="toc-number">9.1.</span> <span class="toc-text"> 避免写入直接操作数据文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transaction"><span class="toc-number">9.2.</span> <span class="toc-text"> Transaction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#acid"><span class="toc-number">9.3.</span> <span class="toc-text"> ACID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="toc-number">9.3.1.</span> <span class="toc-text"> 原子性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-number">9.3.2.</span> <span class="toc-text"> 一致性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E6%80%A7"><span class="toc-number">9.3.3.</span> <span class="toc-text"> 隔离性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%81%E4%B9%85%E6%80%A7"><span class="toc-number">9.3.4.</span> <span class="toc-text"> 持久性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB"><span class="toc-number">9.4.</span> <span class="toc-text"> 隔离级别</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#read-uncommitted"><span class="toc-number">9.4.1.</span> <span class="toc-text"> READ UNCOMMITTED</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read-committed"><span class="toc-number">9.4.2.</span> <span class="toc-text"> READ COMMITTED</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeatable-read-%E9%BB%98%E8%AE%A4%E7%BA%A7%E5%88%AB"><span class="toc-number">9.4.3.</span> <span class="toc-text"> REPEATABLE READ （默认级别）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#serializable"><span class="toc-number">9.4.4.</span> <span class="toc-text"> SERIALIZABLE</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-MySQL-Basics" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL Basics
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/02/16/MySQL-Basics/" class="article-date">
+	  <time datetime="2022-02-16T04:37:40.000Z" itemprop="datePublished">16-02-2022</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/Database/" rel="tag">Database</a>, <a class="article-tag-link-link" href="/tags/MySQL/" rel="tag">MySQL</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/16/MySQL-Basics/#comments" class="article-comment-link">Comments</a></span>
+        
+	
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 2.6k(words)</span>
+	
+	
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 10(minutes)</span>
+	
+
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="什么是数据库系统"><a class="markdownIt-Anchor" href="#什么是数据库系统"></a> 什么是数据库系统</h1>
+<ul>
+<li>DBMS是指一个能为用户提供信息服务的系统，它实现了有组织的，动态的储存大量相关数据的功能，提供了数据处理和信息资源共享的便利手段</li>
+</ul>
+<h1 id="关系型数据库-rdbms"><a class="markdownIt-Anchor" href="#关系型数据库-rdbms"></a> 关系型数据库 （RDBMS）</h1>
+<ul>
+<li>使用了关系模型的数据库系统</li>
+<li>关系模型中，数据是分类存放的，数据之间可以有联系</li>
+</ul>
+<h1 id="什么是nosql数据库"><a class="markdownIt-Anchor" href="#什么是nosql数据库"></a> 什么是NoSQL数据库</h1>
+<ul>
+<li>NoSQL数据库指的是数据分类存放，但是数据之间没有关联关系的数据库系统</li>
+</ul>
+<h1 id="mysql配置文件"><a class="markdownIt-Anchor" href="#mysql配置文件"></a> MySQL配置文件</h1>
+<ul>
+<li>MySQL默认的root用户拥有所有权限，并且只能通过localhost登录，所以我们可以新建一个用户</li>
+<li>我们可以使用Terminal指令 mysql -u root -p 来登录MySQL数据库</li>
+<li>我们可以使用第三方的MySQL图形界面登录管理MySQL database
+<ul>
+<li>sequel pro</li>
+<li>DataGrip</li>
+<li>NaviCat</li>
+</ul>
+</li>
+<li>我们可以设置各种MySQL的配置，例如字符集，端口号，目录地址等等</li>
+</ul>
+<h1 id="sql语言分类"><a class="markdownIt-Anchor" href="#sql语言分类"></a> SQL语言分类</h1>
+<ul>
+<li>DML - 对数据进行操作，层删改查</li>
+<li>DCL - 数据库控制语言，控制用户，权限，事务</li>
+<li>DDL - definition，对逻辑库，数据表，视图，索引进行操作</li>
+</ul>
+<h2 id="sql语句注意事项"><a class="markdownIt-Anchor" href="#sql语句注意事项"></a> SQL语句注意事项</h2>
+<ul>
+<li>SQL语句不区分大小写</li>
+<li>必须以分号结尾</li>
+<li>语句中的空白和换行没有限制</li>
+</ul>
+<h2 id="注释"><a class="markdownIt-Anchor" href="#注释"></a> 注释</h2>
+<ul>
+<li><code># this is single line comment</code></li>
+<li><code>/* this is multi line comments */</code></li>
+</ul>
+<h2 id="创建逻辑库"><a class="markdownIt-Anchor" href="#创建逻辑库"></a> 创建逻辑库</h2>
+<ul>
+<li>CREATE DATABASE database_name;</li>
+<li>SHOW DATABASES;</li>
+<li>DROP database_name;</li>
+</ul>
+<h2 id="创建数据表"><a class="markdownIt-Anchor" href="#创建数据表"></a> 创建数据表</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE student (</span><br><span class="line">    id INT UNSIGNED PRIMARY KEY,</span><br><span class="line">    name VARCHAR(20) NOT NULL,</span><br><span class="line">    sex CHAR(1) NOT NULL,</span><br><span class="line">    birthday DATE NOT NULL,</span><br><span class="line">    tel CHAR(11) NOT NULL,</span><br><span class="line">    remark VARCHAR(200)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h2 id="数据表的其他操作"><a class="markdownIt-Anchor" href="#数据表的其他操作"></a> 数据表的其他操作</h2>
+<ul>
+<li>SHOW tables;</li>
+<li>DESC student;</li>
+<li>SHOW CREATE TABLE student;</li>
+<li>DROP TABLE student;</li>
+</ul>
+<h2 id="不精确的浮点数"><a class="markdownIt-Anchor" href="#不精确的浮点数"></a> 不精确的浮点数</h2>
+<p><img src="/images/MySQL-Basics/1.png" alt="" /></p>
+<ul>
+<li>所以在保存重要数字的时候要选用DECIMAL类型，它会将数字以字符串的形式保存，不会丢失精度</li>
+</ul>
+<h2 id="修改表结构"><a class="markdownIt-Anchor" href="#修改表结构"></a> 修改表结构</h2>
+<ul>
+<li>添加新字段</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student </span><br><span class="line">ADD address VARCHAR(200) NOT NULL,</span><br><span class="line">ADD home_tel CHAR(11) NOT NULL;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改字段</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">MODIFY home_tel VARCHAR(20) NOT NULL;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改字段名称</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student</span><br><span class="line">CHANGE address home_address VARCHAR(20) NOT NULL;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>删除字段</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE student </span><br><span class="line">DROP home_address,</span><br><span class="line">DROP home_tel;</span><br></pre></td></tr></table></figure>
+<h2 id="字段约束"><a class="markdownIt-Anchor" href="#字段约束"></a> 字段约束</h2>
+<h3 id="数据库的范式"><a class="markdownIt-Anchor" href="#数据库的范式"></a> 数据库的范式</h3>
+<ul>
+<li>构造数据库必须遵循一定的规则，这种规则就是范式</li>
+<li>目前关系数据库有6种范式，一般情况下，只满足第三范式即可</li>
+</ul>
+<h3 id="第一范式原子性"><a class="markdownIt-Anchor" href="#第一范式原子性"></a> 第一范式：原子性</h3>
+<ul>
+<li>第一范式是数据库的基本要求，不满足这一点就不是关系型数据库</li>
+<li>数据表的每一列都是不可分割的基本数据项，同一列中不能有多个值，也不能存在重复的属性</li>
+</ul>
+<h3 id="第二范式唯一性"><a class="markdownIt-Anchor" href="#第二范式唯一性"></a> 第二范式：唯一性</h3>
+<ul>
+<li>数据表中的每条记录必须是唯一的，为了实现区分，通常要为表加上一个列用来储存唯一标识，这个唯一属性列被称作主键列</li>
+</ul>
+<h3 id="第三范式关联性"><a class="markdownIt-Anchor" href="#第三范式关联性"></a> 第三范式：关联性</h3>
+<ul>
+<li>
+<p>每列都与主键有直接关系，不存在依赖传递</p>
+</li>
+<li>
+<p>下图中爸爸是主键，但是女儿的玩具和女儿的衣服并不依赖与主键，而是依赖于女儿，所以不满足第三范式<br />
+<img src="/images/MySQL-Basics/2.png" alt="" /></p>
+</li>
+<li>
+<p>依照第三范式，数据可以拆分保存到不同的数据表，彼此保持关联</p>
+</li>
+</ul>
+<h3 id="mysql中的字段约束"><a class="markdownIt-Anchor" href="#mysql中的字段约束"></a> MySQL中的字段约束</h3>
+<ul>
+<li>主键约束 - PRIMARY KEY - 字段值唯一，且不能为NULL
+<ul>
+<li>建议主键一定要使用数字类型，因为数字的检索速度会非常快</li>
+<li>如果主键是数字类型，还可以设置自动增长</li>
+</ul>
+</li>
+<li>非空约束 - NOT NULL - 字段值不能为NULL
+<ul>
+<li>非空字段可以有默认值</li>
+<li><code>name VARCHAR(20) NOT NULL DEFAULT &quot;default name&quot;</code></li>
+</ul>
+</li>
+<li>唯一约束 - UNIQUE - 字段值唯一，且可以为NULL</li>
+<li>外键约束 - FOREIGN KEY - 保持关联数据的逻辑性</li>
+</ul>
+<h2 id="外键约束的闭环问题"><a class="markdownIt-Anchor" href="#外键约束的闭环问题"></a> 外键约束的闭环问题</h2>
+<ul>
+<li>如果形成外键闭环，我们将无法删除任何一张表的记录</li>
+</ul>
+<h1 id="索引"><a class="markdownIt-Anchor" href="#索引"></a> 索引</h1>
+<h2 id="数据排序的好处"><a class="markdownIt-Anchor" href="#数据排序的好处"></a> 数据排序的好处</h2>
+<ul>
+<li>一旦数据排序之后，查找的速度就会翻倍</li>
+</ul>
+<h2 id="如何创建索引"><a class="markdownIt-Anchor" href="#如何创建索引"></a> 如何创建索引</h2>
+<ul>
+<li>当数据排序后，MySQL后台会对索引对象创建二叉树，使用二分查找提升速度</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">create table t_message (</span><br><span class="line">    id int unsigned primary key,</span><br><span class="line">    content varchar(200) not null,</span><br><span class="line">    type enum(&quot;notification&quot;, &quot;annocement&quot;, &quot;letter&quot;) not null,</span><br><span class="line">    create_time timestamp not null,</span><br><span class="line">    INDEX idx_type (type)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h2 id="如何添加与删除索引"><a class="markdownIt-Anchor" href="#如何添加与删除索引"></a> 如何添加与删除索引</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">drop index idx_type on t_message;</span><br><span class="line"></span><br><span class="line">create index idx_type on t_message(type);</span><br><span class="line"></span><br><span class="line">show index from t_message;</span><br><span class="line"></span><br><span class="line">alter table t_message add index idx_type(type);</span><br></pre></td></tr></table></figure>
+<h2 id="索引的使用原则"><a class="markdownIt-Anchor" href="#索引的使用原则"></a> 索引的使用原则</h2>
+<ul>
+<li>数据量很大，而且经常被查询到的数据表可以设置索引</li>
+<li>索引只添加在经常被用作检索条件的字段上面</li>
+<li>不要在大字段上创建索引</li>
+</ul>
+<h1 id="数据操作语言"><a class="markdownIt-Anchor" href="#数据操作语言"></a> 数据操作语言</h1>
+<h2 id="记录查询"><a class="markdownIt-Anchor" href="#记录查询"></a> 记录查询</h2>
+<ul>
+<li>最基本的查询语言是由select和from关键字组成的</li>
+<li>select语句屏蔽了物理层的操作，用户不必关心数据的真实存储，交由数据库高效的查找数据</li>
+</ul>
+<h2 id="使用列别名"><a class="markdownIt-Anchor" href="#使用列别名"></a> 使用列别名</h2>
+<ul>
+<li>通常情况下，select子句中使用了表达式，那么这列的名字就默认为表达式，因此需要一种对列名重命名的机制</li>
+</ul>
+<h2 id="数据分页"><a class="markdownIt-Anchor" href="#数据分页"></a> 数据分页</h2>
+<ul>
+<li>如果记录很多，我们可以使用LIMIT关键字来限定结果数量</li>
+<li><code>Select ... from ... limit startPosition, offset</code></li>
+<li>如果LIMIT子句只有一个参数，他表示的是offset，起始值默认为0</li>
+</ul>
+<h2 id="排序"><a class="markdownIt-Anchor" href="#排序"></a> 排序</h2>
+<ul>
+<li>如果没有设置，查询语句不会对结果集进行排序，如果想让结果按照某种顺序排列，就必须使用ORDER BY子句</li>
+<li>ASC代表升序，DESC代表降序</li>
+<li>如果排序列是数字类型，数据库就按照数字大小排列，如果是日期类型，就按照日期排序，如果是字符串就按照字符集序号排序</li>
+</ul>
+<h2 id="去除重复记录"><a class="markdownIt-Anchor" href="#去除重复记录"></a> 去除重复记录</h2>
+<ul>
+<li>DISTINCT</li>
+<li>DISTINCT关键字只能使用一次，并且放在最前面</li>
+</ul>
+<h2 id="条件查询"><a class="markdownIt-Anchor" href="#条件查询"></a> 条件查询</h2>
+<ul>
+<li>WHERE</li>
+</ul>
+<h2 id="聚合函数"><a class="markdownIt-Anchor" href="#聚合函数"></a> 聚合函数</h2>
+<ul>
+<li>求和，最大值，最小值，平均值，COUNT。。。</li>
+</ul>
+<h2 id="数据分组"><a class="markdownIt-Anchor" href="#数据分组"></a> 数据分组</h2>
+<ul>
+<li>GROUP BY</li>
+<li>通过一定的规则讲一个数据集划分成若干个小的区域，然后针对每个小区域分别进行数据汇总处理</li>
+<li>数据库支持多列分组条件，执行的时候逐级分组</li>
+<li>WITH ROLLUP 对分组结果再次做汇总计算</li>
+</ul>
+<h3 id="group_concat函数"><a class="markdownIt-Anchor" href="#group_concat函数"></a> GROUP_CONCAT函数</h3>
+<ul>
+<li>
+<p>把分组查询中的某个字段拼接成一个字符串</p>
+</li>
+<li>
+<p>查询每个部门工资大于2000 的</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">select deptno, GROUP_CONCAT(ename), COUNT(*)</span><br><span class="line">from t_emp</span><br><span class="line">where sal &gt;&#x3D; 2000</span><br><span class="line">group by deptno;</span><br></pre></td></tr></table></figure>
+<h3 id="having子句"><a class="markdownIt-Anchor" href="#having子句"></a> HAVING子句</h3>
+<ul>
+<li>查询每个部门中，1982年以后入职的员工超过2个人的部门编号</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select deptno</span><br><span class="line">from t_emp</span><br><span class="line">where hiredate &gt;&#x3D; &quot;1982-01-01&quot;</span><br><span class="line">group by deptno </span><br><span class="line">having COUNT(*) &gt;&#x3D; 2</span><br></pre></td></tr></table></figure>
+<h2 id="表连接"><a class="markdownIt-Anchor" href="#表连接"></a> 表连接</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select e.empno, e.ename, d.dname</span><br><span class="line">from t_emp e join t_dept d</span><br><span class="line">on e.deptno &#x3D; d.deptno;</span><br></pre></td></tr></table></figure>
+<h3 id="表连接的分类"><a class="markdownIt-Anchor" href="#表连接的分类"></a> 表连接的分类</h3>
+<ul>
+<li>内连接，外连接</li>
+<li>内连接是结果集中只保留符合连接条件的记录</li>
+<li>外连接是不管符不符合连接条件，记录都要保留在结果集中</li>
+</ul>
+<h3 id="内连接"><a class="markdownIt-Anchor" href="#内连接"></a> 内连接</h3>
+<ul>
+<li>用于查询多张关系表符合条件的记录</li>
+<li>INNER JOIN</li>
+<li>相同的数据表也可以做表连接</li>
+</ul>
+<h3 id="外连接"><a class="markdownIt-Anchor" href="#外连接"></a> 外连接</h3>
+<ul>
+<li>
+<p>LEFT JOIN</p>
+</li>
+<li>
+<p>RIGHT JOIN</p>
+</li>
+<li>
+<p>左外连接就是保留左表所有的记录，与右表做链接，如果右表有符合条件的记录就与左表链接，如果没有，就用NULL与左表链接</p>
+</li>
+<li>
+<p>右外连接也是如此</p>
+</li>
+<li>
+<p>UNION关键字可以将多个查询语句的结果集进行合并</p>
+</li>
+<li>
+<p>查询每个部门的人数，没有部门的员工用NULL代表部门的名称</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(</span><br><span class="line">    select d.dname, COUNT(e.deptno)</span><br><span class="line">    from t_dept d LEFT JOIN t_emp e</span><br><span class="line">    on d.deptno &#x3D; e.deptno</span><br><span class="line">    GROUP BY d.deptno</span><br><span class="line">) </span><br><span class="line">UNION</span><br><span class="line">(</span><br><span class="line">    select d.name, COUNT(*)</span><br><span class="line">    from t_dept d RIGHT JOIN t_emp e</span><br><span class="line">    ON d.deptno &#x3D; e.deptno</span><br><span class="line">    GROUP BY d.deptno</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在外链接里，条件写在WHERE子句里，不符合条件的记录会被过滤掉，不会被保留下来</li>
+</ul>
+<h2 id="子查询"><a class="markdownIt-Anchor" href="#子查询"></a> 子查询</h2>
+<ul>
+<li>嵌套在查询语句中的查询</li>
+<li>子查询可以写在三个地方： WHERE， FROM， SELECT</li>
+<li>只有写在FROM中的子查询是最可取的，其他地方的效率不高</li>
+</ul>
+<h3 id="where子句中的多行子查询"><a class="markdownIt-Anchor" href="#where子句中的多行子查询"></a> WHERE子句中的多行子查询</h3>
+<ul>
+<li>可以使用IN， ALL， ANY， EXISTS关键字来处理多行表达式结果集的条件判断</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select ename from t_emp</span><br><span class="line">where sal &gt; ALL (100, 200)</span><br></pre></td></tr></table></figure>
+<h3 id="exists-关键字"><a class="markdownIt-Anchor" href="#exists-关键字"></a> EXISTS 关键字</h3>
+<ul>
+<li>把原来在子查询之外的条件判断写到了子查询的里面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT SupplierName</span><br><span class="line">FROM Suppliers</span><br><span class="line">WHERE EXISTS </span><br><span class="line">(</span><br><span class="line">    SELECT ProductName </span><br><span class="line">    FROM Products </span><br><span class="line">    WHERE Products.SupplierID &#x3D; Suppliers.supplierID </span><br><span class="line">    AND Price &lt; 20</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h1 id="数据操作语言-2"><a class="markdownIt-Anchor" href="#数据操作语言-2"></a> 数据操作语言</h1>
+<h2 id="insert语句"><a class="markdownIt-Anchor" href="#insert语句"></a> INSERT语句</h2>
+<ul>
+<li>向数据表中写入记录，可以使一条记录也可以是多条记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">insert into table_name (column_1, column_2, ...)</span><br><span class="line">values (value_1, value_2, ...);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>写入多条记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">insert into table_name (column_1, column_2, ...)</span><br><span class="line">values </span><br><span class="line">(value_1, value_2, ...),</span><br><span class="line">(value_1, value_2, ...),</span><br><span class="line">(value_1, value_2, ...);</span><br></pre></td></tr></table></figure>
+<h2 id="ignore关键字"><a class="markdownIt-Anchor" href="#ignore关键字"></a> IGNORE关键字</h2>
+<ul>
+<li>会让INSERT只插入数据库不存在的记录,不会报错</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">insert ignore into table_name (...) values (...);</span><br></pre></td></tr></table></figure>
+<h2 id="update语句"><a class="markdownIt-Anchor" href="#update语句"></a> UPDATE语句</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update table_name set column_name &#x3D; value_name, ....;</span><br></pre></td></tr></table></figure>
+<h3 id="update语句的表连接"><a class="markdownIt-Anchor" href="#update语句的表连接"></a> UPDATE语句的表连接</h3>
+<ul>
+<li>可以修改多张表的记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update table_1 join table_2 on condition</span><br><span class="line">set column_1 &#x3D; value_1, column_2 &#x3D; value_2,...;</span><br></pre></td></tr></table></figure>
+<h2 id="delete-语句"><a class="markdownIt-Anchor" href="#delete-语句"></a> DELETE 语句</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">delete from table_name</span><br><span class="line">where ...;</span><br></pre></td></tr></table></figure>
+<h3 id="delete语句的表连接"><a class="markdownIt-Anchor" href="#delete语句的表连接"></a> DELETE语句的表连接</h3>
+<ul>
+<li>删除多张表的记录</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">delete table_1, table_2</span><br><span class="line">from table_1 join table_2 on condition</span><br><span class="line">where...;</span><br></pre></td></tr></table></figure>
+<h1 id="事务机制"><a class="markdownIt-Anchor" href="#事务机制"></a> 事务机制</h1>
+<h2 id="避免写入直接操作数据文件"><a class="markdownIt-Anchor" href="#避免写入直接操作数据文件"></a> 避免写入直接操作数据文件</h2>
+<ul>
+<li>利用日志来实现间接写入</li>
+<li>redo，undo日志</li>
+</ul>
+<h2 id="transaction"><a class="markdownIt-Anchor" href="#transaction"></a> Transaction</h2>
+<ul>
+<li>全部成功或者全部失败</li>
+<li>默认情况下，MySQL执行每条SQL语句都会自动开启和提交事务</li>
+<li>为了让多条SQL语句纳入到一个事务之下，可以手动管理事务</li>
+<li><code>start transaction;</code></li>
+</ul>
+<h2 id="acid"><a class="markdownIt-Anchor" href="#acid"></a> ACID</h2>
+<h3 id="原子性"><a class="markdownIt-Anchor" href="#原子性"></a> 原子性</h3>
+<ul>
+<li>全部成功或者全部失败， 没有中间状态</li>
+</ul>
+<h3 id="一致性"><a class="markdownIt-Anchor" href="#一致性"></a> 一致性</h3>
+<ul>
+<li>不管在任何给定时间，并发事务有多少，事务必须保证运行结果的一致性</li>
+<li>事务的临时状态不会被读取</li>
+</ul>
+<h3 id="隔离性"><a class="markdownIt-Anchor" href="#隔离性"></a> 隔离性</h3>
+<ul>
+<li>事务不受其他并发事务的影响，如同再给定时间内，改事务是数据库唯一运行的事务</li>
+<li>默认情况下，只能看到日志中该事物的相关数据</li>
+</ul>
+<h3 id="持久性"><a class="markdownIt-Anchor" href="#持久性"></a> 持久性</h3>
+<ul>
+<li>事务一旦提交，结果便是永久性的，即便发生宕机，仍然可以依靠事务日志完成数据的持久化</li>
+</ul>
+<h2 id="隔离级别"><a class="markdownIt-Anchor" href="#隔离级别"></a> 隔离级别</h2>
+<h3 id="read-uncommitted"><a class="markdownIt-Anchor" href="#read-uncommitted"></a> READ UNCOMMITTED</h3>
+<ul>
+<li>代表可以读取日志中其他事物的未提交的数据，即使其他事物还没有commit</li>
+<li><code>set session transaction isolation level read uncommitted;</code></li>
+</ul>
+<h3 id="read-committed"><a class="markdownIt-Anchor" href="#read-committed"></a> READ COMMITTED</h3>
+<ul>
+<li>代表只能读取其他事物提交的数据</li>
+<li><code>set session transaction isolation level read committed;</code></li>
+</ul>
+<h3 id="repeatable-read-默认级别"><a class="markdownIt-Anchor" href="#repeatable-read-默认级别"></a> REPEATABLE READ （默认级别）</h3>
+<ul>
+<li>事务在执行中反复读取数据，得到的结果是一致的，不会受到其他事物的影响</li>
+<li><code>set session transaction isolation level repeatable read;</code></li>
+</ul>
+<h3 id="serializable"><a class="markdownIt-Anchor" href="#serializable"></a> SERIALIZABLE</h3>
+<ul>
+<li>让事务逐一执行，不存在并发性</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>Link：</strong>
+      <a href="http://hellcy.github.io/2022/02/16/MySQL-Basics/" title="MySQL Basics" target="_blank" rel="external">http://hellcy.github.io/2022/02/16/MySQL-Basics/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>Copyright： </strong> This article is using <a href="http://creativecommons.org/licenses/by/4.0" target="_blank" rel="external">CC BY 4.0 </a> license.
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/hellcy" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/hellcy" target="_blank"><span class="text-dark">Yuan Cheng</span><small class="ml-1x">Software Engineer</small></a></h3>
+        <div>Wait and see</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+           
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2022/02/15/Frontend-Basics/" title="Frontend Basics"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="Catalogue" role="button">
+        <span>[&nbsp;</span><span>Catalogue</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/hellcy" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <!-- <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"> -->
+  <script src="//cdn.jsdelivr.net/npm/gitalk@1.4.0/dist/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script>
+  <script type="text/javascript">
+  var gitalk = new Gitalk({
+    clientID: '974c65d45d0a581171ca',
+    clientSecret: '57b8696778eef1373bd27067f78b50b9a5d4fc0c',
+    repo: 'blog-comments',
+    owner: 'hellcy',
+    admin: ['hellcy'],
+    id: md5(location.pathname),
+    distractionFreeMode: true,
+    proxy: 'https://netnr-proxy.cloudno.de/https://github.com/login/oauth/access_token'
+  })
+  gitalk.render('comments')
+  </script>
+
+      
+
+
+
+  <script src="//cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.3.5/dist/jquery.fancybox.min.js"></script>
+  <script>
+  //利用 FancyBox 实现点击图片放大
+  $(document).ready(function() {
+    $('article img').not('[hidden]').not('.panel-body img').each(function() {
+      var $image = $(this);
+      var imageCaption = $image.attr('alt');
+      var $imageWrapLink = $image.parent('a');
+      if ($imageWrapLink.length < 1) {
+        var src = this.getAttribute('src');
+        var idx = src.lastIndexOf('?');
+        if (idx != -1) {
+          src = src.substring(0, idx);
+        }
+        $imageWrapLink = $image.wrap('<a href="' + src + '"></a>').parent('a');
+      }
+      $imageWrapLink.attr('data-fancybox', 'images');
+      if (imageCaption) {
+        $imageWrapLink.attr('data-caption', imageCaption);
+      }
+    });
+    $().fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+    });
+  });
+  </script>
+
+
+
+
+
+</body>
+</html>
