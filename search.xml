@@ -4,6 +4,27 @@
   
     
     <entry>
+      <title>JDBC Basics</title>
+      <link href="2022/02/17/JDBC-Basics/"/>
+      <url>2022/02/17/JDBC-Basics/</url>
+      
+        <content type="html"><![CDATA[<h1 id="什么是jdbc"><a class="markdownIt-Anchor" href="#什么是jdbc"></a> 什么是JDBC</h1><ul><li><code>Java Database Connectivity</code></li><li>让Java程序操作关系型数据库</li><li>JDBC基于驱动程序实现与数据库的连接与操作</li><li>驱动程序实现了JDBC API，所以Java程序可以调用JABC API（也就是调用底层的MySQL驱动程序的实现）来对数据库进行访问</li></ul><h1 id="jdbc的优点"><a class="markdownIt-Anchor" href="#jdbc的优点"></a> JDBC的优点</h1><ul><li>统一的API，提供一指的开发过程</li><li>易于学习，容易上手，代码结构稳定</li><li>功能强大，执行效率高，可处理大量数据</li></ul><h1 id="jdbc开发流程"><a class="markdownIt-Anchor" href="#jdbc开发流程"></a> JDBC开发流程</h1><ol><li>加载并注册JDBC驱动</li><li>创建数据库链接</li><li>创建Statement对象</li><li>遍历查询结果</li><li>关闭链接，释放资源</li></ol><h2 id="classforname的作用"><a class="markdownIt-Anchor" href="#classforname的作用"></a> Class.forName的作用</h2><ul><li>用于加载指定的JDBC驱动类</li><li>本质是通知JDBC注册这个驱动类</li></ul><h2 id="drivermanager"><a class="markdownIt-Anchor" href="#drivermanager"></a> DriverManager</h2><ul><li>用于注册，管理JDBC驱动程序</li><li><code>DriverManager.getConnection()</code></li><li>返回值Connection对象，对应数据库的物理网络连接</li></ul><h2 id="connection对象"><a class="markdownIt-Anchor" href="#connection对象"></a> Connection对象</h2><ul><li>Connection对象用于JDBC与数据库的网络通信对象</li><li><code>java.sql.Connection</code>是一个接口，具体实现由驱动厂商负责</li><li>所有数据库的操作都建立在Connection基础上</li></ul><h2 id="链接字符串"><a class="markdownIt-Anchor" href="#链接字符串"></a> 链接字符串</h2><ul><li><code>jdbc:mysql://localhost:port_number/database_name</code></li><li>之后可以添加额外参数</li><li>参数列表采用URL格式：name=value&amp;name2=value2&amp;…</li></ul><h3 id="mysql连接字符串常用参数"><a class="markdownIt-Anchor" href="#mysql连接字符串常用参数"></a> MySQL连接字符串常用参数</h3><table><thead><tr><th>参数名</th><th>建议参数值</th><th>说明</th></tr></thead><tbody><tr><td>useSSL</td><td>true/false</td><td>是否禁用SSL</td></tr><tr><td>useUnicode</td><td>true</td><td>启用unicode编码传输数据</td></tr><tr><td>characterEncoding</td><td>UTF-8</td><td>使用UTF-8编码</td></tr><tr><td>serverTimezone</td><td>Australia/Sydney</td><td>timezone</td></tr><tr><td>allowPublicKeyRetrieval</td><td>true</td><td>允许从客户端获取公钥加密传输</td></tr></tbody></table><ul><li>如果数据库的设置已经是使用澳洲时区，那么连接字符串的参数可以省略</li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> JDBC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>MySQL Basics</title>
       <link href="2022/02/16/MySQL-Basics/"/>
       <url>2022/02/16/MySQL-Basics/</url>
