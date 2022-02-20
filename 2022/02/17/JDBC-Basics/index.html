@@ -25,12 +25,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="什么是JDBC  Java Database Connectivity 让Java程序操作关系型数据库 JDBC基于驱动程序实现与数据库的连接与操作 驱动程序实现了JDBC API，所以Java程序可以调用JABC API（也就是调用底层的MySQL驱动程序的实现）来对数据库进行访问   JDBC的优点  统一的API，提供一指的开发过程 易于学习，容易上手，代码结构稳定 功能强大，执行效率高，">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://hellcy.github.io/images/JDBC_Basics/1.png">
 <meta property="article:published_time" content="2022-02-17T11:51:57.000Z">
-<meta property="article:modified_time" content="2022-02-17T13:57:47.657Z">
+<meta property="article:modified_time" content="2022-02-20T02:33:42.852Z">
 <meta property="article:author" content="Yuan Cheng">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="JDBC">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://hellcy.github.io/images/JDBC_Basics/1.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://hellcy.github.io/2022/02/17/JDBC-Basics/index.html">
   
@@ -372,7 +374,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFjdbc"><span class="toc-number">1.</span> <span class="toc-text"> 什么是JDBC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdbc%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text"> JDBC的优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdbc%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text"> JDBC开发流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#classforname%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> Class.forName的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drivermanager"><span class="toc-number">3.2.</span> <span class="toc-text"> DriverManager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#connection%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.3.</span> <span class="toc-text"> Connection对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.4.</span> <span class="toc-text"> 链接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql%E8%BF%9E%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-number">3.4.1.</span> <span class="toc-text"> MySQL连接字符串常用参数</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFjdbc"><span class="toc-number">1.</span> <span class="toc-text"> 什么是JDBC</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdbc%E7%9A%84%E4%BC%98%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text"> JDBC的优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jdbc%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="toc-number">3.</span> <span class="toc-text"> JDBC开发流程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#classforname%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">3.1.</span> <span class="toc-text"> Class.forName的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#drivermanager"><span class="toc-number">3.2.</span> <span class="toc-text"> DriverManager</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#connection%E5%AF%B9%E8%B1%A1"><span class="toc-number">3.3.</span> <span class="toc-text"> Connection对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.4.</span> <span class="toc-text"> 链接字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#mysql%E8%BF%9E%E6%8E%A5%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%B8%B8%E7%94%A8%E5%8F%82%E6%95%B0"><span class="toc-number">3.4.1.</span> <span class="toc-text"> MySQL连接字符串常用参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sql%E6%B3%A8%E5%85%A5%E6%94%BB%E5%87%BB"><span class="toc-number">3.5.</span> <span class="toc-text"> SQL注入攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#preparestatement"><span class="toc-number">3.5.1.</span> <span class="toc-text"> PrepareStatement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E7%9A%84%E4%BD%BF%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="toc-number">3.5.2.</span> <span class="toc-text"> 错误的使用方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%81%E8%A3%85%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5"><span class="toc-number">3.6.</span> <span class="toc-text"> 封装数据库连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jdbc%E6%89%A7%E8%A1%8Cinsert-update-delete%E8%AF%AD%E5%8F%A5"><span class="toc-number">3.7.</span> <span class="toc-text"> JDBC执行INSERT, UPDATE, DELETE语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jdbc%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86"><span class="toc-number">3.8.</span> <span class="toc-text"> JDBC事务管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E5%8A%A8%E6%8F%90%E4%BA%A4%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.8.1.</span> <span class="toc-text"> 自动提交事务模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E6%8F%90%E4%BA%A4%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">3.8.2.</span> <span class="toc-text"> 手动提交事务模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jdbc%E4%B8%ADdate%E6%97%A5%E6%9C%9F%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-number">3.9.</span> <span class="toc-text"> JDBC中Date日期对象的处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#date%E6%97%A5%E6%9C%9F%E7%9A%84%E6%8F%90%E5%8F%96"><span class="toc-number">3.9.1.</span> <span class="toc-text"> Date日期的提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#date%E6%97%A5%E6%9C%9F%E7%9A%84%E6%8F%92%E5%85%A5"><span class="toc-number">3.9.2.</span> <span class="toc-text"> Date日期的插入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jdbc%E6%89%B9%E5%A4%84%E7%90%86"><span class="toc-number">3.10.</span> <span class="toc-text"> JDBC批处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E6%B1%A0%E4%B8%8Ejdbc%E8%BF%9B%E9%98%B6"><span class="toc-number">3.11.</span> <span class="toc-text"> 连接池与JDBC进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#druid%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">3.11.1.</span> <span class="toc-text"> Druid连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%89%A9%E5%B1%95%E7%9F%A5%E8%AF%86c3p0%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">3.11.2.</span> <span class="toc-text"> 扩展知识：C3P0连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apache-commons-dbutils"><span class="toc-number">3.11.3.</span> <span class="toc-text"> Apache Commons DBUtils</span></a></li></ol></li></ol></li></ol>
     </nav>
   </div>
 </aside>
@@ -411,10 +413,10 @@
         <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/17/JDBC-Basics/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 417(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 1.8k(words)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 1(minutes)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 7(minutes)</span>
 	
 
       </div>
@@ -505,7 +507,125 @@
 <ul>
 <li>如果数据库的设置已经是使用澳洲时区，那么连接字符串的参数可以省略</li>
 </ul>
-
+<h2 id="sql注入攻击"><a class="markdownIt-Anchor" href="#sql注入攻击"></a> SQL注入攻击</h2>
+<ul>
+<li><code>'</code>单引号没有被特殊处理，被当成SQL query的一部分</li>
+<li>利用SQL漏洞越权获取数据的黑客行为</li>
+<li>根源是未对原始SQL中的敏感字符做特殊处理 （转译escape）</li>
+<li>解决方法：放弃Statement改用PreparedStatement处理SQL</li>
+</ul>
+<h3 id="preparestatement"><a class="markdownIt-Anchor" href="#preparestatement"></a> PrepareStatement</h3>
+<ul>
+<li>是Statement的子接口</li>
+<li>对SQL进行参数化，预防SQL注入攻击</li>
+<li>比Statement执行效率更好</li>
+</ul>
+<h3 id="错误的使用方式"><a class="markdownIt-Anchor" href="#错误的使用方式"></a> 错误的使用方式</h3>
+<ul>
+<li><code>select * from employee where ? = 'abc';</code></li>
+<li><code>select * from employee where salary = ? + 100;</code></li>
+<li><code>select * from employee where ename = ?;</code></li>
+</ul>
+<h2 id="封装数据库连接"><a class="markdownIt-Anchor" href="#封装数据库连接"></a> 封装数据库连接</h2>
+<ul>
+<li>每次对数据库操作时都需要打开和关闭，我们可以将这个重复的步骤封装到一个Class中，需要时直接调用</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 封装数据库链接</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class DbUtils &#123;</span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 创建新的数据库链接</span><br><span class="line">   * @return 新的Connection对象</span><br><span class="line">   * @throws SQLException</span><br><span class="line">   * @throws ClassNotFoundException</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public static Connection getConnection() throws SQLException, ClassNotFoundException &#123;</span><br><span class="line">    &#x2F;&#x2F;1. 加载并注册JDBC驱动</span><br><span class="line">    Class.forName(&quot;com.mysql.cj.jdbc.Driver&quot;);</span><br><span class="line"></span><br><span class="line">    &#x2F;&#x2F;2. 创建数据库链接</span><br><span class="line">    Connection conn &#x3D; DriverManager.getConnection(</span><br><span class="line">            &quot;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;imooc?useSSL&#x3D;false&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;serverTimezone&#x3D;Australia&#x2F;Sydney&quot;,</span><br><span class="line">            &quot;yuan&quot;,</span><br><span class="line">            &quot;1111&quot;</span><br><span class="line">    );</span><br><span class="line"></span><br><span class="line">    return conn;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  &#x2F;**</span><br><span class="line">   * 关闭链接，释放资源</span><br><span class="line">   * @param rs 结果集对象</span><br><span class="line">   * @param statement Statement对象</span><br><span class="line">   * @param conn Connection对象</span><br><span class="line">   *&#x2F;</span><br><span class="line">  public static void closeConnection(ResultSet rs, Statement statement, Connection conn) &#123;</span><br><span class="line">    &#x2F;&#x2F; 5. 关闭链接，释放资源</span><br><span class="line">    try &#123;</span><br><span class="line">      if (rs !&#x3D; null) conn.close();</span><br><span class="line">      if (statement !&#x3D; null) statement.close();</span><br><span class="line">      if (conn !&#x3D; null &amp;&amp; !conn.isClosed()) conn.close();</span><br><span class="line">    &#125; catch (Exception e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="jdbc执行insert-update-delete语句"><a class="markdownIt-Anchor" href="#jdbc执行insert-update-delete语句"></a> JDBC执行INSERT, UPDATE, DELETE语句</h2>
+<ul>
+<li>statement.executeUpdate()</li>
+<li>返回受影响得行数</li>
+</ul>
+<h2 id="jdbc事务管理"><a class="markdownIt-Anchor" href="#jdbc事务管理"></a> JDBC事务管理</h2>
+<ul>
+<li>事务依赖于数据库的实现，MySQL通过事务区作为数据缓冲地带</li>
+<li>全部成功或者全部失败</li>
+</ul>
+<h3 id="自动提交事务模式"><a class="markdownIt-Anchor" href="#自动提交事务模式"></a> 自动提交事务模式</h3>
+<ul>
+<li>没执行一次写操作SQL，自动提交事务</li>
+<li><code>conn.setAutoCommit(true)</code></li>
+<li>默认的事务模式</li>
+<li>无法保证多数据一致性</li>
+</ul>
+<h3 id="手动提交事务模式"><a class="markdownIt-Anchor" href="#手动提交事务模式"></a> 手动提交事务模式</h3>
+<ul>
+<li>显示调用<code>commit()</code>与<code>rollback()</code>方法管理事务</li>
+<li><code>conn.setAutoCommit(false)</code></li>
+<li>可保证数据一致性，但必须手动调用提交、回滚方法</li>
+</ul>
+<h2 id="jdbc中date日期对象的处理"><a class="markdownIt-Anchor" href="#jdbc中date日期对象的处理"></a> JDBC中Date日期对象的处理</h2>
+<ul>
+<li>JDBC获取日期使用<code>java.sql.Date</code>,它继承自<code>java.util.Date</code></li>
+<li>所以当获取MySQL中的日期时，两者互相兼容</li>
+</ul>
+<h3 id="date日期的提取"><a class="markdownIt-Anchor" href="#date日期的提取"></a> Date日期的提取</h3>
+<ul>
+<li>因为sql.Date继承自util.Date所以可以直接提取</li>
+</ul>
+<h3 id="date日期的插入"><a class="markdownIt-Anchor" href="#date日期的插入"></a> Date日期的插入</h3>
+<ul>
+<li>需要先将用户输入String转换成java.util.Date
+<ul>
+<li><code>String -&gt; java.util.Date</code></li>
+</ul>
+</li>
+<li>再将java.util.Date转换成java.sql.Date
+<ul>
+<li><code>java.util.Date -&gt; java.sql.Date</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 1.string -&gt; java.util.Date</span><br><span class="line">Date udHireDate &#x3D; null;</span><br><span class="line">SimpleDateFormat sdf &#x3D; new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);</span><br><span class="line">try &#123;</span><br><span class="line">    udHireDate &#x3D; sdf.parse(strHireDate);</span><br><span class="line">&#125; catch (ParseException e) &#123;</span><br><span class="line">    e.printStackTrace();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 2. java.util.Date -&gt; java.sql.Date</span><br><span class="line">long time &#x3D; udHireDate.getTime(); &#x2F;&#x2F; 获取自1970年到现在的毫秒数</span><br><span class="line">java.sql.Date sdHireDate &#x3D; new java.sql.Date(time);</span><br></pre></td></tr></table></figure>
+<h2 id="jdbc批处理"><a class="markdownIt-Anchor" href="#jdbc批处理"></a> JDBC批处理</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">String sql &#x3D; &quot;insert into employee (eno, ename, salary, dname) values (?, ?, ?, ?);&quot;;</span><br><span class="line">statement &#x3D; conn.prepareStatement(sql);</span><br><span class="line"></span><br><span class="line">for (int i &#x3D; 200000; i &lt; 300000; i++) &#123;</span><br><span class="line">statement.setInt(1, i);</span><br><span class="line">statement.setString(2, &quot;员工&quot; + i);</span><br><span class="line">statement.setFloat(3, 4000);</span><br><span class="line">statement.setString(4, &quot;市场部&quot;);</span><br><span class="line">statement.addBatch(); &#x2F;&#x2F; add params to batch job, not execute yet</span><br><span class="line">&#125;</span><br><span class="line">statement.executeBatch(); &#x2F;&#x2F; execute batch job</span><br></pre></td></tr></table></figure>
+<h2 id="连接池与jdbc进阶"><a class="markdownIt-Anchor" href="#连接池与jdbc进阶"></a> 连接池与JDBC进阶</h2>
+<ul>
+<li>建立数据库链接比较费时间</li>
+<li>当我们知道应用的大概人数后，可以在应用启动时，提前创建好大概的连接并存放到连接池中</li>
+<li>当有用户需要连接数据库时，直接从连接池中获取一个可用的连接，用完之后再放入到连接池中以供其他用户使用</li>
+<li>管理，分配，连接</li>
+<li>程序只负责取用和归还</li>
+</ul>
+<h3 id="druid连接池"><a class="markdownIt-Anchor" href="#druid连接池"></a> Druid连接池</h3>
+<ul>
+<li>Druid是阿里巴巴开源连接池组件</li>
+</ul>
+<p><img src="/images/JDBC_Basics/1.png" alt="" /></p>
+<ul>
+<li>连接池配置文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">driverClassName&#x3D;com.mysql.cj.jdbc.Driver</span><br><span class="line">url&#x3D;jdbc:mysql:&#x2F;&#x2F;localhost:3306&#x2F;imooc?useSSL&#x3D;false&amp;useUnicode&#x3D;true&amp;characterEncoding&#x3D;UTF-8&amp;serverTimezone&#x3D;Australia&#x2F;Sydney</span><br><span class="line">username&#x3D;yuan</span><br><span class="line">password&#x3D;1111</span><br><span class="line">initialSize&#x3D;10 &#x2F;&#x2F; 初始化时创建新链接的数量</span><br><span class="line">maxActive&#x3D;20 &#x2F;&#x2F; 连接池中最多的连接数量</span><br></pre></td></tr></table></figure>
+<ul>
+<li>连接的步骤</li>
+</ul>
+<ol>
+<li>加载属性文件</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Properties properties &#x3D; new Properties();</span><br><span class="line">String propertyFilePath &#x3D; DruidSample.class.getResource(&quot;&#x2F;druid-config.properties&quot;).getPath();</span><br><span class="line">&#x2F;&#x2F; URL Space will be represented as %20</span><br><span class="line">&#x2F;&#x2F; so we need to decode it</span><br><span class="line">propertyFilePath &#x3D; new URLDecoder().decode(propertyFilePath, &quot;UTF-8&quot;);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; load propertyFile to properties object</span><br><span class="line">properties.load(new FileInputStream(propertyFilePath));</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>获取dataSource数据源对象，指代数据库</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dataSource &#x3D; DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line">Connection conn &#x3D; dataSource.getConnection();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>不使用连接池： conn.close()的作用是关闭连接</li>
+<li>使用连接池： conn.close()的作用是将连接回收到连接池</li>
+<li>当用户连接数量超过连接池设置的最大数量时，新的用户将会等待连接被其他用户关闭</li>
+<li>Tips：可以将初始连接数量和最大连接数保持一致</li>
+</ul>
+<h3 id="扩展知识c3p0连接池"><a class="markdownIt-Anchor" href="#扩展知识c3p0连接池"></a> 扩展知识：C3P0连接池</h3>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.mchange.com/projects/c3p0/">C3P0连接池</a></li>
+<li>C3P0会自动找到名为c3p0-config.xml的配置文件</li>
+<li><code>DataSource dataSource = new ComboPooledDataSource();</code></li>
+</ul>
+<h3 id="apache-commons-dbutils"><a class="markdownIt-Anchor" href="#apache-commons-dbutils"></a> Apache Commons DBUtils</h3>
+<ul>
+<li>Apache提供的JDBC工具类库</li>
+<li>它是对JDBC的简单封装，学习成本低</li>
+<li>简化JDBC编码工作量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Properties properties &#x3D; new Properties();</span><br><span class="line">String propertyFilePath &#x3D; DBUtilsSample.class.getResource(&quot;&#x2F;druid-config.properties&quot;).getPath();</span><br><span class="line"></span><br><span class="line">propertyFilePath &#x3D; new URLDecoder().decode(propertyFilePath, &quot;UTF-8&quot;);</span><br><span class="line">properties.load(new FileInputStream(propertyFilePath));</span><br><span class="line">DataSource dataSource &#x3D; DruidDataSourceFactory.createDataSource(properties);</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; Commons DBUtils会自动帮助我们创建并关闭连接</span><br><span class="line">QueryRunner qr &#x3D; new QueryRunner(dataSource);</span><br><span class="line">&#x2F;&#x2F; convert ResultSet into list of employees</span><br><span class="line">List&lt;Employee&gt; list &#x3D; qr.query(&quot;select * from employee limit ?, 10;&quot;,</span><br><span class="line">        new BeanListHandler&lt;&gt;(Employee.class),</span><br><span class="line">        new Object[]&#123;10&#125; &#x2F;&#x2F; pass in the params in the SQL query</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">for (Employee emp : list) &#123;</span><br><span class="line">System.out.println(emp.getEname());</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
