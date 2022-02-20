@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hellcy.github.io/2022/02/20/Java-Reflection/</loc>
+    <lastmod>2022-02-20</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2022/02/20/Factory-Design-Pattern/</loc>
+    <lastmod>2022-02-20</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2022/02/20/Maven-Basics/</loc>
+    <lastmod>2022-02-20</lastmod>
+  </url>
+  <url>
     <loc>http://hellcy.github.io/2022/02/17/JDBC-Basics/</loc>
     <lastmod>2022-02-20</lastmod>
   </url>
