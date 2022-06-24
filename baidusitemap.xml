@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://hellcy.github.io/2021/04/08/NET-with-NUnit-Test/</loc>
+    <lastmod>2022-06-23</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2022/06/22/Testing-React-with-Jest-and-RTL/</loc>
+    <lastmod>2022-06-23</lastmod>
+  </url>
+  <url>
+    <loc>http://hellcy.github.io/2019/06/18/How-to-use-Gatling-load-testing-tool/</loc>
+    <lastmod>2022-06-23</lastmod>
+  </url>
+  <url>
     <loc>http://hellcy.github.io/2022/06/18/GraphQL-and-React/</loc>
     <lastmod>2022-06-20</lastmod>
   </url>
@@ -173,10 +185,6 @@
     <lastmod>2021-05-24</lastmod>
   </url>
   <url>
-    <loc>http://hellcy.github.io/2021/04/08/NET-with-NUnit-Test/</loc>
-    <lastmod>2021-05-24</lastmod>
-  </url>
-  <url>
     <loc>http://hellcy.github.io/2020/08/27/Dynamic-Programming/</loc>
     <lastmod>2021-05-24</lastmod>
   </url>
@@ -259,10 +267,6 @@
   <url>
     <loc>http://hellcy.github.io/2021/02/15/AWS-SAA-Design-Secure-Applications-and-Architectures/</loc>
     <lastmod>2021-03-05</lastmod>
-  </url>
-  <url>
-    <loc>http://hellcy.github.io/2019/06/18/How-to-use-Gatling-load-testing-tool/</loc>
-    <lastmod>2021-02-26</lastmod>
   </url>
   <url>
     <loc>http://hellcy.github.io/2021/02/21/Java-Learning-Path/</loc>

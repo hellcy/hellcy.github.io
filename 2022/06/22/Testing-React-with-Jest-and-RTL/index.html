@@ -17,26 +17,23 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>ASP.NET Core with SignalR | Hellcy&#39;s Blog</title>
-  <meta name="description" content="Understanding the Real-time Web  Polling  Clients periodically ask the server if there’s an update. For each poll, a HTTP request is made, and the server either responds with a new status or 204 No C">
+  <title>Testing React with Jest and RTL | Hellcy&#39;s Blog</title>
+  <meta name="description" content="Jest and Enzyme  Jest is a fully feature testing framework not just for React Enzyme is a library that makes testing React components specifically easier If you are using React in your application, i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ASP.NET Core with SignalR">
-<meta property="og:url" content="http://hellcy.github.io/2021/03/11/ASP-NET-Core-with-SignalR/index.html">
+<meta property="og:title" content="Testing React with Jest and RTL">
+<meta property="og:url" content="http://hellcy.github.io/2022/06/22/Testing-React-with-Jest-and-RTL/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Understanding the Real-time Web  Polling  Clients periodically ask the server if there’s an update. For each poll, a HTTP request is made, and the server either responds with a new status or 204 No C">
+<meta property="og:description" content="Jest and Enzyme  Jest is a fully feature testing framework not just for React Enzyme is a library that makes testing React components specifically easier If you are using React in your application, i">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://hellcy.github.io/images/ASP-NET-Core-with-SignalR/1.png">
-<meta property="og:image" content="http://hellcy.github.io/images/ASP-NET-Core-with-SignalR/2.png">
-<meta property="og:image" content="http://hellcy.github.io/images/ASP-NET-Core-with-SignalR/3.png">
-<meta property="og:image" content="http://hellcy.github.io/images/ASP-NET-Core-with-SignalR/4.png">
-<meta property="article:published_time" content="2021-03-11T10:03:57.000Z">
-<meta property="article:modified_time" content="2021-05-24T07:27:02.657Z">
+<meta property="article:published_time" content="2022-06-22T00:38:44.000Z">
+<meta property="article:modified_time" content="2022-06-23T17:06:29.482Z">
 <meta property="article:author" content="Yuan Cheng">
-<meta property="article:tag" content="ASP.NET Core">
+<meta property="article:tag" content="React">
+<meta property="article:tag" content="Testing">
+<meta property="article:tag" content="Jest">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://hellcy.github.io/images/ASP-NET-Core-with-SignalR/1.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://hellcy.github.io/2021/03/11/ASP-NET-Core-with-SignalR/index.html">
+  <link rel="canonical" href="http://hellcy.github.io/2022/06/22/Testing-React-with-Jest-and-RTL/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -376,21 +373,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">Catalogue</h3>
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#understanding-the-real-time-web"><span class="toc-number">1.</span> <span class="toc-text"> Understanding the Real-time Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#polling"><span class="toc-number">1.1.</span> <span class="toc-text"> Polling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#long-polling"><span class="toc-number">1.2.</span> <span class="toc-text"> Long Polling</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#server-sent-events-sse"><span class="toc-number">1.3.</span> <span class="toc-text"> Server Sent Events (SSE)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#web-sockets"><span class="toc-number">1.4.</span> <span class="toc-text"> Web Sockets</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#signalr"><span class="toc-number">2.</span> <span class="toc-text"> SignalR</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transports"><span class="toc-number">2.1.</span> <span class="toc-text"> Transports</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#remote-procedure-call-rpc"><span class="toc-number">2.2.</span> <span class="toc-text"> Remote Procedure Call (RPC)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hub"><span class="toc-number">2.3.</span> <span class="toc-text"> Hub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#differences-with-classic-signalr"><span class="toc-number">2.4.</span> <span class="toc-text"> Differences with Classic SignalR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scaling-out"><span class="toc-number">2.5.</span> <span class="toc-text"> Scaling Out</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jest-and-enzyme"><span class="toc-number">1.</span> <span class="toc-text"> Jest and Enzyme</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#jest-compares-snapshots"><span class="toc-number">1.1.</span> <span class="toc-text"> Jest compares snapshots</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#issues-with-snapshots"><span class="toc-number">1.1.1.</span> <span class="toc-text"> Issues with snapshots</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#enzyme"><span class="toc-number">1.2.</span> <span class="toc-text"> Enzyme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shallow-rendering"><span class="toc-number">1.2.1.</span> <span class="toc-text"> Shallow rendering</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#full-rendering"><span class="toc-number">1.2.2.</span> <span class="toc-text"> Full rendering</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">2.</span> <span class="toc-text"> Introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#create-react-app"><span class="toc-number">2.1.</span> <span class="toc-text"> Create react app</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npx"><span class="toc-number">2.2.</span> <span class="toc-text"> npx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#breaking-down-syntax"><span class="toc-number">2.3.</span> <span class="toc-text"> Breaking down syntax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jest-and-react-testing-library"><span class="toc-number">2.4.</span> <span class="toc-text"> Jest and React Testing Library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#jest-watch-mode"><span class="toc-number">2.5.</span> <span class="toc-text"> Jest Watch mode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#how-does-jest-work"><span class="toc-number">2.6.</span> <span class="toc-text"> How does Jest work</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tdd"><span class="toc-number">2.7.</span> <span class="toc-text"> TDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-testing-library"><span class="toc-number">2.8.</span> <span class="toc-text"> React Testing Library</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#types-of-tests"><span class="toc-number">2.9.</span> <span class="toc-text"> Types of tests</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bdd"><span class="toc-number">2.10.</span> <span class="toc-text"> BDD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unit-testing-functions"><span class="toc-number">2.11.</span> <span class="toc-text"> Unit testing functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#review"><span class="toc-number">2.12.</span> <span class="toc-text"> Review</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eslint-and-prettier"><span class="toc-number">3.</span> <span class="toc-text"> ESLint and Prettier</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint"><span class="toc-number">3.1.</span> <span class="toc-text"> ESLint</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linting-vs-formatting"><span class="toc-number">3.2.</span> <span class="toc-text"> Linting vs Formatting</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sundaes-on-demand-form-review-and-popover"><span class="toc-number">4.</span> <span class="toc-text"> Sundaes on Demand: Form review and popover</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#code-organization"><span class="toc-number">4.1.</span> <span class="toc-text"> Code organization</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#screen-query-methods"><span class="toc-number">4.2.</span> <span class="toc-text"> screen Query methods</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#check-that-tests-can-fail"><span class="toc-number">4.3.</span> <span class="toc-text"> Check that tests can fail</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wait-for-element-to-disappear"><span class="toc-number">4.4.</span> <span class="toc-text"> wait for element to disappear</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#review-2"><span class="toc-number">4.5.</span> <span class="toc-text"> Review</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-ASP-NET-Core-with-SignalR" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-Testing-React-with-Jest-and-RTL" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      ASP.NET Core with SignalR
+      Testing React with Jest and RTL
     </h1>
   
 
@@ -398,144 +395,353 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/03/11/ASP-NET-Core-with-SignalR/" class="article-date">
-	  <time datetime="2021-03-11T10:03:57.000Z" itemprop="datePublished">11-03-2021</time>
+	<a href="/2022/06/22/Testing-React-with-Jest-and-RTL/" class="article-date">
+	  <time datetime="2022-06-22T00:38:44.000Z" itemprop="datePublished">22-06-2022</time>
 	</a>
 </span>
         
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/tags/ASP-NET-Core/" rel="tag">ASP.NET Core</a>
+	<a class="article-tag-link-link" href="/tags/Jest/" rel="tag">Jest</a>, <a class="article-tag-link-link" href="/tags/React/" rel="tag">React</a>, <a class="article-tag-link-link" href="/tags/Testing/" rel="tag">Testing</a>
   </span>
 
 
         
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/03/11/ASP-NET-Core-with-SignalR/#comments" class="article-comment-link">Comments</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/06/22/Testing-React-with-Jest-and-RTL/#comments" class="article-comment-link">Comments</a></span>
         
 	
-		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 717(words)</span>
+		<span class="post-wordcount hidden-xs" itemprop="wordCount">Word Count: 957(words)</span>
 	
 	
-		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 4(minutes)</span>
+		<span class="post-readcount hidden-xs" itemprop="timeRequired">Read Count: 5(minutes)</span>
 	
 
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h2 id="understanding-the-real-time-web"><a class="markdownIt-Anchor" href="#understanding-the-real-time-web"></a> Understanding the Real-time Web</h2>
-<h3 id="polling"><a class="markdownIt-Anchor" href="#polling"></a> Polling</h3>
+        <h1 id="jest-and-enzyme"><a class="markdownIt-Anchor" href="#jest-and-enzyme"></a> Jest and Enzyme</h1>
 <ul>
-<li>Clients periodically ask the server if there’s an update. For each poll, a HTTP request is made, and the server either responds with a new status or 204 No Content</li>
+<li>Jest is a fully feature testing framework not just for React</li>
+<li>Enzyme is a library that makes testing React components specifically easier</li>
+<li>If you are using React in your application, it might make sense to use Enzyme and Jest together to automatically test your UI</li>
+<li>Many people use Jest as a test runner and assertion library, then use Enzyme to build the tests for their UI</li>
 </ul>
-<h3 id="long-polling"><a class="markdownIt-Anchor" href="#long-polling"></a> Long Polling</h3>
+<h2 id="jest-compares-snapshots"><a class="markdownIt-Anchor" href="#jest-compares-snapshots"></a> Jest compares snapshots</h2>
 <ul>
-<li>
-<p>Clients send HTTP request to the server. But the server will not complete the request but leave it until there’s an update. When there’s no update within a certain timeframe, the request will time out. When that happens, the client will just start the process again by issuing a new request.</p>
-</li>
-<li>
-<p>Long Polling is more efficient than polling, but it is still using HTTP requests to ask for updates.</p>
-</li>
+<li>Snapshot is a saved fragment of HTML generated by your application</li>
+<li>when Jest run tests, it compares the output of rendering a component with the saved snapshot HTML, it they are the same, then the tests passes.</li>
 </ul>
-<h3 id="server-sent-events-sse"><a class="markdownIt-Anchor" href="#server-sent-events-sse"></a> Server Sent Events (SSE)</h3>
+<h3 id="issues-with-snapshots"><a class="markdownIt-Anchor" href="#issues-with-snapshots"></a> Issues with snapshots</h3>
 <ul>
-<li>
-<p>a HTML5 feature, the server creats an HTTP connection to the client(browser) with Server Sent Events. The browser will listen for messages that will come in as a stream. The connection will remain open until it is actively closed.</p>
-</li>
-<li>
-<p>The browser will use an object called EventSource that has an event onmessage to process incoming messages.</p>
-</li>
+<li>if your component has many states, you have to create a snapshot for each state.</li>
 </ul>
-<ol>
-<li>Using simple HTTP</li>
-<li>Auto reconnects</li>
-<li>No support for older browsers</li>
-<li>Easily polyfilled</li>
-<li>Maximum HTTP connections issue (6 connections at most)</li>
-<li>Only support text messages</li>
-<li>One-way connection</li>
-</ol>
-<h3 id="web-sockets"><a class="markdownIt-Anchor" href="#web-sockets"></a> Web Sockets</h3>
+<h2 id="enzyme"><a class="markdownIt-Anchor" href="#enzyme"></a> Enzyme</h2>
 <ul>
-<li>
-<p>A standardized way to use one TCP socket through which messages can be sent from server to client and vice versa and without the latency of HTTP.</p>
-</li>
-<li>
-<p>A TCP socket typically remains open for as long as the stream of the messages are not done.</p>
-</li>
-<li>
-<p>SignalR will use WebSockets most of the time because its the most efficient transport.</p>
-</li>
+<li>Enzyme renders the component in memory, then provides a series of APIs to examine the component’s properties</li>
 </ul>
-<ol>
-<li>Full duplex messaging (client to server and vice versa)</li>
-<li>No 6 connections limit</li>
-<li>For most browsers, the connection limit for web sockets is about 50 connections</li>
-<li>Multi data type support (text, binary)</li>
-<li>TCP socket upgrade (Regular HTTP request uses a TCP socket as well)</li>
-</ol>
+<h3 id="shallow-rendering"><a class="markdownIt-Anchor" href="#shallow-rendering"></a> Shallow rendering</h3>
 <ul>
-<li>
-<p>The WebSockets standards uses a handshake mechanism to upgrade an existing socket used for HTTP traffic to a WebSocket. After that, messages can travel through the socket until the socket is actively closed. When closing, a reason for closing is communicated.</p>
+<li>only render that component itself, Enzyme doesn’t render any of the children of that component</li>
+<li>then you could use functions like <code>find()</code> or <code>findWhere()</code> to find the element within the component</li>
+</ul>
+<h3 id="full-rendering"><a class="markdownIt-Anchor" href="#full-rendering"></a> Full rendering</h3>
+<ul>
+<li>useful for integration testing, where you need to test multiple components and how they work together</li>
+</ul>
+<h1 id="introduction"><a class="markdownIt-Anchor" href="#introduction"></a> Introduction</h1>
+<h2 id="create-react-app"><a class="markdownIt-Anchor" href="#create-react-app"></a> Create react app</h2>
+<ul>
+<li>npm package</li>
+<li>Creates react application with
+<ul>
+<li>configuration</li>
+<li>webpack and babel
+<ul>
+<li>webpack will bundle all your code in one file</li>
+<li>babel will translate react to the code that our browser can understand</li>
+</ul>
 </li>
-<li>
-<p>Every WebScoket starts its life as a simple HTTP socket, A GET HTTP call is made to the server, requesting an upgrade of the socket. If the server agrees, the socket becomes a WebSocket from that point onwards.</p>
+<li>web server
+<ul>
+<li>to run our app on localhost</li>
+</ul>
+</li>
+<li>testing library</li>
+</ul>
 </li>
 </ul>
-<h2 id="signalr"><a class="markdownIt-Anchor" href="#signalr"></a> SignalR</h2>
+<h2 id="npx"><a class="markdownIt-Anchor" href="#npx"></a> npx</h2>
 <ul>
-<li>SignalR is an open source framework that wraps the complexity of real-time web transports. You don’t need to worry about the lower level transports like long polling, Server Sent Event or WebSockets.</li>
+<li>downloads the latest version of create-react-app templates every time</li>
+<li>not dependent on when you last installed create-react-app
+<ul>
+<li>it is never installed on your laptop</li>
 </ul>
-<h3 id="transports"><a class="markdownIt-Anchor" href="#transports"></a> Transports</h3>
-<ul>
-<li>WebSockets, Server Sent Events, Long Polling</li>
-<li>Requires client and server that supports transport</li>
-<li>Fallback mechanism (if browser doesn’t support WebSocket, then use SSE instead, etc…)</li>
-</ul>
-<h3 id="remote-procedure-call-rpc"><a class="markdownIt-Anchor" href="#remote-procedure-call-rpc"></a> Remote Procedure Call (RPC)</h3>
-<ul>
-<li>Server can call a function in the Client and vice versa</li>
-</ul>
-<h3 id="hub"><a class="markdownIt-Anchor" href="#hub"></a> Hub</h3>
-<ul>
-<li>A hub is a server-side class that sends messages to and receives messages from clients by utilizing RPC.</li>
-</ul>
-<p><img src="/../images/ASP-NET-Core-with-SignalR/1.png" alt="" /></p>
-<ul>
-<li>A hub protocol is a format used to serialize parameters to and deserialize parameters from</li>
-</ul>
-<h3 id="differences-with-classic-signalr"><a class="markdownIt-Anchor" href="#differences-with-classic-signalr"></a> Differences with Classic SignalR</h3>
-<ul>
-<li>Simplified connection model</li>
-<li>Single hub per connection</li>
-<li>Async</li>
-<li>Binary and custom protocols</li>
-<li>No jQuery dependency for JavaScript client</li>
-<li>Sticky session required</li>
-</ul>
-<h3 id="scaling-out"><a class="markdownIt-Anchor" href="#scaling-out"></a> Scaling Out</h3>
-<ul>
-<li>Running on muiltiple servers</li>
-<li>Load Balancer picks server</li>
-<li>Problem with non-WebSockets transport, it could send the first request to the first server, then send the second request to the second server, who doesn’t know anything about the context of the message.</li>
-</ul>
-<p><img src="/../images/ASP-NET-Core-with-SignalR/2.png" alt="" /></p>
-<ul>
-<li>We could solve this problem by using sticky sessions.</li>
-<li>As part of the response of the first request, the load balancer sets a cookie in the browser, indicating the server that was used. On subsequent request, the load balancer then reads the cookie and assigns the request to the same server. (IIS using Application Request Routing Affinity (ARR Affinity))</li>
-</ul>
-<p><img src="/../images/ASP-NET-Core-with-SignalR/3.png" alt="" /></p>
-<ul>
-<li>
-<p>Another problem, let’s say a user is working on a web document using Office 365, and she invites others to join her, the other might end up at another server. When user 1 on the server changes the document, a message has to be sent to the others, but server 1 doesn’t know about users that are connected to hubs in other servers.</p>
-</li>
-<li>
-<p>To solve this, the servers need a way to share data. This can be done using a Database, but a faster alternative would be to use a Redis cache.</p>
 </li>
 </ul>
-<p><img src="/../images/ASP-NET-Core-with-SignalR/4.png" alt="" /></p>
+<h2 id="breaking-down-syntax"><a class="markdownIt-Anchor" href="#breaking-down-syntax"></a> Breaking down syntax</h2>
+<ul>
+<li>render
+<ul>
+<li>create virtual DOM for argument JSX</li>
+</ul>
+</li>
+<li>screen
+<ul>
+<li>global object to access virtual DOM</li>
+<li><code>screen.getByText()</code> to find element by display text</li>
+</ul>
+</li>
+<li>expect
+<ul>
+<li>assertion, causes test to succeed to fail</li>
+</ul>
+</li>
+</ul>
+<h2 id="jest-and-react-testing-library"><a class="markdownIt-Anchor" href="#jest-and-react-testing-library"></a> Jest and React Testing Library</h2>
+<ul>
+<li>React Testing Library helps with
+<ul>
+<li>rendering components into virtual DOM</li>
+<li>searching virtual DOM</li>
+<li>interacting with virtual DOM</li>
+</ul>
+</li>
+<li>needs a test runner
+<ul>
+<li>find tests, run them, make assertions</li>
+</ul>
+</li>
+<li>Jest is the test runner
+<ul>
+<li>is recommended by Testing Library</li>
+<li>comes with create-react-app</li>
+</ul>
+</li>
+<li><code>npm test</code> runs an npm script that runs Jest in watch mode</li>
+</ul>
+<h2 id="jest-watch-mode"><a class="markdownIt-Anchor" href="#jest-watch-mode"></a> Jest Watch mode</h2>
+<ul>
+<li>watch for changes in files since last commit</li>
+<li>only run tests related to these files</li>
+<li>no changes? no tests.</li>
+</ul>
+<h2 id="how-does-jest-work"><a class="markdownIt-Anchor" href="#how-does-jest-work"></a> How does Jest work</h2>
+<ul>
+<li>global <code>test</code> method has two arguments
+<ul>
+<li>string description</li>
+<li>test function</li>
+</ul>
+</li>
+<li>test fails if error is thrown when running function
+<ul>
+<li>assertions throw errors when expectation fails</li>
+</ul>
+</li>
+<li>no error -&gt; tests pass
+<ul>
+<li>empty test passes</li>
+</ul>
+</li>
+</ul>
+<h2 id="tdd"><a class="markdownIt-Anchor" href="#tdd"></a> TDD</h2>
+<ul>
+<li>write tests before writing code
+<ul>
+<li>then write code according to spec set by tests</li>
+</ul>
+</li>
+<li>red green testing
+<ul>
+<li>tests fail before code is written</li>
+</ul>
+</li>
+</ul>
+<h2 id="react-testing-library"><a class="markdownIt-Anchor" href="#react-testing-library"></a> React Testing Library</h2>
+<ul>
+<li>creates virtual DOM for testing
+<ul>
+<li>and utilities for interacting with DOM</li>
+</ul>
+</li>
+<li>allows testing without a browser</li>
+</ul>
+<h2 id="types-of-tests"><a class="markdownIt-Anchor" href="#types-of-tests"></a> Types of tests</h2>
+<ul>
+<li>Unit test
+<ul>
+<li>tests one unit of code in isolation</li>
+<li>mock dependencies, test internals</li>
+<li>easy to pinpoint failures but further from how users interact with software</li>
+<li>more likely to break with refactoring</li>
+</ul>
+</li>
+<li>Integration tests
+<ul>
+<li>how multiple units work together</li>
+</ul>
+</li>
+<li>functional tests
+<ul>
+<li>tests a particular function of software</li>
+<li>you are not testing your code, you are testing a behavior</li>
+<li>close to how users interact with software</li>
+<li>more difficult to debug failing tests (tests are not tightly coupled with the code)</li>
+<li>e.g. enter data in form and click submit</li>
+</ul>
+</li>
+<li>acceptance E2E tests
+<ul>
+<li>use actual browser and server (Cypress, Selenium)</li>
+</ul>
+</li>
+</ul>
+<h2 id="bdd"><a class="markdownIt-Anchor" href="#bdd"></a> BDD</h2>
+<ul>
+<li>Behavior driven development</li>
+<li>testing library encourages testing behavior over implementation</li>
+<li>but we still call it TDD, why?</li>
+<li>because BDD is very explicitly defined
+<ul>
+<li>involves collaboration between lots of roles</li>
+<li>developers, QA, business partners, etc…</li>
+<li>defines process for different groups to interact</li>
+</ul>
+</li>
+</ul>
+<h2 id="unit-testing-functions"><a class="markdownIt-Anchor" href="#unit-testing-functions"></a> Unit testing functions</h2>
+<ul>
+<li>functions separate from components
+<ul>
+<li>used by several components</li>
+<li>complex logic</li>
+</ul>
+</li>
+<li>unit test if
+<ul>
+<li>complex logic difficult to test via functional tests</li>
+<li>too many edge cases</li>
+</ul>
+</li>
+</ul>
+<h2 id="review"><a class="markdownIt-Anchor" href="#review"></a> Review</h2>
+<ul>
+<li>Test interactivity using <code>fireEvent</code>
+<ul>
+<li><code>userEvent</code> is more popular than <code>fireEvent</code></li>
+</ul>
+</li>
+<li>jest DOM assertions
+<ul>
+<li><code>toBeEnabled()</code></li>
+<li><code>toBeDisabled()</code></li>
+<li><code>toBeChecked()</code></li>
+</ul>
+</li>
+<li><code>getByRole</code> option <code>name</code></li>
+<li>jest <code>describe</code> to group tests</li>
+</ul>
+<h1 id="eslint-and-prettier"><a class="markdownIt-Anchor" href="#eslint-and-prettier"></a> ESLint and Prettier</h1>
+<h2 id="eslint"><a class="markdownIt-Anchor" href="#eslint"></a> ESLint</h2>
+<ul>
+<li>Linter
+<ul>
+<li>analyzes static text and marks syntax that breaks rules</li>
+</ul>
+</li>
+<li>Static
+<ul>
+<li>analyze code as written, not what happens when code is run</li>
+</ul>
+</li>
+<li>Popular linter for JavaScript</li>
+<li>linting keeps code style consistent
+<ul>
+<li>especially for multi engineer projects</li>
+</ul>
+</li>
+<li>also catches errors in code
+<ul>
+<li>using variable before defining</li>
+<li>importing from non-existing file</li>
+<li>etc…</li>
+</ul>
+</li>
+</ul>
+<h2 id="linting-vs-formatting"><a class="markdownIt-Anchor" href="#linting-vs-formatting"></a> Linting vs Formatting</h2>
+<ul>
+<li>Formatters (like prettier) automatically format code</li>
+<li>linters address format and code style
+<ul>
+<li>enforce best practices</li>
+</ul>
+</li>
+</ul>
+<h1 id="sundaes-on-demand-form-review-and-popover"><a class="markdownIt-Anchor" href="#sundaes-on-demand-form-review-and-popover"></a> Sundaes on Demand: Form review and popover</h1>
+<ul>
+<li>more complex user interactions
+<ul>
+<li>multiple form entry, moving through order phases</li>
+</ul>
+</li>
+<li>mouseover popup
+<ul>
+<li>test that element disappears from DOM</li>
+</ul>
+</li>
+<li>simulating server response
+<ul>
+<li>mock service worker (without the need of a real backend server)</li>
+<li>mock responses from server</li>
+</ul>
+</li>
+<li>async app updates
+<ul>
+<li>tell assertion to wait until DOM changes</li>
+</ul>
+</li>
+<li>global state via context</li>
+</ul>
+<h2 id="code-organization"><a class="markdownIt-Anchor" href="#code-organization"></a> Code organization</h2>
+<ul>
+<li>organize components by pages
+<ul>
+<li><code>test</code> directory for each page</li>
+<li>Jest will find and run any files that end in <code>.test.js</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="screen-query-methods"><a class="markdownIt-Anchor" href="#screen-query-methods"></a> screen Query methods</h2>
+<ul>
+<li>get: expect element to be in DOM</li>
+<li>query: expect element NOT to be in DOM</li>
+<li>find: expect element to appear async</li>
+</ul>
+<h2 id="check-that-tests-can-fail"><a class="markdownIt-Anchor" href="#check-that-tests-can-fail"></a> Check that tests can fail</h2>
+<ul>
+<li>sometimes tests pass because of async and assertions don’t have a chance to run before the tests end.</li>
+<li>so it is a good habit to check that the tests can fail as well as pass</li>
+</ul>
+<h2 id="wait-for-element-to-disappear"><a class="markdownIt-Anchor" href="#wait-for-element-to-disappear"></a> wait for element to disappear</h2>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; popover disappears when we mouse out</span><br><span class="line">userEvent.unhover(termsAndConditions);</span><br><span class="line">await waitForElementToBeRemoved(() &#x3D;&gt;</span><br><span class="line">  screen.queryByText(&#x2F;no ice cream will actually be delivered&#x2F;i)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>sometimes the disappearance of elements is happening asynchronously, so we need to wait for it before doing assertions</li>
+</ul>
+<h2 id="review-2"><a class="markdownIt-Anchor" href="#review-2"></a> Review</h2>
+<ul>
+<li><code>userEvent.hover</code> and <code>userEvent.unhover</code></li>
+<li><code>queryByText</code></li>
+<li><code>async waitForElementToBeRemoved</code></li>
+<li><code>test not wrapped in act(...)</code> warning
+<ul>
+<li>determine how component is getting updated async and account for in tests</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -545,7 +751,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>Link：</strong>
-      <a href="http://hellcy.github.io/2021/03/11/ASP-NET-Core-with-SignalR/" title="ASP.NET Core with SignalR" target="_blank" rel="external">http://hellcy.github.io/2021/03/11/ASP-NET-Core-with-SignalR/</a>
+      <a href="http://hellcy.github.io/2022/06/22/Testing-React-with-Jest-and-RTL/" title="Testing React with Jest and RTL" target="_blank" rel="external">http://hellcy.github.io/2022/06/22/Testing-React-with-Jest-and-RTL/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -591,13 +797,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/03/16/React-Overview/" title="React Overview"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/03/07/ASP-NET-Core-Fundamentals/" title="ASP.NET Core Fundamentals"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/06/18/GraphQL-and-React/" title="GraphQL and React"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
